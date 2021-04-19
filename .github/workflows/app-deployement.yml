@@ -15,4 +15,4 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Deploy react app to github pages
-      uses: justinalexandershaw/deploy-react-to-ghpages@master
+      uses: ehsandeep/deploy-react-to-ghpages@master
