@@ -1,0 +1,76 @@
+@import '../../breakpoints.scss';
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.tab_switcher {
+  width: 100%;
+  height: 3.7rem;
+  display: flex;
+  background: #192030;
+  justify-content: stretch;
+
+  .__selected_tab_button {
+    background: rgba(216, 216, 216, 0.12);
+    margin: 0 !important;
+    height: 100% !important;
+    border-right: 1px solid transparent !important;
+  }
+  .tab_button {
+    height: calc(100% - 1rem);
+    cursor: default;
+    margin: 0.5rem 0;
+    padding: 0 0.7rem;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(151, 151, 151, 0.5);
+    & > div {
+      margin-right: 0.4rem;
+      font-size: 1.2rem;
+      color: #ffffff;
+      text-align: left;
+    }
+    & > svg {
+      margin-left: auto;
+      cursor: pointer;
+    }
+  }
+  .add_new_tab_button {
+    height: 100%;
+    width: auto;
+    display: flex;
+    padding: 0 1.5rem;
+    align-items: center;
+  }
+}
+
+.url_container {
+  width: 100%;
+  height: 13.5rem;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  & > div {
+    font-size: 1.95rem;
+    color: #ffffff;
+    text-align: left;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  & > svg {
+    margin: -1.4rem 0 0 1.5rem;
+    cursor: pointer;
+    height: 2.2rem;
+  }
+}

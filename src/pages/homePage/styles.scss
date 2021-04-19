@@ -1,0 +1,122 @@
+@import '../../breakpoints.scss';
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .body {
+    width: 100%;
+    display: flex;
+    height: calc(100% - 22.5rem);
+
+    .left_section {
+      width: 30%;
+      box-sizing: border-box;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-radius: 0 0.6rem 0 0;
+      border-top: 1px solid rgba(151, 151, 151, 0.25);
+      border-right: 1px solid rgba(151, 151, 151, 0.25);
+
+      .requests_table_container {
+        width: 100%;
+        height: calc(100% - 6.3rem);
+        overflow-y: scroll;
+      }
+      .notes {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .detailed_notes {
+          display: none;
+          height: 30rem;
+        }
+        .notes_footer {
+          height: 6.3rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          padding: 0 2rem;
+          & > span {
+            font-size: 1.6rem;
+            color: #ffffff;
+          }
+          & > svg {
+            margin-left: auto;
+            transition: all 0.1s linear;
+          }
+        }
+      }
+    }
+    .right_section {
+      width: 70%;
+      height: 100%;
+      .result_header {
+        height: 7.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1.6rem 0 3.4rem;
+        color: #ffffff;
+        margin-bottom: 1.5rem;
+        .__selected_req_res_button {
+          background: rgba(216, 216, 216, 0.2);
+        }
+        & > svg {
+          margin-left: 1rem;
+          cursor: pointer;
+        }
+        .req_res_buttons {
+          height: 3.5rem;
+          border: 1px solid #979797;
+          overflow: hidden;
+          border-radius: 0.6rem;
+          font-size: 1.4rem;
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          margin-right: 1rem;
+          cursor: pointer;
+          & > span {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 1.1rem;
+          }
+        }
+        .result_info {
+          margin-left: auto;
+          font-size: 1.6rem;
+          color: #ffffff;
+          & > span {
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid rgba(151, 151, 151, 0.6);
+          }
+        }
+      }
+      .detailed_request {
+        display: flex;
+        flex-direction: column;
+        padding: 0 3.4rem;
+        overflow-y: scroll;
+        height: calc(100% - 9rem);
+      }
+    }
+  }
+}

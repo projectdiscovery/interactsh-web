@@ -1,0 +1,27 @@
+@mixin for-size($range) {
+  $small: 600px;
+  $medium: 768px;
+  $large: 992px;
+  $extra-large: 1200px;
+  @if $range == xsmall {
+    @media only screen and (max-width: #{$small }) {
+      @content;
+    }
+  } @else if $range == small {
+    @media only screen and (min-width: $small) {
+      @content;
+    }
+  } @else if $range == medium {
+    @media only screen and (min-width: $medium) {
+      @content;
+    }
+  } @else if $range == large {
+    @media only screen and (min-width: $large) {
+      @content;
+    }
+  } @else if $range == xlarge {
+    @media only screen and (min-width: $extra-large) {
+      @content;
+    }
+  }
+}

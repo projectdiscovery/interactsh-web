@@ -1,0 +1,42 @@
+.retry_error_fallback {
+  background: rgba(216, 216, 216, 0.03);
+  display: flex;
+  justify-content: center;
+  border-radius: 0.2rem;
+  align-items: center;
+  flex-direction: column;
+  .error_box {
+    background: #ffffff;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+    transition: 0.1s all ease-out;
+    &:active {
+      box-shadow: 0 0 0.5rem 0.15rem rgba(0, 0, 0, 0.2);
+    }
+    i {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #1f2239;
+      cursor: pointer;
+      transform: rotateX(180deg);
+      display: flex;
+      align-items: center;
+      align-items: center;
+    }
+  }
+  .error_msg {
+    width: 100%;
+    font-size: 1.8rem;
+    text-align: center;
+    color: #000000;
+    line-height: 2.4rem;
+  }
+}

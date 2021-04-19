@@ -1,0 +1,55 @@
+@import '../../breakpoints.scss';
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.requests_table {
+  width: 100%;
+  color: #fff;
+  text-align: left;
+  border-spacing: 0;
+
+  & > thead {
+    font-size: 1.1rem;
+    color: #ffffff;
+    th {
+      height: 5.5rem;
+      padding: 0 1.5rem;
+    }
+  }
+  & > tbody {
+    font-size: 1.5rem;
+    color: #ffffff;
+    tr {
+      cursor: pointer;
+      td {
+        border-bottom: 1px solid rgba(151, 151, 151, 0.25);
+        padding: 0 1.5rem;
+        height: 6rem;
+      }
+    }
+  }
+}
+.placeholder_row {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6a6a6a;
+  font-size: 1.4rem;
+}
+.selected_row {
+  background: rgba(216, 216, 216, 0.07);
+}
