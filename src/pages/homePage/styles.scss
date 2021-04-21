@@ -68,6 +68,34 @@
     .right_section {
       width: 70%;
       height: 100%;
+      .refresh_button {
+        display: flex;
+        align-items: center;
+        height: 5.6rem;
+        padding: 0 3.4rem;
+        cursor: pointer;
+        &:active {
+          & > svg {
+            transform: rotate(90deg);
+            path{
+              fill: #979797;
+            }
+          }
+          &>span{
+            color: #979797;
+          }
+        }
+        & > span {
+          font-size: 1.5rem;
+          color: #ffffff;
+          transition: all .1s linear;
+          user-select: none;
+        }
+        & > svg {
+          transition: all .1s linear;
+          margin-right: 1rem;
+        }
+      }
       .result_header {
         height: 7.5rem;
         display: flex;

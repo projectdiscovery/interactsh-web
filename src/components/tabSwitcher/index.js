@@ -5,15 +5,14 @@ import PlusIcon from '../../assets/svg/plus.svg';
 import CopyIcon from '../../assets/svg/copy.svg';
 
 const TabSwitcher = props => {
-  const { handleTabButtonClick, selectedTab, handleAddNewTab, data } = props;
-
-  const index =
-    (data.length !== 0 &&
-      data.findIndex(item => {
-        return parseInt(item.id) == parseInt(selectedTab);
-      })) ||
-    0;
-
+  const {
+    handleTabButtonClick,
+    selectedTab,
+    handleAddNewTab,
+    data,
+    copyDataToClipboard,
+    handleDeleteTab
+  } = props;
   return (
     <>
       <div className={styles.tab_switcher}>
@@ -22,12 +21,12 @@ const TabSwitcher = props => {
             return (
               <div
                 key={i}
-                onClick={() => handleTabButtonClick(item.id)}
-                className={`${styles.tab_button} ${selectedTab == item.id &&
+                onClick={() => handleTabButtonClick(item)}
+                className={`${styles.tab_button} ${selectedTab.id == item.id &&
                   styles.__selected_tab_button}`}
               >
                 <div>{item.name}</div>
-                <CrossIcon />
+                <CrossIcon onClick={() => handleDeleteTab((item.id))} />
               </div>
             );
           })}
@@ -36,8 +35,8 @@ const TabSwitcher = props => {
         </div>
       </div>
       <div className={`${styles.url_container} secondary_bg`}>
-        <div>{data.length !== 0 && data[index].url}</div>
-        <CopyIcon />
+        <div>{data.length !== 0 && selectedTab && selectedTab.url}</div>
+        <CopyIcon onClick={() => copyDataToClipboard(selectedTab.url)} />
       </div>
     </>
   );

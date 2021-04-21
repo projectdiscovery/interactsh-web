@@ -31,12 +31,12 @@
     height: calc(100% - 1rem);
     cursor: default;
     margin: 0.5rem 0;
-    padding: 0 0.7rem;
+    padding: 0 1rem;
     display: flex;
     align-items: center;
     border-right: 1px solid rgba(151, 151, 151, 0.5);
     & > div {
-      margin-right: 0.4rem;
+      margin-right: 1rem;
       font-size: 1.2rem;
       color: #ffffff;
       text-align: left;
@@ -44,6 +44,10 @@
     & > svg {
       margin-left: auto;
       cursor: pointer;
+      transition: all 0.1s linear;
+      &:active {
+        transform: scale(0.9);
+      }
     }
   }
   .add_new_tab_button {
@@ -72,5 +76,11 @@
     margin: -1.4rem 0 0 1.5rem;
     cursor: pointer;
     height: 2.2rem;
+    transition: all 0.1s linear;
+    &:active {
+      path {
+        fill: #979797;
+      }
+    }
   }
 }

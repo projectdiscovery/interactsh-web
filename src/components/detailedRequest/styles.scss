@@ -32,6 +32,10 @@
     color: #fcc28c;
     line-height: 2.8rem;
     position: relative;
+    & > pre {
+      border: none !important;
+      background: transparent !important;
+    }
     .copy_button {
       position: absolute;
       top: -1.4rem;

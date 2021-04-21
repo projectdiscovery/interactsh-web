@@ -41,6 +41,7 @@
     "react-style-proptype": "^3.2.2",
     "react-suspense-fetch": "0.0.4",
     "react-svg-loader": "^3.0.3",
+    "react-syntax-highlighter": "^15.4.3",
     "react-transition-group": "^4.4.1",
     "react-virtualized": "^9.21.2",
     "request": "^2.88.2",
