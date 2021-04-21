@@ -216,7 +216,7 @@ const HomePage = props => {
   }, [selectedTab]);
 
   const poll = async (a, b) => {
-    let data = await fetch(`https://interact.sh/poll?id=${a}&secret=${b}`)
+    let data = await fetch('https://interact.sh' + `/poll?id=${a}&secret=${b}`)
       .then(res => {
         return res.json();
       })
