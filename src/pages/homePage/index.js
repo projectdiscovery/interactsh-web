@@ -375,8 +375,8 @@ const HomePage = props => {
                   className={styles.detailed_notes}
                   style={{ display: isNotesOpen ? 'flex' : 'none' }}
                 >
-                  <SyntaxHighlighter language="javascript" style={dark}>
-                    {tabs[selectedTabsIndex].note}
+                  {/* <SyntaxHighlighter language="javascript" style={dark}> */}
+                    {/* {tabs[selectedTabsIndex].note} */}
                     <textarea
                       id="notes_textarea"
                       placeholder={'Please paste note here max 1200 charachters..'}
@@ -384,7 +384,7 @@ const HomePage = props => {
                       value={tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note}
                       onChange={handleNoteInputChange}
                     ></textarea>
-                  </SyntaxHighlighter>
+                  {/* </SyntaxHighlighter> */}
                 </div>
                 <div onClick={handleNotesVisibility} className={styles.notes_footer}>
                   <span>Notes</span>
