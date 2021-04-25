@@ -17,6 +17,8 @@ import xid from 'xid-js';
 import crypto from 'crypto';
 import zbase32 from 'zbase32';
 import dateTransform from '../../components/common/dateTransform';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const HomePage = props => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
@@ -32,12 +34,12 @@ const HomePage = props => {
   const [pollIntervals, setPollIntervals] = useState([]);
 
   const generateUrl = id => {
-    const tabsListLength = tabs == null ? 0 : tabs.length;
     const timestamp = Math.floor(Date.now() / 1000);
+    const increment = parseInt(localStorage.getItem('increment'));
     var arr = new ArrayBuffer(8);
     var view = new DataView(arr);
     view.setUint32(0, timestamp, false);
-    view.setUint32(4, tabsListLength + 1, false);
+    view.setUint32(4, increment, false);
     const random = arr;
     const encodedTimestamp = zbase32.encode(random);
     let url = `${id}${encodedTimestamp}.interact.sh`;
@@ -60,6 +62,7 @@ const HomePage = props => {
       localStorage.setItem('secretKey', secret);
       localStorage.setItem('data', JSON.stringify([]));
       localStorage.setItem('aesKey', null);
+      localStorage.setItem('notes', JSON.stringify([]));
 
       let registerFetcherOptions = {
         'public-key': btoa(pub),
@@ -87,7 +90,7 @@ const HomePage = props => {
           localStorage.clear();
         }
       });
-
+      localStorage.setItem('increment', 1);
       let generatedUrl = generateUrl(correlation);
       const lastTabsId = tabs.slice(-1)[0] ? tabs.slice(-1)[0].id : 0;
       setTabs([
@@ -95,14 +98,16 @@ const HomePage = props => {
           id: lastTabsId + 1,
           correlationId: correlation,
           name: lastTabsId + 1,
-          url: generatedUrl
+          url: generatedUrl,
+          note: ''
         }
       ]);
       setSelectedTab({
         id: lastTabsId + 1,
         correlationId: correlation,
         name: lastTabsId + 1,
-        url: generatedUrl
+        url: generatedUrl,
+        note: ''
       });
       localStorage.setItem(
         'tabs',
@@ -111,7 +116,8 @@ const HomePage = props => {
             id: lastTabsId + 1,
             correlationId: correlation,
             name: lastTabsId + 1,
-            url: generatedUrl
+            url: generatedUrl,
+            note: ''
           }
         ])
       );
@@ -121,7 +127,8 @@ const HomePage = props => {
           id: lastTabsId + 1,
           correlationId: correlation,
           name: lastTabsId + 1,
-          url: generatedUrl
+          url: generatedUrl,
+          note: ''
         })
       );
 
@@ -231,56 +238,71 @@ const HomePage = props => {
     localStorage.setItem('theme', value);
   };
   const handleTabButtonClick = value => {
-    console.log('value');
-    console.log(value);
     setSelectedTab(value);
     localStorage.setItem('selectedTab', JSON.stringify(value));
     setSelectedInteraction('');
   };
   const handleAddNewTab = () => {
     const newUrl = generateUrl(correlationId);
-    const lastTabsId = tabs.slice(-1)[0].id;
+    const increment = parseInt(localStorage.getItem('increment')) + 1;
     setTabs([
       ...tabs,
       {
-        id: lastTabsId + 1,
+        id: increment,
         correlationId: correlationId,
-        name: lastTabsId + 1,
-        url: newUrl
+        name: increment,
+        url: newUrl,
+        note: ''
       }
     ]);
     setSelectedTab({
-      id: lastTabsId + 1,
+      id: increment,
       correlationId: correlationId,
-      name: lastTabsId + 1,
-      url: newUrl
+      name: increment,
+      url: newUrl,
+      note: ''
     });
     localStorage.setItem(
       'tabs',
       JSON.stringify([
         ...tabs,
         {
-          id: lastTabsId + 1,
+          id: increment,
           correlationId: correlationId,
-          name: lastTabsId + 1,
-          url: newUrl
+          name: increment,
+          url: newUrl,
+          note: ''
         }
       ])
     );
     localStorage.setItem(
       'selectedTab',
-      JSON.stringify([
-        {
-          id: lastTabsId + 1,
-          correlationId: correlationId,
-          name: lastTabsId + 1,
-          url: newUrl
-        }
-      ])
+      JSON.stringify({
+        id: increment,
+        correlationId: correlationId,
+        name: increment,
+        url: newUrl,
+        note: ''
+      })
     );
+    localStorage.setItem('increment', increment);
   };
   const handleNotesVisibility = () => {
+    setTimeout(function() {
+      document.getElementById('notes_textarea').focus();
+    }, 200);
     setIsNotesOpen(!isNotesOpen);
+  };
+
+  const handleNoteInputChange = e => {
+    const tempTabsList = JSON.parse(localStorage.getItem('tabs'));
+    const index = tempTabsList.findIndex(item => {
+      return item.id == selectedTab.id;
+    });
+    tempTabsList[index].note = e.target.value;
+
+    localStorage.setItem('tabs', JSON.stringify(tempTabsList));
+    setTabs([...tempTabsList]);
   };
 
   const handleRowClick = id => {
@@ -294,16 +316,37 @@ const HomePage = props => {
   };
 
   const handleDeleteTab = id => {
-    let tempData = [...tabs];
-    let filteredTempData = tempData.filter(value => {
+    let tempTabsList = [...tabs];
+    let filteredTempTabsList = tempTabsList.filter(value => {
+      return parseInt(value.id) !== parseInt(id);
+    });
+    let tempTabsData = [...data];
+    let filteredTempTabsData = tempTabsData.filter(value => {
       return parseInt(value.id) !== parseInt(id);
     });
 
-    setSelectedTab({ ...filteredTempData[0] });
-    localStorage.setItem('selectedTab', JSON.stringify(filteredTempData[0]));
-    setTabs([...filteredTempData]);
-    localStorage.setItem('tabs', JSON.stringify([...filteredTempData]));
+    setSelectedTab({ ...filteredTempTabsList[0] });
+    localStorage.setItem('selectedTab', JSON.stringify(filteredTempTabsList[0]));
+    setTabs([...filteredTempTabsList]);
+    localStorage.setItem('tabs', JSON.stringify([...filteredTempTabsList]));
+    setData([...filteredTempTabsData]);
+    localStorage.setItem('data', JSON.stringify([...filteredTempTabsData]));
   };
+
+  const handleTabRename = e => {
+    const tempTabsList = JSON.parse(localStorage.getItem('tabs'));
+    const index = tempTabsList.findIndex(item => {
+      return item.id == selectedTab.id;
+    });
+    tempTabsList[index].name = e.target.value;
+
+    localStorage.setItem('tabs', JSON.stringify(tempTabsList));
+    setTabs([...tempTabsList]);
+  };
+
+  const selectedTabsIndex = tabs.findIndex(item => {
+    return item.id == selectedTab.id;
+  });
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : theme == 'synth' ? synthTheme : blueTheme}>
@@ -318,6 +361,7 @@ const HomePage = props => {
             handleAddNewTab={handleAddNewTab}
             copyDataToClipboard={copyDataToClipboard}
             handleDeleteTab={handleDeleteTab}
+            handleTabRename={handleTabRename}
           />
           <div className={styles.body}>
             <div className={styles.left_section}>
@@ -331,7 +375,16 @@ const HomePage = props => {
                   className={styles.detailed_notes}
                   style={{ display: isNotesOpen ? 'flex' : 'none' }}
                 >
-                  processPolledData
+                  <SyntaxHighlighter language="javascript" style={dark}>
+                    {tabs[selectedTabsIndex].note}
+                    <textarea
+                      id="notes_textarea"
+                      placeholder={'Please paste note here max 1200 charachters..'}
+                      autoFocus
+                      value={tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note}
+                      onChange={handleNoteInputChange}
+                    ></textarea>
+                  </SyntaxHighlighter>
                 </div>
                 <div onClick={handleNotesVisibility} className={styles.notes_footer}>
                   <span>Notes</span>

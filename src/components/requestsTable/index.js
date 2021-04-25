@@ -15,14 +15,14 @@ const RequestsTable = props => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item, i) => {
+        {data.reverse().map((item, i) => {
           return (
             <tr
               key={i}
               onClick={() => handleRowClick(item.id)}
               className={item.id == selectedInteraction ? styles.selected_row : ''}
             >
-              <td>{i + 1}</td>
+              <td>{data.length - i}</td>
               <td>{lastDateChange(item.timestamp)}</td>
               <td>{item.protocol}</td>
             </tr>

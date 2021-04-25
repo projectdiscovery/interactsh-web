@@ -35,9 +35,16 @@
     display: flex;
     align-items: center;
     border-right: 1px solid rgba(151, 151, 151, 0.5);
+    font-size: 1.2rem;
+    &>input{
+      border: none;
+      outline: none;
+      font-size: inherit;
+      background: transparent;
+      color: #ffffff;
+    }
     & > div {
       margin-right: 1rem;
-      font-size: 1.2rem;
       color: #ffffff;
       text-align: left;
     }

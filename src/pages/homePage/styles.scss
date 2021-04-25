@@ -47,6 +47,26 @@
         .detailed_notes {
           display: none;
           height: 30rem;
+          padding: 1.5rem 2rem;
+          & > pre {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+          }
+          & > textarea {
+            height: 100%;
+            background: transparent;
+            overflow-y: scroll;
+            width: 100%;
+            border: none;
+            color: #ffffff;
+            &:focus {
+              outline: none !important;
+            }
+            &::placeholder {
+              color: #ffffff;
+            }
+          }
         }
         .notes_footer {
           height: 6.3rem;
@@ -77,22 +97,22 @@
         &:active {
           & > svg {
             transform: rotate(90deg);
-            path{
+            path {
               fill: #979797;
             }
           }
-          &>span{
+          & > span {
             color: #979797;
           }
         }
         & > span {
           font-size: 1.5rem;
           color: #ffffff;
-          transition: all .1s linear;
+          transition: all 0.1s linear;
           user-select: none;
         }
         & > svg {
-          transition: all .1s linear;
+          transition: all 0.1s linear;
           margin-right: 1rem;
         }
       }
