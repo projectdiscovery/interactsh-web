@@ -4,7 +4,6 @@ import lastDateChange from '../../libs/last-date-change';
 
 const RequestsTable = props => {
   const { data, handleRowClick, selectedInteraction } = props;
-
   return (
     <table className={styles.requests_table}>
       <thead className={'secondary_bg'}>

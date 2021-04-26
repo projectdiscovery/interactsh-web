@@ -50,7 +50,7 @@
     "whatwg-fetch": "^3.0.0",
     "xid-js": "^1.0.1",
     "xmlhttprequest": "^1.8.0",
-    "zbase32": "^1.0.4"
+    "zbase32": "github:projectdiscovery/zbase32"
   },
   "browser": {
     "fs": false,

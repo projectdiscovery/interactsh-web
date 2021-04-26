@@ -332,7 +332,7 @@ const HomePage = props => {
     setData([...filteredTempTabsData]);
     localStorage.setItem('data', JSON.stringify([...filteredTempTabsData]));
   };
-
+  
   const handleTabRename = e => {
     const tempTabsList = JSON.parse(localStorage.getItem('tabs'));
     const index = tempTabsList.findIndex(item => {

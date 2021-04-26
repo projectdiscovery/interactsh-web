@@ -19,9 +19,13 @@ const TabSwitcher = props => {
 
   const handleTabButtonClickTemp = item => {
     handleTabButtonClick(item);
-    setIsInputVisible(false)
+    setIsInputVisible(false);
   };
-
+  const handleTabRanameDone = e => {
+    if (e.keyCode === 13) {
+      setIsInputVisible(false);
+    }
+  };
   const handleTabButtonDoubleClick = id => {
     if (!isInputVisible) {
       setIsInputVisible(true);
@@ -39,6 +43,7 @@ const TabSwitcher = props => {
             return (
               <div
                 key={i}
+                onKeyUp={handleTabRanameDone}
                 onClick={() => handleTabButtonClickTemp(item)}
                 onDoubleClick={() => handleTabButtonDoubleClick(item.id)}
                 className={`${styles.tab_button} ${selectedTab.id == item.id &&
