@@ -32,6 +32,7 @@ const HomePage = props => {
   const [selectedInteractionData, setSelectedInteractionData] = useState({});
   const [selectedTab, setSelectedTab] = useState(JSON.parse(localStorage.getItem('selectedTab')));
   const [pollIntervals, setPollIntervals] = useState([]);
+  const [view, setView] = useState('up_and_down');
 
   const generateUrl = id => {
     const timestamp = Math.floor(Date.now() / 1000);
@@ -191,16 +192,6 @@ const HomePage = props => {
     }
   };
 
-  function stringToArrayBuffer(string) {
-    var len = string.length;
-    var buf = new ArrayBuffer(len * 2);
-    var bufView = new Uint16Array(buf);
-    for (var i = 0, strLen = len; i < strLen; i++) {
-      bufView[i] = string.charCodeAt(i);
-    }
-    return buf;
-  }
-
   useEffect(() => {
     pollIntervals.map(item => {
       clearInterval(item);
@@ -332,7 +323,7 @@ const HomePage = props => {
     setData([...filteredTempTabsData]);
     localStorage.setItem('data', JSON.stringify([...filteredTempTabsData]));
   };
-  
+
   const handleTabRename = e => {
     const tempTabsList = JSON.parse(localStorage.getItem('tabs'));
     const index = tempTabsList.findIndex(item => {
@@ -342,6 +333,10 @@ const HomePage = props => {
 
     localStorage.setItem('tabs', JSON.stringify(tempTabsList));
     setTabs([...tempTabsList]);
+  };
+
+  const handleChangeView = value => {
+    setView(value);
   };
 
   const selectedTabsIndex = tabs.findIndex(item => {
@@ -376,14 +371,14 @@ const HomePage = props => {
                   style={{ display: isNotesOpen ? 'flex' : 'none' }}
                 >
                   {/* <SyntaxHighlighter language="javascript" style={dark}> */}
-                    {/* {tabs[selectedTabsIndex].note} */}
-                    <textarea
-                      id="notes_textarea"
-                      placeholder={'Please paste note here max 1200 charachters..'}
-                      autoFocus
-                      value={tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note}
-                      onChange={handleNoteInputChange}
-                    ></textarea>
+                  {/* {tabs[selectedTabsIndex].note} */}
+                  <textarea
+                    id="notes_textarea"
+                    placeholder={'Please paste note here max 1200 charachters..'}
+                    autoFocus
+                    value={tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note}
+                    onChange={handleNoteInputChange}
+                  ></textarea>
                   {/* </SyntaxHighlighter> */}
                 </div>
                 <div onClick={handleNotesVisibility} className={styles.notes_footer}>
@@ -405,11 +400,27 @@ const HomePage = props => {
                 </div>
                 <div className={styles.result_header}>
                   <div className={styles.req_res_buttons}>
-                    <span className={styles.__selected_req_res_button}>Request</span>
-                    <span>Response</span>
+                    <span
+                      className={view == 'request' && styles.__selected_req_res_button}
+                      onClick={() => handleChangeView('request')}
+                    >
+                      Request
+                    </span>
+                    <span
+                      className={view == 'response' && styles.__selected_req_res_button}
+                      onClick={() => handleChangeView('response')}
+                    >
+                      Response
+                    </span>
                   </div>
-                  <SideBySideIcon />
-                  <UpDownIcon />
+                  <SideBySideIcon
+                    style={{ fill: view == 'side_by_side' ? '#ffffff' : '#4a4a4a' }}
+                    onClick={() => handleChangeView('side_by_side')}
+                  />
+                  <UpDownIcon
+                    style={{ fill: view == 'up_and_down' ? '#ffffff' : '#4a4a4a' }}
+                    onClick={() => handleChangeView('up_and_down')}
+                  />
                   <div className={styles.result_info}>
                     From IP address <span>{selectedInteractionData['remote-address']}</span> at{' '}
                     <span>
@@ -419,7 +430,7 @@ const HomePage = props => {
                 </div>
                 <RequestDetailsWrapper
                   selectedInteractionData={selectedInteractionData}
-                  selectedInteraction={selectedInteraction}
+                  view={view}
                 />
               </div>
             )}

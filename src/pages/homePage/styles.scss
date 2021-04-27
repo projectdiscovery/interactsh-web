@@ -129,6 +129,7 @@
         & > svg {
           margin-left: 1rem;
           cursor: pointer;
+          fill: #ffffff;
         }
         .req_res_buttons {
           height: 3.5rem;
@@ -163,7 +164,9 @@
         flex-direction: column;
         padding: 0 3.4rem;
         overflow-y: scroll;
-        height: calc(100% - 9rem);
+        height: calc(100% - 14.5rem);
+        justify-content: space-between;
+        align-items: stretch;
       }
     }
   }

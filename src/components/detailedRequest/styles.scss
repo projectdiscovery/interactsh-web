@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 3rem;
+  height: 100%;
   & > span {
     font-size: 1.4rem;
     color: #ffffff;
@@ -32,9 +33,15 @@
     color: #fcc28c;
     line-height: 2.8rem;
     position: relative;
-    & > pre {
-      border: none !important;
-      background: transparent !important;
+    height: calc(100% - 3rem);
+    & > .pre_wrapper {
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+      & > pre {
+        border: none !important;
+        background: transparent !important;
+      }
     }
     .copy_button {
       position: absolute;

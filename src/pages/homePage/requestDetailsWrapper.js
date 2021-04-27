@@ -5,17 +5,44 @@ import styles from './styles.scss';
 import DetailedRequest from '../../components/detailedRequest';
 
 const RequestDetailsWrapper = props => {
-  const { selectedInteractionData } = props;
-  
+  const { selectedInteractionData, view } = props;
+
   return (
-    <div className={styles.detailed_request}>
+    <div
+      className={styles.detailed_request}
+      style={{ flexDirection: view == 'up_and_down' ? 'column' : 'row' }}
+    >
       <ErrorBoundary
         fallback={(error, retry) => <IssuesListErrorFallback error={error} retry={retry} />}
         refetch={() => refetch(defaultParams)}
       >
         <Suspense fallback={<IssuesListFallback />}>
-          <DetailedRequest data={`${selectedInteractionData['raw-request']}`} title={'Request'} />
-          <DetailedRequest data={`${selectedInteractionData['raw-response']}`} title={'Response'} />
+          {view == 'request' ? (
+            <DetailedRequest
+              view={view}
+              data={`${selectedInteractionData['raw-request']}`}
+              title={'Request'}
+            />
+          ) : view == 'response' ? (
+            <DetailedRequest
+              view={view}
+              data={`${selectedInteractionData['raw-response']}`}
+              title={'Response'}
+            />
+          ) : (
+            <>
+              <DetailedRequest
+                view={view}
+                data={`${selectedInteractionData['raw-request']}`}
+                title={'Request'}
+              />
+              <DetailedRequest
+                view={view}
+                data={`${selectedInteractionData['raw-response']}`}
+                title={'Response'}
+              />
+            </>
+          )}
         </Suspense>
       </ErrorBoundary>
     </div>
