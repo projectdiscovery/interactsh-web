@@ -3,7 +3,6 @@ import styles from './styles.scss';
 import ChevronUpIcon from '../../assets/svg/chevron_up.svg';
 import SideBySideIcon from '../../assets/svg/side_by_side.svg';
 import UpDownIcon from '../../assets/svg/up_down.svg';
-import RefreshIcon from '../../assets/svg/refresh.svg';
 import Header from '../../components/header';
 import TabSwitcher from '../../components/tabSwitcher';
 import RequestsTableWrapper from './requestsTableWrapper';
@@ -17,6 +16,8 @@ import xid from 'xid-js';
 import crypto from 'crypto';
 import zbase32 from 'zbase32';
 import dateTransform from '../../components/common/dateTransform';
+import CopyIcon from '../../assets/svg/copy.svg';
+import CloseIcon from '../../assets/svg/close.svg';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -33,6 +34,7 @@ const HomePage = props => {
   const [selectedTab, setSelectedTab] = useState(JSON.parse(localStorage.getItem('selectedTab')));
   const [pollIntervals, setPollIntervals] = useState([]);
   const [view, setView] = useState('up_and_down');
+  const [aboutPopupVisibility, setAboutPopupVisibility] = useState(false);
 
   const generateUrl = id => {
     const timestamp = Math.floor(Date.now() / 1000);
@@ -339,6 +341,10 @@ const HomePage = props => {
     setView(value);
   };
 
+  const handleAboutPopupVisibility = () => {
+    setAboutPopupVisibility(!aboutPopupVisibility);
+  };
+
   const selectedTabsIndex = tabs.findIndex(item => {
     return item.id == selectedTab.id;
   });
@@ -348,7 +354,37 @@ const HomePage = props => {
       <>
         <GlobalStyles />
         <div className={styles.container}>
-          <Header theme={theme} handleThemeSelection={handleThemeSelection} />
+          {aboutPopupVisibility && (
+            <div className={styles.about_popup_wrapper}>
+              <div className={styles.about_popup}>
+                <div className={styles.about_popup_header}>
+                  <span>About</span>
+                  <CloseIcon onClick={handleAboutPopupVisibility} />
+                </div>
+                <div className={styles.about_popup_body}>
+                  Interactsh is an Open-Source solution for Out of band Data Extraction, A tool
+                  designed to detect bugs that cause external interactions, For example - Blind
+                  SQLi, Blind CMDi, SSRF, etc.
+                  <br />
+                  <br />
+                  If you are an IT admin and you are seeing interactions with the Interact.sh server
+                  in your logs, then it is likely that someone is testing your applications using
+                  our service interact.sh. If you are trying to identify the person responsible for
+                  this testing, you should review your web server or applications logs for the time
+                  at which these interactions were initiated by your systems.
+                  <br />
+                  <br />
+                  For further details about Interact.sh,{' '}
+                  <a href="#" target="__blank">check our documentation and code.</a>
+                </div>
+              </div>
+            </div>
+          )}
+          <Header
+            handleAboutPopupVisibility={handleAboutPopupVisibility}
+            theme={theme}
+            handleThemeSelection={handleThemeSelection}
+          />
           <TabSwitcher
             handleTabButtonClick={handleTabButtonClick}
             selectedTab={selectedTab}
@@ -357,9 +393,16 @@ const HomePage = props => {
             copyDataToClipboard={copyDataToClipboard}
             handleDeleteTab={handleDeleteTab}
             handleTabRename={handleTabRename}
+            processPolledData={processPolledData}
           />
           <div className={styles.body}>
             <div className={styles.left_section}>
+              <div className={`${styles.url_container} secondary_bg`}>
+                <div title={data.length !== 0 && selectedTab && selectedTab.url}>
+                  {data.length !== 0 && selectedTab && selectedTab.url}
+                </div>
+                <CopyIcon onClick={() => copyDataToClipboard(selectedTab.url)} />
+              </div>
               <RequestsTableWrapper
                 data={[...filteredData]}
                 selectedInteraction={selectedInteraction}
@@ -391,13 +434,6 @@ const HomePage = props => {
             </div>
             {selectedInteraction !== '' && (
               <div className={styles.right_section}>
-                <div
-                  onClick={processPolledData}
-                  className={`${styles.refresh_button} secondary_bg`}
-                >
-                  <RefreshIcon />
-                  <span>Refresh</span>
-                </div>
                 <div className={styles.result_header}>
                   <div className={styles.req_res_buttons}>
                     <span

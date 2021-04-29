@@ -6,7 +6,7 @@ import ThemeSynthButtonIcon from '../../assets/svg/theme_synth_button.svg';
 import ThemeBlueButtonIcon from '../../assets/svg/theme_blue_button.svg';
 
 const Header = props => {
-  const { handleThemeSelection, theme } = props;
+  const { handleThemeSelection, theme, handleAboutPopupVisibility } = props;
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
 
   const handleThemeSwitchesVisibility = () => {
@@ -42,7 +42,7 @@ const Header = props => {
           Blue
         </div>
       </div>
-      <div>Interaction Client</div>
+      <div onClick={handleAboutPopupVisibility}>About</div>
     </div>
   );
 };

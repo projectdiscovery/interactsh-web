@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './styles.scss';
 import CrossIcon from '../../assets/svg/cross.svg';
 import PlusIcon from '../../assets/svg/plus.svg';
-import CopyIcon from '../../assets/svg/copy.svg';
+import RefreshIcon from '../../assets/svg/refresh.svg';
 
 const TabSwitcher = props => {
   const {
@@ -10,9 +10,9 @@ const TabSwitcher = props => {
     selectedTab,
     handleAddNewTab,
     data,
-    copyDataToClipboard,
     handleDeleteTab,
-    handleTabRename
+    handleTabRename,
+    processPolledData
   } = props;
 
   const [isInputVisible, setIsInputVisible] = useState(false);
@@ -52,7 +52,7 @@ const TabSwitcher = props => {
                 {isInputVisible && item.id == selectedTab.id ? (
                   <input id={item.id} value={item.name} onChange={handleTabRename} />
                 ) : (
-                  <div>{item.name}</div>
+                  <div title={item.name}>{item.name}</div>
                 )}
                 <CrossIcon onClick={() => handleDeleteTab(item.id)} />
               </div>
@@ -61,10 +61,10 @@ const TabSwitcher = props => {
         <div onClick={handleAddNewTab} className={styles.add_new_tab_button}>
           <PlusIcon />
         </div>
-      </div>
-      <div className={`${styles.url_container} secondary_bg`}>
-        <div>{data.length !== 0 && selectedTab && selectedTab.url}</div>
-        <CopyIcon onClick={() => copyDataToClipboard(selectedTab.url)} />
+        <div onClick={processPolledData} className={`${styles.refresh_button} secondary_bg`}>
+          <RefreshIcon />
+          <span>Refresh</span>
+        </div>
       </div>
     </>
   );
