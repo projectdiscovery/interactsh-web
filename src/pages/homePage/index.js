@@ -375,7 +375,9 @@ const HomePage = props => {
                   <br />
                   <br />
                   For further details about Interact.sh,{' '}
-                  <a href="#" target="__blank">check our documentation and code.</a>
+                  <a href="#" target="__blank">
+                    check our documentation and code.
+                  </a>
                 </div>
               </div>
             </div>
@@ -398,9 +400,7 @@ const HomePage = props => {
           <div className={styles.body}>
             <div className={styles.left_section}>
               <div className={`${styles.url_container} secondary_bg`}>
-                <div title={data.length !== 0 && selectedTab && selectedTab.url}>
-                  {data.length !== 0 && selectedTab && selectedTab.url}
-                </div>
+                <div title={selectedTab && selectedTab.url}>{selectedTab && selectedTab.url}</div>
                 <CopyIcon onClick={() => copyDataToClipboard(selectedTab.url)} />
               </div>
               <RequestsTableWrapper

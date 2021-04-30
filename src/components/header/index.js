@@ -42,6 +42,7 @@ const Header = props => {
           Blue
         </div>
       </div>
+      <a href="/#/terms">Terms</a>
       <div onClick={handleAboutPopupVisibility}>About</div>
     </div>
   );

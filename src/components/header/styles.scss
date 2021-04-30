@@ -65,7 +65,14 @@
     font-size: 1.5rem;
     color: #ffffff;
     letter-spacing: -0.02rem;
+    cursor: pointer;
+    margin-left: 2rem;
+  }
+  & > a:nth-of-type(1) {
     margin-left: auto;
+    font-size: 1.5rem;
+    color: #ffffff;
+    letter-spacing: -0.02rem;
     cursor: pointer;
   }
 }
