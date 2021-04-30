@@ -378,8 +378,8 @@ const HomePage = props => {
                   <br />
                   <br />
                   For further details about Interact.sh,{' '}
-                  <a href="#" target="__blank">
-                    check our documentation and code.
+                  <a href="https://github.com/projectdiscovery/interactsh" target="__blank">
+                    checkout opensource code.
                   </a>
                 </div>
               </div>
