@@ -33,7 +33,7 @@ const HomePage = props => {
   const [selectedInteractionData, setSelectedInteractionData] = useState({});
   const [selectedTab, setSelectedTab] = useState(JSON.parse(localStorage.getItem('selectedTab')));
   const [pollIntervals, setPollIntervals] = useState([]);
-  const [view, setView] = useState('up_and_down');
+  const [view, setView] = useState(localStorage.getItem('view'));
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState(false);
 
   const generateUrl = id => {
@@ -66,6 +66,8 @@ const HomePage = props => {
       localStorage.setItem('data', JSON.stringify([]));
       localStorage.setItem('aesKey', null);
       localStorage.setItem('notes', JSON.stringify([]));
+      localStorage.setItem('view', 'up_and_down');
+      setView('up_and_down');
 
       let registerFetcherOptions = {
         'public-key': btoa(pub),
@@ -339,6 +341,7 @@ const HomePage = props => {
 
   const handleChangeView = value => {
     setView(value);
+    localStorage.setItem('view', value);
   };
 
   const handleAboutPopupVisibility = () => {
