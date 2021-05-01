@@ -370,11 +370,8 @@ const HomePage = props => {
                   SQLi, Blind CMDi, SSRF, etc.
                   <br />
                   <br />
-                  If you are an IT admin and you are seeing interactions with the Interact.sh server
-                  in your logs, then it is likely that someone is testing your applications using
-                  our service interact.sh. If you are trying to identify the person responsible for
-                  this testing, you should review your web server or applications logs for the time
-                  at which these interactions were initiated by your systems.
+                  If you find communications or exchanges with the Interact.sh server in your logs, it is possible that someone has been testing your applications using our hosted service, <a href="https://interact.projectdiscovery.io" target="__blank"> interact.projectdiscovery.io </a>
+                  You should review the time when these interactions were initiated to identify the person responsible for this testing.
                   <br />
                   <br />
                   For further details about Interact.sh,{' '}
