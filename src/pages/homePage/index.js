@@ -18,6 +18,7 @@ import zbase32 from 'zbase32';
 import dateTransform from '../../components/common/dateTransform';
 import CopyIcon from '../../assets/svg/copy.svg';
 import CloseIcon from '../../assets/svg/close.svg';
+import ClearIcon from '../../assets/svg/clear.svg';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -348,6 +349,15 @@ const HomePage = props => {
     setAboutPopupVisibility(!aboutPopupVisibility);
   };
 
+  const clearInteractions = () => {
+    let tempData = data.filter(item => {
+      return item['unique-id'] !== selectedTab.url.substring(0, selectedTab.url.length - 12);
+    });
+    localStorage.setItem('data', JSON.stringify(tempData));
+    setData([...tempData]);
+    setFilteredData([])
+  };
+
   const selectedTabsIndex = tabs.findIndex(item => {
     return item.id == selectedTab.id;
   });
@@ -405,6 +415,8 @@ const HomePage = props => {
               <div className={`${styles.url_container} secondary_bg`}>
                 <div title={selectedTab && selectedTab.url}>{selectedTab && selectedTab.url}</div>
                 <CopyIcon onClick={() => copyDataToClipboard(selectedTab.url)} />
+                <div className={styles.vertical_bar} />
+                <ClearIcon className={filteredData.length <= 0 && styles.clear_button__disabled} onClick={clearInteractions} />
               </div>
               <RequestsTableWrapper
                 data={[...filteredData]}

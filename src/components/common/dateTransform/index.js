@@ -65,7 +65,7 @@ const dateTransform = (value, type) => {
       return `${year}-${addZero(month + 1)}-${addZero(date)}`;
   }
   if (type == 'yyyy-mm-dd_hh:mm') {
-      return `${year}-${addZero(month + 1)}-${addZero(date)} ${hours}:${minutes}`;
+      return `${year}-${addZero(month + 1)}-${addZero(date)}-${hours}-${minutes}`;
   }
   if (type == 'yyyy/mm/dd') {
     return `${year}/${addZero(month + 1)}/${addZero(date)}`;

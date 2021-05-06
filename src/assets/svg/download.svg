@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>internet-download</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Space-Fix" transform="translate(-1215.000000, -19.000000)" stroke="#FFFFFF">
+            <g id="Group-25" transform="translate(1216.000000, 16.000000)">
+                <g id="internet-download" transform="translate(0.000000, 4.000000)">
+                    <path d="M13,8.35714286 L13,11.6071429 C13,12.3778571 12.2060714,13 11.2264286,13 L1.77357143,13 C0.793928571,13 0,12.3778571 0,11.6071429 L0,8.35714286" id="Path"></path>
+                    <line x1="6.5" y1="8.35714286" x2="8.35714286" y2="6.5" id="Path"></line>
+                    <line x1="6.5" y1="8.35714286" x2="4.64285714" y2="6.5" id="Path"></line>
+                    <line x1="6.5" y1="8.35714286" x2="6.5" y2="0" id="Path"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

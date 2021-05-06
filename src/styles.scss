@@ -18,6 +18,10 @@ html {
     i:focus {
       outline: none;
     }
+    :global #download_anchor_element{
+      height: 0;
+      width: 0;
+    }
     :global #root {
       min-height: 100vh;
       display: flex;

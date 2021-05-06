@@ -75,6 +75,18 @@
         padding: 0 1.5rem;
         display: flex;
         align-items: center;
+        .vertical_bar {
+          border-right: 1px solid rgba(151, 151, 151, 0.5);
+          height: 4.2rem;
+          width: 1px;
+          margin: 0 1.5rem;
+        }
+        .clear_button__disabled {
+          pointer-events: none;
+          path {
+            fill: #979797;
+          }
+        }
         & > div {
           font-size: 1.5rem;
           color: #ffffff;
@@ -90,6 +102,11 @@
           cursor: pointer;
           height: 2.2rem;
           transition: all 0.1s linear;
+          &:nth-of-type(2) {
+            height: 2.2rem;
+            width: 2.2rem;
+            margin: -0.7rem 0 0 0;
+          }
           &:active {
             path {
               fill: #979797;

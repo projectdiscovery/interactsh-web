@@ -23,6 +23,7 @@
   align-items: center;
 
   & > div:nth-of-type(1) {
+    margin-left: 0;
     font-size: 1.5rem;
     color: #ffffff;
     letter-spacing: -0.02rem;
@@ -32,6 +33,7 @@
     border-right: 1px solid rgba(255, 255, 255, 0.25);
   }
   & > div:nth-of-type(2) {
+    margin-left: 0;
     border-radius: 0.6rem;
     overflow: hidden;
     height: 2.7rem;
@@ -61,18 +63,56 @@
       }
     }
   }
-  & > div:nth-of-type(3) {
-    font-size: 1.5rem;
-    color: #ffffff;
-    letter-spacing: -0.02rem;
-    cursor: pointer;
-    margin-left: 2rem;
-  }
-  & > a:nth-of-type(1) {
+  .links {
+    display: flex;
     margin-left: auto;
-    font-size: 1.5rem;
-    color: #ffffff;
-    letter-spacing: -0.02rem;
-    cursor: pointer;
+    padding: 1.5rem 0;
+    height: 100%;
+    align-items: center;
+    & > div {
+      font-size: 1.5rem;
+      color: #ffffff;
+      letter-spacing: -0.02rem;
+      cursor: pointer;
+      margin-left: 2rem;
+      display: flex;
+      align-items: center;
+      &:nth-of-type(2) {
+        &:active {
+          svg {
+            path {
+              fill: transparent;
+            }
+            g {
+              stroke: #979797;
+            }
+          }
+        }
+      }
+      &:active {
+        color: #979797;
+        svg {
+          path {
+            fill: #979797;
+          }
+        }
+      }
+      & > svg {
+        margin-right: 1rem;
+      }
+    }
+    & > a {
+      margin-left: auto;
+      font-size: 1.5rem;
+      color: #ffffff;
+      letter-spacing: -0.02rem;
+      cursor: pointer;
+    }
+    .vertical_bar {
+      border-right: 1px solid rgba(151, 151, 151, 0.5);
+      height: 100%;
+      width: 1px;
+      margin: 0 1.5rem;
+    }
   }
 }
