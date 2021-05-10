@@ -46,7 +46,7 @@ const HomePage = props => {
     view.setUint32(4, increment, false);
     const random = arr;
     const encodedTimestamp = zbase32.encode(random);
-    let url = `${id}${encodedTimestamp}.interact.sh`;
+    let url = `${id}${encodedTimestamp}.hackwithautomation.com`;
     return url;
   };
 
@@ -79,7 +79,7 @@ const HomePage = props => {
       let response;
 
       const getResponse = async () => {
-        response = await fetch('https://interact.sh/register', {
+        response = await fetch('https://hackwithautomation.com/register', {
           method: 'POST',
           mode: 'no-cors',
           cache: 'no-cache',
@@ -194,6 +194,8 @@ const HomePage = props => {
         });
         setFilteredData(newData);
       }
+      console.log('newData');
+      console.log(data);
     }
   };
 
@@ -207,7 +209,7 @@ const HomePage = props => {
       }, 4000);
       setPollIntervals([...pollIntervals, interval]);
       const tabs = JSON.parse(localStorage.getItem('tabs'));
-      const selectedTabUrl = selectedTab.url.slice(0, -12);
+      const selectedTabUrl = selectedTab.url.slice(0, -23);
       let test2 = data.filter(item => item['unique-id'] == selectedTabUrl);
       if (filteredData.length !== test2.length) {
         test2 = test2.map((item, i) => {
@@ -219,7 +221,7 @@ const HomePage = props => {
   }, [selectedTab]);
 
   const poll = async (a, b) => {
-    let data = await fetch('https://interact.sh' + `/poll?id=${a}&secret=${b}`)
+    let data = await fetch('https://hackwithautomation.com' + `/poll?id=${a}&secret=${b}`)
       .then(res => {
         return res.json();
       })

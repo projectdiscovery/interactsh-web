@@ -9,6 +9,8 @@ import RequestsTable from '../../components/requestsTable';
 
 const RequestsTableWrapper = props => {
   const { data, handleRowClick, selectedInteraction } = props;
+  // console.log('newData');
+  // console.log(data);
   return (
     <div className={styles.requests_table_container}>
       <ErrorBoundary
