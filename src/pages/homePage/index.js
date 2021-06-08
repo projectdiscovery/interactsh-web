@@ -68,7 +68,7 @@ const HomePage = props => {
       localStorage.setItem('aesKey', null);
       localStorage.setItem('notes', JSON.stringify([]));
       if(localStorage.getItem('host') == null){
-        localStorage.setItem('host', 'hackwithautomation.com');
+        localStorage.setItem('host', 'interact.sh');
       }
       localStorage.setItem('view', 'up_and_down');
       setView('up_and_down');

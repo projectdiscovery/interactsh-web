@@ -90,9 +90,9 @@ const Header = props => {
         </div>
       </div>
       <div className={styles.links}>
-        <div title="Switch host" className={host != 'hackwithautomation.com' && styles.custom_host_active} onClick={handleCustomHostDialogVisibility}>
+        <div title="Switch host" className={host != 'interact.sh' && styles.custom_host_active} onClick={handleCustomHostDialogVisibility}>
           <SwitchIcon />
-          {host == 'hackwithautomation.com' ? 'Custom Host' : host}
+          {host == 'interact.sh' ? 'Custom Host' : host}
         </div>
         <div title="Reset data" onClick={handleReset}>
           <DeleteIcon />
