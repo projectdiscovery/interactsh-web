@@ -69,6 +69,12 @@
     padding: 1.5rem 0;
     height: 100%;
     align-items: center;
+    .custom_host_active {
+      color: #6588ff;
+      svg path {
+        fill: #6588ff;
+      }
+    }
     & > div {
       font-size: 1.5rem;
       color: #ffffff;
@@ -77,7 +83,7 @@
       margin-left: 2rem;
       display: flex;
       align-items: center;
-      &:nth-of-type(2) {
+      &:nth-of-type(3) {
         &:active {
           svg {
             path {

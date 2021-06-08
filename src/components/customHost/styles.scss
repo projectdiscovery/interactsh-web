@@ -1,0 +1,140 @@
+@import '../../breakpoints.scss';
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(36, 13, 44, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dialog_box {
+    background: #000000;
+    border-radius: 0.6rem;
+    width: 45%;
+    padding: 3.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      margin-bottom: 2rem;
+      span {
+        font-size: 2.2rem;
+        color: #ffffff;
+        letter-spacing: 0;
+      }
+      svg {
+        margin-left: auto;
+        height: 3rem;
+        cursor: pointer;
+      }
+    }
+    & > span {
+      width: 100%;
+      font-size: 1.6rem;
+      color: #ffffff;
+      letter-spacing: 0;
+      margin-bottom: 3.5rem;
+    }
+    input {
+      font-size: 1.5rem;
+      color: #6588ff;
+      letter-spacing: 0;
+      text-align: left;
+      height: 4rem;
+      padding: 1rem;
+      border: 1px solid #6588ff;
+      background: transparent;
+      border-radius: 0.6rem;
+      margin-bottom: 3rem;
+      &::placeholder {
+        color: gray;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .buttons {
+      display: flex;
+      font-weight: 600;
+      .delete_button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ff5151;
+        border-radius: 0.6rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+        letter-spacing: 0;
+        text-align: left;
+        height: 3.5rem;
+        margin-right: 2rem;
+        flex: 1;
+        cursor: pointer;
+        transition: all 0.1s linear;
+        &:active {
+          opacity: 0.7;
+        }
+      }
+      .remove_button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(216, 216, 216, 0.19);
+        border-radius: 0.6rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+        letter-spacing: 0;
+        text-align: left;
+        height: 3.5rem;
+        margin-right: 2rem;
+        flex: 1;
+        cursor: pointer;
+        transition: all 0.1s linear;
+        &:active {
+          opacity: 0.7;
+        }
+      }
+      .submit_button {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #3254c5;
+        border-radius: 0.6rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+        letter-spacing: 0;
+        text-align: left;
+        height: 3.5rem;
+        cursor: pointer;
+        transition: all 0.1s linear;
+        &:active {
+          opacity: 0.7;
+        }
+        svg {
+          margin-left: 1.5rem;
+        }
+      }
+    }
+  }
+}

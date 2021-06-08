@@ -46,7 +46,7 @@ const HomePage = props => {
     view.setUint32(4, increment, false);
     const random = arr;
     const encodedTimestamp = zbase32.encode(random);
-    let url = `${id}${encodedTimestamp}.hackwithautomation.com`;
+    let url = `${id}${encodedTimestamp}.${localStorage.getItem('host')}`;
     return url;
   };
 
@@ -67,6 +67,9 @@ const HomePage = props => {
       localStorage.setItem('data', JSON.stringify([]));
       localStorage.setItem('aesKey', null);
       localStorage.setItem('notes', JSON.stringify([]));
+      if(localStorage.getItem('host') == null){
+        localStorage.setItem('host', 'hackwithautomation.com');
+      }
       localStorage.setItem('view', 'up_and_down');
       setView('up_and_down');
 
@@ -79,7 +82,7 @@ const HomePage = props => {
       let response;
 
       const getResponse = async () => {
-        response = await fetch('https://hackwithautomation.com/register', {
+        response = await fetch(`https://${localStorage.getItem('host')}/register`, {
           method: 'POST',
           mode: 'no-cors',
           cache: 'no-cache',
@@ -184,18 +187,18 @@ const HomePage = props => {
       let parsedData = decryptedData.map(item => {
         return JSON.parse(item);
       });
-      setData([...data, ...parsedData]);
+      setData([...dataFromLocalStorage, ...parsedData]);
       localStorage.setItem('data', JSON.stringify([...dataFromLocalStorage, ...parsedData]));
-      const selectedTabUrl = selectedTab.url.slice(0, -12);
-      let newData = [...data, ...parsedData].filter(item => item['unique-id'] == selectedTabUrl);
+      const selectedTabUrl = selectedTab.url.slice(0, (-localStorage.getItem('host').length + 1));
+      let newData = [...dataFromLocalStorage, ...parsedData].filter(
+        item => item['unique-id'] == selectedTabUrl
+      );
       if (filteredData.length !== newData.length) {
         newData = newData.map((item, i) => {
           return { id: i + 1, ...item };
         });
         setFilteredData(newData);
       }
-      console.log('newData');
-      console.log(data);
     }
   };
 
@@ -209,7 +212,7 @@ const HomePage = props => {
       }, 4000);
       setPollIntervals([...pollIntervals, interval]);
       const tabs = JSON.parse(localStorage.getItem('tabs'));
-      const selectedTabUrl = selectedTab.url.slice(0, -23);
+      const selectedTabUrl = selectedTab.url.slice(0, (-localStorage.getItem('host').length - 1));
       let test2 = data.filter(item => item['unique-id'] == selectedTabUrl);
       if (filteredData.length !== test2.length) {
         test2 = test2.map((item, i) => {
@@ -221,7 +224,7 @@ const HomePage = props => {
   }, [selectedTab]);
 
   const poll = async (a, b) => {
-    let data = await fetch('https://hackwithautomation.com' + `/poll?id=${a}&secret=${b}`)
+    let data = await fetch(`https://${localStorage.getItem('host')}` + `/poll?id=${a}&secret=${b}`)
       .then(res => {
         return res.json();
       })
@@ -357,7 +360,7 @@ const HomePage = props => {
     });
     localStorage.setItem('data', JSON.stringify(tempData));
     setData([...tempData]);
-    setFilteredData([])
+    setFilteredData([]);
   };
 
   const selectedTabsIndex = tabs.findIndex(item => {
@@ -382,8 +385,15 @@ const HomePage = props => {
                   SQLi, Blind CMDi, SSRF, etc.
                   <br />
                   <br />
-                  If you find communications or exchanges with the Interact.sh server in your logs, it is possible that someone has been testing your applications using our hosted service, <a href="https://interact.projectdiscovery.io" target="__blank"> interact.projectdiscovery.io </a>
-                  You should review the time when these interactions were initiated to identify the person responsible for this testing.
+                  If you find communications or exchanges with the Interact.sh server in your logs,
+                  it is possible that someone has been testing your applications using our hosted
+                  service,{' '}
+                  <a href="https://interact.projectdiscovery.io" target="__blank">
+                    {' '}
+                    interact.projectdiscovery.io{' '}
+                  </a>
+                  You should review the time when these interactions were initiated to identify the
+                  person responsible for this testing.
                   <br />
                   <br />
                   For further details about Interact.sh,{' '}
@@ -415,7 +425,10 @@ const HomePage = props => {
                 <div title={selectedTab && selectedTab.url}>{selectedTab && selectedTab.url}</div>
                 <CopyIcon onClick={() => copyDataToClipboard(selectedTab.url)} />
                 <div className={styles.vertical_bar} />
-                <ClearIcon className={filteredData.length <= 0 && styles.clear_button__disabled} onClick={clearInteractions} />
+                <ClearIcon
+                  className={filteredData.length <= 0 && styles.clear_button__disabled}
+                  onClick={clearInteractions}
+                />
               </div>
               <RequestsTableWrapper
                 data={[...filteredData]}

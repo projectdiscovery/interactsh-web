@@ -6,14 +6,21 @@ import ThemeSynthButtonIcon from '../../assets/svg/theme_synth_button.svg';
 import ThemeBlueButtonIcon from '../../assets/svg/theme_blue_button.svg';
 import DownloadIcon from '../../assets/svg/download.svg';
 import DeleteIcon from '../../assets/svg/delete.svg';
+import SwitchIcon from '../../assets/svg/switch.svg';
 import dateTransform from '../common/dateTransform';
+import CustomHost from '../customHost';
 
 const Header = props => {
   const { handleThemeSelection, theme, handleAboutPopupVisibility } = props;
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
+  const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
+  const host = localStorage.getItem('host');
 
   const handleThemeSwitchesVisibility = () => {
     setIsSelectorVisible(!isSelectorVisible);
+  };
+  const handleCustomHostDialogVisibility = () => {
+    setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
   };
 
   const handleReset = () => {
@@ -83,7 +90,10 @@ const Header = props => {
         </div>
       </div>
       <div className={styles.links}>
-        {/* <div className */}
+        <div title="Switch host" className={host != 'hackwithautomation.com' && styles.custom_host_active} onClick={handleCustomHostDialogVisibility}>
+          <SwitchIcon />
+          {host == 'hackwithautomation.com' ? 'Custom Host' : host}
+        </div>
         <div title="Reset data" onClick={handleReset}>
           <DeleteIcon />
           Reset
@@ -96,6 +106,9 @@ const Header = props => {
         <a href="/#/terms">Terms</a>
         <div onClick={handleAboutPopupVisibility}>About</div>
       </div>
+      {isCustomHostDialogVisible && (
+        <CustomHost handleCloseDialog={handleCustomHostDialogVisibility} />
+      )}
     </div>
   );
 };
