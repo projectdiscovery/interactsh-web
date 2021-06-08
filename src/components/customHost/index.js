@@ -19,7 +19,7 @@ const CustomHost = props => {
   };
 
   const handleInput = e => {
-    setInputValue(e.target.value);
+    setInputValue(e.target.value.replace(/(^\w+:|^)\/\//, ''));
   };
 
   const handleConfirm = () => {
@@ -70,7 +70,6 @@ const CustomHost = props => {
   const handleDelete = () => {
     localStorage.clear();
     location.reload();
-    // handleCloseDialog();
   };
 
   return (
@@ -97,7 +96,7 @@ const CustomHost = props => {
             <span>Custom Host</span>
             <CloseIcon onClick={handleCloseDialog} />
           </div>
-          <span>You can point your custom server with this hosted web client.</span>
+          <span>You can point your self hosted interact.sh server with this hosted web client.</span>
           <input type="text" placeHolder="host" value={inputValue} onChange={handleInput} />
           {!isHostValid && (
             <div className={styles.error}>

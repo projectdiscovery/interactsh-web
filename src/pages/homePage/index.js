@@ -187,10 +187,11 @@ const HomePage = props => {
       let parsedData = decryptedData.map(item => {
         return JSON.parse(item);
       });
-      setData([...dataFromLocalStorage, ...parsedData]);
-      localStorage.setItem('data', JSON.stringify([...dataFromLocalStorage, ...parsedData]));
-      const selectedTabUrl = selectedTab.url.slice(0, (-localStorage.getItem('host').length + 1));
-      let newData = [...dataFromLocalStorage, ...parsedData].filter(
+      let combinedData = [...dataFromLocalStorage, ...parsedData]
+      setData(combinedData);
+      localStorage.setItem('data', JSON.stringify(combinedData));
+      const selectedTabUrl = selectedTab.url.slice(0, (-localStorage.getItem('host').length - 1));
+      let newData = combinedData.filter(
         item => item['unique-id'] == selectedTabUrl
       );
       if (filteredData.length !== newData.length) {
