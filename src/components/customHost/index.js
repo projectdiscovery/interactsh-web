@@ -8,7 +8,7 @@ const CustomHost = props => {
   const { handleCloseDialog } = props;
   let host = localStorage.getItem('host');
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState(false);
-  const [inputValue, setInputValue] = useState(host == 'interact.sh' ? '' : host);
+  const [inputValue, setInputValue] = useState(host == 'hackwithautomation.com' ? '' : host);
 
   const handleDeleteConfirmationVisibility = () => {
     setIsDeleteConfirmationVisible(!isDeleteConfirmationVisible);
@@ -60,7 +60,7 @@ const CustomHost = props => {
           <span>You can point your custom server with this hosted web client.</span>
           <input type="text" placeHolder="host" value={inputValue} onChange={handleInput} />
           <div className={styles.buttons}>
-            {host != 'interact.sh' && (
+            {host != 'hackwithautomation.com' && (
               <div className={styles.remove_button} onClick={handleDeleteConfirmationVisibility}>
                 Remove Custom Host
               </div>
