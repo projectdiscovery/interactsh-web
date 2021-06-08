@@ -3,12 +3,16 @@ import { useLocation } from 'react-router-dom';
 import styles from './styles.scss';
 import ArrowRightIcon from '../../assets/svg/arrow_right.svg';
 import CloseIcon from '../../assets/svg/close.svg';
+import NodeRSA from 'node-rsa';
+import { v4 as uuidv4 } from 'uuid';
+import xid from 'xid-js';
 
 const CustomHost = props => {
   const { handleCloseDialog } = props;
   let host = localStorage.getItem('host');
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState(false);
-  const [inputValue, setInputValue] = useState(host == 'hackwithautomation.com' ? '' : host);
+  const [isHostValid, setIsHostValid] = useState(true);
+  const [inputValue, setInputValue] = useState(host == 'interact.sh' ? '' : host);
 
   const handleDeleteConfirmationVisibility = () => {
     setIsDeleteConfirmationVisible(!isDeleteConfirmationVisible);
@@ -20,10 +24,46 @@ const CustomHost = props => {
 
   const handleConfirm = () => {
     if (inputValue != '') {
-      localStorage.clear();
-      localStorage.setItem('host', inputValue);
-      location.reload();
-      handleCloseDialog();
+      const key = new NodeRSA({ b: 2048 });
+      const pub = key.exportKey('pkcs8-public-pem');
+      const priv = key.exportKey('pkcs8-private-pem');
+      const correlation = xid.next().toString();
+      const secret = uuidv4().toString();
+
+      let registerFetcherOptions = {
+        'public-key': btoa(pub),
+        'secret-key': secret,
+        'correlation-id': correlation
+      };
+
+      let response;
+      const getResponse = async () => {
+        response = await fetch(`https://${inputValue}/register`, {
+          method: 'POST',
+          cache: 'no-cache',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify(registerFetcherOptions)
+        })
+          .then(res => {
+            if (res.status == 200) {
+              localStorage.clear();
+              localStorage.setItem('host', inputValue);
+              location.reload();
+              handleCloseDialog();
+              setIsHostValid(true);
+              console.log('success!');
+            } else {
+              setIsHostValid(false);
+            }
+          })
+          .catch(err => {
+            setIsHostValid(false);
+          });
+      };
+      getResponse();
     }
   };
 
@@ -59,8 +99,13 @@ const CustomHost = props => {
           </div>
           <span>You can point your custom server with this hosted web client.</span>
           <input type="text" placeHolder="host" value={inputValue} onChange={handleInput} />
+          {!isHostValid && (
+            <div className={styles.error}>
+              We failed to connect with your server, please try agian by clicking on confirm.
+            </div>
+          )}
           <div className={styles.buttons}>
-            {host != 'hackwithautomation.com' && (
+            {host != 'interact.sh' && (
               <div className={styles.remove_button} onClick={handleDeleteConfirmationVisibility}>
                 Remove Custom Host
               </div>

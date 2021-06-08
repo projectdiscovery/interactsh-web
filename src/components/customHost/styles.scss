@@ -65,7 +65,7 @@
       border: 1px solid #6588ff;
       background: transparent;
       border-radius: 0.6rem;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       &::placeholder {
         color: gray;
       }
@@ -73,9 +73,17 @@
         outline: none;
       }
     }
+    .error {
+      font-size: 1.5rem;
+      color: #ff5151;
+      letter-spacing: 0;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
     .buttons {
       display: flex;
       font-weight: 600;
+      margin-top: 1rem;
       .delete_button {
         display: flex;
         align-items: center;
