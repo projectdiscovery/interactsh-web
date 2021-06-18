@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import NodeRSA from 'node-rsa';
@@ -29,10 +30,9 @@ import {
   copyDataToClipboard
 } from '../../libs';
 
-const HomePage = props => {
+const HomePage = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [isNotesOpen, setIsNotesOpen] = useState(false);
-  const [correlationId, setCorrelationId] = useState(localStorage.getItem('correlationId'));
   const [tabs, setTabs] = useState(JSON.parse(localStorage.getItem('tabs')) || []);
   const [data, setData] = useState(JSON.parse(localStorage.getItem('data')) || []);
   const [filteredData, setFilteredData] = useState([]);
@@ -51,7 +51,6 @@ const HomePage = props => {
       const correlation = xid.next().toString();
       const secret = uuidv4().toString();
       // Setting initial value
-      setCorrelationId(correlation);
       setView('up_and_down');
       setToLocalStorage({
         theme: 'dark',
@@ -308,18 +307,17 @@ const HomePage = props => {
                   <br />
                   If you find communications or exchanges with the Interact.sh server in your logs,
                   it is possible that someone has been testing your applications using our hosted
-                  service,{' '}
+                  service,
                   <a href="https://interact.projectdiscovery.io" target="__blank">
-                    {' '}
-                    interact.projectdiscovery.io{' '}
+                    {` interact.projectdiscovery.io `}
                   </a>
                   You should review the time when these interactions were initiated to identify the
                   person responsible for this testing.
                   <br />
                   <br />
-                  For further details about Interact.sh,{' '}
+                  For further details about Interact.sh,
                   <a href="https://github.com/projectdiscovery/interactsh" target="__blank">
-                    checkout opensource code.
+                    {` checkout opensource code.`}
                   </a>
                 </div>
               </div>
@@ -365,11 +363,11 @@ const HomePage = props => {
                   {/* {tabs[selectedTabsIndex].note} */}
                   <textarea
                     id="notes_textarea"
-                    placeholder={'Please paste note here max 1200 charachters..'}
+                    placeholder="Please paste note here max 1200 charachters.."
                     autoFocus
                     value={tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note}
                     onChange={handleNoteInputChange}
-                  ></textarea>
+                  />
                   {/* </SyntaxHighlighter> */}
                 </div>
                 <div onClick={handleNotesVisibility} className={styles.notes_footer}>
@@ -406,7 +404,9 @@ const HomePage = props => {
                     onClick={() => handleChangeView('up_and_down')}
                   />
                   <div className={styles.result_info}>
-                    From IP address <span>{selectedInteractionData['remote-address']}</span> at{' '}
+                    From IP address
+                    <span>{selectedInteractionData['remote-address']}</span>
+                    {` at `}
                     <span>
                       {dateTransform(selectedInteractionData.timestamp, 'yyyy-mm-dd_hh:mm')}
                     </span>
