@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import NodeRSA from 'node-rsa';
+import { v4 as uuidv4 } from 'uuid';
+import xid from 'xid-js';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import styles from './styles.scss';
 import ChevronUpIcon from '../../assets/svg/chevron_up.svg';
 import SideBySideIcon from '../../assets/svg/side_by_side.svg';
@@ -6,27 +12,27 @@ import UpDownIcon from '../../assets/svg/up_down.svg';
 import Header from '../../components/header';
 import TabSwitcher from '../../components/tabSwitcher';
 import RequestsTableWrapper from './requestsTableWrapper';
-import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../../globalStyles';
 import { blueTheme, darkTheme, synthTheme } from '../../Themes';
 import RequestDetailsWrapper from './requestDetailsWrapper';
-import NodeRSA from 'node-rsa';
-import { v4 as uuidv4 } from 'uuid';
-import xid from 'xid-js';
-import crypto from 'crypto';
-import zbase32 from 'zbase32';
 import dateTransform from '../../components/common/dateTransform';
 import CopyIcon from '../../assets/svg/copy.svg';
 import CloseIcon from '../../assets/svg/close.svg';
 import ClearIcon from '../../assets/svg/clear.svg';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import {
+  generateUrl,
+  poll,
+  decryptAESKey,
+  processData,
+  setToLocalStorage,
+  register,
+  copyDataToClipboard
+} from '../../libs';
 
 const HomePage = props => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [correlationId, setCorrelationId] = useState(localStorage.getItem('correlationId'));
-  const [secretKey, setSecretKey] = useState(localStorage.getItem('secretKey'));
   const [tabs, setTabs] = useState(JSON.parse(localStorage.getItem('tabs')) || []);
   const [data, setData] = useState(JSON.parse(localStorage.getItem('data')) || []);
   const [filteredData, setFilteredData] = useState([]);
@@ -37,19 +43,6 @@ const HomePage = props => {
   const [view, setView] = useState(localStorage.getItem('view'));
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState(false);
 
-  const generateUrl = id => {
-    const timestamp = Math.floor(Date.now() / 1000);
-    const increment = parseInt(localStorage.getItem('increment'));
-    var arr = new ArrayBuffer(8);
-    var view = new DataView(arr);
-    view.setUint32(0, timestamp, false);
-    view.setUint32(4, increment, false);
-    const random = arr;
-    const encodedTimestamp = zbase32.encode(random);
-    let url = `${id}${encodedTimestamp}.${localStorage.getItem('host')}`;
-    return url;
-  };
-
   useEffect(() => {
     if (localStorage.getItem('correlationId') == null) {
       const key = new NodeRSA({ b: 2048 });
@@ -57,52 +50,39 @@ const HomePage = props => {
       const priv = key.exportKey('pkcs8-private-pem');
       const correlation = xid.next().toString();
       const secret = uuidv4().toString();
+      // Setting initial value
       setCorrelationId(correlation);
-      setSecretKey(secret);
-      localStorage.setItem('theme', 'dark');
-      localStorage.setItem('privateKey', priv);
-      localStorage.setItem('publicKey', pub);
-      localStorage.setItem('correlationId', correlation);
-      localStorage.setItem('secretKey', secret);
-      localStorage.setItem('data', JSON.stringify([]));
-      localStorage.setItem('aesKey', null);
-      localStorage.setItem('notes', JSON.stringify([]));
-      if(localStorage.getItem('host') == null){
-        localStorage.setItem('host', 'interact.sh');
-      }
-      localStorage.setItem('view', 'up_and_down');
       setView('up_and_down');
+      setToLocalStorage({
+        theme: 'dark',
+        privateKey: priv,
+        publicKey: pub,
+        correlationId: correlation,
+        secretKey: secret,
+        data: JSON.stringify([]),
+        aesKey: null,
+        notes: JSON.stringify([]),
+        view: 'up_and_down'
+      });
+      if (localStorage.getItem('host') == null) {
+        setToLocalStorage({ host: 'interact.sh' });
+      }
 
-      let registerFetcherOptions = {
-        'public-key': btoa(pub),
-        'secret-key': secret,
-        'correlation-id': correlation
-      };
+      const response = register(pub, secret, correlation);
 
-      let response;
-
-      const getResponse = async () => {
-        response = await fetch(`https://${localStorage.getItem('host')}/register`, {
-          method: 'POST',
-          mode: 'no-cors',
-          cache: 'no-cache',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          referrerPolicy: 'no-referrer',
-          body: JSON.stringify(registerFetcherOptions)
-        });
-        return response;
-      };
-      getResponse().then(res => {
+      response.then(res => {
         if (res.status !== 0) {
           localStorage.clear();
         }
       });
-      localStorage.setItem('increment', 1);
-      let generatedUrl = generateUrl(correlation);
+      setToLocalStorage({ increment: 1 });
+      const generatedUrl = generateUrl(
+        correlation,
+        localStorage.getItem('increment'),
+        localStorage.getItem('host')
+      );
       const lastTabsId = tabs.slice(-1)[0] ? tabs.slice(-1)[0].id : 0;
-      setTabs([
+      const tabData = [
         {
           id: lastTabsId + 1,
           correlationId: correlation,
@@ -110,36 +90,20 @@ const HomePage = props => {
           url: generatedUrl,
           note: ''
         }
-      ]);
-      setSelectedTab({
+      ];
+      const selectedTabData = {
         id: lastTabsId + 1,
         correlationId: correlation,
         name: lastTabsId + 1,
         url: generatedUrl,
         note: ''
+      };
+      setTabs(tabData);
+      setSelectedTab(selectedTabData);
+      setToLocalStorage({
+        tabs: JSON.stringify(tabData),
+        selectedTab: JSON.stringify(selectedTabData)
       });
-      localStorage.setItem(
-        'tabs',
-        JSON.stringify([
-          {
-            id: lastTabsId + 1,
-            correlationId: correlation,
-            name: lastTabsId + 1,
-            url: generatedUrl,
-            note: ''
-          }
-        ])
-      );
-      localStorage.setItem(
-        'selectedTab',
-        JSON.stringify({
-          id: lastTabsId + 1,
-          correlationId: correlation,
-          name: lastTabsId + 1,
-          url: generatedUrl,
-          note: ''
-        })
-      );
 
       pollIntervals.map(item => {
         clearInterval(item);
@@ -158,51 +122,29 @@ const HomePage = props => {
     const dataFromLocalStorage = JSON.parse(localStorage.getItem('data'));
     const correlation = localStorage.getItem('correlationId');
     const secret = localStorage.getItem('secretKey');
+    const host = localStorage.getItem('host');
 
-    let polledData = await poll(correlation, secret);
-    let decryptedKey;
+    const polledData = await poll(correlation, secret, host);
 
     if (aesKey == 'null' && polledData.aes_key) {
-      const key = new NodeRSA({ b: 2048 });
-      key.setOptions({
-        environment: 'browser',
-        encryptionScheme: {
-          hash: 'sha256'
-        }
-      });
-      key.importKey(privateKey, 'pkcs8-private');
-      decryptedKey = key.decrypt(polledData.aes_key, 'base64');
-      localStorage.setItem('aesKey', key.decrypt(polledData.aes_key, 'base64'));
+      setToLocalStorage({ aesKey: decryptAESKey(privateKey, polledData) });
     }
 
-    if (polledData.data.length !== 0) {
-      let decryptedData = polledData.data.map(item => {
-        const aesKey = Buffer.from(localStorage.getItem('aesKey'), 'base64');
-        const iv = Buffer.from(item, 'base64').slice(0, 16);
-        var decipher = crypto.createDecipheriv('aes-256-cfb', aesKey, iv);
-        var mystr = decipher.update(Buffer.from(item, 'base64', 'utf8').slice(16));
-        mystr += decipher.final('utf8');
-        return mystr;
+    const processedData = processData(Buffer.from(aesKey, 'base64'), polledData);
+    const combinedData = [...dataFromLocalStorage, ...processedData];
+    setData(combinedData);
+    setToLocalStorage({ data: JSON.stringify(combinedData) });
+    const selectedTabUrl = selectedTab.url.slice(0, -localStorage.getItem('host').length - 1);
+    let newData = combinedData.filter(item => item['unique-id'] == selectedTabUrl);
+    if (filteredData.length !== newData.length) {
+      newData = newData.map((item, i) => {
+        return { id: i + 1, ...item };
       });
-      let parsedData = decryptedData.map(item => {
-        return JSON.parse(item);
-      });
-      let combinedData = [...dataFromLocalStorage, ...parsedData]
-      setData(combinedData);
-      localStorage.setItem('data', JSON.stringify(combinedData));
-      const selectedTabUrl = selectedTab.url.slice(0, (-localStorage.getItem('host').length - 1));
-      let newData = combinedData.filter(
-        item => item['unique-id'] == selectedTabUrl
-      );
-      if (filteredData.length !== newData.length) {
-        newData = newData.map((item, i) => {
-          return { id: i + 1, ...item };
-        });
-        setFilteredData(newData);
-      }
+      setFilteredData(newData);
     }
   };
 
+  // Recalculate data when a tab is selected
   useEffect(() => {
     pollIntervals.map(item => {
       clearInterval(item);
@@ -212,154 +154,132 @@ const HomePage = props => {
         processPolledData();
       }, 4000);
       setPollIntervals([...pollIntervals, interval]);
-      const tabs = JSON.parse(localStorage.getItem('tabs'));
-      const selectedTabUrl = selectedTab.url.slice(0, (-localStorage.getItem('host').length - 1));
-      let test2 = data.filter(item => item['unique-id'] == selectedTabUrl);
-      if (filteredData.length !== test2.length) {
-        test2 = test2.map((item, i) => {
+      const selectedTabUrl = selectedTab.url.slice(0, -localStorage.getItem('host').length - 1);
+      let tempFilteredData = data.filter(item => item['unique-id'] == selectedTabUrl);
+      if (filteredData.length !== tempFilteredData.length) {
+        tempFilteredData = tempFilteredData.map((item, i) => {
           return { id: i + 1, ...item };
         });
-        setFilteredData(test2);
+        setFilteredData(tempFilteredData);
       }
     }
   }, [selectedTab]);
 
-  const poll = async (a, b) => {
-    let data = await fetch(`https://${localStorage.getItem('host')}` + `/poll?id=${a}&secret=${b}`)
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        return res;
-      });
-    return data;
-  };
-
+  // "Switch theme" function
   const handleThemeSelection = value => {
     setTheme(value);
-    localStorage.setItem('theme', value);
+    setToLocalStorage({ theme: value });
   };
+
+  // "Select a tab" function
   const handleTabButtonClick = value => {
     setSelectedTab(value);
-    localStorage.setItem('selectedTab', JSON.stringify(value));
+    setToLocalStorage({ selectedTab: JSON.stringify(value) });
     setSelectedInteraction('');
   };
+
+  // " Add new tab" function
   const handleAddNewTab = () => {
-    const newUrl = generateUrl(correlationId);
-    const increment = parseInt(localStorage.getItem('increment')) + 1;
-    setTabs([
-      ...tabs,
-      {
-        id: increment,
-        correlationId: correlationId,
-        name: increment,
-        url: newUrl,
-        note: ''
-      }
-    ]);
-    setSelectedTab({
-      id: increment,
-      correlationId: correlationId,
-      name: increment,
+    const correlation = localStorage.getItem('correlationId');
+    const increment = Number(localStorage.getItem('increment'));
+    const host = localStorage.getItem('host');
+    const newUrl = generateUrl(correlation, increment, host);
+    const newIncrement = increment + 1;
+    const tabData = {
+      id: newIncrement,
+      correlationId: correlation,
+      name: newIncrement,
       url: newUrl,
       note: ''
+    };
+    const selectedTabData = {
+      id: newIncrement,
+      correlationId: correlation,
+      name: newIncrement,
+      url: newUrl,
+      note: ''
+    };
+    setTabs([...tabs, tabData]);
+    setSelectedTab(selectedTabData);
+    setToLocalStorage({
+      tabs: JSON.stringify([...tabs, tabData]),
+      selectedTab: JSON.stringify(selectedTabData),
+      newIncrement
     });
-    localStorage.setItem(
-      'tabs',
-      JSON.stringify([
-        ...tabs,
-        {
-          id: increment,
-          correlationId: correlationId,
-          name: increment,
-          url: newUrl,
-          note: ''
-        }
-      ])
-    );
-    localStorage.setItem(
-      'selectedTab',
-      JSON.stringify({
-        id: increment,
-        correlationId: correlationId,
-        name: increment,
-        url: newUrl,
-        note: ''
-      })
-    );
-    localStorage.setItem('increment', increment);
   };
+
+  // "Show or hide notes" function
   const handleNotesVisibility = () => {
-    setTimeout(function() {
+    setTimeout(() => {
       document.getElementById('notes_textarea').focus();
     }, 200);
     setIsNotesOpen(!isNotesOpen);
   };
 
+  // "Notes input change handler" function
   const handleNoteInputChange = e => {
     const tempTabsList = JSON.parse(localStorage.getItem('tabs'));
     const index = tempTabsList.findIndex(item => {
       return item.id == selectedTab.id;
     });
     tempTabsList[index].note = e.target.value;
-
-    localStorage.setItem('tabs', JSON.stringify(tempTabsList));
+    setToLocalStorage({ tabs: JSON.stringify(tempTabsList) });
     setTabs([...tempTabsList]);
   };
 
+  // "Selecting a specific interaction" function
   const handleRowClick = id => {
     setSelectedInteraction(id);
     const reqDetails = filteredData[filteredData.findIndex(item => item.id == id)];
     setSelectedInteractionData(reqDetails);
   };
 
-  const copyDataToClipboard = value => {
-    navigator.clipboard.writeText(value);
-  };
-
+  // "Deleting a tab" function
   const handleDeleteTab = id => {
-    let tempTabsList = [...tabs];
-    let filteredTempTabsList = tempTabsList.filter(value => {
-      return parseInt(value.id) !== parseInt(id);
+    const tempTabsList = [...tabs];
+    const filteredTempTabsList = tempTabsList.filter(value => {
+      return Number(value.id) !== Number(id);
     });
-    let tempTabsData = [...data];
-    let filteredTempTabsData = tempTabsData.filter(value => {
-      return parseInt(value.id) !== parseInt(id);
+    const tempTabsData = [...data];
+    const filteredTempTabsData = tempTabsData.filter(value => {
+      return Number(value.id) !== Number(id);
     });
-
     setSelectedTab({ ...filteredTempTabsList[0] });
-    localStorage.setItem('selectedTab', JSON.stringify(filteredTempTabsList[0]));
+    setToLocalStorage({ selectedTab: JSON.stringify(filteredTempTabsList[0]) });
     setTabs([...filteredTempTabsList]);
-    localStorage.setItem('tabs', JSON.stringify([...filteredTempTabsList]));
+    setToLocalStorage({ tabs: JSON.stringify([...filteredTempTabsList]) });
     setData([...filteredTempTabsData]);
-    localStorage.setItem('data', JSON.stringify([...filteredTempTabsData]));
+    setToLocalStorage({ data: JSON.stringify([...filteredTempTabsData]) });
   };
 
+  // "Renaming a tab" function
   const handleTabRename = e => {
     const tempTabsList = JSON.parse(localStorage.getItem('tabs'));
     const index = tempTabsList.findIndex(item => {
       return item.id == selectedTab.id;
     });
     tempTabsList[index].name = e.target.value;
-
-    localStorage.setItem('tabs', JSON.stringify(tempTabsList));
+    setToLocalStorage({ tabs: JSON.stringify(tempTabsList) });
     setTabs([...tempTabsList]);
   };
 
+  // "View selector" function
   const handleChangeView = value => {
     setView(value);
-    localStorage.setItem('view', value);
+    setToLocalStorage({ view: value });
   };
 
+  // "Show or hide about popup" function
   const handleAboutPopupVisibility = () => {
     setAboutPopupVisibility(!aboutPopupVisibility);
   };
 
+  // "Clear interactions of a tab" function
   const clearInteractions = () => {
-    let tempData = data.filter(item => {
+    const tempData = data.filter(item => {
       return item['unique-id'] !== selectedTab.url.substring(0, selectedTab.url.length - 12);
     });
-    localStorage.setItem('data', JSON.stringify(tempData));
+    setToLocalStorage({ data: JSON.stringify(tempData) });
     setData([...tempData]);
     setFilteredData([]);
   };
