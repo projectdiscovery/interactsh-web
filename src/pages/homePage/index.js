@@ -69,10 +69,6 @@ const HomePage = () => {
 
       const response = register(pub, secret, correlation);
 
-      // Clear localstorage if registration fails
-      response.then(res => {
-        // localStorage.clear();
-      });
       setToLocalStorage({ increment: 1 });
       const generatedUrl = generateUrl(
         correlation,
@@ -111,6 +107,17 @@ const HomePage = () => {
         processPolledData();
       }, 4000);
       setPollIntervals([...pollIntervals, interval]);
+
+      // Clear localstorage if registration fails
+      response
+        .then(res => {
+          if (res.status !== 200) {
+            localStorage.clear();
+          }
+        })
+        .catch(() => {
+          localStorage.clear();
+        });
     }
   }, []);
 

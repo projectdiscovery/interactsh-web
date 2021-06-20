@@ -75,7 +75,6 @@ export const register = async (publicKey, secretKey, correlationId) => {
 
   const response = await fetch(`https://${localStorage.getItem('host')}/register`, {
     method: 'POST',
-    mode: 'no-cors',
     cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json'
