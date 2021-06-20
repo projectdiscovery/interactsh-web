@@ -69,10 +69,9 @@ const HomePage = () => {
 
       const response = register(pub, secret, correlation);
 
+      // Clear localstorage if registration fails
       response.then(res => {
-        if (res.status !== 0) {
-          localStorage.clear();
-        }
+        // localStorage.clear();
       });
       setToLocalStorage({ increment: 1 });
       const generatedUrl = generateUrl(
@@ -128,18 +127,18 @@ const HomePage = () => {
     if (aesKey == 'null' && polledData.aes_key) {
       setToLocalStorage({ aesKey: decryptAESKey(privateKey, polledData) });
     }
-
-    const processedData = processData(Buffer.from(aesKey, 'base64'), polledData);
-    const combinedData = [...dataFromLocalStorage, ...processedData];
-    setData(combinedData);
-    setToLocalStorage({ data: JSON.stringify(combinedData) });
-    const selectedTabUrl = selectedTab.url.slice(0, -localStorage.getItem('host').length - 1);
-    let newData = combinedData.filter(item => item['unique-id'] == selectedTabUrl);
-    if (filteredData.length !== newData.length) {
+    if (polledData.data.length !== 0) {
+      const processedData = processData(Buffer.from(aesKey, 'base64'), polledData);
+      const combinedData = [...dataFromLocalStorage, ...processedData];
+      setData(combinedData);
+      setToLocalStorage({ data: JSON.stringify(combinedData) });
+      const selectedTabUrl = selectedTab.url.slice(0, -localStorage.getItem('host').length - 1);
+      let newData = combinedData.filter(item => item['unique-id'] == selectedTabUrl);
+      console.log(filteredData);
       newData = newData.map((item, i) => {
         return { id: i + 1, ...item };
       });
-      setFilteredData(newData);
+      setFilteredData([...newData]);
     }
   };
 
@@ -155,12 +154,10 @@ const HomePage = () => {
       setPollIntervals([...pollIntervals, interval]);
       const selectedTabUrl = selectedTab.url.slice(0, -localStorage.getItem('host').length - 1);
       let tempFilteredData = data.filter(item => item['unique-id'] == selectedTabUrl);
-      if (filteredData.length !== tempFilteredData.length) {
-        tempFilteredData = tempFilteredData.map((item, i) => {
-          return { id: i + 1, ...item };
-        });
-        setFilteredData(tempFilteredData);
-      }
+      tempFilteredData = tempFilteredData.map((item, i) => {
+        return { id: i + 1, ...item };
+      });
+      setFilteredData([...tempFilteredData]);
     }
   }, [selectedTab]);
 
