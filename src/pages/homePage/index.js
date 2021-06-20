@@ -203,7 +203,7 @@ const HomePage = () => {
     setToLocalStorage({
       tabs: JSON.stringify([...tabs, tabData]),
       selectedTab: JSON.stringify(selectedTabData),
-      newIncrement
+      increment: newIncrement
     });
   };
 
