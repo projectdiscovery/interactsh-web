@@ -1,160 +1,160 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 import { Icon } from "antd";
-import styles from "./styles.scss";
+import "./styles.scss";
 
 const OverviewStatsErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "26rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const StarsOvertimeErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "74rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const DailyStarsErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "45rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const FiltersErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "2.7rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const StargazersListErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "50rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const ContributorsListErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "50rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const RepositoriesListErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "50rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const EfficiencyStatsErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "26rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const RepoSidebarListErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "26rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const IssuesListErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "26rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 const RepoStatsErrorFallback = ({ error, retry }) => (
   <div
-    className={styles.retry_error_fallback}
+    className="retry_error_fallback"
     style={{
       height: "26rem",
       background: "transparent",
     }}
   >
-    <div onClick={retry} className={styles.error_box}>
+    <div onClick={retry} className="error_box">
       <Icon type="redo" />
     </div>
-    <span className={styles.error_msg}>Request failed!</span>
+    <span className="error_msg">Request failed!</span>
   </div>
 );
 

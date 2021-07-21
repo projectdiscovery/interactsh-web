@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import styles from "./styles.scss";
+import "./styles.scss";
 import { ReactComponent as ChevronUpIcon } from "../../assets/svg/chevron_up.svg";
 import { ReactComponent as SideBySideIcon } from "../../assets/svg/side_by_side.svg";
 import { ReactComponent as UpDownIcon } from "../../assets/svg/up_down.svg";
@@ -314,18 +314,18 @@ const HomePage = () => {
     >
       <>
         <GlobalStyles />
-        <div className={styles.container}>
+        <div className="container">
           {aboutPopupVisibility && (
-            <div className={styles.about_popup_wrapper}>
-              <div className={styles.about_popup}>
-                <div className={styles.about_popup_header}>
+            <div className="about_popup_wrapper">
+              <div className="about_popup">
+                <div className="about_popup_header">
                   <span>About</span>
                   <CloseIcon
                     style={{ width: 14 }}
                     onClick={handleAboutPopupVisibility}
                   />
                 </div>
-                <div className={styles.about_popup_body}>
+                <div className="about_popup_body">
                   Interactsh is an Open-Source solution for Out of band Data
                   Extraction, A tool designed to detect bugs that cause external
                   interactions, For example - Blind SQLi, Blind CMDi, SSRF, etc.
@@ -370,9 +370,9 @@ const HomePage = () => {
             handleTabRename={handleTabRename}
             processPolledData={processPolledData}
           />
-          <div className={styles.body}>
-            <div className={styles.left_section}>
-              <div className={`${styles.url_container} secondary_bg`}>
+          <div className="body">
+            <div className="left_section">
+              <div className="url_container secondary_bg">
                 <div title={selectedTab && selectedTab.url}>
                   {selectedTab && selectedTab.url}
                 </div>
@@ -380,10 +380,10 @@ const HomePage = () => {
                   style={{ width: 13 }}
                   onClick={() => copyDataToClipboard(selectedTab.url)}
                 />
-                <div className={styles.vertical_bar} />
+                <div className="vertical_bar" />
                 <ClearIcon
                   className={
-                    filteredData.length <= 0 && styles.clear_button__disabled
+                    filteredData.length <= 0 && "clear_button__disabled"
                   }
                   onClick={clearInteractions}
                 />
@@ -393,9 +393,9 @@ const HomePage = () => {
                 selectedInteraction={selectedInteraction}
                 handleRowClick={handleRowClick}
               />
-              <div className={`${styles.notes} secondary_bg`}>
+              <div className="notes secondary_bg">
                 <div
-                  className={styles.detailed_notes}
+                  className="detailed_notes"
                   style={{ display: isNotesOpen ? "flex" : "none" }}
                 >
                   {/* <SyntaxHighlighter language="javascript" style={dark}> */}
@@ -411,10 +411,7 @@ const HomePage = () => {
                   />
                   {/* </SyntaxHighlighter> */}
                 </div>
-                <div
-                  onClick={handleNotesVisibility}
-                  className={styles.notes_footer}
-                >
+                <div onClick={handleNotesVisibility} className="notes_footer">
                   <span>Notes</span>
                   <ChevronUpIcon
                     style={{
@@ -425,12 +422,12 @@ const HomePage = () => {
               </div>
             </div>
             {selectedInteraction !== "" && (
-              <div className={styles.right_section}>
-                <div className={styles.result_header}>
-                  <div className={styles.req_res_buttons}>
+              <div className="right_section">
+                <div className="result_header">
+                  <div className="req_res_buttons">
                     <span
                       className={
-                        view == "request" && styles.__selected_req_res_button
+                        view == "request" && "__selected_req_res_button"
                       }
                       onClick={() => handleChangeView("request")}
                     >
@@ -438,7 +435,7 @@ const HomePage = () => {
                     </span>
                     <span
                       className={
-                        view == "response" && styles.__selected_req_res_button
+                        view == "response" && "__selected_req_res_button"
                       }
                       onClick={() => handleChangeView("response")}
                     >
@@ -457,7 +454,7 @@ const HomePage = () => {
                     }}
                     onClick={() => handleChangeView("up_and_down")}
                   />
-                  <div className={styles.result_info}>
+                  <div className="result_info">
                     From IP address
                     <span>{selectedInteractionData["remote-address"]}</span>
                     {` at `}

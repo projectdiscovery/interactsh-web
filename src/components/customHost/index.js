@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import NodeRSA from "node-rsa";
 import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
-import styles from "./styles.scss";
+import "./styles.scss";
 import { ReactComponent as ArrowRightIcon } from "../../assets/svg/arrow_right.svg";
 import { ReactComponent as CloseIcon } from "../../assets/svg/close.svg";
 
@@ -76,10 +76,10 @@ const CustomHost = (props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container">
       {isDeleteConfirmationVisible ? (
-        <div className={styles.dialog_box}>
-          <div className={styles.header}>
+        <div className="dialog_box">
+          <div className="header">
             <span>Remove Custom Host</span>
             <CloseIcon onClick={handleDeleteConfirmationVisibility} />
           </div>
@@ -87,15 +87,15 @@ const CustomHost = (props) => {
             Please confirm the action, this action can’t be undone and all the
             client data will be delete immediately.
           </span>
-          <div className={styles.buttons}>
-            <div className={styles.delete_button} onClick={handleDelete}>
+          <div className="buttons">
+            <div className="delete_button" onClick={handleDelete}>
               Delete
             </div>
           </div>
         </div>
       ) : (
-        <div className={styles.dialog_box}>
-          <div className={styles.header}>
+        <div className="dialog_box">
+          <div className="header">
             <span>Custom Host</span>
             <CloseIcon onClick={handleCloseDialog} />
           </div>
@@ -110,21 +110,21 @@ const CustomHost = (props) => {
             onChange={handleInput}
           />
           {!isHostValid && (
-            <div className={styles.error}>
+            <div className="error">
               We failed to connect with your server, please try agian by
               clicking on confirm.
             </div>
           )}
-          <div className={styles.buttons}>
+          <div className="buttons">
             {host != "interact.sh" && (
               <div
-                className={styles.remove_button}
+                className="remove_button"
                 onClick={handleDeleteConfirmationVisibility}
               >
                 Remove Custom Host
               </div>
             )}
-            <div className={styles.submit_button} onClick={handleConfirm}>
+            <div className="submit_button" onClick={handleConfirm}>
               Confirm <ArrowRightIcon />
             </div>
           </div>

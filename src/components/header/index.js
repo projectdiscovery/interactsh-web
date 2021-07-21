@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./styles.scss";
+import "./styles.scss";
 import { ReactComponent as ThemeDarkButtonIcon } from "../../assets/svg/theme_dark_button.svg";
 import { ReactComponent as ThemeSynthButtonIcon } from "../../assets/svg/theme_synth_button.svg";
 import { ReactComponent as ThemeBlueButtonIcon } from "../../assets/svg/theme_blue_button.svg";
@@ -63,41 +63,41 @@ const Header = (props) => {
   };
 
   return (
-    <div id="header" className={styles.header}>
+    <div id="header" className="header">
       <div>interact.sh</div>
       <div onClick={handleThemeSwitchesVisibility}>
         <div
-          className={`${isSelectorVisible && styles.__selector_visible} ${
-            theme == "dark" && styles.__selected
-          } ${!isSelectorVisible && styles.__without_bg}`}
+          className={`${isSelectorVisible && "__selector_visible"} ${
+            theme == "dark" && ".__selected"
+          } ${!isSelectorVisible && "__without_bg"}`}
           onClick={() => handleThemeSelection("dark")}
         >
           <ThemeDarkButtonIcon />
           Dark
         </div>
         <div
-          className={`${isSelectorVisible && styles.__selector_visible} ${
-            theme == "synth" && styles.__selected
-          } ${!isSelectorVisible && styles.__without_bg}`}
+          className={`${isSelectorVisible && "__selector_visible"} ${
+            theme == "synth" && "__selected"
+          } ${!isSelectorVisible && "__without_bg"}`}
           onClick={() => handleThemeSelection("synth")}
         >
           <ThemeSynthButtonIcon />
           Synth
         </div>
         <div
-          className={`${isSelectorVisible && styles.__selector_visible} ${
-            theme == "blue" && styles.__selected
-          } ${!isSelectorVisible && styles.__without_bg}`}
+          className={`${isSelectorVisible && "__selector_visible"} ${
+            theme == "blue" && "__selected"
+          } ${!isSelectorVisible && "__without_bg"}`}
           onClick={() => handleThemeSelection("blue")}
         >
           <ThemeBlueButtonIcon />
           Blue
         </div>
       </div>
-      <div className={styles.links}>
+      <div className="links">
         <div
           title="Switch host"
-          className={host != "interact.sh" && styles.custom_host_active}
+          className={host != "interact.sh" && "custom_host_active"}
           onClick={handleCustomHostDialogVisibility}
         >
           <SwitchIcon />
@@ -111,7 +111,7 @@ const Header = (props) => {
           <DownloadIcon />
           Export
         </div>
-        <div className={styles.vertical_bar} />
+        <div className="vertical_bar" />
         <a href="/#/terms">Terms</a>
         <div onClick={handleAboutPopupVisibility}>About</div>
       </div>

@@ -4,14 +4,14 @@ import {
   RepoSidebarListFallback,
   RepoSidebarListErrorFallback,
 } from "../../helpers/fallback-loaders";
-import styles from "./styles.scss";
+import "./styles.scss";
 import RequestsTable from "../../components/requestsTable";
 
 const RequestsTableWrapper = (props) => {
   const { data, handleRowClick, selectedInteraction } = props;
   // console.log('newData');
   return (
-    <div className={styles.requests_table_container}>
+    <div className="requests_table_container">
       <ErrorBoundary
         fallback={(error, retry) => (
           <RepoSidebarListErrorFallback error={error} retry={retry} />

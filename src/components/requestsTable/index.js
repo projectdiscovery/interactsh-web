@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./styles.scss";
+import "./styles.scss";
 import lastDateChange from "../../libs/last-date-change";
 
 const RequestsTable = (props) => {
   const { data, handleRowClick, selectedInteraction } = props;
   return (
-    <table className={styles.requests_table}>
+    <table className="requests_table">
       <thead className="secondary_bg">
         <tr>
           <th>#</th>
@@ -18,9 +18,7 @@ const RequestsTable = (props) => {
           <tr
             key={i}
             onClick={() => handleRowClick(item.id)}
-            className={
-              item.id == selectedInteraction ? styles.selected_row : ""
-            }
+            className={item.id == selectedInteraction ? "selected_row" : ""}
           >
             <td>{data.length - i}</td>
             <td>{lastDateChange(item.timestamp)}</td>

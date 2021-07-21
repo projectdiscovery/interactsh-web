@@ -4,7 +4,7 @@ import {
   IssuesListFallback,
   IssuesListErrorFallback,
 } from "../../helpers/fallback-loaders";
-import styles from "./styles.scss";
+import "./styles.scss";
 import DetailedRequest from "../../components/detailedRequest";
 
 const RequestDetailsWrapper = (props) => {
@@ -12,7 +12,7 @@ const RequestDetailsWrapper = (props) => {
 
   return (
     <div
-      className={styles.detailed_request}
+      className="detailed_request"
       style={{ flexDirection: view == "up_and_down" ? "column" : "row" }}
     >
       <ErrorBoundary
