@@ -1,7 +1,7 @@
 export default {
   api: {
-    baseUrl: 'http://interact.sh/',
-    timeout: 10000
+    baseUrl: "http://interact.sh/",
+    timeout: 10000,
   },
-  batchSize: 2
+  batchSize: 2,
 };

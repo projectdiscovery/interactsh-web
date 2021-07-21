@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from "react";
 
 class ErrorBoundary extends Component {
   state = { error: null };
@@ -7,16 +7,18 @@ class ErrorBoundary extends Component {
     return { error };
   }
 
-  retry = () => { this.setState({ error: null });
-if(this.props.refetch){
-  this.props.refetch()
-} };
+  retry = () => {
+    this.setState({ error: null });
+    if (this.props.refetch) {
+      this.props.refetch();
+    }
+  };
 
   render() {
     const { error } = this.state;
     const { children, fallback } = this.props;
     if (error) {
-      if (typeof fallback === 'function') {
+      if (typeof fallback === "function") {
         return fallback(error, this.retry);
       }
       return fallback;

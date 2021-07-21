@@ -1,44 +1,49 @@
-import React, { Suspense } from 'react';
-import ErrorBoundary from '../../components/common/errorBoundary';
-import { IssuesListFallback, IssuesListErrorFallback } from '../../helpers/fallback-loaders';
-import styles from './styles.scss';
-import DetailedRequest from '../../components/detailedRequest';
+import React, { Suspense } from "react";
+import ErrorBoundary from "../../components/common/errorBoundary";
+import {
+  IssuesListFallback,
+  IssuesListErrorFallback,
+} from "../../helpers/fallback-loaders";
+import styles from "./styles.scss";
+import DetailedRequest from "../../components/detailedRequest";
 
-const RequestDetailsWrapper = props => {
+const RequestDetailsWrapper = (props) => {
   const { selectedInteractionData, view } = props;
 
   return (
     <div
       className={styles.detailed_request}
-      style={{ flexDirection: view == 'up_and_down' ? 'column' : 'row' }}
+      style={{ flexDirection: view == "up_and_down" ? "column" : "row" }}
     >
       <ErrorBoundary
-        fallback={(error, retry) => <IssuesListErrorFallback error={error} retry={retry} />}
+        fallback={(error, retry) => (
+          <IssuesListErrorFallback error={error} retry={retry} />
+        )}
       >
         <Suspense fallback={<IssuesListFallback />}>
-          {view == 'request' ? (
+          {view == "request" ? (
             <DetailedRequest
               view={view}
-              data={`${selectedInteractionData['raw-request']}`}
-              title={'Request'}
+              data={`${selectedInteractionData["raw-request"]}`}
+              title="Request"
             />
-          ) : view == 'response' ? (
+          ) : view == "response" ? (
             <DetailedRequest
               view={view}
-              data={`${selectedInteractionData['raw-response']}`}
-              title={'Response'}
+              data={`${selectedInteractionData["raw-response"]}`}
+              title="Response"
             />
           ) : (
             <>
               <DetailedRequest
                 view={view}
-                data={`${selectedInteractionData['raw-request']}`}
-                title={'Request'}
+                data={`${selectedInteractionData["raw-request"]}`}
+                title="Request"
               />
               <DetailedRequest
                 view={view}
-                data={`${selectedInteractionData['raw-response']}`}
-                title={'Response'}
+                data={`${selectedInteractionData["raw-response"]}`}
+                title="Response"
               />
             </>
           )}

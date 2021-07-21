@@ -1,5 +1,5 @@
-import inputChecker from './input-checker';
+import inputChecker from "./input-checker";
 
 export default {
-  inputChecker
+  inputChecker,
 };
