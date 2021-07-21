@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import styles from './styles.scss';
-import ThemeDarkButtonIcon from '../../assets/svg/theme_dark_button.svg';
-import ThemeSynthButtonIcon from '../../assets/svg/theme_synth_button.svg';
-import ThemeBlueButtonIcon from '../../assets/svg/theme_blue_button.svg';
-import DownloadIcon from '../../assets/svg/download.svg';
-import DeleteIcon from '../../assets/svg/delete.svg';
-import SwitchIcon from '../../assets/svg/switch.svg';
+import { ReactComponent as ThemeDarkButtonIcon } from '../../assets/svg/theme_dark_button.svg';
+import { ReactComponent as ThemeSynthButtonIcon } from '../../assets/svg/theme_synth_button.svg';
+import { ReactComponent as ThemeBlueButtonIcon } from '../../assets/svg/theme_blue_button.svg';
+import { ReactComponent as DownloadIcon } from '../../assets/svg/download.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/svg/delete.svg';
+import { ReactComponent as SwitchIcon } from '../../assets/svg/switch.svg';
 import dateTransform from '../common/dateTransform';
 import CustomHost from '../customHost';
 
@@ -25,7 +24,7 @@ const Header = props => {
 
   const handleReset = () => {
     localStorage.clear();
-    location.reload();
+    window.location.reload();
   };
 
   const handleDataExport = () => {

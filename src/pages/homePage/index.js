@@ -7,9 +7,9 @@ import xid from 'xid-js';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import styles from './styles.scss';
-import ChevronUpIcon from '../../assets/svg/chevron_up.svg';
-import SideBySideIcon from '../../assets/svg/side_by_side.svg';
-import UpDownIcon from '../../assets/svg/up_down.svg';
+import { ReactComponent as ChevronUpIcon } from '../../assets/svg/chevron_up.svg';
+import { ReactComponent as SideBySideIcon } from '../../assets/svg/side_by_side.svg';
+import { ReactComponent as UpDownIcon } from '../../assets/svg/up_down.svg';
 import Header from '../../components/header';
 import TabSwitcher from '../../components/tabSwitcher';
 import RequestsTableWrapper from './requestsTableWrapper';
@@ -17,9 +17,9 @@ import { GlobalStyles } from '../../globalStyles';
 import { blueTheme, darkTheme, synthTheme } from '../../Themes';
 import RequestDetailsWrapper from './requestDetailsWrapper';
 import dateTransform from '../../components/common/dateTransform';
-import CopyIcon from '../../assets/svg/copy.svg';
-import CloseIcon from '../../assets/svg/close.svg';
-import ClearIcon from '../../assets/svg/clear.svg';
+import { ReactComponent as CopyIcon } from '../../assets/svg/copy.svg';
+import { ReactComponent as CloseIcon } from '../../assets/svg/close.svg';
+import { ReactComponent as ClearIcon } from '../../assets/svg/clear.svg';
 import {
   generateUrl,
   poll,
@@ -301,7 +301,7 @@ const HomePage = () => {
               <div className={styles.about_popup}>
                 <div className={styles.about_popup_header}>
                   <span>About</span>
-                  <CloseIcon onClick={handleAboutPopupVisibility} />
+                  <CloseIcon style={{ width: 14 }} onClick={handleAboutPopupVisibility} />
                 </div>
                 <div className={styles.about_popup_body}>
                   Interactsh is an Open-Source solution for Out of band Data Extraction, A tool
@@ -346,7 +346,7 @@ const HomePage = () => {
             <div className={styles.left_section}>
               <div className={`${styles.url_container} secondary_bg`}>
                 <div title={selectedTab && selectedTab.url}>{selectedTab && selectedTab.url}</div>
-                <CopyIcon onClick={() => copyDataToClipboard(selectedTab.url)} />
+                <CopyIcon style={{ width: 13 }} onClick={() => copyDataToClipboard(selectedTab.url)} />
                 <div className={styles.vertical_bar} />
                 <ClearIcon
                   className={filteredData.length <= 0 && styles.clear_button__disabled}

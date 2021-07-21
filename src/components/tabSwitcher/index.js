@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './styles.scss';
-import CrossIcon from '../../assets/svg/cross.svg';
-import PlusIcon from '../../assets/svg/plus.svg';
-import RefreshIcon from '../../assets/svg/refresh.svg';
+import { ReactComponent as CrossIcon } from '../../assets/svg/cross.svg';
+import { ReactComponent as PlusIcon } from '../../assets/svg/plus.svg';
+import { ReactComponent as RefreshIcon } from '../../assets/svg/refresh.svg';
 
 const TabSwitcher = props => {
   const {

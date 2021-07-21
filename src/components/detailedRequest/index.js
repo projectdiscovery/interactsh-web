@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.scss';
-import CopyIcon from '../../assets/svg/copy.svg';
+import { ReactComponent as CopyIcon } from '../../assets/svg/copy.svg';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 

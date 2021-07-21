@@ -14,7 +14,6 @@ const RequestsTableWrapper = props => {
     <div className={styles.requests_table_container}>
       <ErrorBoundary
         fallback={(error, retry) => <RepoSidebarListErrorFallback error={error} retry={retry} />}
-        refetch={() => refetch(defaultParams)}
       >
         <Suspense fallback={<RepoSidebarListFallback />}>
           <RequestsTable

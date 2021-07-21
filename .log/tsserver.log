@@ -1,0 +1,364 @@
+Info 0    [11:16:40.275] Starting TS Server
+Info 1    [11:16:40.276] Version: 4.3.5
+Info 2    [11:16:40.276] Arguments: /Users/jessekelly/.nvm/versions/node/v14.17.0/bin/node /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.bin/tsserver --logFile /Users/jessekelly/Desktop/ProjectDiscovery/i/.log/tsserver.log --logVerbosity info --cancellationPipeName /private/var/folders/lc/y2dbm6r52hj5ljsq41phk2sm0000gn/T/a1ed354e52ab026d00a067c70b2c060e/tscancellation*
+Info 3    [11:16:40.276] Platform: darwin NodeVersion: 14 CaseSensitive: false
+Info 4    [11:16:40.276] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [11:16:41.611] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/i/src/pages/homePage
+Info 6    [11:16:41.611] For info: /Users/jessekelly/Desktop/ProjectDiscovery/i/src/pages/homePage/index.js :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 7    [11:16:41.611] Creating configuration project /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 8    [11:16:41.635] Config: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json : {
+ "rootNames": [
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/Themes.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/globalStyles.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/react-app-env.d.ts",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/common/dateTransform/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/common/errorBoundary/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/common/exportButton/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/common/notFoundPage/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/common/regexPatterns/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/customHost/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/detailedRequest/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/header/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/requestsTable/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/components/tabSwitcher/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/config/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/helpers/fallback-loaders.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/helpers/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/helpers/input-checker.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/libs/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/libs/last-date-change/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/pages/homePage/index.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/pages/homePage/requestDetailsWrapper.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/pages/homePage/requestsTableWrapper.js",
+  "/Users/jessekelly/Desktop/ProjectDiscovery/i/src/pages/termsPage/index.js"
+ ],
+ "options": {
+  "target": 1,
+  "lib": [
+   "lib.dom.d.ts",
+   "lib.dom.iterable.d.ts",
+   "lib.esnext.d.ts"
+  ],
+  "allowJs": true,
+  "skipLibCheck": true,
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true,
+  "strict": true,
+  "forceConsistentCasingInFileNames": true,
+  "noFallthroughCasesInSwitch": true,
+  "module": 99,
+  "moduleResolution": 2,
+  "resolveJsonModule": true,
+  "isolatedModules": true,
+  "noEmit": true,
+  "jsx": 4,
+  "configFilePath": "/Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json"
+ }
+}
+Info 9    [11:16:41.679] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 10   [11:16:42.787] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 1 structureChanged: true Elapsed: 1108.2019160985947ms
+Info 11   [11:16:42.787] Project '/Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json' (Configured)
+Info 12   [11:16:42.787] 	Files (305)
+
+Info 13   [11:16:42.787] -----------------------------------------------
+Info 14   [11:16:42.800] Starting updateGraphWorker: Project: /dev/null/autoImportProviderProject1*
+Info 15   [11:16:42.962] Finishing updateGraphWorker: Project: /dev/null/autoImportProviderProject1* Version: 1 structureChanged: true Elapsed: 161.86383390426636ms
+Info 16   [11:16:42.962] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
+Info 17   [11:16:42.962] 	Files (37)
+
+Info 18   [11:16:42.962] -----------------------------------------------
+Info 19   [11:16:43.657] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 20   [11:16:43.670] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 2 structureChanged: false Elapsed: 13.668333053588867ms
+Info 21   [11:16:43.670] Different program with same set of files:: structureIsReused:: 2
+Info 22   [11:17:11.997] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 23   [11:17:12.024] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 3 structureChanged: false Elapsed: 26.481041073799133ms
+Info 24   [11:17:12.024] Different program with same set of files:: structureIsReused:: 2
+Info 25   [11:17:16.251] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 26   [11:17:16.261] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 4 structureChanged: false Elapsed: 9.695082902908325ms
+Info 27   [11:17:16.261] Different program with same set of files:: structureIsReused:: 2
+Info 28   [11:17:16.263] getCompletionData: Get current token: 0.030167102813720703
+Info 29   [11:17:16.263] getCompletionData: Is inside comment: 0.047042012214660645
+Info 30   [11:17:16.263] getCompletionData: Get previous token 1: 0.039083003997802734
+Info 31   [11:17:16.263] getCompletionData: Get previous token 2: 0.035208940505981445
+Info 32   [11:17:16.264] getCompletionsAtPosition: isCompletionListBlocker: 0.15358400344848633
+Info 33   [11:17:16.286] getCompletionData: Semantic work: 22.149791955947876
+Info 34   [11:17:16.290] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 4.006500005722046
+Info 35   [11:17:16.310] getCompletionData: Get current token: 0.025915980339050293
+Info 36   [11:17:16.310] getCompletionData: Is inside comment: 0.04283297061920166
+Info 37   [11:17:16.310] getCompletionData: Get previous token 1: 0.03937506675720215
+Info 38   [11:17:16.310] getCompletionData: Get previous token 2: 0.03650009632110596
+Info 39   [11:17:16.310] getCompletionsAtPosition: isCompletionListBlocker: 0.014584064483642578
+Info 40   [11:17:16.311] getCompletionData: Semantic work: 0.7510409355163574
+Info 41   [11:17:16.314] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 3.148458957672119
+Info 42   [11:17:16.318] getCompletionData: Get current token: 0.06312501430511475
+Info 43   [11:17:16.318] getCompletionData: Is inside comment: 0.16516602039337158
+Info 44   [11:17:16.318] getCompletionData: Get previous token 1: 0.16820895671844482
+Info 45   [11:17:16.319] getCompletionData: Get previous token 2: 0.14504098892211914
+Info 46   [11:17:16.319] getCompletionsAtPosition: isCompletionListBlocker: 0.02754199504852295
+Info 47   [11:17:16.321] getCompletionData: Semantic work: 1.7618329524993896
+Info 48   [11:17:16.325] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 4.2641249895095825
+Info 49   [11:17:16.751] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 50   [11:17:16.765] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 5 structureChanged: false Elapsed: 13.29437506198883ms
+Info 51   [11:17:16.765] Different program with same set of files:: structureIsReused:: 2
+Info 52   [11:17:17.299] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 53   [11:17:17.321] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 6 structureChanged: false Elapsed: 21.432999968528748ms
+Info 54   [11:17:17.321] Different program with same set of files:: structureIsReused:: 2
+Info 55   [11:17:17.770] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 56   [11:17:17.782] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 7 structureChanged: false Elapsed: 11.086374998092651ms
+Info 57   [11:17:17.782] Different program with same set of files:: structureIsReused:: 2
+Info 58   [11:17:18.158] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 59   [11:17:18.167] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 8 structureChanged: false Elapsed: 8.897791981697083ms
+Info 60   [11:17:18.167] Different program with same set of files:: structureIsReused:: 2
+Info 61   [11:17:18.884] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 62   [11:17:18.895] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 9 structureChanged: false Elapsed: 10.80808401107788ms
+Info 63   [11:17:18.895] Different program with same set of files:: structureIsReused:: 2
+Info 64   [11:17:18.895] getCompletionData: Get current token: 0.17066693305969238
+Info 65   [11:17:18.895] getCompletionData: Is inside comment: 0.04791700839996338
+Info 66   [11:17:18.896] getCompletionData: Get previous token 1: 0.04179096221923828
+Info 67   [11:17:18.896] getCompletionData: Get previous token 2: 0.04074990749359131
+Info 68   [11:17:18.896] getCompletionsAtPosition: isCompletionListBlocker: 0.0024170875549316406
+Info 69   [11:17:18.924] getCompletionData: Semantic work: 28.480957984924316
+Info 70   [11:17:18.930] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 5.613667011260986
+Info 71   [11:17:19.447] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 72   [11:17:19.460] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 10 structureChanged: false Elapsed: 12.945165991783142ms
+Info 73   [11:17:19.460] Different program with same set of files:: structureIsReused:: 2
+Info 74   [11:17:19.922] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 75   [11:17:19.935] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 11 structureChanged: false Elapsed: 13.736417055130005ms
+Info 76   [11:17:19.936] Different program with same set of files:: structureIsReused:: 2
+Info 77   [11:17:19.937] getCompletionData: Get current token: 0.013749957084655762
+Info 78   [11:17:19.937] getCompletionData: Is inside comment: 0.04779207706451416
+Info 79   [11:17:19.937] getCompletionData: Get previous token 1: 0.04304099082946777
+Info 80   [11:17:19.937] getCompletionsAtPosition: isCompletionListBlocker: 0.20020794868469238
+Info 81   [11:17:19.940] collectAutoImports: starting, not resolving module specifiers
+Info 82   [11:17:19.940] collectAutoImports: module specifier cache size: 0
+Info 83   [11:17:19.940] getSymbolToExportInfoMap: cache miss or empty; calculating new results
+Info 84   [11:17:19.971] forEachExternalModuleToImportFrom autoImportProvider: 5.1964170932769775
+Info 85   [11:17:19.971] getSymbolToExportInfoMap: caching results
+Info 86   [11:17:19.971] getSymbolToExportInfoMap: done in 31.021957993507385 ms
+Info 87   [11:17:20.001] collectAutoImports: done in 60.944957971572876 ms
+Info 88   [11:17:20.001] getCompletionData: Semantic work: 63.72562503814697
+Info 89   [11:17:20.058] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 36.948333978652954
+Info 90   [11:17:21.099] DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/07f8b21cd7c5334fbf6b858afc10e414.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 91   [11:17:21.100] Elapsed:: 0.1802079677581787ms DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/07f8b21cd7c5334fbf6b858afc10e414.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 92   [11:17:21.100] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/07f8b21cd7c5334fbf6b858afc10e414.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 93   [11:17:21.100] Elapsed:: 0.2487499713897705ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/07f8b21cd7c5334fbf6b858afc10e414.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 94   [11:17:21.100] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/07f8b21cd7c5334fbf6b858afc10e414.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 95   [11:17:21.100] Elapsed:: 0.026875019073486328ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/07f8b21cd7c5334fbf6b858afc10e414.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 96   [11:17:25.253] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 97   [11:17:25.261] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 12 structureChanged: false Elapsed: 7.665790915489197ms
+Info 98   [11:17:25.261] Different program with same set of files:: structureIsReused:: 2
+Info 99   [11:17:25.907] DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/567d0666352a058aff4220e4aaabdd77.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 100  [11:17:25.908] Elapsed:: 0.04575002193450928ms DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/567d0666352a058aff4220e4aaabdd77.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 101  [11:17:25.908] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/567d0666352a058aff4220e4aaabdd77.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 102  [11:17:25.908] Elapsed:: 0.046041011810302734ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/567d0666352a058aff4220e4aaabdd77.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 103  [11:17:25.908] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/567d0666352a058aff4220e4aaabdd77.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 104  [11:17:25.908] Elapsed:: 0.01483297348022461ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/567d0666352a058aff4220e4aaabdd77.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 105  [11:17:49.865] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/i/src
+Info 106  [11:17:49.865] For info: /Users/jessekelly/Desktop/ProjectDiscovery/i/src/index.js :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 107  [11:17:49.917] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/i/src
+Info 108  [11:17:49.917] For info: /Users/jessekelly/Desktop/ProjectDiscovery/i/src/index.js :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 109  [11:17:49.917] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 110  [11:17:49.926] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 13 structureChanged: false Elapsed: 9.368749976158142ms
+Info 111  [11:17:49.926] Different program with same set of files:: structureIsReused:: 2
+Info 112  [11:17:49.936] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 113  [11:17:49.945] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 14 structureChanged: false Elapsed: 9.050916910171509ms
+Info 114  [11:17:49.945] Different program with same set of files:: structureIsReused:: 2
+Info 115  [11:17:54.848] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 116  [11:17:54.862] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 15 structureChanged: false Elapsed: 14.300791025161743ms
+Info 117  [11:17:54.862] Different program with same set of files:: structureIsReused:: 2
+Info 118  [11:17:55.356] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 119  [11:17:55.369] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 16 structureChanged: false Elapsed: 13.493291020393372ms
+Info 120  [11:17:55.369] Different program with same set of files:: structureIsReused:: 2
+Info 121  [11:17:55.790] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 122  [11:17:55.803] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 17 structureChanged: false Elapsed: 13.328499913215637ms
+Info 123  [11:17:55.803] Different program with same set of files:: structureIsReused:: 2
+Info 124  [11:17:55.805] getCompletionData: Get current token: 0.008041024208068848
+Info 125  [11:17:55.805] getCompletionData: Is inside comment: 0.0033750534057617188
+Info 126  [11:17:55.805] getCompletionData: Get previous token 1: 0.03920900821685791
+Info 127  [11:17:55.805] getCompletionData: Get previous token 2: 0.03858304023742676
+Info 128  [11:17:55.805] getCompletionsAtPosition: isCompletionListBlocker: 0.11308300495147705
+Info 129  [11:17:55.809] collectAutoImports: starting, not resolving module specifiers
+Info 130  [11:17:55.809] collectAutoImports: module specifier cache size: 254
+Info 131  [11:17:55.809] getSymbolToExportInfoMap: cache miss or empty; calculating new results
+Info 132  [11:17:55.826] forEachExternalModuleToImportFrom autoImportProvider: 2.2614160776138306
+Info 133  [11:17:55.826] getSymbolToExportInfoMap: caching results
+Info 134  [11:17:55.826] getSymbolToExportInfoMap: done in 16.802250027656555 ms
+Info 135  [11:17:55.831] collectAutoImports: done in 22.536749958992004 ms
+Info 136  [11:17:55.831] getCompletionData: Semantic work: 25.99650001525879
+Info 137  [11:17:55.857] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 7.90233302116394
+Info 138  [11:17:56.923] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 139  [11:17:56.936] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 18 structureChanged: false Elapsed: 13.17816698551178ms
+Info 140  [11:17:56.936] Different program with same set of files:: structureIsReused:: 2
+Info 141  [11:17:58.686] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 142  [11:17:58.699] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 19 structureChanged: false Elapsed: 12.262708067893982ms
+Info 143  [11:17:58.699] Different program with same set of files:: structureIsReused:: 2
+Info 144  [11:17:59.564] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 145  [11:17:59.576] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 20 structureChanged: false Elapsed: 11.387624979019165ms
+Info 146  [11:17:59.576] Different program with same set of files:: structureIsReused:: 2
+Info 147  [11:17:59.577] getCompletionData: Get current token: 0.006208062171936035
+Info 148  [11:17:59.577] getCompletionData: Is inside comment: 0.002624988555908203
+Info 149  [11:17:59.577] getCompletionData: Get previous token 1: 0.03254199028015137
+Info 150  [11:17:59.577] getCompletionsAtPosition: isCompletionListBlocker: 0.07670795917510986
+Info 151  [11:17:59.577] getCompletionData: Semantic work: 0.3262079954147339
+Info 152  [11:18:02.810] Format host information updated
+Info 153  [11:18:03.028] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 154  [11:18:03.041] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 21 structureChanged: false Elapsed: 12.58145797252655ms
+Info 155  [11:18:03.041] Different program with same set of files:: structureIsReused:: 2
+Info 156  [11:18:04.993] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 157  [11:18:05.003] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 22 structureChanged: false Elapsed: 9.518041968345642ms
+Info 158  [11:18:05.003] Different program with same set of files:: structureIsReused:: 2
+Info 159  [11:18:05.003] getCompletionData: Get current token: 0.00625002384185791
+Info 160  [11:18:05.003] getCompletionData: Is inside comment: 0.0022079944610595703
+Info 161  [11:18:05.003] getCompletionData: Get previous token 1: 0.03658294677734375
+Info 162  [11:18:05.003] getCompletionData: Get previous token 2: 0.02395796775817871
+Info 163  [11:18:05.004] getCompletionsAtPosition: isCompletionListBlocker: 0.009541034698486328
+Info 164  [11:18:05.024] getCompletionData: Semantic work: 20.573459029197693
+Info 165  [11:18:05.026] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 1.4540410041809082
+Info 166  [11:18:05.566] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 167  [11:18:05.578] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 23 structureChanged: false Elapsed: 11.90441608428955ms
+Info 168  [11:18:05.578] Different program with same set of files:: structureIsReused:: 2
+Info 169  [11:18:06.017] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 170  [11:18:06.029] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 24 structureChanged: false Elapsed: 11.636207938194275ms
+Info 171  [11:18:06.029] Different program with same set of files:: structureIsReused:: 2
+Info 172  [11:18:06.056] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 173  [11:18:06.064] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 25 structureChanged: false Elapsed: 8.457958936691284ms
+Info 174  [11:18:06.064] Different program with same set of files:: structureIsReused:: 2
+Info 175  [11:18:07.491] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 176  [11:18:07.502] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 26 structureChanged: false Elapsed: 11.602917075157166ms
+Info 177  [11:18:07.502] Different program with same set of files:: structureIsReused:: 2
+Info 178  [11:18:08.223] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 179  [11:18:08.234] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 27 structureChanged: false Elapsed: 10.740041017532349ms
+Info 180  [11:18:08.234] Different program with same set of files:: structureIsReused:: 2
+Info 181  [11:18:08.235] getCompletionData: Get current token: 0.008083939552307129
+Info 182  [11:18:08.235] getCompletionData: Is inside comment: 0.13650000095367432
+Info 183  [11:18:08.235] getCompletionData: Get previous token 1: 0.03879106044769287
+Info 184  [11:18:08.235] getCompletionData: Get previous token 2: 0.02950000762939453
+Info 185  [11:18:08.235] getCompletionsAtPosition: isCompletionListBlocker: 0.0017920732498168945
+Info 186  [11:18:08.262] getCompletionData: Semantic work: 26.737917065620422
+Info 187  [11:18:08.265] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 1.7629170417785645
+Info 188  [11:18:08.733] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 189  [11:18:08.745] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 28 structureChanged: false Elapsed: 11.896124958992004ms
+Info 190  [11:18:08.745] Different program with same set of files:: structureIsReused:: 2
+Info 191  [11:18:09.291] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 192  [11:18:09.301] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 29 structureChanged: false Elapsed: 9.650375008583069ms
+Info 193  [11:18:09.301] Different program with same set of files:: structureIsReused:: 2
+Info 194  [11:18:10.059] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 195  [11:18:10.070] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 30 structureChanged: false Elapsed: 11.157249927520752ms
+Info 196  [11:18:10.070] Different program with same set of files:: structureIsReused:: 2
+Info 197  [11:18:10.967] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 198  [11:18:10.978] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 31 structureChanged: false Elapsed: 10.423375010490417ms
+Info 199  [11:18:10.978] Different program with same set of files:: structureIsReused:: 2
+Info 200  [11:18:47.363] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 201  [11:18:47.394] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 32 structureChanged: false Elapsed: 31.02174997329712ms
+Info 202  [11:18:47.395] Different program with same set of files:: structureIsReused:: 2
+Info 203  [11:18:48.523] DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/b0b17cc68fc5ccfc36be8dc38d70a3b0.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 204  [11:18:48.524] Elapsed:: 0.16233301162719727ms DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/b0b17cc68fc5ccfc36be8dc38d70a3b0.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 205  [11:18:48.524] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/b0b17cc68fc5ccfc36be8dc38d70a3b0.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 206  [11:18:48.524] Elapsed:: 0.2565000057220459ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/b0b17cc68fc5ccfc36be8dc38d70a3b0.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 207  [11:18:48.524] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/b0b17cc68fc5ccfc36be8dc38d70a3b0.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 208  [11:18:48.524] Elapsed:: 0.018334031105041504ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/b0b17cc68fc5ccfc36be8dc38d70a3b0.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 209  [11:18:49.702] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 210  [11:18:49.719] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 33 structureChanged: false Elapsed: 15.983792066574097ms
+Info 211  [11:18:49.719] Different program with same set of files:: structureIsReused:: 2
+Info 212  [11:18:52.912] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 213  [11:18:52.924] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 34 structureChanged: false Elapsed: 12.170040965080261ms
+Info 214  [11:18:52.924] Different program with same set of files:: structureIsReused:: 2
+Info 215  [11:18:52.925] getCompletionData: Get current token: 0.014957904815673828
+Info 216  [11:18:52.925] getCompletionData: Is inside comment: 0.03862500190734863
+Info 217  [11:18:52.926] getCompletionData: Get previous token 1: 0.03145897388458252
+Info 218  [11:18:52.926] getCompletionData: Get previous token 2: 0.02812492847442627
+Info 219  [11:18:52.926] getCompletionsAtPosition: isCompletionListBlocker: 0.15504097938537598
+Info 220  [11:18:52.938] getCompletionData: Semantic work: 12.50125002861023
+Info 221  [11:18:52.940] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 1.031999945640564
+Info 222  [11:18:53.428] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 223  [11:18:53.443] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 35 structureChanged: false Elapsed: 14.674749970436096ms
+Info 224  [11:18:53.443] Different program with same set of files:: structureIsReused:: 2
+Info 225  [11:18:53.961] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 226  [11:18:53.976] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 36 structureChanged: false Elapsed: 15.557250022888184ms
+Info 227  [11:18:53.976] Different program with same set of files:: structureIsReused:: 2
+Info 228  [11:18:54.077] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 229  [11:18:54.086] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 37 structureChanged: false Elapsed: 8.077791929244995ms
+Info 230  [11:18:54.086] Different program with same set of files:: structureIsReused:: 2
+Info 231  [11:18:56.396] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 232  [11:18:56.410] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 38 structureChanged: false Elapsed: 13.286875009536743ms
+Info 233  [11:18:56.410] Different program with same set of files:: structureIsReused:: 2
+Info 234  [11:18:56.414] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 235  [11:18:56.422] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 39 structureChanged: false Elapsed: 8.220749974250793ms
+Info 236  [11:18:56.422] Different program with same set of files:: structureIsReused:: 2
+Info 237  [11:18:56.790] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 238  [11:18:56.799] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 40 structureChanged: false Elapsed: 9.70770800113678ms
+Info 239  [11:18:56.799] Different program with same set of files:: structureIsReused:: 2
+Info 240  [11:18:56.800] getCompletionData: Get current token: 0.013625025749206543
+Info 241  [11:18:56.800] getCompletionData: Is inside comment: 0.03887498378753662
+Info 242  [11:18:56.800] getCompletionData: Get previous token 1: 0.03354191780090332
+Info 243  [11:18:56.800] getCompletionData: Get previous token 2: 0.04308295249938965
+Info 244  [11:18:56.800] getCompletionsAtPosition: isCompletionListBlocker: 0.0020829439163208008
+Info 245  [11:18:56.818] getCompletionData: Semantic work: 17.788666009902954
+Info 246  [11:18:56.820] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 1.8743749856948853
+Info 247  [11:18:57.321] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 248  [11:18:57.329] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 41 structureChanged: false Elapsed: 8.419374942779541ms
+Info 249  [11:18:57.329] Different program with same set of files:: structureIsReused:: 2
+Info 250  [11:18:57.681] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 251  [11:18:57.688] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 42 structureChanged: false Elapsed: 6.739165902137756ms
+Info 252  [11:18:57.688] Different program with same set of files:: structureIsReused:: 2
+Info 253  [11:18:57.951] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 254  [11:18:57.958] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 43 structureChanged: false Elapsed: 7.161916971206665ms
+Info 255  [11:18:57.958] Different program with same set of files:: structureIsReused:: 2
+Info 256  [11:18:58.049] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 257  [11:18:58.056] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 44 structureChanged: false Elapsed: 6.869417071342468ms
+Info 258  [11:18:58.056] Different program with same set of files:: structureIsReused:: 2
+Info 259  [11:18:58.416] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 260  [11:18:58.426] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 45 structureChanged: false Elapsed: 9.460165977478027ms
+Info 261  [11:18:58.426] Different program with same set of files:: structureIsReused:: 2
+Info 262  [11:18:58.427] getCompletionData: Get current token: 0.012959003448486328
+Info 263  [11:18:58.427] getCompletionData: Is inside comment: 0.04087495803833008
+Info 264  [11:18:58.427] getCompletionData: Get previous token 1: 0.03479206562042236
+Info 265  [11:18:58.427] getCompletionsAtPosition: isCompletionListBlocker: 0.05579197406768799
+Info 266  [11:18:58.430] collectAutoImports: starting, not resolving module specifiers
+Info 267  [11:18:58.430] collectAutoImports: module specifier cache size: 12
+Info 268  [11:18:58.430] getSymbolToExportInfoMap: cache miss or empty; calculating new results
+Info 269  [11:18:58.446] forEachExternalModuleToImportFrom autoImportProvider: 1.6059999465942383
+Info 270  [11:18:58.446] getSymbolToExportInfoMap: caching results
+Info 271  [11:18:58.446] getSymbolToExportInfoMap: done in 16.317458033561707 ms
+Info 272  [11:18:58.472] collectAutoImports: done in 42.0182089805603 ms
+Info 273  [11:18:58.472] getCompletionData: Semantic work: 45.272374987602234
+Info 274  [11:18:58.501] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 13.590957999229431
+Info 275  [11:18:58.941] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 276  [11:18:58.949] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 46 structureChanged: false Elapsed: 8.007916927337646ms
+Info 277  [11:18:58.949] Different program with same set of files:: structureIsReused:: 2
+Info 278  [11:18:59.251] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 279  [11:18:59.259] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 47 structureChanged: false Elapsed: 8.294000029563904ms
+Info 280  [11:18:59.259] Different program with same set of files:: structureIsReused:: 2
+Info 281  [11:18:59.260] getCompletionData: Get current token: 0.012624979019165039
+Info 282  [11:18:59.260] getCompletionData: Is inside comment: 0.03795909881591797
+Info 283  [11:18:59.260] getCompletionData: Get previous token 1: 0.033750057220458984
+Info 284  [11:18:59.260] getCompletionsAtPosition: isCompletionListBlocker: 0.013334035873413086
+Info 285  [11:18:59.262] collectAutoImports: starting, not resolving module specifiers
+Info 286  [11:18:59.262] collectAutoImports: module specifier cache size: 254
+Info 287  [11:18:59.264] getSymbolToExportInfoMap: cache hit
+Info 288  [11:18:59.284] collectAutoImports: done in 21.892084002494812 ms
+Info 289  [11:18:59.284] getCompletionData: Semantic work: 24.44950008392334
+Info 290  [11:18:59.315] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 16.670166969299316
+Info 291  [11:19:00.267] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 292  [11:19:00.274] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 48 structureChanged: false Elapsed: 7.116958022117615ms
+Info 293  [11:19:00.274] Different program with same set of files:: structureIsReused:: 2
+Info 294  [11:19:00.277] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json
+Info 295  [11:19:00.284] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json Version: 49 structureChanged: false Elapsed: 6.578624963760376ms
+Info 296  [11:19:00.284] Different program with same set of files:: structureIsReused:: 2
+Info 297  [11:19:00.481] getCompletionData: Get current token: 0.012791037559509277
+Info 298  [11:19:00.481] getCompletionData: Is inside comment: 0.03570902347564697
+Info 299  [11:19:00.481] getCompletionData: Get previous token 1: 0.03154194355010986
+Info 300  [11:19:00.481] getCompletionsAtPosition: isCompletionListBlocker: 0.014958977699279785
+Info 301  [11:19:00.483] collectAutoImports: starting, not resolving module specifiers
+Info 302  [11:19:00.483] collectAutoImports: module specifier cache size: 255
+Info 303  [11:19:00.485] getSymbolToExportInfoMap: cache hit
+Info 304  [11:19:00.501] collectAutoImports: done in 17.479874968528748 ms
+Info 305  [11:19:00.501] getCompletionData: Semantic work: 19.200042009353638
+Info 306  [11:19:00.537] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 20.892208099365234
+Info 307  [11:19:01.141] DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/ccb11357a166faa930038936b525c09a.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 308  [11:19:01.141] Elapsed:: 0.03100001811981201ms DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/i/node_modules/.cache/babel-loader/ccb11357a166faa930038936b525c09a.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/i/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 309  [11:19:01.141] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/ccb11357a166faa930038936b525c09a.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 310  [11:19:01.141] Elapsed:: 0.04045891761779785ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/ccb11357a166faa930038936b525c09a.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/i/tsconfig.json WatchType: Failed Lookup Locations
+Info 311  [11:19:01.141] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/ccb11357a166faa930038936b525c09a.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 312  [11:19:01.141] Elapsed:: 0.015917062759399414ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules/.cache/babel-loader/ccb11357a166faa930038936b525c09a.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/i/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations

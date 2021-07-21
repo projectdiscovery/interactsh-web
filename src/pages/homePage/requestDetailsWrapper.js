@@ -14,7 +14,6 @@ const RequestDetailsWrapper = props => {
     >
       <ErrorBoundary
         fallback={(error, retry) => <IssuesListErrorFallback error={error} retry={retry} />}
-        refetch={() => refetch(defaultParams)}
       >
         <Suspense fallback={<IssuesListFallback />}>
           {view == 'request' ? (

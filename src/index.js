@@ -19,14 +19,16 @@ const AnimatedSwitch = withRouter(({ location }) => {
   window.scrollTo(0, 0);
   document.getElementsByTagName('html')[0].style.overflow = 'visible';
   return (
-    <TransitionGroup>
-      <CSSTransition key={location.pathname} classNames="slide slide" timeout={100}>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/terms" component={TermsPage} />
-        </Switch>
-      </CSSTransition>
-    </TransitionGroup>
+    <div style={{ color: "#AAA" }}>
+      <TransitionGroup>
+        <CSSTransition key={location.pathname} classNames="slide slide" timeout={100}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/terms" component={TermsPage} />
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
   );
 });
 ReactDOM.render(

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './styles.scss';
-import ArrowRightIcon from '../../assets/svg/arrow_right.svg';
-import CloseIcon from '../../assets/svg/close.svg';
+import { ReactComponent as ArrowRightIcon } from '../../assets/svg/arrow_right.svg';
+import { ReactComponent as CloseIcon } from '../../assets/svg/close.svg';
 import NodeRSA from 'node-rsa';
 import { v4 as uuidv4 } from 'uuid';
 import xid from 'xid-js';
@@ -51,7 +51,7 @@ const CustomHost = props => {
             if (res.status == 200) {
               localStorage.clear();
               localStorage.setItem('host', inputValue);
-              location.reload();
+              window.location.reload();
               handleCloseDialog();
               setIsHostValid(true);
               console.log('success!');
@@ -69,7 +69,7 @@ const CustomHost = props => {
 
   const handleDelete = () => {
     localStorage.clear();
-    location.reload();
+    window.location.reload();
   };
 
   return (
