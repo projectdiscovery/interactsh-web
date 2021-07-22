@@ -35,9 +35,9 @@ const Header = (props) => {
     // downloadAnchorElement.setAttribute('download', 'data.json');
     // downloadAnchorElement.click();
 
-    const values = [];
-    const keys = Object.keys(localStorage);
-    let i = keys.length;
+    var values = [],
+      keys = Object.keys(localStorage),
+      i = keys.length;
 
     while (i--) {
       values.push(
@@ -48,14 +48,12 @@ const Header = (props) => {
       );
     }
 
-    const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
-      values
-    )}`;
-    const downloadAnchorElement = document.createElement("a");
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(values);
+    var downloadAnchorElement = document.createElement("a");
     downloadAnchorElement.setAttribute("href", dataStr);
     downloadAnchorElement.setAttribute(
       "download",
-      `${dateTransform(Date.now(), "yyyy-mm-dd_hh:mm")}.json`
+      dateTransform(Date.now(), "yyyy-mm-dd_hh:mm") + ".json"
     );
     document.body.appendChild(downloadAnchorElement); // required for firefox
     downloadAnchorElement.click();
@@ -68,7 +66,7 @@ const Header = (props) => {
       <div onClick={handleThemeSwitchesVisibility}>
         <div
           className={`${isSelectorVisible && "__selector_visible"} ${
-            theme == "dark" && ".__selected"
+            theme == "dark" && "__selected"
           } ${!isSelectorVisible && "__without_bg"}`}
           onClick={() => handleThemeSelection("dark")}
         >
