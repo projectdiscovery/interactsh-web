@@ -60,13 +60,12 @@ const Header = ({
       E.getOrElse(() => "An error occured") // TODO: Handle error case.
     );
 
-    downloadData(
-      values,
-      dateTransform(Date.now(), "yyyy-mm-dd_hh:mm") + ".json"
-    );
+    const fileName = dateTransform(Date.now(), "yyyy-mm-dd_hh:mm") + ".json";
+    downloadData(values, fileName);
   };
 
   const isCustomHost = host != "interact.sh";
+  const setTheme = (t: Theme) => () => handleThemeSelection(t);
 
   return (
     <div id="header" className="header">
@@ -76,7 +75,7 @@ const Header = ({
           className={`${isSelectorVisible && "__selector_visible"} ${
             theme == "dark" && "__selected"
           } ${!isSelectorVisible && "__without_bg"}`}
-          onClick={() => handleThemeSelection("dark")}
+          onClick={setTheme("dark")}
         >
           <ThemeDarkButtonIcon />
           Dark
@@ -85,7 +84,7 @@ const Header = ({
           className={`${isSelectorVisible && "__selector_visible"} ${
             theme == "synth" && "__selected"
           } ${!isSelectorVisible && "__without_bg"}`}
-          onClick={() => handleThemeSelection("synth")}
+          onClick={setTheme("synth")}
         >
           <ThemeSynthButtonIcon />
           Synth
@@ -94,7 +93,7 @@ const Header = ({
           className={`${isSelectorVisible && "__selector_visible"} ${
             theme == "blue" && "__selected"
           } ${!isSelectorVisible && "__without_bg"}`}
-          onClick={() => handleThemeSelection("blue")}
+          onClick={setTheme("blue")}
         >
           <ThemeBlueButtonIcon />
           Blue
@@ -107,7 +106,7 @@ const Header = ({
           onClick={handleCustomHostDialogVisibility}
         >
           <SwitchIcon />
-          {host == "interact.sh" ? "Custom Host" : host}
+          {isCustomHost ? host : "Custom Host"}
         </div>
         <div title="Reset data" onClick={handleReset}>
           <DeleteIcon />
