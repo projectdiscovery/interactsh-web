@@ -17,6 +17,7 @@
     "autoprefixer": "^9",
     "dayjs": "^1.10.6",
     "fp-ts": "^2.10.5",
+    "js-file-download": "^0.4.12",
     "node-rsa": "^1.1.1",
     "postcss": "^7",
     "prettier": "^2.3.2",
