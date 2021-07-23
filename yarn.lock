@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@babakness/exhaustive-type-checking@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@babakness/exhaustive-type-checking/-/exhaustive-type-checking-0.1.3.tgz#2446ed1e6118d1b139af57aa09865afb0ff7f53b"
+  integrity sha512-U9xGXwaWtbxNYXH9MP8tN8clUAbCyn9XRMEtZv6bBgyc7FD8kaGkElo8wwm42Awu2pHvZ6OXMphG+Hvztvi1dA==
+
 "@babel/code-frame@7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.10.4.tgz#168da1a36e90da68ae8d49c0f1b48c7c6249213a"
@@ -5541,6 +5546,11 @@ forwarded@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.2.0.tgz#2269936428aad4c15c7ebe9779a84bf0b2a81811"
   integrity sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==
+
+fp-ts-std@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/fp-ts-std/-/fp-ts-std-0.10.1.tgz#e8fe6263ae538626a194a3e388a960bd9680a403"
+  integrity sha512-vjQvdRerpFcbuO/LrK8wBIgzM+mK65ixrS4LcPVBPoF0ishnkzg4rRWx5iEVKgVLk5bCq43tXz+oDAoGR7QGYw==
 
 fp-ts@^2.10.5:
   version "2.10.5"

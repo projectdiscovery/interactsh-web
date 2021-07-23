@@ -10,25 +10,55 @@ import { ReactComponent as SwitchIcon } from "../../assets/svg/switch.svg";
 import dateTransform from "../common/dateTransform";
 import CustomHost from "../customHost";
 
-type Theme = "dark" | "synth" | "blue";
-
-interface HeaderP {
-  handleThemeSelection: (t: Theme) => void;
-  theme: Theme;
-  handleAboutPopupVisibility: () => void;
-}
-
 import * as R from "fp-ts/Record";
 import * as O from "fp-ts/Option";
 import * as J from "fp-ts/Json";
 import * as E from "fp-ts/Either";
-import { pipe } from "fp-ts/function";
+import { flow, pipe } from "fp-ts/function";
+import * as s from "fp-ts-std/String";
+import * as t from "fp-ts/Tuple";
+import { Show } from "fp-ts/Show";
+
+import { matchConfig } from "@babakness/exhaustive-type-checking";
+
+// Partition a string at an index. Useful for using with fp-ts/Tuple
+// TODO: Send a PR to fp-ts-std with this function.
+const partitionAtIndex =
+  (index: number) =>
+  (str: string): [string, string] =>
+    [s.slice(0)(index)(str), s.slice(index)(Infinity)(str)];
+
+// Merge a tuple of strings.
+// TODO: Send a PR to fp-ts-std with this function.
+const join = (char: string) => (strs: string[]) => strs.join(char);
+
+const capitalize = flow(
+  partitionAtIndex(1),
+  t.bimap(s.toLower, s.toUpper), // snd, first
+  join("")
+);
+
+type Theme = "dark" | "synth" | "blue";
+
+const showTheme: Show<Theme> = { show: capitalize };
+
+const themeIcon = matchConfig<Theme>()({
+  dark: () => <ThemeDarkButtonIcon />,
+  synth: () => <ThemeSynthButtonIcon />,
+  blue: () => <ThemeBlueButtonIcon />,
+});
 
 const getData = (key: string) =>
   pipe(
     O.tryCatch(() => localStorage.getItem(key)),
     O.chain(O.fromNullable)
   );
+
+interface HeaderP {
+  handleThemeSelection: (t: Theme) => void;
+  theme: Theme;
+  handleAboutPopupVisibility: () => void;
+}
 
 const Header = ({
   handleThemeSelection,
@@ -67,37 +97,26 @@ const Header = ({
   const isCustomHost = host != "interact.sh";
   const setTheme = (t: Theme) => () => handleThemeSelection(t);
 
+  const isThemeSelected = (t: Theme) => t === theme;
+  const themeButtonStyle = (t: Theme) =>
+    `${isSelectorVisible && "__selector_visible"} ${
+      isThemeSelected(t) && "__selected"
+    } ${!isSelectorVisible && "__without_bg"}`;
+
+  const ThemeButton = ({ theme }: { theme: Theme }) => (
+    <div className={themeButtonStyle(theme)} onClick={setTheme(theme)}>
+      {themeIcon(theme)}
+      {showTheme.show(theme)}
+    </div>
+  );
+
   return (
     <div id="header" className="header">
       <div>interact.sh</div>
       <div onClick={handleThemeSwitchesVisibility}>
-        <div
-          className={`${isSelectorVisible && "__selector_visible"} ${
-            theme == "dark" && "__selected"
-          } ${!isSelectorVisible && "__without_bg"}`}
-          onClick={setTheme("dark")}
-        >
-          <ThemeDarkButtonIcon />
-          Dark
-        </div>
-        <div
-          className={`${isSelectorVisible && "__selector_visible"} ${
-            theme == "synth" && "__selected"
-          } ${!isSelectorVisible && "__without_bg"}`}
-          onClick={setTheme("synth")}
-        >
-          <ThemeSynthButtonIcon />
-          Synth
-        </div>
-        <div
-          className={`${isSelectorVisible && "__selector_visible"} ${
-            theme == "blue" && "__selected"
-          } ${!isSelectorVisible && "__without_bg"}`}
-          onClick={setTheme("blue")}
-        >
-          <ThemeBlueButtonIcon />
-          Blue
-        </div>
+        <ThemeButton theme="dark" />
+        <ThemeButton theme="synth" />
+        <ThemeButton theme="blue" />
       </div>
       <div className="links">
         <div
