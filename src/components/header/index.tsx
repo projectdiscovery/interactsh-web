@@ -30,12 +30,15 @@ const partitionAtIndex =
 
 // Merge a tuple of strings.
 // TODO: Send a PR to fp-ts-std with this function.
-const join = (char: string) => (strs: string[]) => strs.join(char);
+const join =
+  (char: string = "") =>
+  (strs: string[]) =>
+    strs.join(char);
 
 const capitalize = flow(
   partitionAtIndex(1),
   t.bimap(s.toLower, s.toUpper), // snd, first
-  join("")
+  join()
 );
 
 type Theme = "dark" | "synth" | "blue";
