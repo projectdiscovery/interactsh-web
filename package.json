@@ -14,6 +14,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/validator": "^13.1.4",
     "antd": "3.3.0",
     "autoprefixer": "^9",
     "dayjs": "^1.10.6",
@@ -34,7 +35,8 @@
     "sass": "^1.35.2",
     "styled-components": "5.2.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "typescript": "^4.1.2",
+    "typescript": "^4.3.5",
+    "validator": "^13.6.0",
     "web-vitals": "^1.0.1",
     "xid-js": "1.0.1",
     "zbase32": "github:projectdiscovery/zbase32"
@@ -66,6 +68,10 @@
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0"
+    "eslint-plugin-prettier": "^3.4.0",
+    "@types/jest-axe": "^3.5.2",
+    "@types/prismjs": "^1.16.5",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0"
   }
 }
