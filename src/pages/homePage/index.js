@@ -314,7 +314,7 @@ const HomePage = () => {
     >
       <>
         <GlobalStyles />
-        <div className="container">
+        <div className="main">
           {aboutPopupVisibility && (
             <div className="about_popup_wrapper">
               <div className="about_popup">
