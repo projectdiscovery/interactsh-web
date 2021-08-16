@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import ErrorBoundary from "../../components/common/errorBoundary";
+import { ErrorBoundary } from "react-error-boundary";
 import {
   IssuesListFallback,
   IssuesListErrorFallback,
@@ -7,7 +7,17 @@ import {
 import "./styles.scss";
 import DetailedRequest from "../../components/detailedRequest";
 
-const RequestDetailsWrapper = (props) => {
+type View = "request" | "response" | "up_and_down";
+
+interface RequestDetailsWrapperP {
+  view: View;
+  selectedInteractionData: {
+    "raw-request": object;
+    "raw-response": object;
+  };
+}
+
+const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
   const { selectedInteractionData, view } = props;
 
   return (
@@ -16,8 +26,8 @@ const RequestDetailsWrapper = (props) => {
       style={{ flexDirection: view == "up_and_down" ? "column" : "row" }}
     >
       <ErrorBoundary
-        fallback={(error, retry) => (
-          <IssuesListErrorFallback error={error} retry={retry} />
+        FallbackComponent={({ error, resetErrorBoundary }) => (
+          <IssuesListErrorFallback error={error} retry={resetErrorBoundary} />
         )}
       >
         <Suspense fallback={<IssuesListFallback />}>

@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import ErrorBoundary from "../../components/common/errorBoundary";
+import { ErrorBoundary } from "react-error-boundary";
 import {
   RepoSidebarListFallback,
   RepoSidebarListErrorFallback,
@@ -7,14 +7,23 @@ import {
 import "./styles.scss";
 import RequestsTable from "../../components/requestsTable";
 
-const RequestsTableWrapper = (props) => {
+interface RequestsTableWrapperP {
+  data: object[];
+  handleRowClick: () => void;
+  selectedInteraction: void;
+}
+
+const RequestsTableWrapper = (props: RequestsTableWrapperP) => {
   const { data, handleRowClick, selectedInteraction } = props;
   // console.log('newData');
   return (
     <div className="requests_table_container">
       <ErrorBoundary
-        fallback={(error, retry) => (
-          <RepoSidebarListErrorFallback error={error} retry={retry} />
+        FallbackComponent={({ error, resetErrorBoundary }) => (
+          <RepoSidebarListErrorFallback
+            error={error}
+            retry={resetErrorBoundary}
+          />
         )}
       >
         <Suspense fallback={<RepoSidebarListFallback />}>
