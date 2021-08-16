@@ -17,6 +17,7 @@
     "@types/validator": "^13.1.4",
     "antd": "3.3.0",
     "autoprefixer": "^9",
+    "date-fns": "^2.23.0",
     "dayjs": "^1.10.6",
     "fp-ts": "^2.10.5",
     "fp-ts-std": "^0.10.1",

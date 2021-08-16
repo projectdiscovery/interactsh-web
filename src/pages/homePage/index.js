@@ -16,7 +16,7 @@ import RequestsTableWrapper from "./requestsTableWrapper";
 import { GlobalStyles } from "../../globalStyles";
 import { blueTheme, darkTheme, synthTheme } from "../../Themes";
 import RequestDetailsWrapper from "./requestDetailsWrapper";
-import dateTransform from "../../components/common/dateTransform";
+import format from "date-fns/format";
 import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
 import { ReactComponent as CloseIcon } from "../../assets/svg/close.svg";
 import { ReactComponent as ClearIcon } from "../../assets/svg/clear.svg";
@@ -462,7 +462,7 @@ const HomePage = () => {
                     <span>{selectedInteractionData["remote-address"]}</span>
                     {` at `}
                     <span>
-                      {dateTransform(
+                      {format(
                         selectedInteractionData.timestamp,
                         "yyyy-mm-dd_hh:mm"
                       )}

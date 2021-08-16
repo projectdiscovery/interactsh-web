@@ -7,7 +7,7 @@ import { ReactComponent as ThemeBlueButtonIcon } from "../../assets/svg/theme_bl
 import { ReactComponent as DownloadIcon } from "../../assets/svg/download.svg";
 import { ReactComponent as DeleteIcon } from "../../assets/svg/delete.svg";
 import { ReactComponent as SwitchIcon } from "../../assets/svg/switch.svg";
-import dateTransform from "../common/dateTransform";
+import format from "date-fns/format";
 import CustomHost from "../customHost";
 
 import * as R from "fp-ts/Record";
@@ -93,7 +93,7 @@ const Header = ({
       E.getOrElse(() => "An error occured") // TODO: Handle error case.
     );
 
-    const fileName = dateTransform(Date.now(), "yyyy-mm-dd_hh:mm") + ".json";
+    const fileName = format(Date.now(), "yyyy-mm-dd_hh:mm") + ".json";
     downloadData(values, fileName);
   };
 
