@@ -140,12 +140,15 @@ const HomePage = () => {
     if (aesKey == "null" && polledData.aes_key) {
       setToLocalStorage({ aesKey: decryptAESKey(privateKey, polledData) });
     }
-    if (polledData.data.length !== 0) {
+    if (polledData.data?.length !== 0) {
       const processedData = processData(
         Buffer.from(aesKey, "base64"),
         polledData
       );
-      const combinedData = [...dataFromLocalStorage, ...processedData];
+      const combinedData = Array.isArray(processedData)
+        ? [...dataFromLocalStorage, ...processedData]
+        : dataFromLocalStorage;
+
       setData(combinedData);
       setToLocalStorage({ data: JSON.stringify(combinedData) });
       const selectedTabUrl = selectedTab.url.slice(

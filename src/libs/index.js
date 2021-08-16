@@ -43,8 +43,8 @@ export const decryptAESKey = (privateKey, polledData) => {
 
 export const processData = (aesKey, polledData) => {
   let parsedData;
-  if (polledData.data.length !== 0) {
-    const decryptedData = polledData.data.map((item) => {
+  if (polledData.data?.length !== 0) {
+    const decryptedData = polledData.data?.map((item) => {
       const iv = Buffer.from(item, "base64").slice(0, 16);
       const decipher = crypto.createDecipheriv("aes-256-cfb", aesKey, iv);
       let mystr = decipher.update(
@@ -53,7 +53,7 @@ export const processData = (aesKey, polledData) => {
       mystr += decipher.final("utf8");
       return mystr;
     });
-    parsedData = decryptedData.map((item) => JSON.parse(item));
+    parsedData = decryptedData?.map((item) => JSON.parse(item));
   }
   return parsedData;
 };

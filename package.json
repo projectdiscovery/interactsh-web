@@ -66,12 +66,12 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
     "@types/jest-axe": "^3.5.2",
     "@types/prismjs": "^1.16.5",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
-    "@typescript-eslint/parser": "^4.25.0"
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0"
   }
 }
