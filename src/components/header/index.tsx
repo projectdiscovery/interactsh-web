@@ -5,12 +5,12 @@ import format from "date-fns/format";
 import CustomHost from "../customHost";
 import "./styles.scss";
 
-import { ReactComponent as ThemeDarkButtonIcon } from "../../assets/svg/theme_dark_button.svg";
-import { ReactComponent as ThemeSynthButtonIcon } from "../../assets/svg/theme_synth_button.svg";
-import { ReactComponent as ThemeBlueButtonIcon } from "../../assets/svg/theme_blue_button.svg";
-import { ReactComponent as DownloadIcon } from "../../assets/svg/download.svg";
-import { ReactComponent as DeleteIcon } from "../../assets/svg/delete.svg";
-import { ReactComponent as SwitchIcon } from "../../assets/svg/switch.svg";
+import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_button.svg";
+import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
+import { ReactComponent as ThemeBlueButtonIcon } from "assets/svg/theme_blue_button.svg";
+import { ReactComponent as DownloadIcon } from "assets/svg/download.svg";
+import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
+import { ReactComponent as SwitchIcon } from "assets/svg/switch.svg";
 
 import * as R from "fp-ts/Record";
 import * as O from "fp-ts/Option";

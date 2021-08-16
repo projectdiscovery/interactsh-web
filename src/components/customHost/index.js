@@ -3,9 +3,11 @@ import { useLocation } from "react-router-dom";
 import NodeRSA from "node-rsa";
 import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
+
+import { ReactComponent as ArrowRightIcon } from "assets/svg/arrow_right.svg";
+import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
+
 import "./styles.scss";
-import { ReactComponent as ArrowRightIcon } from "../../assets/svg/arrow_right.svg";
-import { ReactComponent as CloseIcon } from "../../assets/svg/close.svg";
 
 const CustomHost = (props) => {
   const { handleCloseDialog } = props;

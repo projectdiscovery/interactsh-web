@@ -7,19 +7,19 @@ import xid from "xid-js";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./styles.scss";
-import { ReactComponent as ChevronUpIcon } from "../../assets/svg/chevron_up.svg";
-import { ReactComponent as SideBySideIcon } from "../../assets/svg/side_by_side.svg";
-import { ReactComponent as UpDownIcon } from "../../assets/svg/up_down.svg";
+import { ReactComponent as ChevronUpIcon } from "assets/svg/chevron_up.svg";
+import { ReactComponent as SideBySideIcon } from "assets/svg/side_by_side.svg";
+import { ReactComponent as UpDownIcon } from "assets/svg/up_down.svg";
 import Header from "../../components/header";
 import TabSwitcher from "../../components/tabSwitcher";
 import RequestsTableWrapper from "./requestsTableWrapper";
-import { GlobalStyles } from "../../globalStyles";
-import { blueTheme, darkTheme, synthTheme } from "../../Themes";
+import { GlobalStyles } from "globalStyles";
+import { blueTheme, darkTheme, synthTheme } from "Themes";
 import RequestDetailsWrapper from "./requestDetailsWrapper";
 import format from "date-fns/format";
-import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
-import { ReactComponent as CloseIcon } from "../../assets/svg/close.svg";
-import { ReactComponent as ClearIcon } from "../../assets/svg/clear.svg";
+import { ReactComponent as CopyIcon } from "assets/svg/copy.svg";
+import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
+import { ReactComponent as ClearIcon } from "assets/svg/clear.svg";
 import {
   generateUrl,
   poll,

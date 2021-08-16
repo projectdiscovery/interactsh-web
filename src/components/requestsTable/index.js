@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import lastDateChange from "../../libs/last-date-change";
+import lastDateChange from "libs/last-date-change";
 
 const RequestsTable = (props) => {
   const { data, handleRowClick, selectedInteraction } = props;
