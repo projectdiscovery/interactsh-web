@@ -4,8 +4,6 @@ import { ThemeProvider } from "styled-components";
 import NodeRSA from "node-rsa";
 import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./styles.scss";
 import { ReactComponent as ChevronUpIcon } from "assets/svg/chevron_up.svg";
 import { ReactComponent as SideBySideIcon } from "assets/svg/side_by_side.svg";

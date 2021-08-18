@@ -1,9 +1,12 @@
 import React from "react";
 import "./styles.scss";
-import lastDateChange from "libs/last-date-change";
+import formatDistance from "date-fns/formatDistance";
+
+import { now } from "fp-ts/Date";
 
 const RequestsTable = (props) => {
   const { data, handleRowClick, selectedInteraction } = props;
+
   return (
     <table className="requests_table">
       <thead className="secondary_bg">
@@ -21,7 +24,7 @@ const RequestsTable = (props) => {
             className={item.id == selectedInteraction ? "selected_row" : ""}
           >
             <td>{data.length - i}</td>
-            <td>{lastDateChange(item.timestamp)}</td>
+            <td>{formatDistance(item.timestamp, now, { addSuffix: true })}</td>
             <td>{item.protocol}</td>
           </tr>
         ))}
