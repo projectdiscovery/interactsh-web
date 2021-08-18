@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import downloadData from "js-file-download";
 import format from "date-fns/format";
 
+import { ThemeName, showThemeName } from "theme";
 import CustomHost from "../customHost";
 import "./styles.scss";
 
@@ -16,30 +17,11 @@ import * as R from "fp-ts/Record";
 import * as O from "fp-ts/Option";
 import * as J from "fp-ts/Json";
 import * as E from "fp-ts/Either";
-import * as f from "fp-ts-std/Function";
-import { flow, pipe } from "fp-ts/function";
-import * as ss from "fp-ts-std/String";
-import * as S from "fp-ts/string";
-import * as t from "fp-ts/Tuple";
-import { Show } from "fp-ts/Show";
+import { pipe } from "fp-ts/function";
 
 import { matchConfig } from "@babakness/exhaustive-type-checking";
 
-const capitalize = flow(
-  ss.splitAt(1),
-  t.bimap(S.toLowerCase, S.toUpperCase), // snd, first
-  pipe(
-    S.Semigroup.concat,
-    f.curry2,
-    f.uncurry2 // ((T, T) -> T) -> ([T, T] -> T)
-  )
-);
-
-type Theme = "dark" | "synth" | "blue";
-
-const showTheme: Show<Theme> = { show: capitalize };
-
-const themeIcon = matchConfig<Theme>()({
+const themeIcon = matchConfig<ThemeName>()({
   dark: () => <ThemeDarkButtonIcon />,
   synth: () => <ThemeSynthButtonIcon />,
   blue: () => <ThemeBlueButtonIcon />,
@@ -52,8 +34,8 @@ const getData = (key: string) =>
   );
 
 interface HeaderP {
-  handleThemeSelection: (t: Theme) => void;
-  theme: Theme;
+  handleThemeSelection: (t: ThemeName) => void;
+  theme: ThemeName;
   handleAboutPopupVisibility: () => void;
 }
 
@@ -92,18 +74,18 @@ const Header = ({
   };
 
   const isCustomHost = host != "interact.sh";
-  const setTheme = (t: Theme) => () => handleThemeSelection(t);
+  const setTheme = (t: ThemeName) => () => handleThemeSelection(t);
 
-  const isThemeSelected = (t: Theme) => t === theme;
-  const themeButtonStyle = (t: Theme) =>
+  const isThemeSelected = (t: ThemeName) => t === theme;
+  const themeButtonStyle = (t: ThemeName) =>
     `${isSelectorVisible && "__selector_visible"} ${
       isThemeSelected(t) && "__selected"
     } ${!isSelectorVisible && "__without_bg"}`;
 
-  const ThemeButton = ({ theme }: { theme: Theme }) => (
+  const ThemeButton = ({ theme }: { theme: ThemeName }) => (
     <div className={themeButtonStyle(theme)} onClick={setTheme(theme)}>
       {themeIcon(theme)}
-      {showTheme.show(theme)}
+      {showThemeName.show(theme)}
     </div>
   );
 

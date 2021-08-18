@@ -12004,6 +12004,11 @@ tryer@^1.0.1:
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
   integrity sha512-c3zayb8/kWWpycWYg87P71E1S1ZL6b6IJxfb5fvsUgsf0S2MVGaDhDXXjDMpdCpfWXqptc+4mXwmiy1ypXqRAA==
 
+ts-pattern@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/ts-pattern/-/ts-pattern-3.2.4.tgz#b89e57579ecf1ff58d21e70d7f50743266e52777"
+  integrity sha512-sDZfdG1f8P2y3d6H6HOYn1HMlpjYslyK0wch9VOgdpjiXJ40Pkd5oNjXzoN+8UblTzEK1SW72fJWk+h6vaoNIw==
+
 ts-pnp@1.2.0, ts-pnp@^1.1.6:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"

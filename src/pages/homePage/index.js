@@ -12,7 +12,7 @@ import Header from "../../components/header";
 import TabSwitcher from "../../components/tabSwitcher";
 import RequestsTableWrapper from "./requestsTableWrapper";
 import { GlobalStyles } from "globalStyles";
-import { blueTheme, darkTheme, synthTheme } from "Themes";
+import { getTheme } from "theme";
 import RequestDetailsWrapper from "./requestDetailsWrapper";
 import format from "date-fns/format";
 import { ReactComponent as CopyIcon } from "assets/svg/copy.svg";
@@ -308,174 +308,161 @@ const HomePage = () => {
   const selectedTabsIndex = tabs.findIndex((item) => item.id == selectedTab.id);
 
   return (
-    <ThemeProvider
-      theme={
-        theme === "dark" ? darkTheme : theme == "synth" ? synthTheme : blueTheme
-      }
-    >
-      <>
-        <GlobalStyles />
-        <div className="main">
-          {aboutPopupVisibility && (
-            <div className="about_popup_wrapper">
-              <div className="about_popup">
-                <div className="about_popup_header">
-                  <span>About</span>
-                  <CloseIcon
-                    style={{ width: 14 }}
-                    onClick={handleAboutPopupVisibility}
-                  />
+    <ThemeProvider theme={getTheme(theme)}>
+      <GlobalStyles />
+      <div className="main">
+        {aboutPopupVisibility && (
+          <div className="about_popup_wrapper">
+            <div className="about_popup">
+              <div className="about_popup_header">
+                <span>About</span>
+                <CloseIcon
+                  style={{ width: 14 }}
+                  onClick={handleAboutPopupVisibility}
+                />
+              </div>
+              <div className="about_popup_body">
+                Interactsh is an Open-Source solution for Out of band Data
+                Extraction, A tool designed to detect bugs that cause external
+                interactions, For example - Blind SQLi, Blind CMDi, SSRF, etc.
+                <br />
+                <br />
+                If you find communications or exchanges with the Interact.sh
+                server in your logs, it is possible that someone has been
+                testing your applications using our hosted service,
+                <a href="https://interact.projectdiscovery.io" target="__blank">
+                  {` interact.projectdiscovery.io `}
+                </a>
+                You should review the time when these interactions were
+                initiated to identify the person responsible for this testing.
+                <br />
+                <br />
+                For further details about Interact.sh,
+                <a
+                  href="https://github.com/projectdiscovery/interactsh"
+                  target="__blank"
+                >
+                  {` checkout opensource code.`}
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+        <Header
+          handleAboutPopupVisibility={handleAboutPopupVisibility}
+          theme={theme}
+          handleThemeSelection={handleThemeSelection}
+        />
+        <TabSwitcher
+          handleTabButtonClick={handleTabButtonClick}
+          selectedTab={selectedTab}
+          data={[...tabs]}
+          handleAddNewTab={handleAddNewTab}
+          copyDataToClipboard={copyDataToClipboard}
+          handleDeleteTab={handleDeleteTab}
+          handleTabRename={handleTabRename}
+          processPolledData={processPolledData}
+        />
+        <div className="body">
+          <div className="left_section">
+            <div className="url_container secondary_bg">
+              <div title={selectedTab && selectedTab.url}>
+                {selectedTab && selectedTab.url}
+              </div>
+              <CopyIcon
+                style={{ width: 13 }}
+                onClick={() => copyDataToClipboard(selectedTab.url)}
+              />
+              <div className="vertical_bar" />
+              <ClearIcon
+                className={filteredData.length <= 0 && "clear_button__disabled"}
+                onClick={clearInteractions}
+              />
+            </div>
+            <RequestsTableWrapper
+              data={[...filteredData]}
+              selectedInteraction={selectedInteraction}
+              handleRowClick={handleRowClick}
+            />
+            <div className="notes secondary_bg">
+              <div
+                className="detailed_notes"
+                style={{ display: isNotesOpen ? "flex" : "none" }}
+              >
+                {/* <SyntaxHighlighter language="javascript" style={dark}> */}
+                {/* {tabs[selectedTabsIndex].note} */}
+                <textarea
+                  id="notes_textarea"
+                  placeholder="Please paste note here max 1200 charachters.."
+                  autoFocus
+                  value={
+                    tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note
+                  }
+                  onChange={handleNoteInputChange}
+                />
+                {/* </SyntaxHighlighter> */}
+              </div>
+              <div onClick={handleNotesVisibility} className="notes_footer">
+                <span>Notes</span>
+                <ChevronUpIcon
+                  style={{
+                    transform: isNotesOpen ? "rotate(180deg)" : "rotate(0)",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          {selectedInteraction !== "" && (
+            <div className="right_section">
+              <div className="result_header">
+                <div className="req_res_buttons">
+                  <span
+                    className={view == "request" && "__selected_req_res_button"}
+                    onClick={() => handleChangeView("request")}
+                  >
+                    Request
+                  </span>
+                  <span
+                    className={
+                      view == "response" && "__selected_req_res_button"
+                    }
+                    onClick={() => handleChangeView("response")}
+                  >
+                    Response
+                  </span>
                 </div>
-                <div className="about_popup_body">
-                  Interactsh is an Open-Source solution for Out of band Data
-                  Extraction, A tool designed to detect bugs that cause external
-                  interactions, For example - Blind SQLi, Blind CMDi, SSRF, etc.
-                  <br />
-                  <br />
-                  If you find communications or exchanges with the Interact.sh
-                  server in your logs, it is possible that someone has been
-                  testing your applications using our hosted service,
-                  <a
-                    href="https://interact.projectdiscovery.io"
-                    target="__blank"
-                  >
-                    {` interact.projectdiscovery.io `}
-                  </a>
-                  You should review the time when these interactions were
-                  initiated to identify the person responsible for this testing.
-                  <br />
-                  <br />
-                  For further details about Interact.sh,
-                  <a
-                    href="https://github.com/projectdiscovery/interactsh"
-                    target="__blank"
-                  >
-                    {` checkout opensource code.`}
-                  </a>
+                <SideBySideIcon
+                  style={{
+                    fill: view == "side_by_side" ? "#ffffff" : "#4a4a4a",
+                  }}
+                  onClick={() => handleChangeView("side_by_side")}
+                />
+                <UpDownIcon
+                  style={{
+                    fill: view == "up_and_down" ? "#ffffff" : "#4a4a4a",
+                  }}
+                  onClick={() => handleChangeView("up_and_down")}
+                />
+                <div className="result_info">
+                  From IP address
+                  <span>{selectedInteractionData["remote-address"]}</span>
+                  {` at `}
+                  <span>
+                    {format(
+                      selectedInteractionData.timestamp,
+                      "yyyy-mm-dd_hh:mm"
+                    )}
+                  </span>
                 </div>
               </div>
+              <RequestDetailsWrapper
+                selectedInteractionData={selectedInteractionData}
+                view={view}
+              />
             </div>
           )}
-          <Header
-            handleAboutPopupVisibility={handleAboutPopupVisibility}
-            theme={theme}
-            handleThemeSelection={handleThemeSelection}
-          />
-          <TabSwitcher
-            handleTabButtonClick={handleTabButtonClick}
-            selectedTab={selectedTab}
-            data={[...tabs]}
-            handleAddNewTab={handleAddNewTab}
-            copyDataToClipboard={copyDataToClipboard}
-            handleDeleteTab={handleDeleteTab}
-            handleTabRename={handleTabRename}
-            processPolledData={processPolledData}
-          />
-          <div className="body">
-            <div className="left_section">
-              <div className="url_container secondary_bg">
-                <div title={selectedTab && selectedTab.url}>
-                  {selectedTab && selectedTab.url}
-                </div>
-                <CopyIcon
-                  style={{ width: 13 }}
-                  onClick={() => copyDataToClipboard(selectedTab.url)}
-                />
-                <div className="vertical_bar" />
-                <ClearIcon
-                  className={
-                    filteredData.length <= 0 && "clear_button__disabled"
-                  }
-                  onClick={clearInteractions}
-                />
-              </div>
-              <RequestsTableWrapper
-                data={[...filteredData]}
-                selectedInteraction={selectedInteraction}
-                handleRowClick={handleRowClick}
-              />
-              <div className="notes secondary_bg">
-                <div
-                  className="detailed_notes"
-                  style={{ display: isNotesOpen ? "flex" : "none" }}
-                >
-                  {/* <SyntaxHighlighter language="javascript" style={dark}> */}
-                  {/* {tabs[selectedTabsIndex].note} */}
-                  <textarea
-                    id="notes_textarea"
-                    placeholder="Please paste note here max 1200 charachters.."
-                    autoFocus
-                    value={
-                      tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note
-                    }
-                    onChange={handleNoteInputChange}
-                  />
-                  {/* </SyntaxHighlighter> */}
-                </div>
-                <div onClick={handleNotesVisibility} className="notes_footer">
-                  <span>Notes</span>
-                  <ChevronUpIcon
-                    style={{
-                      transform: isNotesOpen ? "rotate(180deg)" : "rotate(0)",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-            {selectedInteraction !== "" && (
-              <div className="right_section">
-                <div className="result_header">
-                  <div className="req_res_buttons">
-                    <span
-                      className={
-                        view == "request" && "__selected_req_res_button"
-                      }
-                      onClick={() => handleChangeView("request")}
-                    >
-                      Request
-                    </span>
-                    <span
-                      className={
-                        view == "response" && "__selected_req_res_button"
-                      }
-                      onClick={() => handleChangeView("response")}
-                    >
-                      Response
-                    </span>
-                  </div>
-                  <SideBySideIcon
-                    style={{
-                      fill: view == "side_by_side" ? "#ffffff" : "#4a4a4a",
-                    }}
-                    onClick={() => handleChangeView("side_by_side")}
-                  />
-                  <UpDownIcon
-                    style={{
-                      fill: view == "up_and_down" ? "#ffffff" : "#4a4a4a",
-                    }}
-                    onClick={() => handleChangeView("up_and_down")}
-                  />
-                  <div className="result_info">
-                    From IP address
-                    <span>{selectedInteractionData["remote-address"]}</span>
-                    {` at `}
-                    <span>
-                      {format(
-                        selectedInteractionData.timestamp,
-                        "yyyy-mm-dd_hh:mm"
-                      )}
-                    </span>
-                  </div>
-                </div>
-                <RequestDetailsWrapper
-                  selectedInteractionData={selectedInteractionData}
-                  view={view}
-                />
-              </div>
-            )}
-          </div>
         </div>
-      </>
+      </div>
     </ThemeProvider>
   );
 };
