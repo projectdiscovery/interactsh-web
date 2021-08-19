@@ -2,12 +2,13 @@ import zbase32 from "zbase32";
 import NodeRSA from "node-rsa";
 import crypto from "crypto";
 
-// Copy given data to clipboard
-export const copyDataToClipboard = (value) => {
-  navigator.clipboard.writeText(value);
-};
+export const copyDataToClipboard = navigator.clipboard.writeText;
 
-export const generateUrl = (id, incrementNumber, host) => {
+export const generateUrl = (
+  id: number | string,
+  incrementNumber: number,
+  host: string
+) => {
   const timestamp = Math.floor(Date.now() / 1000);
   const increment = Number(incrementNumber);
   const arr = new ArrayBuffer(8);
@@ -20,14 +21,18 @@ export const generateUrl = (id, incrementNumber, host) => {
   return url;
 };
 
-export const poll = async (correlationId, secretKey, host) => {
+export async function poll(
+  correlationId: number | string,
+  secretKey: string,
+  host: string
+) {
   const data = await fetch(
     `https://${host}/poll?id=${correlationId}&secret=${secretKey}`
   )
     .then((res) => res.json())
     .then((res) => res);
   return data;
-};
+}
 
 export const decryptAESKey = (privateKey, polledData) => {
   const key = new NodeRSA({ b: 2048 });
