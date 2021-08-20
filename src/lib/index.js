@@ -5,9 +5,9 @@ import crypto from "crypto";
 export const copyDataToClipboard = navigator.clipboard.writeText;
 
 export const generateUrl = (
-  id: number | string,
-  incrementNumber: number,
-  host: string
+  id,
+  incrementNumber,
+  host
 ) => {
   const timestamp = Math.floor(Date.now() / 1000);
   const increment = Number(incrementNumber);
@@ -22,9 +22,9 @@ export const generateUrl = (
 };
 
 export async function poll(
-  correlationId: number | string,
-  secretKey: string,
-  host: string
+  correlationId,
+  secretKey,
+  host
 ) {
   const data = await fetch(
     `https://${host}/poll?id=${correlationId}&secret=${secretKey}`
@@ -40,6 +40,7 @@ export const decryptAESKey = (privateKey, polledData) => {
     environment: "browser",
     encryptionScheme: {
       hash: "sha256",
+      scheme: "pkcs1_oaep", // TODO: Ensure that this is correct.
     },
   });
   key.importKey(privateKey, "pkcs8-private");
@@ -64,7 +65,7 @@ export const processData = (aesKey, polledData) => {
 };
 
 export const setToLocalStorage = (data) => {
-  Object.entries(data).map((item) => {
+  Object.entries(data).forEach((item) => {
     localStorage.setItem(item[0], item[1]);
   });
 };

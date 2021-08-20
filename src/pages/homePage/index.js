@@ -8,12 +8,8 @@ import "./styles.scss";
 import { ReactComponent as ChevronUpIcon } from "assets/svg/chevron_up.svg";
 import { ReactComponent as SideBySideIcon } from "assets/svg/side_by_side.svg";
 import { ReactComponent as UpDownIcon } from "assets/svg/up_down.svg";
-import Header from "../../components/header";
-import TabSwitcher from "../../components/tabSwitcher";
-import RequestsTableWrapper from "./requestsTableWrapper";
 import { GlobalStyles } from "globalStyles";
 import { getTheme } from "theme";
-import RequestDetailsWrapper from "./requestDetailsWrapper";
 import format from "date-fns/format";
 import { ReactComponent as CopyIcon } from "assets/svg/copy.svg";
 import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
@@ -26,7 +22,11 @@ import {
   setToLocalStorage,
   register,
   copyDataToClipboard,
-} from "../../libs";
+} from "lib";
+import RequestDetailsWrapper from "./requestDetailsWrapper";
+import RequestsTableWrapper from "./requestsTableWrapper";
+import TabSwitcher from "../../components/tabSwitcher";
+import Header from "../../components/header";
 
 const HomePage = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
@@ -47,8 +47,46 @@ const HomePage = () => {
   const [view, setView] = useState(localStorage.getItem("view"));
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState(false);
 
+  const processPolledData = async () => {
+    const privateKey = localStorage.getItem("privateKey");
+    const aesKey = localStorage.getItem("aesKey");
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem("data"));
+    const correlation = localStorage.getItem("correlationId");
+    const secret = localStorage.getItem("secretKey");
+    const host = localStorage.getItem("host");
+
+    const polledData = await poll(correlation, secret, host);
+
+    if (aesKey === "null" && polledData.aes_key) {
+      setToLocalStorage({ aesKey: decryptAESKey(privateKey, polledData) });
+    }
+    if (polledData.data?.length !== 0) {
+      const processedData = processData(
+        Buffer.from(aesKey, "base64"),
+        polledData
+      );
+      const combinedData = Array.isArray(processedData)
+        ? [...dataFromLocalStorage, ...processedData]
+        : dataFromLocalStorage;
+
+      setData(combinedData);
+      setToLocalStorage({ data: JSON.stringify(combinedData) });
+      const selectedTabUrl = selectedTab.url.slice(
+        0,
+        -localStorage.getItem("host").length - 1
+      );
+      let newData = combinedData.filter(
+        (item) => item["unique-id"] === selectedTabUrl
+      );
+      console.log(filteredData);
+      newData = newData.map((item, i) => ({ id: i + 1, ...item }));
+      setFilteredData([...newData]);
+    }
+  };
+
+
   useEffect(() => {
-    if (localStorage.getItem("correlationId") == null) {
+    if (localStorage.getItem("correlationId") === null) {
       const key = new NodeRSA({ b: 2048 });
       const pub = key.exportKey("pkcs8-public-pem");
       const priv = key.exportKey("pkcs8-private-pem");
@@ -67,7 +105,7 @@ const HomePage = () => {
         notes: JSON.stringify([]),
         view: "up_and_down",
       });
-      if (localStorage.getItem("host") == null) {
+      if (localStorage.getItem("host") === null) {
         setToLocalStorage({ host: "interact.sh" });
       }
 
@@ -125,43 +163,6 @@ const HomePage = () => {
     }
   }, []);
 
-  const processPolledData = async () => {
-    const privateKey = localStorage.getItem("privateKey");
-    const aesKey = localStorage.getItem("aesKey");
-    const dataFromLocalStorage = JSON.parse(localStorage.getItem("data"));
-    const correlation = localStorage.getItem("correlationId");
-    const secret = localStorage.getItem("secretKey");
-    const host = localStorage.getItem("host");
-
-    const polledData = await poll(correlation, secret, host);
-
-    if (aesKey == "null" && polledData.aes_key) {
-      setToLocalStorage({ aesKey: decryptAESKey(privateKey, polledData) });
-    }
-    if (polledData.data?.length !== 0) {
-      const processedData = processData(
-        Buffer.from(aesKey, "base64"),
-        polledData
-      );
-      const combinedData = Array.isArray(processedData)
-        ? [...dataFromLocalStorage, ...processedData]
-        : dataFromLocalStorage;
-
-      setData(combinedData);
-      setToLocalStorage({ data: JSON.stringify(combinedData) });
-      const selectedTabUrl = selectedTab.url.slice(
-        0,
-        -localStorage.getItem("host").length - 1
-      );
-      let newData = combinedData.filter(
-        (item) => item["unique-id"] == selectedTabUrl
-      );
-      console.log(filteredData);
-      newData = newData.map((item, i) => ({ id: i + 1, ...item }));
-      setFilteredData([...newData]);
-    }
-  };
-
   // Recalculate data when a tab is selected
   useEffect(() => {
     pollIntervals.map((item) => {
@@ -177,7 +178,7 @@ const HomePage = () => {
         -localStorage.getItem("host").length - 1
       );
       let tempFilteredData = data.filter(
-        (item) => item["unique-id"] == selectedTabUrl
+        (item) => item["unique-id"] === selectedTabUrl
       );
       tempFilteredData = tempFilteredData.map((item, i) => ({
         id: i + 1,
@@ -241,7 +242,7 @@ const HomePage = () => {
   // "Notes input change handler" function
   const handleNoteInputChange = (e) => {
     const tempTabsList = JSON.parse(localStorage.getItem("tabs"));
-    const index = tempTabsList.findIndex((item) => item.id == selectedTab.id);
+    const index = tempTabsList.findIndex((item) => item.id === selectedTab.id);
     tempTabsList[index].note = e.target.value;
     setToLocalStorage({ tabs: JSON.stringify(tempTabsList) });
     setTabs([...tempTabsList]);
@@ -251,7 +252,7 @@ const HomePage = () => {
   const handleRowClick = (id) => {
     setSelectedInteraction(id);
     const reqDetails =
-      filteredData[filteredData.findIndex((item) => item.id == id)];
+      filteredData[filteredData.findIndex((item) => item.id === id)];
     setSelectedInteractionData(reqDetails);
   };
 
@@ -276,7 +277,7 @@ const HomePage = () => {
   // "Renaming a tab" function
   const handleTabRename = (e) => {
     const tempTabsList = JSON.parse(localStorage.getItem("tabs"));
-    const index = tempTabsList.findIndex((item) => item.id == selectedTab.id);
+    const index = tempTabsList.findIndex((item) => item.id === selectedTab.id);
     tempTabsList[index].name = e.target.value;
     setToLocalStorage({ tabs: JSON.stringify(tempTabsList) });
     setTabs([...tempTabsList]);
@@ -305,7 +306,7 @@ const HomePage = () => {
     setFilteredData([]);
   };
 
-  const selectedTabsIndex = tabs.findIndex((item) => item.id == selectedTab.id);
+  const selectedTabsIndex = tabs.findIndex((item) => item.id === selectedTab.id);
 
   return (
     <ThemeProvider theme={getTheme(theme)}>
@@ -394,7 +395,6 @@ const HomePage = () => {
                 <textarea
                   id="notes_textarea"
                   placeholder="Please paste note here max 1200 charachters.."
-                  autoFocus
                   value={
                     tabs[selectedTabsIndex] && tabs[selectedTabsIndex].note
                   }
@@ -402,44 +402,46 @@ const HomePage = () => {
                 />
                 {/* </SyntaxHighlighter> */}
               </div>
-              <div onClick={handleNotesVisibility} className="notes_footer">
+              <button type="button" onClick={handleNotesVisibility} className="notes_footer">
                 <span>Notes</span>
                 <ChevronUpIcon
                   style={{
                     transform: isNotesOpen ? "rotate(180deg)" : "rotate(0)",
                   }}
                 />
-              </div>
+              </button>
             </div>
           </div>
           {selectedInteraction !== "" && (
             <div className="right_section">
               <div className="result_header">
                 <div className="req_res_buttons">
-                  <span
-                    className={view == "request" && "__selected_req_res_button"}
+                  <button
+                    type="button"
+                    className={view === "request" && "__selected_req_res_button"}
                     onClick={() => handleChangeView("request")}
                   >
                     Request
-                  </span>
-                  <span
+                  </button>
+                  <button
+                    type="button"
                     className={
-                      view == "response" && "__selected_req_res_button"
+                      view === "response" && "__selected_req_res_button"
                     }
                     onClick={() => handleChangeView("response")}
                   >
                     Response
-                  </span>
+                  </button>
                 </div>
                 <SideBySideIcon
                   style={{
-                    fill: view == "side_by_side" ? "#ffffff" : "#4a4a4a",
+                    fill: view === "side_by_side" ? "#ffffff" : "#4a4a4a",
                   }}
                   onClick={() => handleChangeView("side_by_side")}
                 />
                 <UpDownIcon
                   style={{
-                    fill: view == "up_and_down" ? "#ffffff" : "#4a4a4a",
+                    fill: view === "up_and_down" ? "#ffffff" : "#4a4a4a",
                   }}
                   onClick={() => handleChangeView("up_and_down")}
                 />

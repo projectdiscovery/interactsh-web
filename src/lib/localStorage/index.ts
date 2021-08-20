@@ -4,9 +4,12 @@ import * as E from "fp-ts/Either";
 import * as O from "fp-ts/Option";
 import { parseO, stringifyO, unJSONString } from "fp-ts-std/JSON";
 
+import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import { getItem, setItem } from "fp-ts-local-storage";
 import * as t from "io-ts";
 import { curry2 } from "fp-ts-std/Function";
+
+import { ThemeName } from "theme";
 
 const decodeJSONStr = <A>(decoder: t.Decoder<unknown, A>) =>
   flow(parseO, O.chain(flow(decoder.decode, O.fromEither)));
@@ -43,3 +46,18 @@ export const writeStoredData = (key: string) =>
     IOE.fromOption(() => new Error("Error updating localstorage")),
     IOE.flatten
   );
+
+// Data structure of localStorage
+
+const { summon } = summonFor<{}>({});
+
+export const StoredData = summon((F) =>
+  F.interface(
+    {
+      privateKey: F.string(),
+      theme: ThemeName(F),
+      data: F.array(F.string()),
+    },
+    "Person"
+  )
+);

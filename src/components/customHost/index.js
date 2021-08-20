@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import NodeRSA from "node-rsa";
 import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
@@ -16,7 +15,7 @@ const CustomHost = (props) => {
     useState(false);
   const [isHostValid, setIsHostValid] = useState(true);
   const [inputValue, setInputValue] = useState(
-    host == "interact.sh" ? "" : host
+    host === "interact.sh" ? "" : host
   );
 
   const handleDeleteConfirmationVisibility = () => {
@@ -28,10 +27,10 @@ const CustomHost = (props) => {
   };
 
   const handleConfirm = () => {
-    if (inputValue != "") {
+    if (inputValue !== "") {
       const key = new NodeRSA({ b: 2048 });
       const pub = key.exportKey("pkcs8-public-pem");
-      const priv = key.exportKey("pkcs8-private-pem");
+      // const priv = key.exportKey("pkcs8-private-pem");
       const correlation = xid.next().toString();
       const secret = uuidv4().toString();
 
@@ -41,9 +40,8 @@ const CustomHost = (props) => {
         "correlation-id": correlation,
       };
 
-      let response;
       const getResponse = async () => {
-        response = await fetch(`https://${inputValue}/register`, {
+        await fetch(`https://${inputValue}/register`, {
           method: "POST",
           cache: "no-cache",
           headers: {
@@ -53,7 +51,7 @@ const CustomHost = (props) => {
           body: JSON.stringify(registerFetcherOptions),
         })
           .then((res) => {
-            if (res.status == 200) {
+            if (res.status === 200) {
               localStorage.clear();
               localStorage.setItem("host", inputValue);
               window.location.reload();
@@ -64,7 +62,7 @@ const CustomHost = (props) => {
               setIsHostValid(false);
             }
           })
-          .catch((err) => {
+          .catch(() => {
             setIsHostValid(false);
           });
       };
@@ -90,9 +88,9 @@ const CustomHost = (props) => {
             client data will be delete immediately.
           </span>
           <div className="buttons">
-            <div className="delete_button" onClick={handleDelete}>
+            <button type="button" className="delete_button" onClick={handleDelete}>
               Delete
-            </div>
+            </button>
           </div>
         </div>
       ) : (
@@ -118,17 +116,18 @@ const CustomHost = (props) => {
             </div>
           )}
           <div className="buttons">
-            {host != "interact.sh" && (
-              <div
+            {host !== "interact.sh" && (
+              <button
+                type="button"
                 className="remove_button"
                 onClick={handleDeleteConfirmationVisibility}
               >
                 Remove Custom Host
-              </div>
+              </button>
             )}
-            <div className="submit_button" onClick={handleConfirm}>
+            <button type="button" className="submit_button" onClick={handleConfirm}>
               Confirm <ArrowRightIcon />
-            </div>
+            </button>
           </div>
         </div>
       )}

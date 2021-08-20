@@ -23,21 +23,21 @@ const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
   return (
     <div
       className="detailed_request"
-      style={{ flexDirection: view == "up_and_down" ? "column" : "row" }}
+      style={{ flexDirection: view === "up_and_down" ? "column" : "row" }}
     >
       <ErrorBoundary
-        FallbackComponent={({ error, resetErrorBoundary }) => (
-          <IssuesListErrorFallback error={error} retry={resetErrorBoundary} />
+        FallbackComponent={({ resetErrorBoundary }) => (
+          <IssuesListErrorFallback retry={resetErrorBoundary} />
         )}
       >
         <Suspense fallback={<IssuesListFallback />}>
-          {view == "request" ? (
+          {view === "request" ? (
             <DetailedRequest
               view={view}
               data={`${selectedInteractionData["raw-request"]}`}
               title="Request"
             />
-          ) : view == "response" ? (
+          ) : view === "response" ? (
             <DetailedRequest
               view={view}
               data={`${selectedInteractionData["raw-response"]}`}

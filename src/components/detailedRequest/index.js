@@ -14,15 +14,15 @@ const DetailedRequest = (props) => {
     <div
       className="container"
       style={{
-        width: view == "side_by_side" ? "48%" : "100%",
-        marginBottom: view == "side_by_side" ? "0" : "3rem",
+        width: view === "side_by_side" ? "48%" : "100%",
+        marginBottom: view === "side_by_side" ? "0" : "3rem",
       }}
     >
       <span>{title}</span>
       <div className="body">
-        <div className="copy_button" onClick={copyDataToClipboard}>
+        <button type="button" className="copy_button" onClick={copyDataToClipboard}>
           Copy <CopyIcon />
-        </div>
+        </button>
         <div className="pre_wrapper">
           <SyntaxHighlighter language="javascript" style={dark}>
             {data}

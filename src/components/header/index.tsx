@@ -3,7 +3,6 @@ import downloadData from "js-file-download";
 import format from "date-fns/format";
 
 import { ThemeName, showThemeName } from "theme";
-import CustomHost from "../customHost";
 import "./styles.scss";
 
 import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_button.svg";
@@ -20,6 +19,7 @@ import * as E from "fp-ts/Either";
 import { pipe } from "fp-ts/function";
 
 import { matchConfig } from "@babakness/exhaustive-type-checking";
+import CustomHost from "../customHost";
 
 const themeIcon = matchConfig<ThemeName>()({
   dark: () => <ThemeDarkButtonIcon />,
@@ -69,11 +69,11 @@ const Header = ({
       E.getOrElse(() => "An error occured") // TODO: Handle error case.
     );
 
-    const fileName = format(Date.now(), "yyyy-mm-dd_hh:mm") + ".json";
+    const fileName = `${format(Date.now(), "yyyy-mm-dd_hh:mm")  }.json`;
     downloadData(values, fileName);
   };
 
-  const isCustomHost = host != "interact.sh";
+  const isCustomHost = host !== "interact.sh";
   const setTheme = (t: ThemeName) => () => handleThemeSelection(t);
 
   const isThemeSelected = (t: ThemeName) => t === theme;
@@ -82,41 +82,42 @@ const Header = ({
       isThemeSelected(t) && "__selected"
     } ${!isSelectorVisible && "__without_bg"}`;
 
-  const ThemeButton = ({ theme }: { theme: ThemeName }) => (
-    <div className={themeButtonStyle(theme)} onClick={setTheme(theme)}>
-      {themeIcon(theme)}
-      {showThemeName.show(theme)}
-    </div>
+  const ThemeButton = ({ theme: t }: { theme: ThemeName }) => (
+    <button type="button" className={themeButtonStyle(t)} onClick={setTheme(t)}>
+      {themeIcon(t)}
+      {showThemeName.show(t)}
+    </button>
   );
 
   return (
     <div id="header" className="header">
       <div>interact.sh</div>
-      <div onClick={handleThemeSwitchesVisibility}>
+      <button type="button" onClick={handleThemeSwitchesVisibility}>
         <ThemeButton theme="dark" />
         <ThemeButton theme="synth" />
         <ThemeButton theme="blue" />
-      </div>
+      </button>
       <div className="links">
-        <div
+        <button
+          type="button"
           title="Switch host"
           className={isCustomHost ? "custom_host_active" : undefined}
           onClick={handleCustomHostDialogVisibility}
         >
           <SwitchIcon />
           {isCustomHost ? host : "Custom Host"}
-        </div>
-        <div title="Reset data" onClick={handleReset}>
+        </button>
+        <button type="button" title="Reset data" onClick={handleReset}>
           <DeleteIcon />
           Reset
-        </div>
-        <div title="Export" onClick={handleDataExport}>
+        </button>
+        <button type="button" title="Export" onClick={handleDataExport}>
           <DownloadIcon />
           Export
-        </div>
+        </button>
         <div className="vertical_bar" />
         <a href="/#/terms">Terms</a>
-        <div onClick={handleAboutPopupVisibility}>About</div>
+        <button type="button" onClick={handleAboutPopupVisibility}>About</button>
       </div>
       {isCustomHostDialogVisible && (
         <CustomHost handleCloseDialog={handleCustomHostDialogVisibility} />

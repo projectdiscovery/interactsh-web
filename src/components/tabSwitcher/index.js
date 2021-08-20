@@ -39,17 +39,18 @@ const TabSwitcher = (props) => {
     <>
       <div className="tab_switcher">
         {data.length !== 0 &&
-          data.map((item, i) => (
-            <div
-              key={i}
+          data.map(item => (
+            <button
+              type="button"
+              key={item}
               onKeyUp={handleTabRanameDone}
               onClick={() => handleTabButtonClickTemp(item)}
               onDoubleClick={() => handleTabButtonDoubleClick(item.id)}
               className={`tab_button ${
-                selectedTab.id == item.id && "__selected_tab_button"
+                selectedTab.id === item.id && "__selected_tab_button"
               }`}
             >
-              {isInputVisible && item.id == selectedTab.id ? (
+              {isInputVisible && item.id === selectedTab.id ? (
                 <input
                   id={item.id}
                   value={item.name}
@@ -59,18 +60,19 @@ const TabSwitcher = (props) => {
                 <div title={item.name}>{item.name}</div>
               )}
               <CrossIcon onClick={() => handleDeleteTab(item.id)} />
-            </div>
+            </button>
           ))}
-        <div onClick={handleAddNewTab} className="add_new_tab_button">
+        <button type="button" onClick={handleAddNewTab} className="add_new_tab_button">
           <PlusIcon />
-        </div>
-        <div
+        </button>
+        <button
+          type="button"
           onClick={processPolledData}
           className="refresh_button secondary_bg"
         >
           <RefreshIcon />
           <span>Refresh</span>
-        </div>
+        </button>
       </div>
     </>
   );

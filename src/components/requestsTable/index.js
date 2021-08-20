@@ -19,9 +19,9 @@ const RequestsTable = (props) => {
       <tbody>
         {data.reverse().map((item, i) => (
           <tr
-            key={i}
+            key={item}
             onClick={() => handleRowClick(item.id)}
-            className={item.id == selectedInteraction ? "selected_row" : ""}
+            className={item.id === selectedInteraction ? "selected_row" : ""}
           >
             <td>{data.length - i}</td>
             <td>{formatDistance(item.timestamp, now, { addSuffix: true })}</td>

@@ -19,9 +19,8 @@ const RequestsTableWrapper = (props: RequestsTableWrapperP) => {
   return (
     <div className="requests_table_container">
       <ErrorBoundary
-        FallbackComponent={({ error, resetErrorBoundary }) => (
+        FallbackComponent={({ resetErrorBoundary }) => (
           <RepoSidebarListErrorFallback
-            error={error}
             retry={resetErrorBoundary}
           />
         )}
