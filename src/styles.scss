@@ -22,6 +22,9 @@ html {
     i:focus {
       outline: none;
     }
+    button:focus {
+      outline: none;
+    }
     :global #download_anchor_element {
       height: 0;
       width: 0;

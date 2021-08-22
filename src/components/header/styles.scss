@@ -32,7 +32,7 @@
     margin-right: 0.8rem;
     border-right: 1px solid rgba(255, 255, 255, 0.25);
   }
-  & > div:nth-of-type(2) {
+  & > button:nth-of-type(1) {
     margin-left: 0;
     border-radius: 0.6rem;
     overflow: hidden;
@@ -50,7 +50,7 @@
     .__without_bg {
       background: none !important;
     }
-    & > div {
+    & > button {
       cursor: pointer;
       height: 100%;
       display: none;
@@ -75,7 +75,7 @@
         fill: #6588ff;
       }
     }
-    & > div {
+    & > button {
       font-size: 1.5rem;
       color: #ffffff;
       letter-spacing: -0.02rem;
