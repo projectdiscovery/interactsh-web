@@ -1,13 +1,14 @@
 import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+
+import View from 'lib/types/view';
+
 import {
   IssuesListFallback,
   IssuesListErrorFallback,
 } from "../../helpers/fallback-loaders";
 import "./styles.scss";
 import DetailedRequest from "../../components/detailedRequest";
-
-type View = "request" | "response" | "up_and_down";
 
 interface RequestDetailsWrapperP {
   view: View;

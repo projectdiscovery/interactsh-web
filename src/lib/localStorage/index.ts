@@ -10,6 +10,7 @@ import * as t from "io-ts";
 import { curry2 } from "fp-ts-std/Function";
 
 import { ThemeName } from "theme";
+import View from "lib/types/view";
 
 const decodeJSONStr = <A>(decoder: t.Decoder<unknown, A>) =>
   flow(parseO, O.chain(flow(decoder.decode, O.fromEither)));
@@ -57,6 +58,7 @@ export const StoredData = summon((F) =>
       privateKey: F.string(),
       theme: ThemeName(F),
       data: F.array(F.string()),
+      view: View(F)
     },
     "Person"
   )
