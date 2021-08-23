@@ -11,6 +11,7 @@ import { curry2 } from "fp-ts-std/Function";
 
 import { ThemeName } from "theme";
 import View from "lib/types/view";
+import Tab from "lib/types/tab";
 
 const decodeJSONStr = <A>(decoder: t.Decoder<unknown, A>) =>
   flow(parseO, O.chain(flow(decoder.decode, O.fromEither)));
@@ -52,14 +53,18 @@ export const writeStoredData = (key: string) =>
 
 const { summon } = summonFor<{}>({});
 
-export const StoredData = summon((F) =>
-  F.interface(
-    {
-      privateKey: F.string(),
-      theme: ThemeName(F),
-      data: F.array(F.string()),
-      view: View(F)
-    },
-    "Person"
-  )
-);
+export const StoredData = summon((F) => F.interface({
+  view: View(F),
+  notes: F.array(F.string()),
+  increment: F.number(),
+  correlationId: F.string(),
+  theme: ThemeName(F),
+  data: F.array(F.string()),
+  tabs: F.array(Tab(F)),
+
+  publicKey: F.string(),
+  privateKey: F.string(),
+  secretKey: F.string(),
+  aesKey: F.string(),
+},
+  "Person"));
