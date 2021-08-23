@@ -10,7 +10,7 @@ const Tab = summon((F) => F.interface({
   name: F.string(),
   note: F.string(),
   url: F.string()
-}, "StoredData"))
+}, "Tab"))
 
 type Tab = t.TypeOf<typeof Tab.type>;
 

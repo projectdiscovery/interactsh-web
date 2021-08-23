@@ -4,7 +4,8 @@ import * as E from "fp-ts/Either";
 import * as O from "fp-ts/Option";
 import { parseO, stringifyO, unJSONString } from "fp-ts-std/JSON";
 
-import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
+import { AsOpaque, summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
+import type { AType, EType } from '@morphic-ts/summoners'
 import { getItem, setItem } from "fp-ts-local-storage";
 import * as t from "io-ts";
 import { curry2 } from "fp-ts-std/Function";
@@ -12,7 +13,6 @@ import { curry2 } from "fp-ts-std/Function";
 import { ThemeName } from "theme";
 import View from "lib/types/view";
 import Tab from "lib/types/tab";
-
 
 const { summon } = summonFor<{}>({});
 
@@ -52,19 +52,29 @@ export const writeStoredData = (key: string) =>
     IOE.flatten
   );
 
-// Data structure of localStorage
+const Data = summon((F) => F.interface({
+  "unique-id": F.string()
+}, "Data"))
 
-export const StoredData = summon((F) => F.interface({
+// Data structure of localStorage
+export const StoredData_ = summon((F) => F.interface({
   view: View(F),
   notes: F.array(F.string()),
   increment: F.number(),
   correlationId: F.string(),
   theme: ThemeName(F),
-  data: F.array(F.string()),
+  data: F.array(Data(F)),
   tabs: F.array(Tab(F)),
+  selectedTab: Tab(F),
 
   publicKey: F.string(),
   privateKey: F.string(),
   secretKey: F.string(),
   aesKey: F.string(),
-}, "Person"));
+
+  host: F.string()
+}, "StoredData"))
+
+export interface StoredData extends AType<typeof StoredData_> {}
+export interface StoredDataRaw extends EType<typeof StoredData_> {}
+export const StoredData = AsOpaque<StoredDataRaw, StoredData>()(StoredData_)
