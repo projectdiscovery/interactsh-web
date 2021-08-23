@@ -12,7 +12,7 @@ const DetailedRequest = (props) => {
 
   return (
     <div
-      className="container"
+      className="detailed_request_container"
       style={{
         width: view === "side_by_side" ? "48%" : "100%",
         marginBottom: view === "side_by_side" ? "0" : "3rem",
