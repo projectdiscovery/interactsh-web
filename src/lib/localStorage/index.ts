@@ -13,6 +13,9 @@ import { ThemeName } from "theme";
 import View from "lib/types/view";
 import Tab from "lib/types/tab";
 
+
+const { summon } = summonFor<{}>({});
+
 const decodeJSONStr = <A>(decoder: t.Decoder<unknown, A>) =>
   flow(parseO, O.chain(flow(decoder.decode, O.fromEither)));
 
@@ -51,8 +54,6 @@ export const writeStoredData = (key: string) =>
 
 // Data structure of localStorage
 
-const { summon } = summonFor<{}>({});
-
 export const StoredData = summon((F) => F.interface({
   view: View(F),
   notes: F.array(F.string()),
@@ -66,5 +67,4 @@ export const StoredData = summon((F) => F.interface({
   privateKey: F.string(),
   secretKey: F.string(),
   aesKey: F.string(),
-},
-  "Person"));
+}, "Person"));

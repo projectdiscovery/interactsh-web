@@ -24,7 +24,7 @@ const RequestsTable = (props) => {
             className={item.id === selectedInteraction ? "selected_row" : ""}
           >
             <td>{data.length - i}</td>
-            <td>{formatDistance(item.timestamp, now, { addSuffix: true })}</td>
+            <td>{formatDistance(new Date(item.timestamp), now(), { addSuffix: true })}</td>
             <td>{item.protocol}</td>
           </tr>
         ))}

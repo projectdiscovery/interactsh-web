@@ -451,7 +451,7 @@ const HomePage = () => {
                   {` at `}
                   <span>
                     {format(
-                      selectedInteractionData.timestamp,
+                      new Date(selectedInteractionData.timestamp),
                       "yyyy-mm-dd_hh:mm"
                     )}
                   </span>
