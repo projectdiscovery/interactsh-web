@@ -1,6 +1,8 @@
 import * as IOE from "fp-ts/IOEither";
 import { flow, pipe } from "fp-ts/function";
 import * as E from "fp-ts/Either";
+import * as A from "fp-ts/ReadonlyArray";
+import * as R from "fp-ts/Record";
 import * as O from "fp-ts/Option";
 import { parseO, stringifyO, unJSONString } from "fp-ts-std/JSON";
 
@@ -52,7 +54,39 @@ export const writeStoredData = (key: string) =>
     IOE.flatten
   );
 
+export type TupleToRecord<X extends readonly string[]> = {
+  [K in X[number]]: null
+}
+
+/*
+ * @example
+ *
+ * createRecord(
+ *  ["dns", "http", "https"] as const // Must include "as const"
+ * )
+ */
+export const createRecord = <X extends readonly string[]>(arr: X): TupleToRecord<X> => pipe(
+  arr,
+  A.reduce({ [arr[0]]: null}, (a, b) => ({ ...a, [b]: null })),
+  x => x as TupleToRecord<X>
+);
+
+// Must include "as const" to capture type information.
+const protocals = [
+  "dns", "http", "https", "arp"
+] as const;
+
+const dnsRecordTypes = [
+  "A", "AAAA", "ALIAS", "CNAME", "MX", "NS", "PTR", "SOA"
+] as const;
+
 const Data = summon((F) => F.interface({
+  "full-id": F.string(),
+  protocal: F.keysOf(createRecord(protocals)),
+  "q-type": F.keysOf(createRecord(dnsRecordTypes)),
+  "raw-request": F.string(),
+  "raw-response": F.string(),
+  timestamp: F.string(), // TODO: Convert to ISODate
   "unique-id": F.string()
 }, "Data"))
 

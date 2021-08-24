@@ -31,4 +31,8 @@ describe("localStorage", () => {
     // Test that data is retreived and decoded correctly.
     expect(data).toEqual(E.right(testData));
   });
+
+  it("createRecord", () => {
+    expect(_.createRecord(["a", "b"])).toEqual({ a: null, b: null })
+  })
 });
