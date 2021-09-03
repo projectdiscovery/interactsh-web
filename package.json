@@ -61,7 +61,7 @@
     "zbase32": "github:projectdiscovery/zbase32"
   },
   "scripts": {
-    "start": "PORT=80 craco start",
+    "start": "PORT=3000 craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
