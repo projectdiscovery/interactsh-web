@@ -1,20 +1,19 @@
-import * as IOE from "fp-ts/IOEither";
-import { flow, pipe } from "fp-ts/function";
-import * as E from "fp-ts/Either";
-import * as A from "fp-ts/ReadonlyArray";
-import * as R from "fp-ts/Record";
-import * as O from "fp-ts/Option";
-import { parseO, stringifyO, unJSONString } from "fp-ts-std/JSON";
-
 import { AsOpaque, summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
-import type { AType, EType } from '@morphic-ts/summoners'
+import type { AType, EType } from "@morphic-ts/summoners";
 import { getItem, setItem } from "fp-ts-local-storage";
-import * as t from "io-ts";
 import { curry2 } from "fp-ts-std/Function";
+import { parseO, stringifyO, unJSONString } from "fp-ts-std/JSON";
+import * as E from "fp-ts/Either";
+import { flow, pipe } from "fp-ts/function";
+import * as IOE from "fp-ts/IOEither";
+import * as O from "fp-ts/Option";
+import * as RA from "fp-ts/ReadonlyArray";
+// import * as R from "fp-ts/Record";
+import * as t from "io-ts";
 
-import { ThemeName } from "theme";
-import View from "lib/types/view";
 import Tab from "lib/types/tab";
+import View from "lib/types/view";
+import { ThemeName } from "theme";
 
 const { summon } = summonFor<{}>({});
 
@@ -31,7 +30,7 @@ const objToStr = flow(stringifyO, O.map(unJSONString));
 export const getStoredData = <A>(key: string, decoder: t.Decoder<unknown, A>) =>
   pipe(
     IOE.tryCatch(getItem(key), E.toError),
-    IOE.map(IOE.fromOption(() => new Error("Error retreiving object at key"))),
+    IOE.map(IOE.fromOption(() => new Error(`Error retreiving object at key: ${key}`))),
     IOE.flatten,
     IOE.map(
       flow(
@@ -55,8 +54,8 @@ export const writeStoredData = (key: string) =>
   );
 
 export type TupleToRecord<X extends readonly string[]> = {
-  [K in X[number]]: null
-}
+  [K in X[number]]: null;
+};
 
 /*
  * @example
@@ -65,50 +64,106 @@ export type TupleToRecord<X extends readonly string[]> = {
  *  ["dns", "http", "https"] as const // Must include "as const"
  * )
  */
-export const createRecord = <X extends readonly string[]>(arr: X): TupleToRecord<X> => pipe(
-  arr,
-  A.reduce({ [arr[0]]: null}, (a, b) => ({ ...a, [b]: null })),
-  x => x as TupleToRecord<X>
-);
+export const createRecord = <X extends readonly string[]>(arr: X): TupleToRecord<X> =>
+  pipe(
+    arr,
+    RA.reduce({ [arr[0]]: null }, (a, b) => ({ ...a, [b]: null })),
+    (x) => x as TupleToRecord<X>
+  );
 
 // Must include "as const" to capture type information.
-const protocals = [
-  "dns", "http", "https", "arp"
-] as const;
+const protocols = ["dns", "http", "https", "arp", "smtp"] as const;
 
-const dnsRecordTypes = [
-  "A", "AAAA", "ALIAS", "CNAME", "MX", "NS", "PTR", "SOA"
-] as const;
+const dnsRecordTypes = ["A", "AAAA", "ALIAS", "CNAME", "MX", "NS", "PTR", "SOA", "TXT"] as const;
 
-const Data = summon((F) => F.interface({
-  "full-id": F.string(),
-  protocal: F.keysOf(createRecord(protocals)),
-  "q-type": F.keysOf(createRecord(dnsRecordTypes)),
-  "raw-request": F.string(),
-  "raw-response": F.string(),
-  timestamp: F.string(), // TODO: Convert to ISODate
-  "unique-id": F.string()
-}, "Data"))
+export const Data_ = summon((F) =>
+  F.intersection(
+    F.interface(
+      {
+        id: F.string(),
+        "full-id": F.string(),
+        protocol: F.keysOf(createRecord(protocols)),
+        "raw-request": F.string(),
+        "remote-address": F.string(),
+        timestamp: F.string(), // TODO: Convert to ISODate
+        "unique-id": F.string(),
+      },
+      ""
+      ),
+      F.partial(
+        {
+        "raw-response": F.string(),
+        "q-type": F.keysOf(createRecord(dnsRecordTypes)),
+        "smtp-from": F.string(),
+      },
+      ""
+    )
+  )("Data")
+);
+export interface Data extends AType<typeof Data_> {}
+export interface DataRaw extends EType<typeof Data_> {}
+export const Data = AsOpaque<DataRaw, Data>()(Data_);
+
+// const FilteredData_ = summon((F) =>
+//   F.intersection(
+//     F.interface(
+//       {
+//         id: F.string(),
+//         "full-id": F.string(),
+//         protocol: F.keysOf(createRecord(protocols)),
+//         "raw-request": F.string(),
+//         "raw-response": F.string(),
+//         "remote-address": F.string(),
+//         timestamp: F.string(), // TODO: Convert to ISODate
+//         "unique-id": F.string()
+//       },
+//       ""
+//     ),
+//     F.partial(
+//       {
+//         "q-type": F.keysOf(createRecord(dnsRecordTypes))
+//       },
+//       ""
+//     )
+//   )("FilteredData")
+// );
+// export interface FilteredData extends AType<typeof FilteredData_> {}
+// export interface FilteredDataRaw extends EType<typeof FilteredData_> {}
+// export const FilteredData = AsOpaque<FilteredDataRaw, FilteredData>()(
+//   FilteredData_
+// );
 
 // Data structure of localStorage
-export const StoredData_ = summon((F) => F.interface({
-  view: View(F),
-  notes: F.array(F.string()),
-  increment: F.number(),
-  correlationId: F.string(),
-  theme: ThemeName(F),
-  data: F.array(Data(F)),
-  tabs: F.array(Tab(F)),
-  selectedTab: Tab(F),
+export const StoredData_ = summon((F) =>
+  F.intersection(
+    // Required
+    F.interface(
+      {
+        view: View(F),
+        increment: F.number(),
+        correlationId: F.string(),
+        theme: ThemeName(F),
 
-  publicKey: F.string(),
-  privateKey: F.string(),
-  secretKey: F.string(),
-  aesKey: F.string(),
+        publicKey: F.string(),
+        privateKey: F.string(),
+        secretKey: F.string(),
 
-  host: F.string()
-}, "StoredData"))
+        host: F.string(),
+        token: F.string(),
+        selectedTab: Tab(F),
+        tabs: F.array(Tab(F)),
+        data: F.array(Data(F)),
+        notes: F.array(F.string()),
+        aesKey: F.string(),
+      },
+      ""
+    ),
+
+    // Optional
+    F.partial({}, "")
+  )("StoredData")
+);
 
 export interface StoredData extends AType<typeof StoredData_> {}
 export interface StoredDataRaw extends EType<typeof StoredData_> {}
-export const StoredData = AsOpaque<StoredDataRaw, StoredData>()(StoredData_)
+export const StoredData = AsOpaque<StoredDataRaw, StoredData>()(StoredData_);

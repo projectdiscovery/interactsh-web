@@ -1,3 +1,3 @@
 declare module 'xid-js' {
-  export type next = () => string
+  export declare const next: () => string;
 }

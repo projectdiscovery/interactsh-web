@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import downloadData from "js-file-download";
-import format from "date-fns/format";
 
+import { matchConfig } from "@babakness/exhaustive-type-checking";
+import format from "date-fns/format";
+import * as E from "fp-ts/Either";
+import { pipe } from "fp-ts/function";
+import * as J from "fp-ts/Json";
+import * as O from "fp-ts/Option";
+import * as R from "fp-ts/Record";
+import downloadData from "js-file-download";
+
+import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
+import { ReactComponent as DownloadIcon } from "assets/svg/download.svg";
+import { ReactComponent as SwitchIcon } from "assets/svg/switch.svg";
+import { ReactComponent as ThemeBlueButtonIcon } from "assets/svg/theme_blue_button.svg";
+import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_button.svg";
+import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
 import { ThemeName, showThemeName } from "theme";
 import "./styles.scss";
 
-import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_button.svg";
-import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
-import { ReactComponent as ThemeBlueButtonIcon } from "assets/svg/theme_blue_button.svg";
-import { ReactComponent as DownloadIcon } from "assets/svg/download.svg";
-import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
-import { ReactComponent as SwitchIcon } from "assets/svg/switch.svg";
-
-import * as R from "fp-ts/Record";
-import * as O from "fp-ts/Option";
-import * as J from "fp-ts/Json";
-import * as E from "fp-ts/Either";
-import { pipe } from "fp-ts/function";
-
-import { matchConfig } from "@babakness/exhaustive-type-checking";
 import CustomHost from "../customHost";
 
 const themeIcon = matchConfig<ThemeName>()({
@@ -36,18 +35,13 @@ const getData = (key: string) =>
 interface HeaderP {
   handleThemeSelection: (t: ThemeName) => void;
   theme: ThemeName;
+  host: string;
   handleAboutPopupVisibility: () => void;
 }
 
-const Header = ({
-  handleThemeSelection,
-  theme,
-  handleAboutPopupVisibility,
-}: HeaderP) => {
+const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility }: HeaderP) => {
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
-  const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] =
-    useState(false);
-  const host = localStorage.getItem("host");
+  const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
 
   const handleThemeSwitchesVisibility = () => {
     setIsSelectorVisible(!isSelectorVisible);
@@ -69,7 +63,7 @@ const Header = ({
       E.getOrElse(() => "An error occured") // TODO: Handle error case.
     );
 
-    const fileName = `${format(Date.now(), "yyyy-mm-dd_hh:mm")  }.json`;
+    const fileName = `${format(Date.now(), "yyyy-mm-dd_hh:mm")}.json`;
     downloadData(values, fileName);
   };
 
@@ -78,9 +72,9 @@ const Header = ({
 
   const isThemeSelected = (t: ThemeName) => t === theme;
   const themeButtonStyle = (t: ThemeName) =>
-    `${isSelectorVisible && "__selector_visible"} ${
-      isThemeSelected(t) && "__selected"
-    } ${!isSelectorVisible && "__without_bg"}`;
+    `${isSelectorVisible && "__selector_visible"} ${isThemeSelected(t) && "__selected"} ${
+      !isSelectorVisible && "__without_bg"
+    }`;
 
   const ThemeButton = ({ theme: t }: { theme: ThemeName }) => (
     <button type="button" className={themeButtonStyle(t)} onClick={setTheme(t)}>
@@ -117,7 +111,9 @@ const Header = ({
         </button>
         <div className="vertical_bar" />
         <a href="/#/terms">Terms</a>
-        <button type="button" onClick={handleAboutPopupVisibility}>About</button>
+        <button type="button" onClick={handleAboutPopupVisibility}>
+          About
+        </button>
       </div>
       {isCustomHostDialogVisible && (
         <CustomHost handleCloseDialog={handleCustomHostDialogVisibility} />

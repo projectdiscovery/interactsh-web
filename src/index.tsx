@@ -1,14 +1,11 @@
 import React from "react";
+
 import ReactDOM from "react-dom";
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  withRouter,
-} from "react-router-dom";
-import "./styles.scss";
 import ReactGA from "react-ga";
+import { HashRouter as Router, Route, Switch, withRouter } from "react-router-dom";
+import "./styles.scss";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 import HomePage from "./pages/homePage";
 import TermsPage from "./pages/termsPage";
 
@@ -25,11 +22,7 @@ const AnimatedSwitch = withRouter(({ location }) => {
   document.getElementsByTagName("html")[0].style.overflow = "visible";
   return (
     <TransitionGroup>
-      <CSSTransition
-        key={location.pathname}
-        classNames="slide slide"
-        timeout={100}
-      >
+      <CSSTransition key={location.pathname} classNames="slide slide" timeout={100}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/terms" component={TermsPage} />

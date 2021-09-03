@@ -1,21 +1,17 @@
 import React, { Suspense } from "react";
+
 import { ErrorBoundary } from "react-error-boundary";
 
-import View from 'lib/types/view';
+import { Data } from "lib/localStorage";
+import View from "lib/types/view";
 
-import {
-  IssuesListFallback,
-  IssuesListErrorFallback,
-} from "../../helpers/fallback-loaders";
-import "./styles.scss";
 import DetailedRequest from "../../components/detailedRequest";
+import { IssuesListFallback, IssuesListErrorFallback } from "../../helpers/fallback-loaders";
+import "./styles.scss";
 
 interface RequestDetailsWrapperP {
   view: View;
-  selectedInteractionData: {
-    "raw-request": object;
-    "raw-response": object;
-  };
+  selectedInteractionData: Data;
 }
 
 const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
@@ -32,7 +28,7 @@ const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
         )}
       >
         <Suspense fallback={<IssuesListFallback />}>
-          {view === "request" ? (
+          {view === "request" || selectedInteractionData.protocol === "smtp" ? (
             <DetailedRequest
               view={view}
               data={`${selectedInteractionData["raw-request"]}`}

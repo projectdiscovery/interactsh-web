@@ -1,11 +1,18 @@
 import React from "react";
+
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import "./styles.scss";
 import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
 
-const DetailedRequest = (props) => {
-  const { title, data, view } = props;
+interface DetailedRequestP {
+  title: string;
+  data: string;
+  view: string;
+}
+
+const DetailedRequest = ({ title, data, view }: DetailedRequestP) => {
   const copyDataToClipboard = () => {
     navigator.clipboard.writeText(data);
   };

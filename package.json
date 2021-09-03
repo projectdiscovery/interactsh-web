@@ -61,7 +61,7 @@
     "zbase32": "github:projectdiscovery/zbase32"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "PORT=80 craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
@@ -88,6 +88,7 @@
   "devDependencies": {
     "@types/jest-axe": "^3.5.2",
     "@types/prismjs": "^1.16.5",
+    "@types/react-syntax-highlighter": "^13.5.2",
     "@types/styled-components": "^5.1.12",
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.25.0",

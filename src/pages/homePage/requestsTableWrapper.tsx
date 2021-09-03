@@ -1,40 +1,42 @@
 import React, { Suspense } from "react";
+
 import { ErrorBoundary } from "react-error-boundary";
+
+import { Data } from "lib/localStorage";
+
+import RequestsTable from "../../components/requestsTable";
 import {
   RepoSidebarListFallback,
   RepoSidebarListErrorFallback,
 } from "../../helpers/fallback-loaders";
 import "./styles.scss";
-import RequestsTable from "../../components/requestsTable";
 
 interface RequestsTableWrapperP {
-  data: object[];
-  handleRowClick: () => void;
-  selectedInteraction: void;
+  data: Data[];
+  handleRowClick: (id: string) => void;
+  selectedInteraction: string;
 }
 
-const RequestsTableWrapper = (props: RequestsTableWrapperP) => {
-  const { data, handleRowClick, selectedInteraction } = props;
-  // console.log('newData');
-  return (
-    <div className="requests_table_container">
-      <ErrorBoundary
-        FallbackComponent={({ resetErrorBoundary }) => (
-          <RepoSidebarListErrorFallback
-            retry={resetErrorBoundary}
-          />
-        )}
-      >
-        <Suspense fallback={<RepoSidebarListFallback />}>
-          <RequestsTable
-            data={[...data]}
-            handleRowClick={handleRowClick}
-            selectedInteraction={selectedInteraction}
-          />
-        </Suspense>
-      </ErrorBoundary>
-    </div>
-  );
-};
+const RequestsTableWrapper = ({
+  data,
+  handleRowClick,
+  selectedInteraction,
+}: RequestsTableWrapperP): JSX.Element => (
+  <div className="requests_table_container">
+    <ErrorBoundary
+      FallbackComponent={({ resetErrorBoundary }) => (
+        <RepoSidebarListErrorFallback retry={resetErrorBoundary} />
+      )}
+    >
+      <Suspense fallback={<RepoSidebarListFallback />}>
+        <RequestsTable
+          data={[...data]}
+          handleRowClick={handleRowClick}
+          selectedInteraction={selectedInteraction}
+        />
+      </Suspense>
+    </ErrorBoundary>
+  </div>
+);
 
 export default RequestsTableWrapper;

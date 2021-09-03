@@ -1,11 +1,10 @@
+import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import * as f from "fp-ts-std/Function";
 import * as ss from "fp-ts-std/String";
+import { flow, pipe } from "fp-ts/function";
+import { Show } from "fp-ts/Show";
 import * as S from "fp-ts/string";
 import * as T from "fp-ts/Tuple";
-import { Show } from "fp-ts/Show";
-import { flow, pipe } from "fp-ts/function";
-
-import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import * as t from "io-ts";
 import { match } from "ts-pattern";
 
@@ -22,9 +21,7 @@ const capitalize = flow(
 
 const { summon } = summonFor<{}>({});
 
-export const ThemeName = summon((F) =>
-  F.keysOf({ dark: null, synth: null, blue: null })
-);
+export const ThemeName = summon((F) => F.keysOf({ dark: null, synth: null, blue: null }));
 export type ThemeName = t.TypeOf<typeof ThemeName.type>;
 
 export interface Theme {

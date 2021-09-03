@@ -62,7 +62,7 @@
       text-align: left;
       height: 4rem;
       padding: 1rem;
-      border: 1px solid #6588ff;
+      border: 1px solid #1c1c1c;
       background: transparent;
       border-radius: 0.6rem;
       margin-bottom: 2rem;
@@ -71,6 +71,12 @@
       }
       &:focus {
         outline: none;
+        box-shadow: none;
+        border: 1px solid #6588ff;
+      }
+      &:disabled {
+        background: #101010;
+        border: 1px solid #101010;
       }
     }
     .error {
