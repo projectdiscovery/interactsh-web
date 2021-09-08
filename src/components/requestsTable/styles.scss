@@ -18,28 +18,108 @@
   width: 100%;
   color: #fff;
   text-align: left;
+  height: 100%;
   border-spacing: 0;
 
+  & > tbody {
+    display: block;
+    height: calc(100% - 5.5rem);
+    overflow: auto;
+    font-size: 1.5rem;
+    color: #ffffff;
+    tr {
+      cursor: pointer;
+      display: flex;
+      td {
+        border-bottom: 1px solid rgba(151, 151, 151, 0.25);
+        padding: 0 1.5rem;
+        height: 6rem;
+        &:nth-of-type(1) {
+          width: 15%;
+        }
+        &:nth-of-type(3) {
+          width: 20%;
+        }
+      }
+    }
+  }
+  & > thead,
+  & > tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
   & > thead {
+    // width: calc(100% - 1em);
     font-size: 1.1rem;
     color: #ffffff;
     th {
       height: 5.5rem;
       padding: 0 1.5rem;
-    }
-  }
-  & > tbody {
-    font-size: 1.5rem;
-    color: #ffffff;
-    tr {
-      cursor: pointer;
-      td {
-        border-bottom: 1px solid rgba(151, 151, 151, 0.25);
-        padding: 0 1.5rem;
-        height: 6rem;
+      &:nth-of-type(1) {
+        width: 15%;
+      }
+      &:nth-of-type(3) {
+        width: 20%;
+        cursor: pointer;
+      }
+      & > div {
+        position: relative;
+        & > div {
+          display: flex;
+          align-items: center;
+          svg {
+            margin-left: 1rem;
+            margin-top: -0.2rem;
+          }
+        }
+
+        .filter_dropdown {
+          position: absolute;
+          top: 2rem;
+          right: -0.5rem;
+          padding: 1.5rem 1.5rem 0 1.5rem;
+          font-size: 1.4rem;
+          color: #ffffff;
+          border-radius: 0.6rem;
+          li {
+            margin-bottom: 1.5rem;
+            width: 100%;
+
+            label {
+              cursor: pointer;
+              align-items: center;
+              display: flex;
+              input {
+                margin-right: 1.5rem;
+              }
+            }
+          }
+        }
       }
     }
   }
+
+  // & > thead {
+  //   font-size: 1.1rem;
+  //   color: #ffffff;
+  //   th {
+  //     height: 5.5rem;
+  //     padding: 0 1.5rem;
+  //   }
+  // }
+  // & > tbody {
+  //   font-size: 1.5rem;
+  //   color: #ffffff;
+  //   tr {
+  //     cursor: pointer;
+  //     td {
+  //       border-bottom: 1px solid rgba(151, 151, 151, 0.25);
+  //       padding: 0 1.5rem;
+  //       height: 6rem;
+  //     }
+  //   }
+  // }
 }
 .placeholder_row {
   height: 100%;

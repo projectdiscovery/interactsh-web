@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 
 import format from "date-fns/format";
-import { pipe } from "fp-ts/function";
-import * as IOE from "fp-ts/IOEither";
+// import { pipe } from "fp-ts/function";
+// import * as IOE from "fp-ts/IOEither";
 import NodeRSA from "node-rsa";
 import { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -25,6 +25,7 @@ import {
   register,
   copyDataToClipboard,
   clearIntervals,
+  deregister,
 } from "lib";
 import Tab from "lib/types/tab";
 import View from "lib/types/view";
@@ -32,44 +33,18 @@ import { ThemeName, getTheme } from "theme";
 
 import Header from "../../components/header";
 import TabSwitcher from "../../components/tabSwitcher";
-import { writeStoredData, getStoredData, StoredData, Data } from "../../lib/localStorage";
+import {
+  writeStoredData,
+  getStoredData,
+  StoredData,
+  Data,
+  defaultStoredData,
+} from "../../lib/localStorage";
 import RequestDetailsWrapper from "./requestDetailsWrapper";
 import RequestsTableWrapper from "./requestsTableWrapper";
 
 const HomePage = () => {
-  const defaultStoredData: StoredData = {
-    theme: "dark",
-    privateKey: "",
-    publicKey: "",
-    correlationId: "",
-    secretKey: "ssdfd",
-    data: [],
-    aesKey: "",
-    notes: [],
-    view: "up_and_down",
-    increment: 1,
-    host: "interact.sh",
-    tabs: [],
-    token: "",
-    selectedTab: {
-      "unique-id": "",
-      correlationId: "",
-      name: "1",
-      url: "",
-      note: "",
-    },
-  };
-
-  const [storedData, setStoredData] = useState<StoredData>(
-    pipe(
-      getStoredData("app", StoredData.type.asDecoder()),
-      IOE.match(
-        () => defaultStoredData,
-        (d) => d
-      )
-    )()
-  );
-
+  const [storedData, setStoredData] = useState<StoredData>(getStoredData());
   const [isNotesOpen, setIsNotesOpen] = useState<boolean>(false);
   const [filteredData, setFilteredData] = useState<Array<Data>>([]);
   const [selectedInteraction, setSelectedInteraction] = useState<string | null>(null);
@@ -77,13 +52,7 @@ const HomePage = () => {
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState<boolean>(false);
 
   const processPolledData = () => {
-    const dataFromLocalStorage = pipe(
-      getStoredData("app", StoredData.type.asDecoder()),
-      IOE.match(
-        () => defaultStoredData,
-        (d) => d
-      )
-    )();
+    const dataFromLocalStorage = getStoredData();
     const { privateKey, aesKey, host, token, data, correlationId, secretKey } =
       dataFromLocalStorage;
 
@@ -103,11 +72,11 @@ const HomePage = () => {
             data: combinedData,
             aesKey: decryptedAESKey,
           });
-          writeStoredData("app")({
+          writeStoredData({
             ...dataFromLocalStorage,
             data: combinedData,
             aesKey: decryptedAESKey,
-          })();
+          });
 
           const newData = combinedData
             .filter((item) => item["unique-id"] === dataFromLocalStorage.selectedTab["unique-id"])
@@ -117,6 +86,20 @@ const HomePage = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    writeStoredData(storedData);
+  }, [storedData]);
+
+  // const [storedData, setStoredData] = useState<StoredData>(
+  //   pipe(
+  //     getStoredData("app", StoredData.type.asDecoder()),
+  //     IOE.match(
+  //       () => defaultStoredData,
+  //       (d) => d
+  //     )
+  //   )()
+  // );
 
   useEffect(() => {
     if (storedData.correlationId === "") {
@@ -149,7 +132,7 @@ const HomePage = () => {
             tabs: tabData,
             selectedTab: tabData[0],
           });
-          writeStoredData("app")({
+          writeStoredData({
             ...defaultStoredData,
             privateKey: priv,
             publicKey: pub,
@@ -158,7 +141,7 @@ const HomePage = () => {
             increment: 1,
             tabs: tabData,
             selectedTab: tabData[0],
-          })();
+          });
           // processPolledData();
           clearIntervals();
           window.setInterval(() => {
@@ -192,10 +175,10 @@ const HomePage = () => {
       ...storedData,
       theme: value,
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       theme: value,
-    })();
+    });
   };
 
   // "Select a tab" function
@@ -204,10 +187,10 @@ const HomePage = () => {
       ...storedData,
       selectedTab: tab,
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       selectedTab: tab,
-    })();
+    });
     setSelectedInteraction(null);
   };
 
@@ -229,12 +212,12 @@ const HomePage = () => {
       selectedTab: tabData,
       increment: newIncrement,
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       tabs: storedData.tabs.concat([tabData]),
       selectedTab: tabData,
       increment: newIncrement,
-    })();
+    });
   };
 
   // "Show or hide notes" function
@@ -256,10 +239,10 @@ const HomePage = () => {
       ...storedData,
       tabs: filteredTabList,
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       tabs: filteredTabList,
-    })();
+    });
   };
 
   // "Selecting a specific interaction" function
@@ -282,12 +265,12 @@ const HomePage = () => {
       selectedTab: { ...filteredTempTabsList[0] },
       data: filteredTempTabsData,
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       tabs: [...filteredTempTabsList],
       selectedTab: { ...filteredTempTabsList[0] },
       data: filteredTempTabsData,
-    })();
+    });
   };
 
   // "Renaming a tab" function
@@ -305,10 +288,10 @@ const HomePage = () => {
       ...storedData,
       tabs: filteredTabList.concat(tempTab),
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       tabs: filteredTabList.concat(tempTab),
-    })();
+    });
   };
 
   // "View selector" function
@@ -317,10 +300,10 @@ const HomePage = () => {
       ...storedData,
       view: value,
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       view: value,
-    })();
+    });
   };
 
   // "Show or hide about popup" function
@@ -336,11 +319,56 @@ const HomePage = () => {
       ...storedData,
       data: tempData,
     });
-    writeStoredData("app")({
+    writeStoredData({
       ...storedData,
       data: tempData,
-    })();
+    });
     setFilteredData([]);
+  };
+
+  const handleReset = () => {
+    // deregister(storedData.secretKey, storedData.correlationId, storedData.host).then(() => {
+    //   localStorage.clear();
+    //   window.location.reload();
+    // });
+
+    const key = new NodeRSA({ b: 2048 });
+    const pub = key.exportKey("pkcs8-public-pem");
+    const priv = key.exportKey("pkcs8-private-pem");
+    const correlation = xid.next().toString();
+    const secret = uuidv4().toString();
+
+    register(pub, secret, correlation, storedData.host, storedData.token)
+      .then(() => {
+        deregister(storedData.secretKey, storedData.correlationId, storedData.host).then(() => {
+          window.location.reload();
+        });
+        localStorage.clear();
+        const { url, uniqueId } = generateUrl(correlation, 1, storedData.host);
+        const tabData: Tab[] = [
+          {
+            "unique-id": uniqueId,
+            correlationId: correlation,
+            name: (1).toString(),
+            url,
+            note: "",
+          },
+        ];
+        writeStoredData({
+          ...defaultStoredData,
+          privateKey: priv,
+          publicKey: pub,
+          correlationId: correlation,
+          secretKey: secret,
+          increment: 1,
+          host: storedData.host,
+          token: storedData.token,
+          tabs: tabData,
+          selectedTab: tabData[0],
+        });
+        clearIntervals();
+      })
+      .catch(() => {});
   };
 
   const selectedTabsIndex = storedData.tabs.findIndex(
@@ -387,6 +415,7 @@ const HomePage = () => {
           theme={storedData.theme}
           host={storedData.host}
           handleThemeSelection={handleThemeSelection}
+          handleReset={handleReset}
         />
         <TabSwitcher
           handleTabButtonClick={handleTabButtonClick}
@@ -419,6 +448,7 @@ const HomePage = () => {
               data={[...filteredData]}
               selectedInteraction={selectedInteraction as any}
               handleRowClick={handleRowClick}
+              filter={storedData.filter}
             />
             <div className="notes secondary_bg">
               <div className="detailed_notes" style={{ display: isNotesOpen ? "flex" : "none" }}>

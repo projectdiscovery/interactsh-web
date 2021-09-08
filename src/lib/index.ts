@@ -89,10 +89,10 @@ export const processData = (aesKey: string, polledData: PolledData) => {
       ...JSON.parse(item),
       id: uuidv4(),
     }));
-    console.log('parsedData');
+    console.log("parsedData");
     console.log(decryptedData);
   }
-  
+
   return parsedData;
 };
 
@@ -129,6 +129,28 @@ export const register = (
         throw new Error(res.statusText);
       }
       return "Registered successfully.";
+    })
+    .then((data) => data);
+};
+
+export const deregister = (secretKey: string, correlationId: string, host: string) => {
+  const registerFetcherOptions = {
+    "secret-key": secretKey,
+    "correlation-id": correlationId,
+  };
+
+  return fetch(`https://${host}/deregister`, {
+    method: "POST",
+    cache: "no-cache",
+    headers: { "Content-Type": "application/json" },
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(registerFetcherOptions),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      return "DeRegistered successfully.";
     })
     .then((data) => data);
 };

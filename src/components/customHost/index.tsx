@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { pipe } from "fp-ts/function";
-import * as IOE from "fp-ts/IOEither";
+// import { pipe } from "fp-ts/function";
+// import * as IOE from "fp-ts/IOEither";
 import NodeRSA from "node-rsa";
 import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
@@ -9,7 +9,7 @@ import xid from "xid-js";
 import { ReactComponent as ArrowRightIcon } from "assets/svg/arrow_right.svg";
 import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
 import "./styles.scss";
-import { clearIntervals, generateUrl, register } from "lib";
+import { clearIntervals, deregister, generateUrl, register } from "lib";
 import Tab from "lib/types/tab";
 
 import { getStoredData, StoredData, writeStoredData } from "../../lib/localStorage";
@@ -40,15 +40,15 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
       url: "",
       note: "",
     },
+    filter: {
+      dns: true,
+      http: true,
+      smtp: true,
+    },
   };
-  const data = pipe(
-    getStoredData("app", StoredData.type.asDecoder()),
-    IOE.match(
-      () => defaultStoredData,
-      (d) => d
-    )
-  )();
-  const { host, token } = data;
+  
+  const data = getStoredData();
+  const { host, token, correlationId, secretKey } = data;
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState(false);
   const [isHostValid, setIsHostValid] = useState(true);
   const [inputValue, setInputValue] = useState<string>(host === "interact.sh" ? "" : host);
@@ -76,8 +76,10 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
 
       register(pub, secret, correlation, inputValue.replace(/(^\w+:|^)\/\//, ""), tokenInputValue)
         .then(() => {
+          deregister(secretKey, correlationId, host).then(() => {
+            window.location.reload();
+          });
           localStorage.clear();
-
           const { url, uniqueId } = generateUrl(
             correlation,
             1,
@@ -92,7 +94,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
               note: "",
             },
           ];
-          writeStoredData("app")({
+          writeStoredData({
             ...defaultStoredData,
             privateKey: priv,
             publicKey: pub,
@@ -103,9 +105,9 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             token: tokenInputValue,
             tabs: tabData,
             selectedTab: tabData[0],
-          })();
+          });
           clearIntervals();
-          window.location.reload();
+          // window.location.reload();
           handleCloseDialog();
           setIsHostValid(true);
         })

@@ -37,9 +37,10 @@ interface HeaderP {
   theme: ThemeName;
   host: string;
   handleAboutPopupVisibility: () => void;
+  handleReset: () => void;
 }
 
-const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility }: HeaderP) => {
+const Header = ({ handleThemeSelection, theme, host, handleReset, handleAboutPopupVisibility }: HeaderP) => {
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
   const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
 
@@ -50,10 +51,10 @@ const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility 
     setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
   };
 
-  const handleReset = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
+  // const handleReset = () => {
+  //   localStorage.clear();
+  //   window.location.reload();
+  // };
 
   const handleDataExport = () => {
     const values = pipe(
