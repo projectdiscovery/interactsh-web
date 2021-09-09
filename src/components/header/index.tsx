@@ -15,6 +15,7 @@ import { ReactComponent as SwitchIcon } from "assets/svg/switch.svg";
 import { ReactComponent as ThemeBlueButtonIcon } from "assets/svg/theme_blue_button.svg";
 import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_button.svg";
 import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
+import ResetPopup from "components/resetPopup";
 import { ThemeName, showThemeName } from "theme";
 import "./styles.scss";
 
@@ -40,9 +41,16 @@ interface HeaderP {
   handleReset: () => void;
 }
 
-const Header = ({ handleThemeSelection, theme, host, handleReset, handleAboutPopupVisibility }: HeaderP) => {
+const Header = ({
+  handleThemeSelection,
+  theme,
+  host,
+  handleReset,
+  handleAboutPopupVisibility,
+}: HeaderP) => {
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
   const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
+  const [isResetPopupDialog, setIsResetPopupDialog] = useState(false);
 
   const handleThemeSwitchesVisibility = () => {
     setIsSelectorVisible(!isSelectorVisible);
@@ -50,11 +58,9 @@ const Header = ({ handleThemeSelection, theme, host, handleReset, handleAboutPop
   const handleCustomHostDialogVisibility = () => {
     setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
   };
-
-  // const handleReset = () => {
-  //   localStorage.clear();
-  //   window.location.reload();
-  // };
+  const handleResetPopupDialogVisibility = () => {
+    setIsResetPopupDialog(!isResetPopupDialog);
+  };
 
   const handleDataExport = () => {
     const values = pipe(
@@ -118,6 +124,9 @@ const Header = ({ handleThemeSelection, theme, host, handleReset, handleAboutPop
       </div>
       {isCustomHostDialogVisible && (
         <CustomHost handleCloseDialog={handleCustomHostDialogVisibility} />
+      )}
+      {isCustomHostDialogVisible && (
+        <ResetPopup handleCloseDialog={handleResetPopupDialogVisibility} />
       )}
     </div>
   );

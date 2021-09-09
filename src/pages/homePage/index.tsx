@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 
 import format from "date-fns/format";
-// import { pipe } from "fp-ts/function";
-// import * as IOE from "fp-ts/IOEither";
 import NodeRSA from "node-rsa";
 import { ThemeProvider } from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -72,11 +70,6 @@ const HomePage = () => {
             data: combinedData,
             aesKey: decryptedAESKey,
           });
-          writeStoredData({
-            ...dataFromLocalStorage,
-            data: combinedData,
-            aesKey: decryptedAESKey,
-          });
 
           const newData = combinedData
             .filter((item) => item["unique-id"] === dataFromLocalStorage.selectedTab["unique-id"])
@@ -90,16 +83,6 @@ const HomePage = () => {
   useEffect(() => {
     writeStoredData(storedData);
   }, [storedData]);
-
-  // const [storedData, setStoredData] = useState<StoredData>(
-  //   pipe(
-  //     getStoredData("app", StoredData.type.asDecoder()),
-  //     IOE.match(
-  //       () => defaultStoredData,
-  //       (d) => d
-  //     )
-  //   )()
-  // );
 
   useEffect(() => {
     if (storedData.correlationId === "") {
@@ -132,17 +115,6 @@ const HomePage = () => {
             tabs: tabData,
             selectedTab: tabData[0],
           });
-          writeStoredData({
-            ...defaultStoredData,
-            privateKey: priv,
-            publicKey: pub,
-            correlationId,
-            secretKey: secret,
-            increment: 1,
-            tabs: tabData,
-            selectedTab: tabData[0],
-          });
-          // processPolledData();
           clearIntervals();
           window.setInterval(() => {
             processPolledData();
@@ -155,7 +127,7 @@ const HomePage = () => {
     }
   }, []);
 
-  // // Recalculate data when a tab is selected
+  // Recalculate data when a tab is selected
   useEffect(() => {
     if (storedData.tabs.length > 0) {
       clearIntervals();
@@ -175,19 +147,11 @@ const HomePage = () => {
       ...storedData,
       theme: value,
     });
-    writeStoredData({
-      ...storedData,
-      theme: value,
-    });
   };
 
   // "Select a tab" function
   const handleTabButtonClick = (tab: Tab) => {
     setStoredData({
-      ...storedData,
-      selectedTab: tab,
-    });
-    writeStoredData({
       ...storedData,
       selectedTab: tab,
     });
@@ -207,12 +171,6 @@ const HomePage = () => {
       note: "",
     };
     setStoredData({
-      ...storedData,
-      tabs: storedData.tabs.concat([tabData]),
-      selectedTab: tabData,
-      increment: newIncrement,
-    });
-    writeStoredData({
       ...storedData,
       tabs: storedData.tabs.concat([tabData]),
       selectedTab: tabData,
@@ -239,10 +197,6 @@ const HomePage = () => {
       ...storedData,
       tabs: filteredTabList,
     });
-    writeStoredData({
-      ...storedData,
-      tabs: filteredTabList,
-    });
   };
 
   // "Selecting a specific interaction" function
@@ -265,12 +219,6 @@ const HomePage = () => {
       selectedTab: { ...filteredTempTabsList[0] },
       data: filteredTempTabsData,
     });
-    writeStoredData({
-      ...storedData,
-      tabs: [...filteredTempTabsList],
-      selectedTab: { ...filteredTempTabsList[0] },
-      data: filteredTempTabsData,
-    });
   };
 
   // "Renaming a tab" function
@@ -288,19 +236,11 @@ const HomePage = () => {
       ...storedData,
       tabs: filteredTabList.concat(tempTab),
     });
-    writeStoredData({
-      ...storedData,
-      tabs: filteredTabList.concat(tempTab),
-    });
   };
 
   // "View selector" function
   const handleChangeView = (value: View) => {
     setStoredData({
-      ...storedData,
-      view: value,
-    });
-    writeStoredData({
       ...storedData,
       view: value,
     });
@@ -319,19 +259,10 @@ const HomePage = () => {
       ...storedData,
       data: tempData,
     });
-    writeStoredData({
-      ...storedData,
-      data: tempData,
-    });
     setFilteredData([]);
   };
 
   const handleReset = () => {
-    // deregister(storedData.secretKey, storedData.correlationId, storedData.host).then(() => {
-    //   localStorage.clear();
-    //   window.location.reload();
-    // });
-
     const key = new NodeRSA({ b: 2048 });
     const pub = key.exportKey("pkcs8-public-pem");
     const priv = key.exportKey("pkcs8-private-pem");
@@ -354,7 +285,7 @@ const HomePage = () => {
             note: "",
           },
         ];
-        writeStoredData({
+        setStoredData({
           ...defaultStoredData,
           privateKey: priv,
           publicKey: pub,

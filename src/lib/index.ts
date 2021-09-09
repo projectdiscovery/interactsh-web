@@ -89,8 +89,6 @@ export const processData = (aesKey: string, polledData: PolledData) => {
       ...JSON.parse(item),
       id: uuidv4(),
     }));
-    console.log("parsedData");
-    console.log(decryptedData);
   }
 
   return parsedData;

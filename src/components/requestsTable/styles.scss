@@ -50,7 +50,6 @@
     table-layout: fixed;
   }
   & > thead {
-    // width: calc(100% - 1em);
     font-size: 1.1rem;
     color: #ffffff;
     th {
@@ -99,27 +98,6 @@
       }
     }
   }
-
-  // & > thead {
-  //   font-size: 1.1rem;
-  //   color: #ffffff;
-  //   th {
-  //     height: 5.5rem;
-  //     padding: 0 1.5rem;
-  //   }
-  // }
-  // & > tbody {
-  //   font-size: 1.5rem;
-  //   color: #ffffff;
-  //   tr {
-  //     cursor: pointer;
-  //     td {
-  //       border-bottom: 1px solid rgba(151, 151, 151, 0.25);
-  //       padding: 0 1.5rem;
-  //       height: 6rem;
-  //     }
-  //   }
-  // }
 }
 .placeholder_row {
   height: 100%;

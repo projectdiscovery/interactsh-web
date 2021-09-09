@@ -31,17 +31,11 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
   }>(filter);
 
   useEffect(() => {
-    // setFilteredData(data);
     const tempData = Object.keys(filterValue).map((f) =>
     filterValue[f] ? data.filter((item) => item.protocol === f) : []
     );
     const newFilteredData = Array.prototype.concat.apply([], tempData);
     setFilteredData(newFilteredData);
-    // setFilterValue({
-    //   dns: true,
-    //   http: true,
-    //   smtp: true,
-    // });
   }, [data]);
 
   const handleFilterDropdownVisibility = () => {
