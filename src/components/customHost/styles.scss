@@ -37,6 +37,7 @@
     .header {
       display: flex;
       margin-bottom: 2rem;
+      padding: 0;
       span {
         font-size: 2.2rem;
         color: #ffffff;
@@ -90,6 +91,11 @@
       display: flex;
       font-weight: 600;
       margin-top: 1rem;
+      button {
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
       .delete_button {
         display: flex;
         align-items: center;
@@ -103,10 +109,9 @@
         height: 3.5rem;
         margin-right: 2rem;
         flex: 1;
-        cursor: pointer;
         transition: all 0.1s linear;
-        &:active {
-          opacity: 0.7;
+        svg {
+          margin-left: 1.5rem;
         }
       }
       .remove_button {
@@ -122,10 +127,9 @@
         height: 3.5rem;
         margin-right: 2rem;
         flex: 1;
-        cursor: pointer;
         transition: all 0.1s linear;
-        &:active {
-          opacity: 0.7;
+        svg {
+          margin-left: 1.5rem;
         }
       }
       .submit_button {
@@ -140,11 +144,7 @@
         letter-spacing: 0;
         text-align: left;
         height: 3.5rem;
-        cursor: pointer;
         transition: all 0.1s linear;
-        &:active {
-          opacity: 0.7;
-        }
         svg {
           margin-left: 1.5rem;
         }

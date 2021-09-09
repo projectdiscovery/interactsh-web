@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 
 import { matchConfig } from "@babakness/exhaustive-type-checking";
-import format from "date-fns/format";
-import * as E from "fp-ts/Either";
-import { pipe } from "fp-ts/function";
-import * as J from "fp-ts/Json";
-import * as O from "fp-ts/Option";
-import * as R from "fp-ts/Record";
-import downloadData from "js-file-download";
 
 import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
 import { ReactComponent as DownloadIcon } from "assets/svg/download.svg";
@@ -16,6 +9,8 @@ import { ReactComponent as ThemeBlueButtonIcon } from "assets/svg/theme_blue_but
 import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_button.svg";
 import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
 import ResetPopup from "components/resetPopup";
+import { handleDataExport } from "lib";
+import { StoredData } from "lib/localStorage";
 import { ThemeName, showThemeName } from "theme";
 import "./styles.scss";
 
@@ -27,30 +22,24 @@ const themeIcon = matchConfig<ThemeName>()({
   blue: () => <ThemeBlueButtonIcon />,
 });
 
-const getData = (key: string) =>
-  pipe(
-    O.tryCatch(() => localStorage.getItem(key)),
-    O.chain(O.fromNullable)
-  );
-
 interface HeaderP {
   handleThemeSelection: (t: ThemeName) => void;
   theme: ThemeName;
   host: string;
   handleAboutPopupVisibility: () => void;
-  handleReset: () => void;
+  storedData: StoredData;
 }
 
 const Header = ({
   handleThemeSelection,
   theme,
   host,
-  handleReset,
+  storedData,
   handleAboutPopupVisibility,
 }: HeaderP) => {
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
   const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
-  const [isResetPopupDialog, setIsResetPopupDialog] = useState(false);
+  const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState(false);
 
   const handleThemeSwitchesVisibility = () => {
     setIsSelectorVisible(!isSelectorVisible);
@@ -59,19 +48,7 @@ const Header = ({
     setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
   };
   const handleResetPopupDialogVisibility = () => {
-    setIsResetPopupDialog(!isResetPopupDialog);
-  };
-
-  const handleDataExport = () => {
-    const values = pipe(
-      R.mapWithIndex((key) => ({ key, data: getData(key) }))(localStorage),
-      R.filterMap((x) => x.data),
-      J.stringify,
-      E.getOrElse(() => "An error occured") // TODO: Handle error case.
-    );
-
-    const fileName = `${format(Date.now(), "yyyy-mm-dd_hh:mm")}.json`;
-    downloadData(values, fileName);
+    setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
   };
 
   const isCustomHost = host !== "interact.sh";
@@ -108,7 +85,7 @@ const Header = ({
           <SwitchIcon />
           {isCustomHost ? host : "Custom Host"}
         </button>
-        <button type="button" title="Reset data" onClick={handleReset}>
+        <button type="button" title="Reset data" onClick={handleResetPopupDialogVisibility}>
           <DeleteIcon />
           Reset
         </button>
@@ -125,8 +102,11 @@ const Header = ({
       {isCustomHostDialogVisible && (
         <CustomHost handleCloseDialog={handleCustomHostDialogVisibility} />
       )}
-      {isCustomHostDialogVisible && (
-        <ResetPopup handleCloseDialog={handleResetPopupDialogVisibility} />
+      {isResetPopupDialogVisible && (
+        <ResetPopup
+          handleCloseDialog={handleResetPopupDialogVisibility}
+          storedData={storedData}
+        />
       )}
     </div>
   );

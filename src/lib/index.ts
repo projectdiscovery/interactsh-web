@@ -1,7 +1,15 @@
 import crypto from "crypto";
 
+import format from "date-fns/format";
+import * as E from "fp-ts/Either";
+import { pipe } from "fp-ts/function";
+import * as J from "fp-ts/Json";
+import * as O from "fp-ts/Option";
+import * as R from "fp-ts/Record";
+import downloadData from "js-file-download";
 import NodeRSA from "node-rsa";
 import { v4 as uuidv4 } from "uuid";
+import xid from "xid-js";
 import zbase32 from "zbase32";
 
 import { Data } from "./localStorage";
@@ -94,6 +102,34 @@ export const processData = (aesKey: string, polledData: PolledData) => {
   return parsedData;
 };
 
+const getData = (key: string) =>
+  pipe(
+    O.tryCatch(() => localStorage.getItem(key)),
+    O.chain(O.fromNullable)
+  );
+
+export const handleDataExport = () => {
+  const values = pipe(
+    R.mapWithIndex((key) => ({ key, data: getData(key) }))(localStorage),
+    R.filterMap((x) => x.data),
+    J.stringify,
+    E.getOrElse(() => "An error occured") // TODO: Handle error case.
+  );
+
+  const fileName = `${format(Date.now(), "yyyy-mm-dd_hh:mm")}.json`;
+  downloadData(values, fileName);
+};
+
+export const generateRegistrationParams = () => {
+  const key = new NodeRSA({ b: 2048 });
+  const pub = key.exportKey("pkcs8-public-pem");
+  const priv = key.exportKey("pkcs8-private-pem");
+  const correlation = xid.next();
+  const secret = uuidv4().toString();
+
+  return {pub, priv, correlation, secret}
+};
+
 export const register = (
   publicKey: string,
   secretKey: string,
@@ -131,16 +167,29 @@ export const register = (
     .then((data) => data);
 };
 
-export const deregister = (secretKey: string, correlationId: string, host: string) => {
+export const deregister = (
+  secretKey: string,
+  correlationId: string,
+  host: string,
+  token?: string
+) => {
   const registerFetcherOptions = {
     "secret-key": secretKey,
     "correlation-id": correlationId,
   };
 
+  const headers = [
+    { "Content-Type": "application/json" },
+    {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  ] as const;
+
   return fetch(`https://${host}/deregister`, {
     method: "POST",
     cache: "no-cache",
-    headers: { "Content-Type": "application/json" },
+    headers: token && token !== "" ? headers[1] : headers[0],
     referrerPolicy: "no-referrer",
     body: JSON.stringify(registerFetcherOptions),
   })
