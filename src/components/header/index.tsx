@@ -10,7 +10,6 @@ import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_but
 import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
 import ResetPopup from "components/resetPopup";
 import { handleDataExport } from "lib";
-import { StoredData } from "lib/localStorage";
 import { ThemeName, showThemeName } from "theme";
 import "./styles.scss";
 
@@ -27,16 +26,9 @@ interface HeaderP {
   theme: ThemeName;
   host: string;
   handleAboutPopupVisibility: () => void;
-  storedData: StoredData;
 }
 
-const Header = ({
-  handleThemeSelection,
-  theme,
-  host,
-  storedData,
-  handleAboutPopupVisibility,
-}: HeaderP) => {
+const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility }: HeaderP) => {
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
   const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
   const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState(false);
@@ -103,10 +95,7 @@ const Header = ({
         <CustomHost handleCloseDialog={handleCustomHostDialogVisibility} />
       )}
       {isResetPopupDialogVisible && (
-        <ResetPopup
-          handleCloseDialog={handleResetPopupDialogVisibility}
-          storedData={storedData}
-        />
+        <ResetPopup handleCloseDialog={handleResetPopupDialogVisibility} />
       )}
     </div>
   );

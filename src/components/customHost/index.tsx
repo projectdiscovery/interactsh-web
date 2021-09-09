@@ -4,8 +4,7 @@ import { ReactComponent as ArrowRightIcon } from "assets/svg/arrow_right.svg";
 import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
 import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
 import "./styles.scss";
-import { deregister, generateRegistrationParams, generateUrl, register } from "lib";
-import Tab from "lib/types/tab";
+import { deregister, registert } from "lib";
 
 import { getStoredData, StoredData, writeStoredData } from "../../lib/localStorage";
 
@@ -43,7 +42,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   };
 
   const data = getStoredData();
-  const { host, token, correlationId, secretKey, view, theme } = data;
+  const { host, token, correlationId, secretKey } = data;
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isHostValid, setIsHostValid] = useState(true);
@@ -65,41 +64,16 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const handleConfirm = () => {
     if (inputValue !== "" && inputValue !== "interact.sh" && host !== inputValue) {
       setIsLoading(true);
-      const { pub, priv, correlation, secret } = generateRegistrationParams();
-      register(pub, secret, correlation, inputValue.replace(/(^\w+:|^)\/\//, ""), tokenInputValue)
-        .then(() => {
+      registert(
+        { ...getStoredData(), host: inputValue.replace(/(^\w+:|^)\/\//, "") },
+        tokenInputValue
+      )
+        .then((d) => {
           deregister(secretKey, correlationId, host, token).then(() => {
             window.location.reload();
           });
           localStorage.clear();
-          const { url, uniqueId } = generateUrl(
-            correlation,
-            1,
-            inputValue.replace(/(^\w+:|^)\/\//, "")
-          );
-          const tabData: Tab[] = [
-            {
-              "unique-id": uniqueId,
-              correlationId: correlation,
-              name: (1).toString(),
-              url,
-              note: "",
-            },
-          ];
-          writeStoredData({
-            ...defaultStoredData,
-            privateKey: priv,
-            publicKey: pub,
-            correlationId: correlation,
-            secretKey: secret,
-            increment: 1,
-            theme,
-            view,
-            host: inputValue.replace(/(^\w+:|^)\/\//, ""),
-            token: tokenInputValue,
-            tabs: tabData,
-            selectedTab: tabData[0],
-          });
+          writeStoredData(d);
           setIsLoading(false);
           handleCloseDialog();
           setIsHostValid(true);
@@ -113,37 +87,13 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
 
   const handleDelete = () => {
     setIsLoading(true);
-    const { pub, priv, correlation, secret } = generateRegistrationParams();
-    register(pub, secret, correlation, defaultStoredData.host)
-      .then(() => {
+    registert({ ...getStoredData(), host: defaultStoredData.host })
+      .then((d) => {
         deregister(secretKey, correlationId, host, token).then(() => {
           window.location.reload();
         });
         localStorage.clear();
-        const { url, uniqueId } = generateUrl(correlation, 1, defaultStoredData.host);
-        const tabData: Tab[] = [
-          {
-            "unique-id": uniqueId,
-            correlationId: correlation,
-            name: (1).toString(),
-            url,
-            note: "",
-          },
-        ];
-        writeStoredData({
-          ...defaultStoredData,
-          privateKey: priv,
-          publicKey: pub,
-          correlationId: correlation,
-          secretKey: secret,
-          increment: 1,
-          theme,
-          view,
-          host: defaultStoredData.host,
-          tabs: tabData,
-          selectedTab: tabData[0],
-        });
-        // clearIntervals();
+        writeStoredData(d);
         setIsLoading(false);
         handleCloseDialog();
         setIsHostValid(true);
@@ -167,7 +117,12 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             delete immediately.
           </span>
           <div className="buttons">
-            <button type="button" className="delete_button" disabled={isLoading} onClick={handleDelete}>
+            <button
+              type="button"
+              className="delete_button"
+              disabled={isLoading}
+              onClick={handleDelete}
+            >
               Delete {isLoading && <LoadingIcon />}
             </button>
           </div>
@@ -211,7 +166,12 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
                 Remove Custom Host
               </button>
             )}
-            <button type="button" className="submit_button" disabled={isLoading || host === inputValue} onClick={handleConfirm}>
+            <button
+              type="button"
+              className="submit_button"
+              disabled={isLoading || host === inputValue}
+              onClick={handleConfirm}
+            >
               Confirm
               {isLoading ? <LoadingIcon /> : <ArrowRightIcon />}
             </button>

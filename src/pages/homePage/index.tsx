@@ -18,11 +18,9 @@ import {
   poll,
   decryptAESKey,
   processData,
-  register,
   copyDataToClipboard,
   clearIntervals,
-  // deregister,
-  generateRegistrationParams,
+  registert,
 } from "lib";
 import Tab from "lib/types/tab";
 import View from "lib/types/view";
@@ -89,37 +87,13 @@ const HomePage = () => {
     if (storedData.correlationId === "") {
       setIsRegistered(true);
       setTimeout(() => {
-        const { pub, priv, correlation, secret } = generateRegistrationParams();
-        register(pub, secret, correlation, storedData.host)
-          .then(() => {
-            setIsRegistered(false);
-            const { url, uniqueId } = generateUrl(correlation, 1, storedData.host);
-            const tabData: Tab[] = [
-              {
-                "unique-id": uniqueId,
-                correlationId: correlation,
-                name: (1).toString(),
-                url,
-                note: "",
-              },
-            ];
-            setStoredData({
-              ...defaultStoredData,
-              privateKey: priv,
-              publicKey: pub,
-              correlationId: correlation,
-              secretKey: secret,
-              view: storedData.view,
-              theme: storedData.theme,
-              host: "interact.sh",
-              increment: 1,
-              tabs: tabData,
-              selectedTab: tabData[0],
-            });
-            clearIntervals();
+        registert(storedData)
+          .then((data) => {
+            setStoredData(data);
             window.setInterval(() => {
               processPolledData();
             }, 4000);
+            setIsRegistered(false);
           })
           .catch(() => {
             localStorage.clear();
@@ -264,48 +238,6 @@ const HomePage = () => {
     setFilteredData([]);
   };
 
-  // const handleReset = () => {
-  //   const { pub, priv, correlation, secret } = generateRegistrationParams();
-  //   register(pub, secret, correlation, storedData.host, storedData.token)
-  //     .then(() => {
-  //       deregister(
-  //         storedData.secretKey,
-  //         storedData.correlationId,
-  //         storedData.host,
-  //         storedData.token
-  //       ).then(() => {
-  //         window.location.reload();
-  //       });
-  //       localStorage.clear();
-  //       const { url, uniqueId } = generateUrl(correlation, 1, storedData.host);
-  //       const tabData: Tab[] = [
-  //         {
-  //           "unique-id": uniqueId,
-  //           correlationId: correlation,
-  //           name: (1).toString(),
-  //           url,
-  //           note: "",
-  //         },
-  //       ];
-  //       setStoredData({
-  //         ...defaultStoredData,
-  //         privateKey: priv,
-  //         publicKey: pub,
-  //         correlationId: correlation,
-  //         secretKey: secret,
-  //         increment: 1,
-  //         theme: storedData.theme,
-  //         view: storedData.view,
-  //         host: storedData.host,
-  //         token: storedData.token,
-  //         tabs: tabData,
-  //         selectedTab: tabData[0],
-  //       });
-  //       clearIntervals();
-  //     })
-  //     .catch(() => {});
-  // };
-
   const selectedTabsIndex = storedData.tabs.findIndex(
     (item) => item["unique-id"] === storedData.selectedTab["unique-id"]
   );
@@ -351,7 +283,6 @@ const HomePage = () => {
           theme={storedData.theme}
           host={storedData.host}
           handleThemeSelection={handleThemeSelection}
-          storedData={storedData}
         />
         <TabSwitcher
           handleTabButtonClick={handleTabButtonClick}

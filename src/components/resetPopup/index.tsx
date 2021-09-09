@@ -5,66 +5,33 @@ import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
 import { ReactComponent as DownloadIcon } from "assets/svg/download.svg";
 import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
 import "./styles.scss";
-import {
-  deregister,
-  generateRegistrationParams,
-  generateUrl,
-  handleDataExport,
-  register,
-} from "lib";
-import { defaultStoredData, StoredData, writeStoredData } from "lib/localStorage";
-import Tab from "lib/types/tab";
+import { deregister, handleDataExport, registert } from "lib";
+import { getStoredData, writeStoredData } from "lib/localStorage";
 
 interface CustomHostP {
   handleCloseDialog: () => void;
-  storedData: StoredData;
 }
 
-const ResetPopup = ({ handleCloseDialog, storedData }: CustomHostP) => {
+const ResetPopup = ({ handleCloseDialog }: CustomHostP) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const handleConfirm = () => {
-  //   handleReset();
-  // };
 
   const handleConfirm = () => {
+    const currentStoredData = getStoredData();
     setIsLoading(true);
-    const { pub, priv, correlation, secret } = generateRegistrationParams();
-    register(pub, secret, correlation, storedData.host, storedData.token)
-      .then(() => {
+    registert({ ...currentStoredData, host: currentStoredData.host }, currentStoredData.token)
+      .then((d) => {
         deregister(
-          storedData.secretKey,
-          storedData.correlationId,
-          storedData.host,
-          storedData.token
+          currentStoredData.secretKey,
+          currentStoredData.correlationId,
+          currentStoredData.host,
+          currentStoredData.token
         ).then(() => {
           window.location.reload();
         });
         localStorage.clear();
-        const { url, uniqueId } = generateUrl(correlation, 1, storedData.host);
-        const tabData: Tab[] = [
-          {
-            "unique-id": uniqueId,
-            correlationId: correlation,
-            name: (1).toString(),
-            url,
-            note: "",
-          },
-        ];
-        writeStoredData({
-          ...defaultStoredData,
-          privateKey: priv,
-          publicKey: pub,
-          correlationId: correlation,
-          secretKey: secret,
-          increment: 1,
-          theme: storedData.theme,
-          view: storedData.view,
-          host: storedData.host,
-          token: storedData.token,
-          tabs: tabData,
-          selectedTab: tabData[0],
-        });
+        writeStoredData(d);
         setIsLoading(false);
+        handleCloseDialog();
       })
       .catch(() => {
         setIsLoading(false);
@@ -89,7 +56,12 @@ const ResetPopup = ({ handleCloseDialog, storedData }: CustomHostP) => {
           </button>
         </div>
         <div className="buttons">
-          <button type="button" disabled={isLoading} className="confirm_button" onClick={handleConfirm}>
+          <button
+            type="button"
+            disabled={isLoading}
+            className="confirm_button"
+            onClick={handleConfirm}
+          >
             Confirm {isLoading ? <LoadingIcon /> : <DeleteIcon />}
           </button>
         </div>

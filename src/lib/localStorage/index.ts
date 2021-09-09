@@ -14,7 +14,7 @@ import { ThemeName } from "theme";
 const { summon } = summonFor<{}>({});
 
 export const defaultStoredData: StoredData = {
-  theme: "dark",
+  theme: "synth",
   privateKey: "",
   publicKey: "",
   correlationId: "",
