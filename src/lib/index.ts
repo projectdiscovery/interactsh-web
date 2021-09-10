@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
 import zbase32 from "zbase32";
 
-import { Data, StoredData } from "./localStorage";
+import { Data, getStoredData, StoredData, writeStoredData } from "./localStorage";
 import Tab from "./types/tab";
 
 export const copyDataToClipboard = (data: string) => navigator.clipboard.writeText(data);
@@ -43,30 +43,6 @@ interface PolledData {
   aes_key: string;
   data: string[];
 }
-
-export const poll = (
-  correlationId: string,
-  secretKey: string,
-  host: string,
-  token: string
-): Promise<PolledData> => {
-  const headers = {
-    Authorization: token,
-  };
-  return fetch(`https://${host}/poll?id=${correlationId}&secret=${secretKey}`, {
-    method: "GET",
-    cache: "no-cache",
-    headers: token !== "" ? headers : {},
-    referrerPolicy: "no-referrer",
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-      return res.json();
-    })
-    .then((data) => data);
-};
 
 export const decryptAESKey = (privateKey: string, aesKey: string) => {
   const key = new NodeRSA({ b: 2048 });
@@ -131,104 +107,6 @@ export const generateRegistrationParams = () => {
   return { pub, priv, correlation, secret };
 };
 
-export const register = (
-  publicKey: string,
-  secretKey: string,
-  correlationId: string,
-  host: string,
-  token?: string
-) => {
-  const registerFetcherOptions = {
-    "public-key": btoa(publicKey),
-    "secret-key": secretKey,
-    "correlation-id": correlationId,
-  };
-
-  const headers = [
-    { "Content-Type": "application/json" },
-    {
-      "Content-Type": "application/json",
-      Authorization: token,
-    },
-  ] as const;
-
-  return fetch(`https://${host}/register`, {
-    method: "POST",
-    cache: "no-cache",
-    headers: token && token !== "" ? headers[1] : headers[0],
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(registerFetcherOptions),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-      return "Registered successfully.";
-    })
-    .then((data) => data);
-};
-
-export const registert = (storedData: StoredData, token?: string) => {
-  const { pub, priv, correlation, secret } = generateRegistrationParams();
-  const registerFetcherOptions = {
-    "public-key": btoa(pub),
-    "secret-key": secret,
-    "correlation-id": correlation,
-  };
-  const headers = [
-    { "Content-Type": "application/json" },
-    {
-      "Content-Type": "application/json",
-      Authorization: token,
-    },
-  ] as const;
-
-  return fetch(`https://${storedData.host}/register`, {
-    method: "POST",
-    cache: "no-cache",
-    headers: token && token !== "" ? headers[1] : headers[0],
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(registerFetcherOptions),
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error(res.statusText);
-    }
-    const { url, uniqueId } = generateUrl(correlation, 1, storedData.host);
-    const tabData: Tab[] = [
-      {
-        "unique-id": uniqueId,
-        correlationId: correlation,
-        name: (1).toString(),
-        url,
-        note: "",
-      },
-    ];
-    const data: StoredData = {
-      privateKey: priv,
-      publicKey: pub,
-      correlationId: correlation,
-      secretKey: secret,
-      view: storedData.view,
-      theme: storedData.theme,
-      host: storedData.host,
-      increment: 1,
-      token: token || "",
-      tabs: tabData,
-      selectedTab: tabData[0],
-      data: [],
-      aesKey: "",
-      notes: [],
-      filter: {
-        dns: true,
-        http: true,
-        smtp: true,
-      },
-    };
-    clearIntervals();
-    return data;
-  });
-};
-
 export const deregister = (
   secretKey: string,
   correlationId: string,
@@ -254,12 +132,128 @@ export const deregister = (
     headers: token && token !== "" ? headers[1] : headers[0],
     referrerPolicy: "no-referrer",
     body: JSON.stringify(registerFetcherOptions),
+  }).catch(() => {});
+};
+
+export const register = (
+  host: string,
+  token: string,
+  deregisterCurrentInstance: boolean,
+  reregister: boolean
+) => {
+  const currentData = getStoredData();
+  const { pub, priv, correlation, secret } = generateRegistrationParams();
+  const registerFetcherOptions = reregister
+    ? {
+        "public-key": btoa(currentData.publicKey),
+        "secret-key": currentData.secretKey,
+        "correlation-id": currentData.correlationId,
+      }
+    : {
+        "public-key": btoa(pub),
+        "secret-key": secret,
+        "correlation-id": correlation,
+      };
+  const headers = [
+    { "Content-Type": "application/json" },
+    {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  ] as const;
+
+  return fetch(`https://${host}/register`, {
+    method: "POST",
+    cache: "no-cache",
+    headers: token && token !== "" ? headers[1] : headers[0],
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(registerFetcherOptions),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+
+    const { url, uniqueId } = generateUrl(correlation, 1, host);
+    const tabData: Tab[] = [
+      {
+        "unique-id": uniqueId,
+        correlationId: correlation,
+        name: (1).toString(),
+        url,
+        note: "",
+      },
+    ];
+
+    const data: StoredData = reregister
+      ? { ...currentData, aesKey: "" }
+      : {
+          privateKey: priv,
+          publicKey: pub,
+          correlationId: correlation,
+          secretKey: secret,
+          view: currentData.view,
+          theme: currentData.theme,
+          host,
+          increment: 1,
+          token,
+          tabs: tabData,
+          selectedTab: tabData[0],
+          data: [],
+          aesKey: "",
+          notes: [],
+          filter: {
+            dns: true,
+            http: true,
+            smtp: true,
+          },
+        };
+
+    if (!reregister) {
+      clearIntervals();
+    }
+    if (deregisterCurrentInstance && res.ok) {
+      deregister(
+        currentData.secretKey,
+        currentData.correlationId,
+        currentData.host,
+        currentData.token
+      ).then(() => {
+        window.location.reload();
+      });
+    }
+    return data;
+  });
+};
+
+export const poll = (
+  correlationId: string,
+  secretKey: string,
+  host: string,
+  token: string,
+  handleResetPopupDialogVisibility: () => void
+): Promise<PolledData> => {
+  const headers = {
+    Authorization: token,
+  };
+  return fetch(`https://${host}/poll?id=${correlationId}&secret=${secretKey}`, {
+    method: "GET",
+    cache: "no-cache",
+    headers: token !== "" ? headers : {},
+    referrerPolicy: "no-referrer",
   })
     .then((res) => {
       if (!res.ok) {
-        throw new Error(res.statusText);
+        // throw new Error(res.statusText);
+        register(host, token, false, true)
+          .then((d) => {
+            writeStoredData(d);
+          })
+          .catch(() => {
+            clearIntervals();
+            handleResetPopupDialogVisibility();
+          });
       }
-      return "DeRegistered successfully.";
+      return res.json();
     })
     .then((data) => data);
 };

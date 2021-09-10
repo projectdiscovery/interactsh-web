@@ -4,7 +4,7 @@ import { ReactComponent as ArrowRightIcon } from "assets/svg/arrow_right.svg";
 import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
 import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
 import "./styles.scss";
-import { deregister, registert } from "lib";
+import { register } from "lib";
 
 import { getStoredData, StoredData, writeStoredData } from "../../lib/localStorage";
 
@@ -42,7 +42,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   };
 
   const data = getStoredData();
-  const { host, token, correlationId, secretKey } = data;
+  const { host, token } = data;
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isHostValid, setIsHostValid] = useState(true);
@@ -64,14 +64,8 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const handleConfirm = () => {
     if (inputValue !== "" && inputValue !== "interact.sh" && host !== inputValue) {
       setIsLoading(true);
-      registert(
-        { ...getStoredData(), host: inputValue.replace(/(^\w+:|^)\/\//, "") },
-        tokenInputValue
-      )
+      register(inputValue.replace(/(^\w+:|^)\/\//, ""), tokenInputValue, true, false)
         .then((d) => {
-          deregister(secretKey, correlationId, host, token).then(() => {
-            window.location.reload();
-          });
           localStorage.clear();
           writeStoredData(d);
           setIsLoading(false);
@@ -87,11 +81,8 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
 
   const handleDelete = () => {
     setIsLoading(true);
-    registert({ ...getStoredData(), host: defaultStoredData.host })
+    register(defaultStoredData.host, "", true, false)
       .then((d) => {
-        deregister(secretKey, correlationId, host, token).then(() => {
-          window.location.reload();
-        });
         localStorage.clear();
         writeStoredData(d);
         setIsLoading(false);

@@ -14,6 +14,7 @@ import { ThemeName, showThemeName } from "theme";
 import "./styles.scss";
 
 import CustomHost from "../customHost";
+// import { boolean } from "fp-ts";
 
 const themeIcon = matchConfig<ThemeName>()({
   dark: () => <ThemeDarkButtonIcon />,
@@ -26,12 +27,14 @@ interface HeaderP {
   theme: ThemeName;
   host: string;
   handleAboutPopupVisibility: () => void;
+  isResetPopupDialogVisible: boolean;
+  handleResetPopupDialogVisibility: () => void;
 }
 
-const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility }: HeaderP) => {
+const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility, isResetPopupDialogVisible, handleResetPopupDialogVisibility }: HeaderP) => {
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
   const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
-  const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState(false);
+  // const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState(false);
 
   const handleThemeSwitchesVisibility = () => {
     setIsSelectorVisible(!isSelectorVisible);
@@ -39,9 +42,9 @@ const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility 
   const handleCustomHostDialogVisibility = () => {
     setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
   };
-  const handleResetPopupDialogVisibility = () => {
-    setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
-  };
+  // const handleResetPopupDialogVisibility = () => {
+  //   setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
+  // };
 
   const isCustomHost = host !== "interact.sh";
   const setTheme = (t: ThemeName) => () => handleThemeSelection(t);

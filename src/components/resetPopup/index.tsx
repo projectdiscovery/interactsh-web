@@ -5,7 +5,7 @@ import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
 import { ReactComponent as DownloadIcon } from "assets/svg/download.svg";
 import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
 import "./styles.scss";
-import { deregister, handleDataExport, registert } from "lib";
+import { handleDataExport, register } from "lib";
 import { getStoredData, writeStoredData } from "lib/localStorage";
 
 interface CustomHostP {
@@ -18,16 +18,8 @@ const ResetPopup = ({ handleCloseDialog }: CustomHostP) => {
   const handleConfirm = () => {
     const currentStoredData = getStoredData();
     setIsLoading(true);
-    registert({ ...currentStoredData, host: currentStoredData.host }, currentStoredData.token)
+    register(currentStoredData.host, currentStoredData.token, true, false)
       .then((d) => {
-        deregister(
-          currentStoredData.secretKey,
-          currentStoredData.correlationId,
-          currentStoredData.host,
-          currentStoredData.token
-        ).then(() => {
-          window.location.reload();
-        });
         localStorage.clear();
         writeStoredData(d);
         setIsLoading(false);

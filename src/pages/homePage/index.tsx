@@ -20,7 +20,7 @@ import {
   processData,
   copyDataToClipboard,
   clearIntervals,
-  registert,
+  register,
 } from "lib";
 import Tab from "lib/types/tab";
 import View from "lib/types/view";
@@ -46,6 +46,11 @@ const HomePage = () => {
   const [selectedInteractionData, setSelectedInteractionData] = useState<Data | null>(null);
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState<boolean>(false);
   const [isRegistered, setIsRegistered] = useState<boolean>(true);
+  const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState<boolean>(false);
+
+  const handleResetPopupDialogVisibility = () => {
+    setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
+  };
 
   const processPolledData = () => {
     const dataFromLocalStorage = getStoredData();
@@ -54,7 +59,7 @@ const HomePage = () => {
 
     let decryptedAESKey = aesKey;
 
-    poll(correlationId, secretKey, host, token)
+    poll(correlationId, secretKey, host, token, handleResetPopupDialogVisibility)
       .then((pollData) => {
         if (pollData.data.length !== 0) {
           if (aesKey === "" && pollData.aes_key) {
@@ -87,7 +92,7 @@ const HomePage = () => {
     if (storedData.correlationId === "") {
       setIsRegistered(true);
       setTimeout(() => {
-        registert(storedData)
+        register(storedData.host, "", false, false)
           .then((data) => {
             setStoredData(data);
             window.setInterval(() => {
@@ -99,7 +104,7 @@ const HomePage = () => {
             localStorage.clear();
             setStoredData(defaultStoredData);
           });
-      }, 7000);
+      }, 200);
     }
   }, []);
 
@@ -283,6 +288,8 @@ const HomePage = () => {
           theme={storedData.theme}
           host={storedData.host}
           handleThemeSelection={handleThemeSelection}
+          isResetPopupDialogVisible={isResetPopupDialogVisible}
+          handleResetPopupDialogVisibility={handleResetPopupDialogVisibility}
         />
         <TabSwitcher
           handleTabButtonClick={handleTabButtonClick}
