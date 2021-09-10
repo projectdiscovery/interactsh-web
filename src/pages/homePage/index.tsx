@@ -61,6 +61,7 @@ const HomePage = () => {
 
     poll(correlationId, secretKey, host, token, handleResetPopupDialogVisibility)
       .then((pollData) => {
+        setIsRegistered(false);
         if (pollData.data.length !== 0) {
           if (aesKey === "" && pollData.aes_key) {
             decryptedAESKey = decryptAESKey(privateKey, pollData.aes_key);
@@ -80,7 +81,9 @@ const HomePage = () => {
           setFilteredData([...newData]);
         }
       })
-      .catch((err) => console.log(err));
+      .catch(() => {
+        setIsRegistered(true);
+      });
   };
 
   useEffect(() => {
