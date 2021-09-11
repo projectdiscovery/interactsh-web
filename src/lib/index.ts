@@ -217,9 +217,7 @@ export const register = (
         currentData.correlationId,
         currentData.host,
         currentData.token
-      ).then(() => {
-        window.location.reload();
-      });
+      ).then(() => !reregister && window.location.reload());
     }
     return data;
   });
@@ -241,9 +239,15 @@ export const poll = (
     headers: token !== "" ? headers : {},
     referrerPolicy: "no-referrer",
   })
-    .then((res) => {
+    .then(async (res: any) => {
+      // console.log(await res.json());
       if (!res.ok) {
         // throw new Error(res.statusText);
+        if(await res.json().error){
+          console.log(res.json());
+          
+          throw new Error(res.statusText);
+        }
         register(host, token, false, true)
           .then((d) => {
             writeStoredData(d);

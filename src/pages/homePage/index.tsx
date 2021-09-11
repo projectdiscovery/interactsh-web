@@ -1,10 +1,10 @@
-/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 
 import format from "date-fns/format";
 import { ThemeProvider } from "styled-components";
 
 import "./styles.scss";
+// Icons
 import { ReactComponent as ChevronUpIcon } from "assets/svg/chevron_up.svg";
 import { ReactComponent as ClearIcon } from "assets/svg/clear.svg";
 import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
@@ -45,7 +45,7 @@ const HomePage = () => {
   const [selectedInteraction, setSelectedInteraction] = useState<string | null>(null);
   const [selectedInteractionData, setSelectedInteractionData] = useState<Data | null>(null);
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState<boolean>(false);
-  const [isRegistered, setIsRegistered] = useState<boolean>(true);
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState<boolean>(false);
 
   const handleResetPopupDialogVisibility = () => {
@@ -61,7 +61,7 @@ const HomePage = () => {
 
     poll(correlationId, secretKey, host, token, handleResetPopupDialogVisibility)
       .then((pollData) => {
-        setIsRegistered(false);
+        setIsRegistered(true);
         if (pollData.data.length !== 0) {
           if (aesKey === "" && pollData.aes_key) {
             decryptedAESKey = decryptAESKey(privateKey, pollData.aes_key);
@@ -82,7 +82,7 @@ const HomePage = () => {
         }
       })
       .catch(() => {
-        setIsRegistered(true);
+        setIsRegistered(false);
       });
   };
 
@@ -91,9 +91,8 @@ const HomePage = () => {
   }, [storedData]);
 
   useEffect(() => {
-    setIsRegistered(false);
     if (storedData.correlationId === "") {
-      setIsRegistered(true);
+      setIsRegistered(false);
       setTimeout(() => {
         register(storedData.host, "", false, false)
           .then((data) => {
@@ -101,11 +100,12 @@ const HomePage = () => {
             window.setInterval(() => {
               processPolledData();
             }, 4000);
-            setIsRegistered(false);
+            setIsRegistered(true);
           })
           .catch(() => {
             localStorage.clear();
             setStoredData(defaultStoredData);
+            setIsRegistered(false);
           });
       }, 200);
     }
@@ -254,7 +254,7 @@ const HomePage = () => {
     <ThemeProvider theme={getTheme(storedData.theme)}>
       <GlobalStyles />
       <div className="main">
-        {isRegistered && <AppLoader />}
+        {!isRegistered && <AppLoader />}
         {aboutPopupVisibility && (
           <div className="about_popup_wrapper">
             <div className="about_popup">
