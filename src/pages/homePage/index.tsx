@@ -91,6 +91,7 @@ const HomePage = () => {
   }, [storedData]);
 
   useEffect(() => {
+      setIsRegistered(true);
     if (storedData.correlationId === "") {
       setIsRegistered(false);
       setTimeout(() => {
@@ -107,7 +108,7 @@ const HomePage = () => {
             setStoredData(defaultStoredData);
             setIsRegistered(false);
           });
-      }, 200);
+      }, 1500);
     }
   }, []);
 
@@ -254,7 +255,7 @@ const HomePage = () => {
     <ThemeProvider theme={getTheme(storedData.theme)}>
       <GlobalStyles />
       <div className="main">
-        {!isRegistered && <AppLoader />}
+        <AppLoader isRegistered={isRegistered} />
         {aboutPopupVisibility && (
           <div className="about_popup_wrapper">
             <div className="about_popup">
