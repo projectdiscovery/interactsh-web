@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import Prism from "prismjs";
+import "prismjs/themes/prism-dark.css";
+import "prismjs/components/prism-http";
+import "prismjs/components/prism-dns-zone-file";
 
 import "./styles.scss";
 import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
@@ -10,12 +12,16 @@ interface DetailedRequestP {
   title: string;
   data: string;
   view: string;
+  protocol: string;
 }
 
-const DetailedRequest = ({ title, data, view }: DetailedRequestP) => {
+const DetailedRequest = ({ title, data, view, protocol }: DetailedRequestP) => {
   const copyDataToClipboard = () => {
     navigator.clipboard.writeText(data);
   };
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [data]);
 
   return (
     <div
@@ -31,9 +37,17 @@ const DetailedRequest = ({ title, data, view }: DetailedRequestP) => {
           Copy <CopyIcon />
         </button>
         <div className="pre_wrapper">
-          <SyntaxHighlighter language="javascript" style={dark}>
-            {data}
-          </SyntaxHighlighter>
+          <pre>
+            <code
+              className={`${
+                protocol === "http"
+                  ? "language-http"
+                  : protocol === "dns"
+                  ? " default"
+                  : protocol === "smtp" && " default"
+              }`}
+            >{`${data}`}</code>
+          </pre>
         </div>
       </div>
     </div>

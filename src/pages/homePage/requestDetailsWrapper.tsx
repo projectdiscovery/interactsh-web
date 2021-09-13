@@ -33,12 +33,14 @@ const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
               view={view}
               data={`${selectedInteractionData["raw-request"]}`}
               title="Request"
+              protocol={selectedInteractionData.protocol}
             />
           ) : view === "response" ? (
             <DetailedRequest
               view={view}
               data={`${selectedInteractionData["raw-response"]}`}
               title="Response"
+              protocol={selectedInteractionData.protocol}
             />
           ) : (
             <>
@@ -46,11 +48,13 @@ const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
                 view={view}
                 data={`${selectedInteractionData["raw-request"]}`}
                 title="Request"
+                protocol={selectedInteractionData.protocol}
               />
               <DetailedRequest
                 view={view}
                 data={`${selectedInteractionData["raw-response"]}`}
                 title="Response"
+                protocol={selectedInteractionData.protocol}
               />
             </>
           )}
