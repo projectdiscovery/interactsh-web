@@ -23,7 +23,7 @@ const RequestsTableWrapper = ({
   data,
   handleRowClick,
   selectedInteraction,
-  filter
+  filter,
 }: RequestsTableWrapperP): JSX.Element => (
   <div className="requests_table_container">
     <ErrorBoundary
@@ -32,8 +32,10 @@ const RequestsTableWrapper = ({
       )}
     >
       <Suspense fallback={<RepoSidebarListFallback />}>
+        {console.log("dsffdsfsdf")}
+        {console.log([...data])}
         <RequestsTable
-          data={[...data].reverse()}
+          data={[...data]}
           handleRowClick={handleRowClick}
           selectedInteraction={selectedInteraction}
           filter={filter}

@@ -10,7 +10,8 @@ import formatDistance from "date-fns/formatDistance";
 import { now } from "fp-ts/Date";
 
 import { ReactComponent as FilterIcon } from "assets/svg/filter.svg";
-import { Data } from "lib/localStorage";
+import { ReactComponent as FilterSelectedIcon } from "assets/svg/filter_selected.svg";
+import { Data, getStoredData, writeStoredData } from "lib/localStorage";
 import Filter from "lib/types/filter";
 
 interface RequestsTableP {
@@ -21,8 +22,9 @@ interface RequestsTableP {
 }
 
 const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: RequestsTableP) => {
-  const [filteredData, setFilteredData] = useState(data);
-  const [filterDropdownVisibility, setFilterDropdownVisibility] = useState(false);
+  const [filteredData, setFilteredData] = useState<Data[]>(data);
+  const [filterDropdownVisibility, setFilterDropdownVisibility] = useState<boolean>(false);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const [filterValue, setFilterValue] = useState<{
     dns: boolean;
     http: boolean;
@@ -32,10 +34,15 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
 
   useEffect(() => {
     const tempData = Object.keys(filterValue).map((f) =>
-    filterValue[f] ? data.filter((item) => item.protocol === f) : []
+      filterValue[f] ? data.filter((item) => item.protocol === f) : []
     );
     const newFilteredData = Array.prototype.concat.apply([], tempData);
     setFilteredData(newFilteredData);
+    if (Object.values(filterValue).indexOf(false) > -1) {
+      setIsFiltered(true);
+    } else {
+      setIsFiltered(false);
+    }
   }, [data]);
 
   const handleFilterDropdownVisibility = () => {
@@ -54,7 +61,13 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
       ...filterValue,
       [e.target.value]: e.target.checked,
     };
+    if (Object.values(newFilterValue).indexOf(false) > -1) {
+      setIsFiltered(true);
+    } else {
+      setIsFiltered(false);
+    }
     setFilterValue(newFilterValue);
+    writeStoredData({ ...getStoredData(), filter: newFilterValue });
 
     const tempData = Object.keys(newFilterValue).map((f) =>
       newFilterValue[f] ? data.filter((item) => item.protocol === f) : []
@@ -73,7 +86,7 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
             <div id="filter_dropdown">
               <div onClick={handleFilterDropdownVisibility}>
                 TYPE
-                <FilterIcon />
+                {isFiltered ? <FilterSelectedIcon /> : <FilterIcon />}
               </div>
               {filterDropdownVisibility && (
                 <div className="filter_dropdown secondary_bg">
