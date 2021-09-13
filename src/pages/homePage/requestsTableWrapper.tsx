@@ -33,7 +33,7 @@ const RequestsTableWrapper = ({
     >
       <Suspense fallback={<RepoSidebarListFallback />}>
         <RequestsTable
-          data={[...data]}
+          data={[...data].reverse()}
           handleRowClick={handleRowClick}
           selectedInteraction={selectedInteraction}
           filter={filter}

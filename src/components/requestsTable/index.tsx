@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable consistent-return */
@@ -32,17 +33,26 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
     [key: string]: boolean;
   }>(filter);
 
-  useEffect(() => {
-    const tempData = Object.keys(filterValue).map((f) =>
-      filterValue[f] ? data.filter((item) => item.protocol === f) : []
-    );
-    const newFilteredData = Array.prototype.concat.apply([], tempData);
-    setFilteredData(newFilteredData);
-    if (Object.values(filterValue).indexOf(false) > -1) {
+  const filterData = (f: typeof filterValue) => {
+    const selectedFilters: string[] = [];
+
+    Object.keys(f).map((i) => {
+      if (f[i]) {
+        selectedFilters.push(i);
+      }
+    });
+    const tempData = data.filter((item) => selectedFilters.indexOf(item.protocol) !== -1);
+    if (Object.values(f).indexOf(false) > -1) {
       setIsFiltered(true);
     } else {
       setIsFiltered(false);
     }
+
+    return tempData;
+  };
+
+  useEffect(() => {
+    setFilteredData(filterData(filterValue));
   }, [data]);
 
   const handleFilterDropdownVisibility = () => {
@@ -61,19 +71,11 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
       ...filterValue,
       [e.target.value]: e.target.checked,
     };
-    if (Object.values(newFilterValue).indexOf(false) > -1) {
-      setIsFiltered(true);
-    } else {
-      setIsFiltered(false);
-    }
+
     setFilterValue(newFilterValue);
     writeStoredData({ ...getStoredData(), filter: newFilterValue });
 
-    const tempData = Object.keys(newFilterValue).map((f) =>
-      newFilterValue[f] ? data.filter((item) => item.protocol === f) : []
-    );
-    const newFilteredData = Array.prototype.concat.apply([], tempData);
-    setFilteredData(newFilteredData);
+    setFilteredData(filterData(newFilterValue));
   };
 
   return (
