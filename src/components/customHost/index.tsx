@@ -64,7 +64,27 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const handleConfirm = () => {
     if (inputValue !== "" && inputValue !== "interact.sh" && host !== inputValue) {
       setIsLoading(true);
-      register(inputValue.replace(/(^\w+:|^)\/\//, ""), tokenInputValue, true, false)
+      setTimeout(() => {
+        register(inputValue.replace(/(^\w+:|^)\/\//, ""), tokenInputValue, true, false)
+          .then((d) => {
+            localStorage.clear();
+            writeStoredData(d);
+            setIsLoading(false);
+            handleCloseDialog();
+            setIsHostValid(true);
+          })
+          .catch(() => {
+            setIsLoading(false);
+            setIsHostValid(false);
+          });
+      }, 30);
+    }
+  };
+
+  const handleDelete = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      register(defaultStoredData.host, "", true, false)
         .then((d) => {
           localStorage.clear();
           writeStoredData(d);
@@ -76,23 +96,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
           setIsLoading(false);
           setIsHostValid(false);
         });
-    }
-  };
-
-  const handleDelete = () => {
-    setIsLoading(true);
-    register(defaultStoredData.host, "", true, false)
-      .then((d) => {
-        localStorage.clear();
-        writeStoredData(d);
-        setIsLoading(false);
-        handleCloseDialog();
-        setIsHostValid(true);
-      })
-      .catch(() => {
-        setIsLoading(false);
-        setIsHostValid(false);
-      });
+    }, 30);
   };
 
   return (

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from "react";
 
 import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
@@ -16,18 +18,20 @@ const ResetPopup = ({ handleCloseDialog }: CustomHostP) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleConfirm = () => {
-    const currentStoredData = getStoredData();
     setIsLoading(true);
-    register(currentStoredData.host, currentStoredData.token, true, false)
-      .then((d) => {
-        localStorage.clear();
-        writeStoredData(d);
-        setIsLoading(false);
-        handleCloseDialog();
-      })
-      .catch(() => {
-        setIsLoading(false);
-      });
+    const currentStoredData = getStoredData();
+    setTimeout(() => {
+      register(currentStoredData.host, currentStoredData.token, true, false)
+        .then((d) => {
+          setIsLoading(false);
+          localStorage.clear();
+          writeStoredData(d);
+          handleCloseDialog();
+        })
+        .catch(() => {
+          setIsLoading(false);
+        });
+    }, 50);
   };
 
   return (

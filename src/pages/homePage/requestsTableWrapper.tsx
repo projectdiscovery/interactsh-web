@@ -32,8 +32,6 @@ const RequestsTableWrapper = ({
       )}
     >
       <Suspense fallback={<RepoSidebarListFallback />}>
-        {console.log("dsffdsfsdf")}
-        {console.log([...data])}
         <RequestsTable
           data={[...data]}
           handleRowClick={handleRowClick}

@@ -84,7 +84,10 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
           <th>TIME</th>
           <th>
             <div id="filter_dropdown">
-              <div onClick={handleFilterDropdownVisibility}>
+              <div
+                className={isFiltered ? "__filtered" : ""}
+                onClick={handleFilterDropdownVisibility}
+              >
                 TYPE
                 {isFiltered ? <FilterSelectedIcon /> : <FilterIcon />}
               </div>

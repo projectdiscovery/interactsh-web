@@ -64,6 +64,9 @@
       }
       & > div {
         position: relative;
+        .__filtered {
+          color: #3254c5;
+        }
         & > div {
           display: flex;
           align-items: center;
