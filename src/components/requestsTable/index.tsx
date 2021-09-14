@@ -106,6 +106,7 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
                           value="dns"
                           checked={filterValue.dns === true}
                         />
+                        <span className="checkmark" />
                         <span>DNS</span>
                       </label>
                     </li>
@@ -119,6 +120,7 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
                           value="http"
                           checked={filterValue.http === true}
                         />
+                        <span className="checkmark" />
                         <span>HTTP</span>
                       </label>
                     </li>
@@ -132,6 +134,7 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
                           value="smtp"
                           checked={filterValue.smtp === true}
                         />
+                        <span className="checkmark" />
                         <span>SMTP</span>
                       </label>
                     </li>
