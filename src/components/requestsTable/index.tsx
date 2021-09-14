@@ -67,6 +67,9 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
   };
 
   const handleFilterSelection = (e: any) => {
+    window.addEventListener("storage", () => {
+      setFilterValue(getStoredData().filter);
+    });
     const newFilterValue: typeof filterValue = {
       ...filterValue,
       [e.target.value]: e.target.checked,
