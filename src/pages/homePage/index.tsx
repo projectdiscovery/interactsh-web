@@ -91,7 +91,10 @@ const HomePage = () => {
   }, [storedData]);
 
   useEffect(() => {
-      setIsRegistered(true);
+    window.addEventListener("storage", () => {
+      setStoredData(getStoredData());
+    });
+    setIsRegistered(true);
     if (storedData.correlationId === "") {
       setIsRegistered(false);
       setTimeout(() => {
