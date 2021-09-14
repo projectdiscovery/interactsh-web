@@ -66,10 +66,19 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
     });
   };
 
-  const handleFilterSelection = (e: any) => {
+  useEffect(() => {
+    
     window.addEventListener("storage", () => {
       setFilterValue(getStoredData().filter);
+      if (Object.values(getStoredData().filter).indexOf(false) > -1) {
+        setIsFiltered(true);
+      } else {
+        setIsFiltered(false);
+      }
     });
+  }, []);
+
+  const handleFilterSelection = (e: any) => {
     const newFilterValue: typeof filterValue = {
       ...filterValue,
       [e.target.value]: e.target.checked,
