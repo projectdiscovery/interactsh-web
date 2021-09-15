@@ -102,9 +102,9 @@ const HomePage = () => {
   // "Notes input change handler" function
   const handleNoteInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     const { selectedTab, tabs } = storedData;
-    const index = tabs.findIndex((item) => item["unique-id"] === selectedTab["unique-id"]);
+    const index = tabs.findIndex((item) => Tab.eq.equals(item, selectedTab));
     const currentTab = tabs[index];
-    const filteredTabList = tabs.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
+    const filteredTabList = tabs.filter((item) => !Tab.eq.equals(item, selectedTab));
     filteredTabList.push({ ...currentTab, note: e.target.value });
     setStoredData({
       ...storedData,
@@ -170,7 +170,7 @@ const HomePage = () => {
   // "Clear interactions of a tab" function
   const clearInteractions = () => {
     const { selectedTab, data } = storedData;
-    const tempData = data.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
+    const tempData = data.filter((item) =>  item["unique-id"] !== selectedTab["unique-id"]);
     setStoredData({
       ...storedData,
       data: tempData,
@@ -266,7 +266,7 @@ const HomePage = () => {
   }, [storedData.selectedTab]);
 
   const selectedTabsIndex = storedData.tabs.findIndex(
-    (item) => item["unique-id"] === storedData.selectedTab["unique-id"]
+    (item) => Tab.eq.equals(item, storedData.selectedTab)
   );
 
   return (

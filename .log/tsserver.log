@@ -1,12 +1,12 @@
-Info 0    [13:56:35.320] Starting TS Server
-Info 1    [13:56:35.321] Version: 4.3.5
-Info 2    [13:56:35.321] Arguments: /Users/jessekelly/.nvm/versions/node/v14.17.0/bin/node /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules/.bin/tsserver --logFile /Users/jessekelly/Desktop/ProjectDiscovery/interact/.log/tsserver.log --logVerbosity info --cancellationPipeName /private/var/folders/lc/y2dbm6r52hj5ljsq41phk2sm0000gn/T/8317e7c164cce42bf577a5db7a458560/tscancellation*
-Info 3    [13:56:35.321] Platform: darwin NodeVersion: 14 CaseSensitive: false
-Info 4    [13:56:35.321] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
-Info 5    [13:56:35.329] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/components/tabSwitcher
-Info 6    [13:56:35.329] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/components/tabSwitcher/index.tsx :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 7    [13:56:35.329] Creating configuration project /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 8    [13:56:35.351] Config: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json : {
+Info 0    [16:24:55.055] Starting TS Server
+Info 1    [16:24:55.055] Version: 4.3.5
+Info 2    [16:24:55.055] Arguments: /Users/jessekelly/.nvm/versions/node/v14.17.0/bin/node /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules/.bin/tsserver --logFile /Users/jessekelly/Desktop/ProjectDiscovery/interact/.log/tsserver.log --logVerbosity info --cancellationPipeName /private/var/folders/lc/y2dbm6r52hj5ljsq41phk2sm0000gn/T/371ff47f66a3001d8aef2306dca836ed/tscancellation*
+Info 3    [16:24:55.055] Platform: darwin NodeVersion: 14 CaseSensitive: false
+Info 4    [16:24:55.055] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [16:24:55.063] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/types
+Info 6    [16:24:55.063] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/types/tab.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
+Info 7    [16:24:55.064] Creating configuration project /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
+Info 8    [16:24:55.082] Config: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json : {
  "rootNames": [
   "/Users/jessekelly/Desktop/ProjectDiscovery/interact/src/globalStyles.js",
   "/Users/jessekelly/Desktop/ProjectDiscovery/interact/src/index.tsx",
@@ -56,363 +56,30 @@ Info 8    [13:56:35.351] Config: /Users/jessekelly/Desktop/ProjectDiscovery/inte
   "configFilePath": "/Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json"
  }
 }
-Info 9    [13:56:35.432] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 10   [13:56:37.023] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 1 structureChanged: true Elapsed: 1590.4102079868317ms
-Info 11   [13:56:37.023] Project '/Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json' (Configured)
-Info 12   [13:56:37.023] 	Files (502)
+Info 9    [16:24:55.120] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
+Info 10   [16:24:56.549] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 1 structureChanged: true Elapsed: 1428.5806249976158ms
+Info 11   [16:24:56.549] Project '/Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json' (Configured)
+Info 12   [16:24:56.549] 	Files (502)
 
-Info 13   [13:56:37.023] -----------------------------------------------
-Info 14   [13:56:37.053] Starting updateGraphWorker: Project: /dev/null/autoImportProviderProject1*
-Info 15   [13:56:37.557] Finishing updateGraphWorker: Project: /dev/null/autoImportProviderProject1* Version: 1 structureChanged: true Elapsed: 503.36995804309845ms
-Info 16   [13:56:37.557] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
-Info 17   [13:56:37.557] 	Files (238)
+Info 13   [16:24:56.549] -----------------------------------------------
+Info 14   [16:24:56.579] Starting updateGraphWorker: Project: /dev/null/autoImportProviderProject1*
+Info 15   [16:24:56.974] Finishing updateGraphWorker: Project: /dev/null/autoImportProviderProject1* Version: 1 structureChanged: true Elapsed: 395.741250038147ms
+Info 16   [16:24:56.974] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
+Info 17   [16:24:56.974] 	Files (238)
 
-Info 18   [13:56:37.557] -----------------------------------------------
-Info 19   [13:57:11.584] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 20   [13:57:11.635] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 2 structureChanged: false Elapsed: 51.048624992370605ms
-Info 21   [13:57:11.635] Different program with same set of files:: structureIsReused:: 2
-Info 22   [13:58:10.145] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 23   [13:58:10.159] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 3 structureChanged: false Elapsed: 14.613625049591064ms
-Info 24   [13:58:10.159] Different program with same set of files:: structureIsReused:: 2
-Info 25   [13:59:30.065] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/types
-Info 26   [13:59:30.066] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/types/tab.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 27   [13:59:30.076] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 28   [13:59:30.101] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 4 structureChanged: false Elapsed: 24.67104196548462ms
-Info 29   [13:59:30.101] Different program with same set of files:: structureIsReused:: 2
-Info 30   [13:59:38.566] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage
-Info 31   [13:59:38.566] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage/index.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 32   [13:59:38.587] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage
-Info 33   [13:59:38.587] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage/index.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 34   [13:59:38.587] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 35   [13:59:38.605] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 5 structureChanged: false Elapsed: 17.816749930381775ms
-Info 36   [13:59:38.606] Different program with same set of files:: structureIsReused:: 2
-Info 37   [13:59:38.637] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 38   [13:59:38.659] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 6 structureChanged: false Elapsed: 21.996957898139954ms
-Info 39   [13:59:38.659] Different program with same set of files:: structureIsReused:: 2
-Info 40   [13:59:40.597] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 41   [13:59:40.636] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 7 structureChanged: false Elapsed: 38.852084040641785ms
-Info 42   [13:59:40.636] Different program with same set of files:: structureIsReused:: 2
-Info 43   [13:59:41.510] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 44   [13:59:41.549] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 8 structureChanged: false Elapsed: 39.22470796108246ms
-Info 45   [13:59:41.549] Different program with same set of files:: structureIsReused:: 2
-Info 46   [13:59:41.966] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 47   [13:59:42.089] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 9 structureChanged: true Elapsed: 122.79866695404053ms
-Info 48   [13:59:42.089] Different program with same set of files:: structureIsReused:: 1
-Info 49   [13:59:42.775] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 50   [13:59:42.809] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 10 structureChanged: false Elapsed: 32.98158299922943ms
-Info 51   [13:59:42.809] Different program with same set of files:: structureIsReused:: 2
-Info 52   [13:59:47.385] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 53   [13:59:47.497] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 11 structureChanged: true Elapsed: 112.45258295536041ms
-Info 54   [13:59:47.498] Different program with same set of files:: structureIsReused:: 1
-Info 55   [13:59:54.727] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage
-Info 56   [13:59:54.727] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage/index.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 57   [13:59:54.747] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage
-Info 58   [13:59:54.747] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage/index.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 59   [13:59:54.747] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 60   [13:59:54.757] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 12 structureChanged: false Elapsed: 9.532249927520752ms
-Info 61   [13:59:54.757] Different program with same set of files:: structureIsReused:: 2
-Info 62   [13:59:54.797] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 63   [13:59:54.807] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 13 structureChanged: false Elapsed: 9.910500049591064ms
-Info 64   [13:59:54.807] Different program with same set of files:: structureIsReused:: 2
-Info 65   [13:59:57.776] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 66   [13:59:57.809] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 14 structureChanged: false Elapsed: 33.22262501716614ms
-Info 67   [13:59:57.809] Different program with same set of files:: structureIsReused:: 2
-Info 68   [13:59:58.684] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 69   [13:59:58.711] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 15 structureChanged: false Elapsed: 26.908207893371582ms
-Info 70   [13:59:58.711] Different program with same set of files:: structureIsReused:: 2
-Info 71   [13:59:58.714] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 72   [13:59:58.733] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 16 structureChanged: false Elapsed: 19.055457949638367ms
-Info 73   [13:59:58.733] Different program with same set of files:: structureIsReused:: 2
-Info 74   [13:59:59.036] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 75   [13:59:59.044] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 17 structureChanged: false Elapsed: 7.308166027069092ms
-Info 76   [13:59:59.044] Different program with same set of files:: structureIsReused:: 2
-Info 77   [14:00:00.369] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 78   [14:00:00.401] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 18 structureChanged: false Elapsed: 31.20229208469391ms
-Info 79   [14:00:00.401] Different program with same set of files:: structureIsReused:: 2
-Info 80   [14:00:01.122] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 81   [14:00:01.160] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 19 structureChanged: false Elapsed: 37.90120792388916ms
-Info 82   [14:00:01.160] Different program with same set of files:: structureIsReused:: 2
-Info 83   [14:00:01.637] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 84   [14:00:01.663] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 20 structureChanged: false Elapsed: 25.908999919891357ms
-Info 85   [14:00:01.663] Different program with same set of files:: structureIsReused:: 2
-Info 86   [14:00:05.139] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 87   [14:00:05.173] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 21 structureChanged: false Elapsed: 33.39370799064636ms
-Info 88   [14:00:05.173] Different program with same set of files:: structureIsReused:: 2
-Info 89   [14:00:05.179] getCompletionData: Get current token: 0.010457992553710938
-Info 90   [14:00:05.179] getCompletionData: Is inside comment: 0.05495798587799072
-Info 91   [14:00:05.179] getCompletionData: Get previous token 1: 0.03320801258087158
-Info 92   [14:00:05.179] getCompletionData: Get previous token 2: 0.017207980155944824
-Info 93   [14:00:05.179] getCompletionsAtPosition: isCompletionListBlocker: 0.21737492084503174
-Info 94   [14:00:05.179] Returning an empty list because completion was requested in an invalid position.
-Info 95   [14:00:05.232] getCompletionData: Get current token: 0.004541993141174316
-Info 96   [14:00:05.232] getCompletionData: Is inside comment: 0.016624927520751953
-Info 97   [14:00:05.232] getCompletionData: Get previous token 1: 0.011749982833862305
-Info 98   [14:00:05.232] getCompletionData: Get previous token 2: 0.00945901870727539
-Info 99   [14:00:05.232] getCompletionsAtPosition: isCompletionListBlocker: 0.0018329620361328125
-Info 100  [14:00:05.232] Returning an empty list because completion was requested in an invalid position.
-Info 101  [14:00:05.232] getCompletionData: Get current token: 0.0027920007705688477
-Info 102  [14:00:05.232] getCompletionData: Is inside comment: 0.01587498188018799
-Info 103  [14:00:05.232] getCompletionData: Get previous token 1: 0.01179206371307373
-Info 104  [14:00:05.232] getCompletionData: Get previous token 2: 0.008958101272583008
-Info 105  [14:00:05.232] getCompletionsAtPosition: isCompletionListBlocker: 0.0014170408248901367
-Info 106  [14:00:05.232] Returning an empty list because completion was requested in an invalid position.
-Info 107  [14:00:08.103] forEachExternalModuleToImportFrom autoImportProvider: 6.861625075340271
-Info 108  [14:00:08.139] forEachExternalModuleToImportFrom autoImportProvider: 0.5232089757919312
-Info 109  [14:00:08.142] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 110  [14:00:08.154] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 22 structureChanged: false Elapsed: 12.622166991233826ms
-Info 111  [14:00:08.155] Different program with same set of files:: structureIsReused:: 2
-Info 112  [14:00:09.037] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 113  [14:00:09.066] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 23 structureChanged: false Elapsed: 28.73279106616974ms
-Info 114  [14:00:09.066] Different program with same set of files:: structureIsReused:: 2
-Info 115  [14:00:09.067] getCompletionData: Get current token: 0.01191699504852295
-Info 116  [14:00:09.067] getCompletionData: Is inside comment: 0.030375003814697266
-Info 117  [14:00:09.067] getCompletionData: Get previous token 1: 0.016041994094848633
-Info 118  [14:00:09.067] getCompletionData: Get previous token 2: 0.022207975387573242
-Info 119  [14:00:09.067] getCompletionsAtPosition: isCompletionListBlocker: 0.0037499666213989258
-Info 120  [14:00:09.067] Returning an empty list because completion was requested in an invalid position.
-Info 121  [14:00:09.111] getCompletionData: Get current token: 0.0038750171661376953
-Info 122  [14:00:09.111] getCompletionData: Is inside comment: 0.011500000953674316
-Info 123  [14:00:09.111] getCompletionData: Get previous token 1: 0.00845801830291748
-Info 124  [14:00:09.111] getCompletionData: Get previous token 2: 0.009415984153747559
-Info 125  [14:00:09.111] getCompletionsAtPosition: isCompletionListBlocker: 0.0019170045852661133
-Info 126  [14:00:09.111] Returning an empty list because completion was requested in an invalid position.
-Info 127  [14:00:09.111] getCompletionData: Get current token: 0.00233304500579834
-Info 128  [14:00:09.111] getCompletionData: Is inside comment: 0.009624958038330078
-Info 129  [14:00:09.111] getCompletionData: Get previous token 1: 0.007833003997802734
-Info 130  [14:00:09.111] getCompletionData: Get previous token 2: 0.00783395767211914
-Info 131  [14:00:09.111] getCompletionsAtPosition: isCompletionListBlocker: 0.001332998275756836
-Info 132  [14:00:09.111] Returning an empty list because completion was requested in an invalid position.
-Info 133  [14:00:09.111] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 134  [14:00:09.119] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 24 structureChanged: false Elapsed: 8.020833015441895ms
-Info 135  [14:00:09.119] Different program with same set of files:: structureIsReused:: 2
-Info 136  [14:00:09.346] getCompletionData: Get current token: 0.005582928657531738
-Info 137  [14:00:09.346] getCompletionData: Is inside comment: 0.011749982833862305
-Info 138  [14:00:09.346] getCompletionData: Get previous token 1: 0.0070830583572387695
-Info 139  [14:00:09.346] getCompletionData: Get previous token 2: 0.010625004768371582
-Info 140  [14:00:09.346] getCompletionsAtPosition: isCompletionListBlocker: 0.002666950225830078
-Info 141  [14:00:09.346] Returning an empty list because completion was requested in an invalid position.
-Info 142  [14:00:09.374] getCompletionData: Get current token: 0.003666996955871582
-Info 143  [14:00:09.374] getCompletionData: Is inside comment: 0.009582996368408203
-Info 144  [14:00:09.374] getCompletionData: Get previous token 1: 0.006708025932312012
-Info 145  [14:00:09.374] getCompletionData: Get previous token 2: 0.007500052452087402
-Info 146  [14:00:09.374] getCompletionsAtPosition: isCompletionListBlocker: 0.004124999046325684
-Info 147  [14:00:09.374] Returning an empty list because completion was requested in an invalid position.
-Info 148  [14:00:09.376] getCompletionData: Get current token: 0.0034579038619995117
-Info 149  [14:00:09.376] getCompletionData: Is inside comment: 0.009707927703857422
-Info 150  [14:00:09.376] getCompletionData: Get previous token 1: 0.0068329572677612305
-Info 151  [14:00:09.376] getCompletionData: Get previous token 2: 0.007207989692687988
-Info 152  [14:00:09.376] getCompletionsAtPosition: isCompletionListBlocker: 0.0015419721603393555
-Info 153  [14:00:09.376] Returning an empty list because completion was requested in an invalid position.
-Info 154  [14:00:11.363] forEachExternalModuleToImportFrom autoImportProvider: 16.23395800590515
-Info 155  [14:00:11.375] forEachExternalModuleToImportFrom autoImportProvider: 0.2522919178009033
-Info 156  [14:00:11.623] forEachExternalModuleToImportFrom autoImportProvider: 0.4732919931411743
-Info 157  [14:00:11.638] forEachExternalModuleToImportFrom autoImportProvider: 0.35370898246765137
-Info 158  [14:00:12.066] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 159  [14:00:12.097] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 25 structureChanged: false Elapsed: 30.98329198360443ms
-Info 160  [14:00:12.097] Different program with same set of files:: structureIsReused:: 2
-Info 161  [14:00:12.161] forEachExternalModuleToImportFrom autoImportProvider: 0.2120000123977661
-Info 162  [14:00:12.167] forEachExternalModuleToImportFrom autoImportProvider: 0.17829203605651855
-Info 163  [14:00:12.358] forEachExternalModuleToImportFrom autoImportProvider: 0.34300005435943604
-Info 164  [14:00:12.620] forEachExternalModuleToImportFrom autoImportProvider: 0.5046249628067017
-Info 165  [14:00:12.635] forEachExternalModuleToImportFrom autoImportProvider: 0.3300420045852661
-Info 166  [14:00:13.050] forEachExternalModuleToImportFrom autoImportProvider: 0.5730000734329224
-Info 167  [14:00:13.067] forEachExternalModuleToImportFrom autoImportProvider: 0.46712493896484375
-Info 168  [14:00:13.399] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 169  [14:00:13.430] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 26 structureChanged: false Elapsed: 31.01591694355011ms
-Info 170  [14:00:13.431] Different program with same set of files:: structureIsReused:: 2
-Info 171  [14:00:13.483] forEachExternalModuleToImportFrom autoImportProvider: 0.2312079668045044
-Info 172  [14:00:13.489] forEachExternalModuleToImportFrom autoImportProvider: 0.21454191207885742
-Info 173  [14:00:13.924] forEachExternalModuleToImportFrom autoImportProvider: 0.4869159460067749
-Info 174  [14:00:15.323] forEachExternalModuleToImportFrom autoImportProvider: 0.5271250009536743
-Info 175  [14:00:15.778] forEachExternalModuleToImportFrom autoImportProvider: 0.46983301639556885
-Info 176  [14:00:16.480] forEachExternalModuleToImportFrom autoImportProvider: 0.4819580316543579
-Info 177  [14:00:16.778] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 178  [14:00:16.811] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 27 structureChanged: false Elapsed: 32.78479194641113ms
-Info 179  [14:00:16.811] Different program with same set of files:: structureIsReused:: 2
-Info 180  [14:00:18.328] forEachExternalModuleToImportFrom autoImportProvider: 0.49275004863739014
-Info 181  [14:00:18.605] forEachExternalModuleToImportFrom autoImportProvider: 0.468250036239624
-Info 182  [14:00:18.914] forEachExternalModuleToImportFrom autoImportProvider: 0.4244999885559082
-Info 183  [14:00:19.698] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 184  [14:00:19.730] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 28 structureChanged: false Elapsed: 32.548749923706055ms
-Info 185  [14:00:19.731] Different program with same set of files:: structureIsReused:: 2
-Info 186  [14:00:21.108] forEachExternalModuleToImportFrom autoImportProvider: 0.4656250476837158
-Info 187  [14:00:21.438] forEachExternalModuleToImportFrom autoImportProvider: 0.4752500057220459
-Info 188  [14:00:22.698] forEachExternalModuleToImportFrom autoImportProvider: 0.48158395290374756
-Info 189  [14:00:23.090] forEachExternalModuleToImportFrom autoImportProvider: 0.47437500953674316
-Info 190  [14:00:23.415] forEachExternalModuleToImportFrom autoImportProvider: 0.4403749704360962
-Info 191  [14:00:23.893] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 192  [14:00:23.911] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 29 structureChanged: false Elapsed: 17.16362500190735ms
-Info 193  [14:00:23.911] Different program with same set of files:: structureIsReused:: 2
-Info 194  [14:00:23.971] forEachExternalModuleToImportFrom autoImportProvider: 0.8199169635772705
-Info 195  [14:00:24.635] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 196  [14:00:24.668] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 30 structureChanged: false Elapsed: 32.40345799922943ms
-Info 197  [14:00:24.668] Different program with same set of files:: structureIsReused:: 2
-Info 198  [14:00:24.668] getCompletionData: Get current token: 0.008000016212463379
-Info 199  [14:00:24.668] getCompletionData: Is inside comment: 0.004083037376403809
-Info 200  [14:00:24.668] getCompletionData: Get previous token 1: 0.04895901679992676
-Info 201  [14:00:24.668] getCompletionData: Get previous token 2: 0.03633296489715576
-Info 202  [14:00:24.669] getCompletionsAtPosition: isCompletionListBlocker: 0.1735830307006836
-Info 203  [14:00:24.682] collectAutoImports: starting, not resolving module specifiers
-Info 204  [14:00:24.682] collectAutoImports: module specifier cache size: 4
-Info 205  [14:00:24.682] getSymbolToExportInfoMap: cache miss or empty; calculating new results
-Info 206  [14:00:24.778] forEachExternalModuleToImportFrom autoImportProvider: 18.588958024978638
-Info 207  [14:00:24.778] getSymbolToExportInfoMap: caching results
-Info 208  [14:00:24.778] getSymbolToExportInfoMap: done in 95.79799997806549 ms
-Info 209  [14:00:24.787] collectAutoImports: done in 105.11845898628235 ms
-Info 210  [14:00:24.787] getCompletionData: Semantic work: 118.40149998664856
-Info 211  [14:00:24.863] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 9.526166915893555
-Info 212  [14:00:24.943] forEachExternalModuleToImportFrom autoImportProvider: 0.2018749713897705
-Info 213  [14:00:24.956] getCompletionData: Get current token: 0.002749919891357422
-Info 214  [14:00:24.956] getCompletionData: Is inside comment: 0.0015000104904174805
-Info 215  [14:00:24.956] getCompletionData: Get previous token 1: 0.012707948684692383
-Info 216  [14:00:24.956] getCompletionData: Get previous token 2: 0.011250019073486328
-Info 217  [14:00:24.956] getCompletionsAtPosition: isCompletionListBlocker: 0.002666950225830078
-Info 218  [14:00:24.960] collectAutoImports: starting, not resolving module specifiers
-Info 219  [14:00:24.960] collectAutoImports: module specifier cache size: 9
-Info 220  [14:00:24.960] getSymbolToExportInfoMap: cache hit
-Info 221  [14:00:24.966] collectAutoImports: done in 6.77037501335144 ms
-Info 222  [14:00:24.966] getCompletionData: Semantic work: 10.30791699886322
-Info 223  [14:00:24.975] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 8.348291993141174
-Info 224  [14:00:24.978] getCompletionData: Get current token: 0.0033330917358398438
-Info 225  [14:00:24.978] getCompletionData: Is inside comment: 0.0015000104904174805
-Info 226  [14:00:24.978] getCompletionData: Get previous token 1: 0.014541983604431152
-Info 227  [14:00:24.978] getCompletionData: Get previous token 2: 0.01308298110961914
-Info 228  [14:00:24.978] getCompletionsAtPosition: isCompletionListBlocker: 0.0019170045852661133
-Info 229  [14:00:24.983] collectAutoImports: starting, not resolving module specifiers
-Info 230  [14:00:24.983] collectAutoImports: module specifier cache size: 9
-Info 231  [14:00:24.983] getSymbolToExportInfoMap: cache hit
-Info 232  [14:00:24.988] collectAutoImports: done in 5.69837498664856 ms
-Info 233  [14:00:24.988] getCompletionData: Semantic work: 10.153957962989807
-Info 234  [14:00:24.997] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 8.811124920845032
-Info 235  [14:00:25.090] forEachExternalModuleToImportFrom autoImportProvider: 0.23570799827575684
-Info 236  [14:00:26.453] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 237  [14:00:26.492] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 31 structureChanged: false Elapsed: 39.08833396434784ms
-Info 238  [14:00:26.493] Different program with same set of files:: structureIsReused:: 2
-Info 239  [14:00:26.620] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 240  [14:00:26.630] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 32 structureChanged: false Elapsed: 10.027958035469055ms
-Info 241  [14:00:26.630] Different program with same set of files:: structureIsReused:: 2
-Info 242  [14:00:26.965] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 243  [14:00:26.994] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 33 structureChanged: false Elapsed: 28.39562499523163ms
-Info 244  [14:00:26.994] Different program with same set of files:: structureIsReused:: 2
-Info 245  [14:00:26.994] getCompletionData: Get current token: 0.008833050727844238
-Info 246  [14:00:26.994] getCompletionData: Is inside comment: 0.0050830841064453125
-Info 247  [14:00:26.994] getCompletionData: Get previous token 1: 0.06258392333984375
-Info 248  [14:00:26.994] getCompletionData: Get previous token 2: 0.04062497615814209
-Info 249  [14:00:26.994] getCompletionsAtPosition: isCompletionListBlocker: 0.005707979202270508
-Info 250  [14:00:27.005] collectAutoImports: starting, not resolving module specifiers
-Info 251  [14:00:27.005] collectAutoImports: module specifier cache size: 9
-Info 252  [14:00:27.015] getSymbolToExportInfoMap: cache hit
-Info 253  [14:00:27.058] collectAutoImports: done in 53.09162497520447 ms
-Info 254  [14:00:27.058] getCompletionData: Semantic work: 63.6180419921875
-Info 255  [14:00:27.087] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 28.072082996368408
-Info 256  [14:00:27.095] getCompletionData: Get current token: 0.00291597843170166
-Info 257  [14:00:27.095] getCompletionData: Is inside comment: 0.001665949821472168
-Info 258  [14:00:27.095] getCompletionData: Get previous token 1: 0.01758289337158203
-Info 259  [14:00:27.095] getCompletionData: Get previous token 2: 0.01412498950958252
-Info 260  [14:00:27.095] getCompletionsAtPosition: isCompletionListBlocker: 0.001999974250793457
-Info 261  [14:00:27.100] collectAutoImports: starting, not resolving module specifiers
-Info 262  [14:00:27.100] collectAutoImports: module specifier cache size: 307
-Info 263  [14:00:27.104] getSymbolToExportInfoMap: cache hit
-Info 264  [14:00:27.120] collectAutoImports: done in 20.23816704750061 ms
-Info 265  [14:00:27.120] getCompletionData: Semantic work: 24.489749908447266
-Info 266  [14:00:27.141] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 20.689207911491394
-Info 267  [14:00:27.147] getCompletionData: Get current token: 0.002959012985229492
-Info 268  [14:00:27.147] getCompletionData: Is inside comment: 0.001667022705078125
-Info 269  [14:00:27.147] getCompletionData: Get previous token 1: 0.017042040824890137
-Info 270  [14:00:27.147] getCompletionData: Get previous token 2: 0.013833999633789062
-Info 271  [14:00:27.147] getCompletionsAtPosition: isCompletionListBlocker: 0.002042055130004883
-Info 272  [14:00:27.150] collectAutoImports: starting, not resolving module specifiers
-Info 273  [14:00:27.150] collectAutoImports: module specifier cache size: 307
-Info 274  [14:00:27.155] getSymbolToExportInfoMap: cache hit
-Info 275  [14:00:27.166] collectAutoImports: done in 16.25950002670288 ms
-Info 276  [14:00:27.167] getCompletionData: Semantic work: 19.095707893371582
-Info 277  [14:00:27.182] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 6.688624978065491
-Info 278  [14:00:27.205] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 279  [14:00:27.214] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 34 structureChanged: false Elapsed: 9.276334047317505ms
-Info 280  [14:00:27.214] Different program with same set of files:: structureIsReused:: 2
-Info 281  [14:00:27.214] getCompletionData: Get current token: 0.0032089948654174805
-Info 282  [14:00:27.214] getCompletionData: Is inside comment: 0.002583026885986328
-Info 283  [14:00:27.214] getCompletionData: Get previous token 1: 0.019499897956848145
-Info 284  [14:00:27.214] getCompletionData: Get previous token 2: 0.014333009719848633
-Info 285  [14:00:27.214] getCompletionsAtPosition: isCompletionListBlocker: 0.001958012580871582
-Info 286  [14:00:27.218] collectAutoImports: starting, not resolving module specifiers
-Info 287  [14:00:27.218] collectAutoImports: module specifier cache size: 307
-Info 288  [14:00:27.222] getSymbolToExportInfoMap: cache hit
-Info 289  [14:00:27.226] collectAutoImports: done in 8.555124998092651 ms
-Info 290  [14:00:27.226] getCompletionData: Semantic work: 11.771292090415955
-Info 291  [14:00:27.232] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 5.446582913398743
-Info 292  [14:00:27.540] getCompletionData: Get current token: 0.0025839805603027344
-Info 293  [14:00:27.540] getCompletionData: Is inside comment: 0.002084016799926758
-Info 294  [14:00:27.541] getCompletionData: Get previous token 1: 0.015417098999023438
-Info 295  [14:00:27.541] getCompletionData: Get previous token 2: 0.012667059898376465
-Info 296  [14:00:27.541] getCompletionsAtPosition: isCompletionListBlocker: 0.0019159317016601562
-Info 297  [14:00:27.544] collectAutoImports: starting, not resolving module specifiers
-Info 298  [14:00:27.544] collectAutoImports: module specifier cache size: 307
-Info 299  [14:00:27.546] getSymbolToExportInfoMap: cache hit
-Info 300  [14:00:27.550] collectAutoImports: done in 5.848874926567078 ms
-Info 301  [14:00:27.550] getCompletionData: Semantic work: 9.340167045593262
-Info 302  [14:00:27.555] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 4.636375069618225
-Info 303  [14:00:27.559] getCompletionData: Get current token: 0.0028339624404907227
-Info 304  [14:00:27.559] getCompletionData: Is inside comment: 0.0014159679412841797
-Info 305  [14:00:27.559] getCompletionData: Get previous token 1: 0.015084028244018555
-Info 306  [14:00:27.559] getCompletionData: Get previous token 2: 0.012916922569274902
-Info 307  [14:00:27.559] getCompletionsAtPosition: isCompletionListBlocker: 0.0022079944610595703
-Info 308  [14:00:27.561] collectAutoImports: starting, not resolving module specifiers
-Info 309  [14:00:27.561] collectAutoImports: module specifier cache size: 307
-Info 310  [14:00:27.564] getSymbolToExportInfoMap: cache hit
-Info 311  [14:00:27.568] collectAutoImports: done in 6.357708096504211 ms
-Info 312  [14:00:27.568] getCompletionData: Semantic work: 9.05174994468689
-Info 313  [14:00:27.572] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 4.254916071891785
-Info 314  [14:00:27.975] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 315  [14:00:28.006] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 35 structureChanged: false Elapsed: 30.32829201221466ms
-Info 316  [14:00:28.006] Different program with same set of files:: structureIsReused:: 2
-Info 317  [14:00:28.006] getCompletionData: Get current token: 0.009042024612426758
-Info 318  [14:00:28.006] getCompletionData: Is inside comment: 0.004709005355834961
-Info 319  [14:00:28.006] getCompletionData: Get previous token 1: 0.057792067527770996
-Info 320  [14:00:28.006] getCompletionData: Get previous token 2: 0.03833305835723877
-Info 321  [14:00:28.006] getCompletionsAtPosition: isCompletionListBlocker: 0.005707979202270508
-Info 322  [14:00:28.013] collectAutoImports: starting, not resolving module specifiers
-Info 323  [14:00:28.013] collectAutoImports: module specifier cache size: 307
-Info 324  [14:00:28.018] getSymbolToExportInfoMap: cache hit
-Info 325  [14:00:28.024] collectAutoImports: done in 10.625083088874817 ms
-Info 326  [14:00:28.024] getCompletionData: Semantic work: 17.588250041007996
-Info 327  [14:00:28.031] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 6.544458031654358
-Info 328  [14:00:28.628] forEachExternalModuleToImportFrom autoImportProvider: 0.4617499113082886
-Info 329  [14:00:28.912] forEachExternalModuleToImportFrom autoImportProvider: 0.5461668968200684
-Info 330  [14:00:29.225] forEachExternalModuleToImportFrom autoImportProvider: 0.42475008964538574
-Info 331  [14:00:29.756] forEachExternalModuleToImportFrom autoImportProvider: 0.48866701126098633
-Info 332  [14:00:30.634] forEachExternalModuleToImportFrom autoImportProvider: 0.46620798110961914
-Info 333  [14:00:31.041] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 334  [14:00:31.075] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 36 structureChanged: false Elapsed: 34.07854199409485ms
-Info 335  [14:00:31.075] Different program with same set of files:: structureIsReused:: 2
-Info 336  [14:00:45.454] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage
-Info 337  [14:00:45.461] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage/index.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 338  [14:00:45.476] Search path: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage
-Info 339  [14:00:45.476] For info: /Users/jessekelly/Desktop/ProjectDiscovery/interact/src/lib/localStorage/index.ts :: Config file name: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 340  [14:00:45.476] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 341  [14:00:45.490] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 37 structureChanged: false Elapsed: 14.13224995136261ms
-Info 342  [14:00:45.490] Different program with same set of files:: structureIsReused:: 2
-Info 343  [14:00:45.525] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 344  [14:00:45.538] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 38 structureChanged: false Elapsed: 12.726667046546936ms
-Info 345  [14:00:45.538] Different program with same set of files:: structureIsReused:: 2
-Info 346  [14:00:47.230] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 347  [14:00:47.268] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 39 structureChanged: false Elapsed: 37.95574998855591ms
-Info 348  [14:00:47.268] Different program with same set of files:: structureIsReused:: 2
-Info 349  [14:00:48.730] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 350  [14:00:48.755] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 40 structureChanged: false Elapsed: 24.435791015625ms
-Info 351  [14:00:48.755] Different program with same set of files:: structureIsReused:: 2
-Info 352  [14:00:48.839] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 353  [14:00:48.924] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 41 structureChanged: true Elapsed: 84.50679099559784ms
-Info 354  [14:00:48.924] Different program with same set of files:: structureIsReused:: 1
-Info 355  [14:00:49.975] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 356  [14:00:50.006] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 42 structureChanged: false Elapsed: 30.054540991783142ms
-Info 357  [14:00:50.006] Different program with same set of files:: structureIsReused:: 2
-Info 358  [14:00:52.884] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 359  [14:00:53.004] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 43 structureChanged: true Elapsed: 120.21112489700317ms
-Info 360  [14:00:53.005] Different program with same set of files:: structureIsReused:: 1
-Info 361  [14:00:57.163] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 362  [14:00:57.189] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 44 structureChanged: false Elapsed: 25.727167010307312ms
-Info 363  [14:00:57.189] Different program with same set of files:: structureIsReused:: 2
-Info 364  [14:01:00.912] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
-Info 365  [14:01:00.942] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 45 structureChanged: false Elapsed: 30.22237503528595ms
-Info 366  [14:01:00.942] Different program with same set of files:: structureIsReused:: 2
+Info 18   [16:24:56.974] -----------------------------------------------
+Info 19   [16:24:57.371] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
+Info 20   [16:24:57.388] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 2 structureChanged: false Elapsed: 17.184583008289337ms
+Info 21   [16:24:57.388] Different program with same set of files:: structureIsReused:: 2
+Info 22   [16:25:02.455] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
+Info 23   [16:25:02.561] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 3 structureChanged: true Elapsed: 106.06000000238419ms
+Info 24   [16:25:02.561] Different program with same set of files:: structureIsReused:: 1
+Info 25   [16:25:03.276] Starting updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json
+Info 26   [16:25:03.362] Finishing updateGraphWorker: Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json Version: 4 structureChanged: true Elapsed: 86.09341698884964ms
+Info 27   [16:25:03.362] Different program with same set of files:: structureIsReused:: 1
+Info 28   [16:25:04.341] DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/interact/node_modules/.cache/babel-loader/ef2a6bbfe5ffcc15c6bc3acfed28e441.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/interact/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 29   [16:25:04.341] Elapsed:: 0.1033329963684082ms DirectoryWatcher:: Triggered with /users/jessekelly/desktop/projectdiscovery/interact/node_modules/.cache/babel-loader/ef2a6bbfe5ffcc15c6bc3acfed28e441.json :: WatchInfo: /users/jessekelly/desktop/projectdiscovery/interact/node_modules 1 undefined WatchType: node_modules for closed script infos in them
+Info 30   [16:25:04.341] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules/.cache/babel-loader/ef2a6bbfe5ffcc15c6bc3acfed28e441.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json WatchType: Failed Lookup Locations
+Info 31   [16:25:04.341] Elapsed:: 0.09741699695587158ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules/.cache/babel-loader/ef2a6bbfe5ffcc15c6bc3acfed28e441.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules 1 undefined Project: /Users/jessekelly/Desktop/ProjectDiscovery/interact/tsconfig.json WatchType: Failed Lookup Locations
+Info 32   [16:25:04.341] DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules/.cache/babel-loader/ef2a6bbfe5ffcc15c6bc3acfed28e441.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations
+Info 33   [16:25:04.341] Elapsed:: 0.0085410475730896ms DirectoryWatcher:: Triggered with /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules/.cache/babel-loader/ef2a6bbfe5ffcc15c6bc3acfed28e441.json :: WatchInfo: /Users/jessekelly/Desktop/ProjectDiscovery/interact/node_modules 1 undefined Project: /dev/null/autoImportProviderProject1* WatchType: Failed Lookup Locations

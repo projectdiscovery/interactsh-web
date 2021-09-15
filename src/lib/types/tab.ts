@@ -1,5 +1,13 @@
 import { AsOpaque, summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import type { AType, EType } from "@morphic-ts/summoners";
+import * as Eq from 'fp-ts/Eq';
+import { pipe } from "fp-ts/function";
+import * as s from 'fp-ts/string';
+
+const eqByUniqueId = pipe(
+  s.Eq,
+  Eq.contramap((t: { "unique-id": string }) => t["unique-id"])
+);
 
 
 const { summon } = summonFor<{}>({});
@@ -13,7 +21,8 @@ const Tab_ = summon((F) =>
       note: F.string(),
       url: F.string(),
     },
-    "Tab"
+    "Tab",
+    { EqURI: () => eqByUniqueId }
   )
 );
 
