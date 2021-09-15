@@ -1,9 +1,10 @@
-import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
-import * as t from "io-ts";
+import { AsOpaque, summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
+import type { AType, EType } from "@morphic-ts/summoners";
+
 
 const { summon } = summonFor<{}>({});
 
-const Tab = summon((F) =>
+const Tab_ = summon((F) =>
   F.interface(
     {
       correlationId: F.string(),
@@ -16,6 +17,8 @@ const Tab = summon((F) =>
   )
 );
 
-type Tab = t.TypeOf<typeof Tab.type>;
+export interface Tab extends AType<typeof Tab_> {}
+export interface TabRaw extends EType<typeof Tab_> {}
+export const Tab = AsOpaque<TabRaw, Tab>()(Tab_);
 
 export default Tab;
