@@ -70,12 +70,21 @@
     animation: f 4s linear infinite alternate;
   }
 
-  &:after {
-    content: "interact.sh";
+  // &:after {
+  //   content: "interact.sh";
+  //   font-family: "Nunito Sans", sans-serif;
+  //   letter-spacing: 0.3ch;
+  //   mix-blend-mode: normal;
+  //   font-size: 7vmin;
+  //   color: #fff;
+  // }
+
+  .loader_content{
     font-family: "Nunito Sans", sans-serif;
-    letter-spacing: 0.3ch;
-    mix-blend-mode: normal;
-    font-size: 7vmin;
+    // letter-spacing: 0.3ch;
+    // mix-blend-mode: normal;
+    // font-size: 7vmin;
+    font-size: 3.2rem;
     color: #fff;
   }
 }

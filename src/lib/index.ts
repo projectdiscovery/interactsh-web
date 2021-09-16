@@ -40,6 +40,7 @@ export const clearIntervals = () => {
 };
 
 interface PolledData {
+  error?: any;
   aes_key: string;
   data: string[];
 }
@@ -168,9 +169,10 @@ export const register = (
     headers: token && token !== "" ? headers[1] : headers[0],
     referrerPolicy: "no-referrer",
     body: JSON.stringify(registerFetcherOptions),
-  }).then((res) => {
+  }).then(async (res) => {
     if (!res.ok) {
-      throw new Error(res.statusText);
+      const d = await res.json();
+      throw new Error(d.error);
     }
 
     const { url, uniqueId } = generateUrl(correlation, 1, host);
@@ -240,24 +242,47 @@ export const poll = (
     referrerPolicy: "no-referrer",
   })
     .then(async (res: any) => {
-      // console.log(await res.json());
+      const data = await res.json();
       if (!res.ok) {
-        // throw new Error(res.statusText);
-        if(await res.json().error){
-          console.log(res.json());
-          
-          throw new Error(res.statusText);
+        const err = data.error;
+        if (err === "could not get interactions: could not get correlation-id from cache") {
+          register(host, token, false, true)
+            .then((d) => {
+              writeStoredData(d);
+            })
+            .catch((err2) => {
+              console.log(err2);
+
+              if (
+                err2.message !==
+                "could not set id and public key: correlation-id provided is invalid"
+              ) {
+                clearIntervals();
+                handleResetPopupDialogVisibility();
+              }
+            });
+        } else if (
+          err ===
+          "could not set id and public key: could not read public Key: illegal base64 data at input byte 600"
+        ) {
+          register(host, token, false, false)
+            .then((d) => {
+              writeStoredData(d);
+            })
+            .catch((err2) => {
+              if (
+                err2.message !==
+                "could not set id and public key: correlation-id provided is invalid"
+              ) {
+                clearIntervals();
+                handleResetPopupDialogVisibility();
+              }
+            });
+        } else {
+          throw new Error("unexpected error");
         }
-        register(host, token, false, true)
-          .then((d) => {
-            writeStoredData(d);
-          })
-          .catch(() => {
-            clearIntervals();
-            handleResetPopupDialogVisibility();
-          });
       }
-      return res.json();
+      return data;
     })
     .then((data) => data);
 };

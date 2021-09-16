@@ -46,6 +46,7 @@ const HomePage = () => {
   const [selectedInteractionData, setSelectedInteractionData] = useState<Data | null>(null);
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState<boolean>(false);
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const [loaderAnimationMode, setLoaderAnimationMode] = useState<string>("loading");
   const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState<boolean>(false);
 
   const handleResetPopupDialogVisibility = () => {
@@ -62,7 +63,7 @@ const HomePage = () => {
     poll(correlationId, secretKey, host, token, handleResetPopupDialogVisibility)
       .then((pollData) => {
         setIsRegistered(true);
-        if (pollData.data.length !== 0) {
+        if (pollData?.data?.length !== 0 && !pollData.error) {
           if (aesKey === "" && pollData.aes_key) {
             decryptedAESKey = decryptAESKey(privateKey, pollData.aes_key);
           }
@@ -82,6 +83,7 @@ const HomePage = () => {
         }
       })
       .catch(() => {
+        setLoaderAnimationMode("server_error");
         setIsRegistered(false);
       });
   };
@@ -96,6 +98,7 @@ const HomePage = () => {
     });
     setIsRegistered(true);
     if (storedData.correlationId === "") {
+      setLoaderAnimationMode("loading");
       setIsRegistered(false);
       setTimeout(() => {
         register(storedData.host, "", false, false)
@@ -109,6 +112,7 @@ const HomePage = () => {
           .catch(() => {
             localStorage.clear();
             setStoredData(defaultStoredData);
+            setLoaderAnimationMode("server_error");
             setIsRegistered(false);
           });
       }, 1500);
@@ -258,7 +262,7 @@ const HomePage = () => {
     <ThemeProvider theme={getTheme(storedData.theme)}>
       <GlobalStyles />
       <div className="main">
-        <AppLoader isRegistered={isRegistered} />
+        <AppLoader isRegistered={isRegistered} mode={loaderAnimationMode} />
         {aboutPopupVisibility && (
           <div className="about_popup_wrapper">
             <div className="about_popup">
