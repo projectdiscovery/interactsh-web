@@ -14,7 +14,18 @@ const AppLoader = ({ isRegistered, mode }: AppLoaderP) => (
     className="loader_container"
     style={{ opacity: isRegistered ? 0 : 1, visibility: isRegistered ? "hidden" : "visible" }}
   >
-    <div className="loader_content">{mode === "loading" ? <Logo /> : "Server Unavailable..."}</div>
+    <div className="loader_content">
+      {mode === "loading" ? (
+        <>
+          <Logo />{" "}
+          <span>
+            <span>interact</span>.sh
+          </span>
+        </>
+      ) : (
+        "Server Unavailable..."
+      )}
+    </div>
   </div>
 );
 export default AppLoader;

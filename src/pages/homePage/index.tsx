@@ -318,7 +318,6 @@ const HomePage = () => {
                 {storedData.selectedTab && storedData.selectedTab.url}
               </div>
               <CopyIcon
-                style={{ width: 13 }}
                 onClick={() => copyDataToClipboard(storedData.selectedTab.url)}
               />
               <div className="vertical_bar" />

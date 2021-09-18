@@ -79,13 +79,27 @@
   //   color: #fff;
   // }
 
-  .loader_content{
+  .loader_content {
     font-family: "Nunito Sans", sans-serif;
     // letter-spacing: 0.3ch;
     // mix-blend-mode: normal;
     // font-size: 7vmin;
-    font-size: 3.2rem;
+    font-size: 5.2rem;
+    font-family: "Nunito Sans", sans-serif;
     color: #fff;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 1rem;
+      span {
+        font-weight: 600;
+      }
+    }
+    svg {
+      height: 10rem;
+      width: 10rem;
+    }
   }
 }
 

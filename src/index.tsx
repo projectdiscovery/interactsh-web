@@ -22,7 +22,7 @@ const AnimatedSwitch = withRouter(({ location }) => {
   document.getElementsByTagName("html")[0].style.overflow = "visible";
   return (
     <TransitionGroup>
-      <CSSTransition key={location.pathname} classNames="slide slide" timeout={100}>
+      <CSSTransition key={location.pathname} classNames="slide slide" timeout={10}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/terms" component={TermsPage} />
