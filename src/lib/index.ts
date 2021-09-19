@@ -12,7 +12,9 @@ import { v4 as uuidv4 } from "uuid";
 import xid from "xid-js";
 import zbase32 from "zbase32";
 
-import { Data, getStoredData, StoredData, writeStoredData } from "./localStorage";
+import { getStoredData, writeStoredData } from "./localStorage";
+import { Data } from "./types/data";
+import { StoredData } from "./types/storedData";
 import Tab from "./types/tab";
 
 export const copyDataToClipboard = (data: string) => navigator.clipboard.writeText(data);

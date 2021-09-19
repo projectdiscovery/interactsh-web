@@ -22,35 +22,155 @@ import {
   clearIntervals,
   register,
 } from "lib";
+import { Data } from "lib/types/data";
+import { StoredData } from "lib/types/storedData";
 import Tab from "lib/types/tab";
 import View from "lib/types/view";
 import { ThemeName, getTheme } from "theme";
 
 import Header from "../../components/header";
 import TabSwitcher from "../../components/tabSwitcher";
-import {
-  writeStoredData,
-  getStoredData,
-  StoredData,
-  Data,
-  defaultStoredData,
-} from "../../lib/localStorage";
+import { writeStoredData, getStoredData, defaultStoredData } from "../../lib/localStorage";
 import RequestDetailsWrapper from "./requestDetailsWrapper";
 import RequestsTableWrapper from "./requestsTableWrapper";
 
 const HomePage = () => {
-  const [storedData, setStoredData] = useState<StoredData>(getStoredData());
-  const [isNotesOpen, setIsNotesOpen] = useState<boolean>(false);
+  const [aboutPopupVisibility, setAboutPopupVisibility] = useState<boolean>(false);
   const [filteredData, setFilteredData] = useState<Array<Data>>([]);
+  const [isNotesOpen, setIsNotesOpen] = useState<boolean>(false);
+  const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState<boolean>(false);
+  const [loaderAnimationMode, setLoaderAnimationMode] = useState<string>("loading");
   const [selectedInteraction, setSelectedInteraction] = useState<string | null>(null);
   const [selectedInteractionData, setSelectedInteractionData] = useState<Data | null>(null);
-  const [aboutPopupVisibility, setAboutPopupVisibility] = useState<boolean>(false);
-  const [isRegistered, setIsRegistered] = useState<boolean>(false);
-  const [loaderAnimationMode, setLoaderAnimationMode] = useState<string>("loading");
-  const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState<boolean>(false);
+  const [storedData, setStoredData] = useState<StoredData>(getStoredData());
 
   const handleResetPopupDialogVisibility = () => {
     setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
+  };
+
+  // "Switch theme" function
+  const handleThemeSelection = (value: ThemeName) => {
+    setStoredData({
+      ...storedData,
+      theme: value,
+    });
+  };
+
+  // "Select a tab" function
+  const handleTabButtonClick = (tab: Tab) => {
+    setStoredData({
+      ...storedData,
+      selectedTab: tab,
+    });
+    setSelectedInteraction(null);
+  };
+
+  // " Add new tab" function
+  const handleAddNewTab = () => {
+    const { increment, host, correlationId } = storedData;
+    const newIncrement = increment + 1;
+    const { url, uniqueId } = generateUrl(correlationId, newIncrement, host);
+    const tabData: Tab = {
+      "unique-id": uniqueId,
+      correlationId,
+      name: newIncrement.toString(),
+      url,
+      note: "",
+    };
+    setStoredData({
+      ...storedData,
+      tabs: storedData.tabs.concat([tabData]),
+      selectedTab: tabData,
+      increment: newIncrement,
+    });
+  };
+
+  // "Show or hide notes" function
+  const handleNotesVisibility = () => {
+    setTimeout(() => {
+      document.getElementById("notes_textarea")?.focus();
+    }, 200);
+    setIsNotesOpen(!isNotesOpen);
+  };
+
+  // "Notes input change handler" function
+  const handleNoteInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    const { selectedTab, tabs } = storedData;
+    const index = tabs.findIndex((item) => item["unique-id"] === selectedTab["unique-id"]);
+    const currentTab = tabs[index];
+    const filteredTabList = tabs.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
+    filteredTabList.push({ ...currentTab, note: e.target.value });
+    setStoredData({
+      ...storedData,
+      tabs: filteredTabList,
+    });
+  };
+
+  // "Selecting a specific interaction" function
+  const handleRowClick = (id: string) => {
+    setSelectedInteraction(id);
+    const reqDetails =
+      filteredData && filteredData[filteredData.findIndex((item) => item.id === id)];
+    setSelectedInteractionData(reqDetails);
+  };
+
+  // "Deleting a tab" function
+  const handleDeleteTab = (id: string) => {
+    const { tabs } = storedData;
+    const index = tabs.findIndex((value) => value["unique-id"] === id);
+    const filteredTempTabsList = tabs.filter((value) => value["unique-id"] !== id);
+    const tempTabsData = storedData.data;
+    const filteredTempTabsData = tempTabsData.filter((value) => value["unique-id"] !== id);
+    setStoredData({
+      ...storedData,
+      tabs: [...filteredTempTabsList],
+      selectedTab: {
+        ...filteredTempTabsList[filteredTempTabsList.length <= index ? index - 1 : index],
+      },
+      data: filteredTempTabsData,
+    });
+  };
+
+  // "Renaming a tab" function
+  const handleTabRename: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const tempTabsList = storedData.tabs;
+    const index = tempTabsList.findIndex(
+      (item) => item["unique-id"] === storedData.selectedTab["unique-id"]
+    );
+    const filteredTabList = tempTabsList.filter(
+      (item) => item["unique-id"] !== storedData.selectedTab["unique-id"]
+    );
+    const tempTab = { ...tempTabsList[index], name: e.target.value };
+
+    setStoredData({
+      ...storedData,
+      tabs: filteredTabList.concat(tempTab),
+    });
+  };
+
+  // "View selector" function
+  const handleChangeView = (value: View) => {
+    setStoredData({
+      ...storedData,
+      view: value,
+    });
+  };
+
+  // "Show or hide about popup" function
+  const handleAboutPopupVisibility = () => {
+    setAboutPopupVisibility(!aboutPopupVisibility);
+  };
+
+  // "Clear interactions of a tab" function
+  const clearInteractions = () => {
+    const { selectedTab, data } = storedData;
+    const tempData = data.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
+    setStoredData({
+      ...storedData,
+      data: tempData,
+    });
+    setFilteredData([]);
   };
 
   const processPolledData = () => {
@@ -133,127 +253,6 @@ const HomePage = () => {
     }
   }, [storedData.selectedTab]);
 
-  // "Switch theme" function
-  const handleThemeSelection = (value: ThemeName) => {
-    setStoredData({
-      ...storedData,
-      theme: value,
-    });
-  };
-
-  // "Select a tab" function
-  const handleTabButtonClick = (tab: Tab) => {
-    setStoredData({
-      ...storedData,
-      selectedTab: tab,
-    });
-    setSelectedInteraction(null);
-  };
-
-  // " Add new tab" function
-  const handleAddNewTab = () => {
-    const { increment, host, correlationId } = storedData;
-    const newIncrement = increment + 1;
-    const { url, uniqueId } = generateUrl(correlationId, newIncrement, host);
-    const tabData: Tab = {
-      "unique-id": uniqueId,
-      correlationId,
-      name: newIncrement.toString(),
-      url,
-      note: "",
-    };
-    setStoredData({
-      ...storedData,
-      tabs: storedData.tabs.concat([tabData]),
-      selectedTab: tabData,
-      increment: newIncrement,
-    });
-  };
-
-  // "Show or hide notes" function
-  const handleNotesVisibility = () => {
-    setTimeout(() => {
-      document.getElementById("notes_textarea")?.focus();
-    }, 200);
-    setIsNotesOpen(!isNotesOpen);
-  };
-
-  // "Notes input change handler" function
-  const handleNoteInputChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    const { selectedTab, tabs } = storedData;
-    const index = tabs.findIndex((item) => item["unique-id"] === selectedTab["unique-id"]);
-    const currentTab = tabs[index];
-    const filteredTabList = tabs.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
-    filteredTabList.push({ ...currentTab, note: e.target.value });
-    setStoredData({
-      ...storedData,
-      tabs: filteredTabList,
-    });
-  };
-
-  // "Selecting a specific interaction" function
-  const handleRowClick = (id: string) => {
-    setSelectedInteraction(id);
-    const reqDetails =
-      filteredData && filteredData[filteredData.findIndex((item) => item.id === id)];
-    setSelectedInteractionData(reqDetails);
-  };
-
-  // "Deleting a tab" function
-  const handleDeleteTab = (id: string) => {
-    const { tabs } = storedData;
-    const filteredTempTabsList = tabs.filter((value) => value["unique-id"] !== id);
-    const tempTabsData = storedData.data;
-    const filteredTempTabsData = tempTabsData.filter((value) => value["unique-id"] !== id);
-    setStoredData({
-      ...storedData,
-      tabs: [...filteredTempTabsList],
-      selectedTab: { ...filteredTempTabsList[0] },
-      data: filteredTempTabsData,
-    });
-  };
-
-  // "Renaming a tab" function
-  const handleTabRename: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const tempTabsList = storedData.tabs;
-    const index = tempTabsList.findIndex(
-      (item) => item["unique-id"] === storedData.selectedTab["unique-id"]
-    );
-    const filteredTabList = tempTabsList.filter(
-      (item) => item["unique-id"] !== storedData.selectedTab["unique-id"]
-    );
-    const tempTab = { ...tempTabsList[index], name: e.target.value };
-
-    setStoredData({
-      ...storedData,
-      tabs: filteredTabList.concat(tempTab),
-    });
-  };
-
-  // "View selector" function
-  const handleChangeView = (value: View) => {
-    setStoredData({
-      ...storedData,
-      view: value,
-    });
-  };
-
-  // "Show or hide about popup" function
-  const handleAboutPopupVisibility = () => {
-    setAboutPopupVisibility(!aboutPopupVisibility);
-  };
-
-  // "Clear interactions of a tab" function
-  const clearInteractions = () => {
-    const { selectedTab, data } = storedData;
-    const tempData = data.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
-    setStoredData({
-      ...storedData,
-      data: tempData,
-    });
-    setFilteredData([]);
-  };
-
   const selectedTabsIndex = storedData.tabs.findIndex(
     (item) => item["unique-id"] === storedData.selectedTab["unique-id"]
   );
@@ -317,9 +316,7 @@ const HomePage = () => {
               <div title={storedData.selectedTab && storedData.selectedTab.url}>
                 {storedData.selectedTab && storedData.selectedTab.url}
               </div>
-              <CopyIcon
-                onClick={() => copyDataToClipboard(storedData.selectedTab.url)}
-              />
+              <CopyIcon onClick={() => copyDataToClipboard(storedData.selectedTab.url)} />
               <div className="vertical_bar" />
               <ClearIcon
                 className={

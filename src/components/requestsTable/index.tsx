@@ -12,7 +12,8 @@ import { now } from "fp-ts/Date";
 
 import { ReactComponent as FilterIcon } from "assets/svg/filter.svg";
 import { ReactComponent as FilterSelectedIcon } from "assets/svg/filter_selected.svg";
-import { Data, getStoredData, writeStoredData } from "lib/localStorage";
+import { getStoredData, writeStoredData } from "lib/localStorage";
+import { Data } from "lib/types/data";
 import Filter from "lib/types/filter";
 
 interface RequestsTableP {
@@ -67,7 +68,6 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
   };
 
   useEffect(() => {
-    
     window.addEventListener("storage", () => {
       setFilterValue(getStoredData().filter);
       if (Object.values(getStoredData().filter).indexOf(false) > -1) {

@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
-import { Data } from "lib/localStorage";
+import { Data } from "lib/types/data";
 import Filter from "lib/types/filter";
 
 import RequestsTable from "../../components/requestsTable";

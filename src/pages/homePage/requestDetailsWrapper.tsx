@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
-import { Data } from "lib/localStorage";
+import { Data } from "lib/types/data";
 import View from "lib/types/view";
 
 import DetailedRequest from "../../components/detailedRequest";
