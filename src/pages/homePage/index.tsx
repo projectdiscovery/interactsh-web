@@ -44,9 +44,14 @@ const HomePage = () => {
   const [selectedInteraction, setSelectedInteraction] = useState<string | null>(null);
   const [selectedInteractionData, setSelectedInteractionData] = useState<Data | null>(null);
   const [storedData, setStoredData] = useState<StoredData>(getStoredData());
+  const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
 
   const handleResetPopupDialogVisibility = () => {
     setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
+  };
+
+  const handleCustomHostDialogVisibility = () => {
+    setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
   };
 
   // "Switch theme" function
@@ -180,7 +185,14 @@ const HomePage = () => {
 
     let decryptedAESKey = aesKey;
 
-    poll(correlationId, secretKey, host, token, handleResetPopupDialogVisibility)
+    poll(
+      correlationId,
+      secretKey,
+      host,
+      token,
+      handleResetPopupDialogVisibility,
+      handleCustomHostDialogVisibility
+    )
       .then((pollData) => {
         setIsRegistered(true);
         if (pollData?.data?.length !== 0 && !pollData.error) {
@@ -300,6 +312,8 @@ const HomePage = () => {
           handleThemeSelection={handleThemeSelection}
           isResetPopupDialogVisible={isResetPopupDialogVisible}
           handleResetPopupDialogVisibility={handleResetPopupDialogVisibility}
+          isCustomHostDialogVisible={isCustomHostDialogVisible}
+          handleCustomHostDialogVisibility={handleCustomHostDialogVisibility}
         />
         <TabSwitcher
           handleTabButtonClick={handleTabButtonClick}

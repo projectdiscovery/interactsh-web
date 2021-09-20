@@ -63,7 +63,10 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   };
 
   const handleConfirm = () => {
-    if (inputValue !== "" && inputValue !== "interact.sh" && host !== inputValue) {
+    if (
+      (inputValue !== "" && inputValue !== "interact.sh" && host !== inputValue) ||
+      (inputValue !== "" && inputValue !== "interact.sh" && tokenInputValue !== token)
+    ) {
       setIsLoading(true);
       setTimeout(() => {
         register(inputValue.replace(/(^\w+:|^)\/\//, ""), tokenInputValue, true, false)
@@ -165,7 +168,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             <button
               type="button"
               className="submit_button"
-              disabled={isLoading || host === inputValue}
+              disabled={isLoading || (host === inputValue && token === tokenInputValue)}
               onClick={handleConfirm}
             >
               Confirm

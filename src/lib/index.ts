@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import crypto from "crypto";
 
 import format from "date-fns/format";
@@ -232,7 +233,8 @@ export const poll = (
   secretKey: string,
   host: string,
   token: string,
-  handleResetPopupDialogVisibility: () => void
+  handleResetPopupDialogVisibility: () => void,
+  handleCustomHostDialogVisibility: () => void,
 ): Promise<PolledData> => {
   const headers = {
     Authorization: token,
@@ -244,7 +246,16 @@ export const poll = (
     referrerPolicy: "no-referrer",
   })
     .then(async (res: any) => {
-      const data = await res.json();
+      const status = res.status;
+      // let data;
+      const getRes = async (): Promise<PolledData> => {
+        try {
+          return await res.json();
+        } catch {
+          return { aes_key: "", data: [] };
+        }
+      };
+      const data = await getRes();
       if (!res.ok) {
         const err = data.error;
         if (err === "could not get interactions: could not get correlation-id from cache") {
@@ -253,8 +264,6 @@ export const poll = (
               writeStoredData(d);
             })
             .catch((err2) => {
-              console.log(err2);
-
               if (
                 err2.message !==
                 "could not set id and public key: correlation-id provided is invalid"
@@ -280,6 +289,9 @@ export const poll = (
                 handleResetPopupDialogVisibility();
               }
             });
+        } else if (status === 401) {
+          clearIntervals();
+          handleCustomHostDialogVisibility();
         } else {
           throw new Error("unexpected error");
         }

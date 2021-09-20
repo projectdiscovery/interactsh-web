@@ -28,20 +28,22 @@ interface HeaderP {
   host: string;
   handleAboutPopupVisibility: () => void;
   isResetPopupDialogVisible: boolean;
+  isCustomHostDialogVisible: boolean;
   handleResetPopupDialogVisibility: () => void;
+  handleCustomHostDialogVisibility: () => void;
 }
 
-const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility, isResetPopupDialogVisible, handleResetPopupDialogVisibility }: HeaderP) => {
+const Header = ({ handleThemeSelection, theme, host, handleAboutPopupVisibility, isResetPopupDialogVisible, handleResetPopupDialogVisibility, isCustomHostDialogVisible, handleCustomHostDialogVisibility }: HeaderP) => {
   const [isSelectorVisible, setIsSelectorVisible] = useState(false);
-  const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
+  // const [isCustomHostDialogVisible, setIsCustomHostDialogVisible] = useState(false);
   // const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState(false);
 
   const handleThemeSwitchesVisibility = () => {
     setIsSelectorVisible(!isSelectorVisible);
   };
-  const handleCustomHostDialogVisibility = () => {
-    setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
-  };
+  // const handleCustomHostDialogVisibility = () => {
+  //   setIsCustomHostDialogVisible(!isCustomHostDialogVisible);
+  // };
   // const handleResetPopupDialogVisibility = () => {
   //   setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
   // };
