@@ -69,7 +69,12 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
     ) {
       setIsLoading(true);
       setTimeout(() => {
-        register(inputValue.replace(/(^\w+:|^)\/\//, ""), tokenInputValue, true, false)
+        register(
+          inputValue.replace(/(^\w+:|^)\/\//, ""),
+          tokenInputValue,
+          true,
+          inputValue === host && tokenInputValue !== token
+        )
           .then((d) => {
             localStorage.clear();
             writeStoredData(d);
