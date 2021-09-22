@@ -6,6 +6,8 @@ import "prismjs/components/prism-http";
 import "prismjs/components/prism-dns-zone-file";
 
 import "./styles.scss";
+import { copyDataToClipboard } from "lib";
+
 import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
 
 interface DetailedRequestP {
@@ -16,9 +18,6 @@ interface DetailedRequestP {
 }
 
 const DetailedRequest = ({ title, data, view, protocol }: DetailedRequestP) => {
-  const copyDataToClipboard = () => {
-    navigator.clipboard.writeText(data);
-  };
   useEffect(() => {
     Prism.highlightAll();
   }, [data]);
@@ -33,7 +32,7 @@ const DetailedRequest = ({ title, data, view, protocol }: DetailedRequestP) => {
     >
       <span>{title}</span>
       <div className="body">
-        <button type="button" className="copy_button" onClick={copyDataToClipboard}>
+        <button type="button" className="copy_button" onClick={() => copyDataToClipboard(data)}>
           Copy <CopyIcon />
         </button>
         <div className="pre_wrapper">
