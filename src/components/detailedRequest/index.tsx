@@ -5,11 +5,10 @@ import "prismjs/themes/prism-dark.css";
 import "prismjs/components/prism-http";
 import "prismjs/components/prism-dns-zone-file";
 
+import { copyDataToClipboard } from "lib";
 import Protocal from "lib/types/protocal";
 
 import "./styles.scss";
-import { copyDataToClipboard } from "lib";
-
 import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
 
 interface DetailedRequestP {
