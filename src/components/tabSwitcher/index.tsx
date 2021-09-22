@@ -6,6 +6,7 @@ import { ReactComponent as PlusIcon } from "assets/svg/plus.svg";
 import { ReactComponent as RefreshIcon } from "assets/svg/refresh.svg";
 import Tab from "lib/types/tab";
 
+
 interface TabSwitcherP {
   handleTabButtonClick: (tab: Tab) => void;
   selectedTab: Tab;
@@ -54,14 +55,14 @@ const TabSwitcher = ({
               key={item["unique-id"]}
               onKeyUp={handleTabRanameDone}
               onClick={() =>
-                selectedTab["unique-id"] !== item["unique-id"] ? handleTabButtonClickTemp(item) : ""
+                !Tab.eq.equals(selectedTab, item) ? handleTabButtonClickTemp(item) : ""
               }
               onDoubleClick={() => handleTabButtonDoubleClick(item["unique-id"])}
               className={`tab_button ${
-                selectedTab["unique-id"] === item["unique-id"] && "__selected_tab_button"
+                Tab.eq.equals(selectedTab, item) && "__selected_tab_button"
               }`}
             >
-              {isInputVisible && item["unique-id"] === selectedTab["unique-id"] ? (
+              {isInputVisible && Tab.eq.equals(selectedTab, item) ? (
                 <input
                   id={item["unique-id"].toString()}
                   value={item.name}

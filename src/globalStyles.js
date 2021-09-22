@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.background};
   }
   .secondary_bg {
-    background: ${({ theme }) => theme.secondaryBackground};
+    background: ${({ theme }) => theme.secondaryBackground}!important;
   }
   `;
 

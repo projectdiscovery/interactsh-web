@@ -84,7 +84,7 @@
         }
         .clear_button__disabled {
           pointer-events: none;
-          g g  {
+          g g {
             fill: #979797;
           }
         }
@@ -132,24 +132,22 @@
           display: none;
           position: absolute;
           bottom: 6.3rem;
-          background: #000000;
           width: 100%;
           height: 40rem;
-          padding: 1.5rem 2rem;
-          & > pre {
-            border: none !important;
-            background: transparent !important;
-            box-shadow: none !important;
-          }
+          border-top: 1px solid rgba(255, 255, 255, 0.3);
+          opacity: 0.5;
           & > textarea {
+            padding: 1.5rem 2rem;
             height: 100%;
             background: transparent;
             overflow-y: scroll;
             width: 100%;
             border: none;
             color: #ffffff;
+            font-size: 1.6rem;
             &:focus {
               outline: none !important;
+              box-shadow: none !important;
             }
             &::placeholder {
               color: #ffffff;
