@@ -15,6 +15,7 @@ import zbase32 from "zbase32";
 
 import { getStoredData, writeStoredData } from "./localStorage";
 import { Data } from "./types/data";
+import { defaultFilter } from "./types/filter";
 import { StoredData } from "./types/storedData";
 import Tab from "./types/tab";
 
@@ -207,13 +208,7 @@ export const register = (
           data: [],
           aesKey: "",
           notes: [],
-          filter: {
-            dns: true,
-            http: true,
-            https: true,
-            smtp: true,
-            arp: true,
-          },
+          filter: defaultFilter,
         };
 
     if (!reregister) {

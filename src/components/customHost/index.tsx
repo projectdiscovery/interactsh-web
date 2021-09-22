@@ -5,6 +5,7 @@ import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
 import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
 import "./styles.scss";
 import { register } from "lib";
+import { defaultFilter } from "lib/types/filter";
 import { StoredData } from "lib/types/storedData";
 
 import { getStoredData, writeStoredData } from "../../lib/localStorage";
@@ -35,13 +36,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
       url: "",
       note: "",
     },
-    filter: {
-      dns: true,
-      http: true,
-      https: true,
-      smtp: true,
-      arp: true,
-    },
+    filter: defaultFilter,
   };
 
   const data = getStoredData();
