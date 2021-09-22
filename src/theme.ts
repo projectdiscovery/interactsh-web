@@ -27,6 +27,7 @@ export type ThemeName = t.TypeOf<typeof ThemeName.type>;
 export interface Theme {
   background: string;
   secondaryBackground: string;
+  lightBackground: string;
 }
 
 export const showThemeName: Show<ThemeName> = { show: capitalize };
@@ -34,14 +35,17 @@ export const showThemeName: Show<ThemeName> = { show: capitalize };
 export const darkTheme: Theme = {
   background: "#03030d",
   secondaryBackground: "#101624",
+  lightBackground: "#192030",
 };
 export const synthTheme: Theme = {
   background: "#240d2c",
   secondaryBackground: "#15071a",
+  lightBackground: "#341D3B",
 };
 export const blueTheme: Theme = {
   background: "#001729",
   secondaryBackground: "#001123",
+  lightBackground: "#192030",
 };
 
 export const getTheme = (theme: ThemeName): Theme =>

@@ -7,6 +7,9 @@ export const GlobalStyles = createGlobalStyle`
   .secondary_bg {
     background: ${({ theme }) => theme.secondaryBackground}!important;
   }
+  .light_bg {
+    background: ${({ theme }) => theme.lightBackground}!important;
+  }
   `;
 
 export default {};

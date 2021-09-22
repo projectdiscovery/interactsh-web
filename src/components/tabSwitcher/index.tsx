@@ -4,8 +4,8 @@ import "./styles.scss";
 import { ReactComponent as CrossIcon } from "assets/svg/cross.svg";
 import { ReactComponent as PlusIcon } from "assets/svg/plus.svg";
 import { ReactComponent as RefreshIcon } from "assets/svg/refresh.svg";
+// import { GlobalStyles } from "globalStyles";
 import Tab from "lib/types/tab";
-
 
 interface TabSwitcherP {
   handleTabButtonClick: (tab: Tab) => void;
@@ -47,7 +47,7 @@ const TabSwitcher = ({
 
   return (
     <>
-      <div className="tab_switcher">
+      <div className="tab_switcher light_bg">
         {data.length !== 0 &&
           data.map((item) => (
             <button
@@ -77,7 +77,7 @@ const TabSwitcher = ({
         <button type="button" onClick={handleAddNewTab} className="add_new_tab_button">
           <PlusIcon />
         </button>
-        <button type="button" onClick={processPolledData} className="refresh_button secondary_bg">
+        <button type="button" onClick={processPolledData} className="refresh_button">
           <RefreshIcon />
           <span>Refresh</span>
         </button>

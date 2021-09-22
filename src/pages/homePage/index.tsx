@@ -170,7 +170,7 @@ const HomePage = () => {
   // "Clear interactions of a tab" function
   const clearInteractions = () => {
     const { selectedTab, data } = storedData;
-    const tempData = data.filter((item) =>  item["unique-id"] !== selectedTab["unique-id"]);
+    const tempData = data.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
     setStoredData({
       ...storedData,
       data: tempData,
@@ -265,8 +265,8 @@ const HomePage = () => {
     }
   }, [storedData.selectedTab]);
 
-  const selectedTabsIndex = storedData.tabs.findIndex(
-    (item) => Tab.eq.equals(item, storedData.selectedTab)
+  const selectedTabsIndex = storedData.tabs.findIndex((item) =>
+    Tab.eq.equals(item, storedData.selectedTab)
   );
 
   return (
@@ -345,12 +345,13 @@ const HomePage = () => {
               handleRowClick={handleRowClick}
               filter={storedData.filter}
             />
-            <div className="notes secondary_bg">
+            <div className="notes light_bg">
               <div className="detailed_notes" style={{ display: isNotesOpen ? "flex" : "none" }}>
                 {/* <SyntaxHighlighter language="javascript" style={dark}> */}
                 {/* {tabs[selectedTabsIndex].note} */}
                 <textarea
                   id="notes_textarea"
+                  className="light_bg"
                   placeholder="Please paste note here max 1200 charachters.."
                   value={
                     storedData.tabs[selectedTabsIndex] && storedData.tabs[selectedTabsIndex].note
