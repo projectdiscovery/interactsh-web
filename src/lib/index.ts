@@ -18,6 +18,7 @@ import { Data } from "./types/data";
 import { StoredData } from "./types/storedData";
 import Tab from "./types/tab";
 
+
 export const copyDataToClipboard = (data: string) => navigator.clipboard.writeText(data);
 
 export const generateUrl = (correlationId: string, incrementNumber: number, host: string) => {
@@ -209,7 +210,9 @@ export const register = (
           filter: {
             dns: true,
             http: true,
+            https: true,
             smtp: true,
+            arp: true,
           },
         };
 

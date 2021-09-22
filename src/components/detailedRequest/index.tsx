@@ -5,6 +5,8 @@ import "prismjs/themes/prism-dark.css";
 import "prismjs/components/prism-http";
 import "prismjs/components/prism-dns-zone-file";
 
+import Protocal from "lib/types/protocal";
+
 import "./styles.scss";
 import { copyDataToClipboard } from "lib";
 
@@ -14,7 +16,7 @@ interface DetailedRequestP {
   title: string;
   data: string;
   view: string;
-  protocol: string;
+  protocol: Protocal;
 }
 
 const DetailedRequest = ({ title, data, view, protocol }: DetailedRequestP) => {

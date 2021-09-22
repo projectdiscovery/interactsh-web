@@ -38,7 +38,9 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
     filter: {
       dns: true,
       http: true,
+      https: true,
       smtp: true,
+      arp: true,
     },
   };
 

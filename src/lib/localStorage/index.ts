@@ -29,7 +29,9 @@ export const defaultStoredData: StoredData = {
   filter: {
     dns: true,
     http: true,
+    https: true,
     smtp: true,
+    arp: true
   },
 };
 

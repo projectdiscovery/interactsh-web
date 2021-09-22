@@ -5,8 +5,6 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 
-import "./styles.scss";
-
 import formatDistance from "date-fns/formatDistance";
 import { now } from "fp-ts/Date";
 
@@ -15,6 +13,10 @@ import { ReactComponent as FilterSelectedIcon } from "assets/svg/filter_selected
 import { getStoredData, writeStoredData } from "lib/localStorage";
 import { Data } from "lib/types/data";
 import Filter from "lib/types/filter";
+import Protocal, { protocols } from 'lib/types/protocal';
+import { trueKeys } from 'lib/utils';
+
+import "./styles.scss";
 
 interface RequestsTableP {
   data: Data[];
@@ -27,21 +29,11 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
   const [filteredData, setFilteredData] = useState<Data[]>(data);
   const [filterDropdownVisibility, setFilterDropdownVisibility] = useState<boolean>(false);
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
-  const [filterValue, setFilterValue] = useState<{
-    dns: boolean;
-    http: boolean;
-    smtp: boolean;
-    [key: string]: boolean;
-  }>(filter);
+  const [filterValue, setFilterValue] = useState<Filter>(filter);
 
-  const filterData = (f: typeof filterValue) => {
-    const selectedFilters: string[] = [];
+  const filterData = (f: Filter) => {
+    const selectedFilters = trueKeys(filterValue);
 
-    Object.keys(f).map((i) => {
-      if (f[i]) {
-        selectedFilters.push(i);
-      }
-    });
     const tempData = data.filter((item) => selectedFilters.indexOf(item.protocol) !== -1);
     if (Object.values(f).indexOf(false) > -1) {
       setIsFiltered(true);
@@ -108,48 +100,22 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
               {filterDropdownVisibility && (
                 <div className="filter_dropdown secondary_bg">
                   <ul>
-                    <li>
-                      <label htmlFor="dns">
-                        <input
-                          onChange={handleFilterSelection}
-                          type="checkbox"
-                          name="filter"
-                          id="dns"
-                          value="dns"
-                          checked={filterValue.dns === true}
-                        />
-                        <span className="checkmark" />
-                        <span>DNS</span>
-                      </label>
-                    </li>
-                    <li>
-                      <label htmlFor="http">
-                        <input
-                          onChange={handleFilterSelection}
-                          type="checkbox"
-                          name="filter"
-                          id="http"
-                          value="http"
-                          checked={filterValue.http === true}
-                        />
-                        <span className="checkmark" />
-                        <span>HTTP</span>
-                      </label>
-                    </li>
-                    <li>
-                      <label htmlFor="smtp">
-                        <input
-                          onChange={handleFilterSelection}
-                          type="checkbox"
-                          name="filter"
-                          id="smtp"
-                          value="smtp"
-                          checked={filterValue.smtp === true}
-                        />
-                        <span className="checkmark" />
-                        <span>SMTP</span>
-                      </label>
-                    </li>
+                    {protocols.map(p => (
+                        <li>
+                            <label htmlFor={p}>
+                                <input
+                                    onChange={handleFilterSelection}
+                                    type="checkbox"
+                                    name="filter"
+                                    id={p}
+                                    value={p}
+                                    checked={filterValue[p]}
+                                />
+                                <span className="checkmark" />
+                                <span>{ Protocal.show.show(p) }</span>
+                            </label>
+                        </li>
+                    ))}
                   </ul>
                 </div>
               )}
