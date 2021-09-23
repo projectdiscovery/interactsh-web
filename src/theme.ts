@@ -1,23 +1,9 @@
 import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
-import * as f from "fp-ts-std/Function";
-import * as ss from "fp-ts-std/String";
-import { flow, pipe } from "fp-ts/function";
 import { Show } from "fp-ts/Show";
-import * as S from "fp-ts/string";
-import * as T from "fp-ts/Tuple";
 import * as t from "io-ts";
 import { match } from "ts-pattern";
 
-const capitalize = flow(
-  ss.splitAt(1),
-  T.bimap(S.toLowerCase, S.toUpperCase), // snd, first
-  pipe(
-    // ((T, T) -> T) -> ([T, T] -> T)
-    S.Semigroup.concat,
-    f.curry2,
-    f.uncurry2
-  )
-);
+import { capitalize } from "lib/utils";
 
 const { summon } = summonFor<{}>({});
 

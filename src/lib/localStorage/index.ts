@@ -3,6 +3,7 @@ import { parseO } from "fp-ts-std/JSON";
 import { flow, pipe } from "fp-ts/function";
 import * as O from "fp-ts/Option";
 
+import { defaultFilter } from "lib/types/filter";
 import StoredDataS, { StoredData } from "lib/types/storedData";
 
 export const defaultStoredData: StoredData = {
@@ -26,11 +27,7 @@ export const defaultStoredData: StoredData = {
     url: "",
     note: "",
   },
-  filter: {
-    dns: true,
-    http: true,
-    smtp: true,
-  },
+  filter: defaultFilter,
 };
 
 export const writeStoredData = (data: StoredData) =>
