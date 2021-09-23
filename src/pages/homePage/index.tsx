@@ -379,7 +379,9 @@ const HomePage = () => {
                       <button
                         type="button"
                         className={
-                          storedData.view === "request" ? "__selected_req_res_button" : undefined
+                          View.eq.equals(storedData.view, "request")
+                            ? "__selected_req_res_button"
+                            : undefined
                         }
                         onClick={() => handleChangeView("request")}
                       >
@@ -388,7 +390,9 @@ const HomePage = () => {
                       <button
                         type="button"
                         className={
-                          storedData.view === "response" ? "__selected_req_res_button" : undefined
+                          View.eq.equals(storedData.view, "response")
+                            ? "__selected_req_res_button"
+                            : undefined
                         }
                         onClick={() => handleChangeView("response")}
                       >
@@ -397,13 +401,17 @@ const HomePage = () => {
                     </div>
                     <SideBySideIcon
                       style={{
-                        fill: storedData.view === "side_by_side" ? "#ffffff" : "#4a4a4a",
+                        fill: View.eq.equals(storedData.view, "side_by_side")
+                          ? "#ffffff"
+                          : "#4a4a4a",
                       }}
                       onClick={() => handleChangeView("side_by_side")}
                     />
                     <UpDownIcon
                       style={{
-                        fill: storedData.view === "up_and_down" ? "#ffffff" : "#4a4a4a",
+                        fill: View.eq.equals(storedData.view, "up_and_down")
+                          ? "#ffffff"
+                          : "#4a4a4a",
                       }}
                       onClick={() => handleChangeView("up_and_down")}
                     />

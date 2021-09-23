@@ -7,13 +7,14 @@ import "prismjs/components/prism-dns-zone-file";
 
 import "./styles.scss";
 import { copyDataToClipboard } from "lib";
+import View from "lib/types/view";
 
 import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
 
 interface DetailedRequestP {
   title: string;
   data: string;
-  view: string;
+  view: View;
   protocol: string;
 }
 
@@ -26,8 +27,8 @@ const DetailedRequest = ({ title, data, view, protocol }: DetailedRequestP) => {
     <div
       className="detailed_request_container"
       style={{
-        width: view === "side_by_side" ? "48%" : "100%",
-        marginBottom: view === "side_by_side" ? "0" : "3rem",
+        width: View.eq.equals(view, "side_by_side") ? "48%" : "100%",
+        marginBottom: View.eq.equals(view, "side_by_side") ? "0" : "3rem",
       }}
     >
       <span>{title}</span>
