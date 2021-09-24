@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import { ErrorBoundary } from "react-error-boundary";
 
-import { Data } from "lib/types/data";
+import Data from "lib/types/data";
 import Protocol from "lib/types/protocol";
 import View from "lib/types/view";
 

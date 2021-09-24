@@ -22,7 +22,7 @@ import {
   clearIntervals,
   register,
 } from "lib";
-import { Data } from "lib/types/data";
+import Data from "lib/types/data";
 import { StoredData } from "lib/types/storedData";
 import Tab from "lib/types/tab";
 import View from "lib/types/view";
@@ -127,7 +127,7 @@ const HomePage = () => {
     const filteredTempTabsList = tabs.filter((value) => !Tab.eq.equals(value, tab));
     const tempTabsData = storedData.data;
     const filteredTempTabsData = tempTabsData.filter(
-      (value) => value["unique-id"] !== tab["unique-id"]
+      (value) => value.tabId !== tab["unique-id"]
     );
     setStoredData({
       ...storedData,
@@ -170,7 +170,7 @@ const HomePage = () => {
   // "Clear interactions of a tab" function
   const clearInteractions = () => {
     const { selectedTab, data } = storedData;
-    const tempData = data.filter((item) => item["unique-id"] !== selectedTab["unique-id"]);
+    const tempData = data.filter((item) => item.tabId !== selectedTab["unique-id"]);
     setStoredData({
       ...storedData,
       data: tempData,
@@ -209,7 +209,7 @@ const HomePage = () => {
           });
 
           const newData = combinedData
-            .filter((item) => item["unique-id"] === dataFromLocalStorage.selectedTab["unique-id"])
+            .filter((item) => item.tabId === dataFromLocalStorage.selectedTab["unique-id"])
             .map((item) => item);
           setFilteredData([...newData]);
         }
@@ -259,7 +259,7 @@ const HomePage = () => {
         processPolledData();
       }, 4000);
       const tempFilteredData = storedData.data
-        .filter((item) => item["unique-id"] === storedData.selectedTab["unique-id"])
+        .filter((item) => item.tabId === storedData.selectedTab["unique-id"])
         .map((item) => item);
       setFilteredData(tempFilteredData);
     }

@@ -11,7 +11,7 @@ import { now } from "fp-ts/Date";
 import { ReactComponent as FilterIcon } from "assets/svg/filter.svg";
 import { ReactComponent as FilterSelectedIcon } from "assets/svg/filter_selected.svg";
 import { getStoredData, writeStoredData } from "lib/localStorage";
-import { Data } from "lib/types/data";
+import Data from "lib/types/data";
 import Filter from "lib/types/filter";
 import Protocol, { protocols } from 'lib/types/protocol';
 import { trueKeys } from 'lib/utils';
