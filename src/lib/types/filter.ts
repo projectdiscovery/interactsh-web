@@ -1,12 +1,12 @@
 import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import * as t from "io-ts";
 
-import Protocal from 'lib/types/protocal';
+import Protocol from 'lib/types/protocol';
 
 const { summon } = summonFor<{}>({});
 
 const Filter = summon((F) =>
-  F.record(Protocal(F), F.boolean())
+  F.record(Protocol(F), F.boolean())
 );
 
 

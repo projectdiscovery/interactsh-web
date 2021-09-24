@@ -13,7 +13,7 @@ import { ReactComponent as FilterSelectedIcon } from "assets/svg/filter_selected
 import { getStoredData, writeStoredData } from "lib/localStorage";
 import { Data } from "lib/types/data";
 import Filter from "lib/types/filter";
-import Protocal, { protocols } from 'lib/types/protocal';
+import Protocol, { protocols } from 'lib/types/protocol';
 import { trueKeys } from 'lib/utils';
 
 import "./styles.scss";
@@ -112,7 +112,7 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
                                     checked={filterValue[p]}
                                 />
                                 <span className="checkmark" />
-                                <span>{ Protocal.show.show(p) }</span>
+                                <span>{ Protocol.show.show(p) }</span>
                             </label>
                         </li>
                     ))}

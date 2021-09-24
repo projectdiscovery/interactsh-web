@@ -1,7 +1,7 @@
 import { summonFor, AsOpaque } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import type { AType, EType } from "@morphic-ts/summoners";
 
-import Protocal from 'lib/types/protocal';
+import Protocol from 'lib/types/protocol';
 import { createRecord } from "lib/utils";
 
 
@@ -17,7 +17,7 @@ export const Data_ = summon((F) =>
       {
         id: F.string(),
         "full-id": F.string(),
-        protocol: Protocal(F),
+        protocol: Protocol(F),
         "raw-request": F.string(),
         "remote-address": F.string(),
         timestamp: F.string(), // TODO: Convert to ISODate

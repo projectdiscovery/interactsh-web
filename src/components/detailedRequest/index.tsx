@@ -6,7 +6,7 @@ import "prismjs/components/prism-http";
 import "prismjs/components/prism-dns-zone-file";
 
 import { copyDataToClipboard } from "lib";
-import Protocal from "lib/types/protocal";
+import Protocol from "lib/types/protocol";
 
 import "./styles.scss";
 import { ReactComponent as CopyIcon } from "../../assets/svg/copy.svg";
@@ -15,7 +15,7 @@ interface DetailedRequestP {
   title: string;
   data: string;
   view: string;
-  protocol: Protocal;
+  protocol: Protocol;
 }
 
 const DetailedRequest = ({ title, data, view, protocol }: DetailedRequestP) => {

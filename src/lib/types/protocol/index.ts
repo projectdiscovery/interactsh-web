@@ -9,11 +9,11 @@ const { summon } = summonFor<{}>({});
 
 export const protocols = ["dns", "http", "https", "arp", "smtp"] as const;
 
-const Protocal = summon((F) =>
+const Protocol = summon((F) =>
   F.keysOf(createRecord(protocols), { ShowURI: () => ({
     show: s.toUpperCase
   }) }))
 
-type Protocal = t.TypeOf<typeof Protocal.type>;
+type Protocol = t.TypeOf<typeof Protocol.type>;
 
-export default Protocal;
+export default Protocol;
