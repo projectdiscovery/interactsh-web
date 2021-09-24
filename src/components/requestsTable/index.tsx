@@ -6,17 +6,20 @@
 import React, { useEffect, useState } from "react";
 
 import formatDistance from "date-fns/formatDistance";
+import * as A from 'fp-ts/Array';
 import { now } from "fp-ts/Date";
+import { pipe } from "fp-ts/function";
 
 import { ReactComponent as FilterIcon } from "assets/svg/filter.svg";
 import { ReactComponent as FilterSelectedIcon } from "assets/svg/filter_selected.svg";
 import { getStoredData, writeStoredData } from "lib/localStorage";
-import Data from "lib/types/data";
+import Data, { filterByProtocols } from "lib/types/data";
 import Filter from "lib/types/filter";
 import Protocol, { protocols } from 'lib/types/protocol';
 import { trueKeys } from 'lib/utils';
 
 import "./styles.scss";
+
 
 interface RequestsTableP {
   data: Data[];
@@ -25,24 +28,16 @@ interface RequestsTableP {
   filter: Filter;
 }
 
+
 const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: RequestsTableP) => {
   const [filteredData, setFilteredData] = useState<Data[]>(data);
   const [filterDropdownVisibility, setFilterDropdownVisibility] = useState<boolean>(false);
-  const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const [filterValue, setFilterValue] = useState<Filter>(filter);
 
-  const filterData = (f: Filter) => {
-    const selectedFilters = trueKeys(f);
+  const isFiltered = pipe(filterValue, trueKeys, A.isNonEmpty);
 
-    const tempData = data.filter((item) => selectedFilters.indexOf(item.protocol) !== -1);
-    if (Object.values(f).indexOf(false) > -1) {
-      setIsFiltered(true);
-    } else {
-      setIsFiltered(false);
-    }
-
-    return tempData;
-  };
+  const filterData = (f: Filter) =>
+      filterByProtocols(trueKeys(f))(data);
 
   useEffect(() => {
     setFilteredData(filterData(filterValue));
@@ -62,11 +57,6 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
   useEffect(() => {
     window.addEventListener("storage", () => {
       setFilterValue(getStoredData().filter);
-      if (Object.values(getStoredData().filter).indexOf(false) > -1) {
-        setIsFiltered(true);
-      } else {
-        setIsFiltered(false);
-      }
     });
   }, []);
 

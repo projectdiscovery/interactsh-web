@@ -33,10 +33,12 @@ export const createRecord = <X extends readonly string[]>(arr: X): TupleToRecord
  *
  * Returns a list of "true" keys in a record
  */
-export const trueKeys = flow(
+export const trueKeys = <K extends string>(r: Record<K, boolean>) => pipe(
+  r,
   R.map<boolean, O.Option<boolean>>(O.fromPredicate(x =>  !!x)),
   R.compact, // Removes false keys
-  R.keys     // Converts to array of keys.
+  R.keys,    // Converts to array of keys.
+  x => x as K[]
 )
 
 export const capitalize = flow(

@@ -1,5 +1,6 @@
 import { summonFor, AsOpaque } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import type { AType, EType } from "@morphic-ts/summoners";
+import * as A from "fp-ts/Array";
 import * as NEA from "fp-ts/NonEmptyArray";
 
 import { eqId } from "lib/types/id";
@@ -43,5 +44,10 @@ interface DataRaw extends EType<typeof Data_> {}
 const Data = AsOpaque<DataRaw, Data>()(Data_);
 
 export const groupByTabId = NEA.groupBy(Data.lensFromProp("tabId").get);
+
+
+// filterByProtocols : Protocal[] -> Data[] -> Data[]
+export const filterByProtocols = (ps: Protocol[]) =>
+  A.filter<Data>(d => A.elem(Protocol.eq)(Data.lensFromProp("protocol").get(d), ps))
 
 export default Data;
