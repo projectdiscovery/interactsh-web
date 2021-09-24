@@ -32,7 +32,7 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
   const [filterValue, setFilterValue] = useState<Filter>(filter);
 
   const filterData = (f: Filter) => {
-    const selectedFilters = trueKeys(filterValue);
+    const selectedFilters = trueKeys(f);
 
     const tempData = data.filter((item) => selectedFilters.indexOf(item.protocol) !== -1);
     if (Object.values(f).indexOf(false) > -1) {
