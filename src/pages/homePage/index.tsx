@@ -352,7 +352,7 @@ const HomePage = () => {
                 <textarea
                   id="notes_textarea"
                   className="light_bg"
-                  placeholder="Please paste note here max 1200 charachters.."
+                  placeholder="You can paste your notes here (max 1200 characters)"
                   value={
                     storedData.tabs[selectedTabsIndex] && storedData.tabs[selectedTabsIndex].note
                   }

@@ -135,7 +135,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             <CloseIcon onClick={handleCloseDialog} />
           </div>
           <span>
-            You can point your self hosted interact.sh server with this hosted web client.
+            You can point your self hosted interact.sh server below to connect with this web client.
           </span>
           <input
             type="text"
@@ -154,7 +154,8 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
           />
           {!isHostValid && (
             <div className="error">
-              We failed to connect with your server, please try agian by clicking on confirm.
+              We were unable to establish a connection with your server; please try again by
+              clicking on confirm.
             </div>
           )}
           <div className="buttons">

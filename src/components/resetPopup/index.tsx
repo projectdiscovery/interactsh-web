@@ -44,7 +44,7 @@ const ResetPopup = ({ handleCloseDialog }: CustomHostP) => {
         <span>
           Please confirm the action, this action can’t be undone and all the client data will be
           deleted immediately. You can download a copy of your data in JSON format by clicking the
-          Export button below or in header.
+          Export button below or in top right.
         </span>
         <div className="buttons">
           <button type="button" title="Export" className="button" onClick={handleDataExport}>
