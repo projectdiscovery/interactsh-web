@@ -40,8 +40,6 @@
 
     --m: 0.2rem;
 
-    /* line thickness */
-
     --v1: #000 119.5deg, #0000 120.5deg;
     --v2: #4d0343 119.5deg, #0000 120.5deg;
     background: conic-gradient(
@@ -70,20 +68,8 @@
     animation: f 4s linear infinite alternate;
   }
 
-  // &:after {
-  //   content: "interact.sh";
-  //   font-family: "Nunito Sans", sans-serif;
-  //   letter-spacing: 0.3ch;
-  //   mix-blend-mode: normal;
-  //   font-size: 7vmin;
-  //   color: #fff;
-  // }
-
   .loader_content {
     font-family: "Nunito Sans", sans-serif;
-    // letter-spacing: 0.3ch;
-    // mix-blend-mode: normal;
-    // font-size: 7vmin;
     font-size: 5.2rem;
     font-family: "Nunito Sans", sans-serif;
     color: #fff;

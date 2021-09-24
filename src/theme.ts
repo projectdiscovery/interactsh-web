@@ -1,13 +1,22 @@
 import { summonFor } from "@morphic-ts/batteries/lib/summoner-ESBST";
+import * as Eq from "fp-ts/Eq";
+import { pipe } from "fp-ts/function";
 import { Show } from "fp-ts/Show";
+import * as s from "fp-ts/string";
 import * as t from "io-ts";
 import { match } from "ts-pattern";
+
 
 import { capitalize } from "lib/utils";
 
 const { summon } = summonFor<{}>({});
 
-export const ThemeName = summon((F) => F.keysOf({ dark: null, synth: null, blue: null }));
+const eqByName = pipe(
+  s.Eq,
+  Eq.contramap((v: string) => v)
+);
+
+export const ThemeName = summon((F) => F.keysOf({ dark: null, synth: null, blue: null },{ EqURI: () => eqByName }));
 export type ThemeName = t.TypeOf<typeof ThemeName.type>;
 
 export interface Theme {

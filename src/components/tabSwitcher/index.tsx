@@ -4,7 +4,6 @@ import "./styles.scss";
 import { ReactComponent as CrossIcon } from "assets/svg/cross.svg";
 import { ReactComponent as PlusIcon } from "assets/svg/plus.svg";
 import { ReactComponent as RefreshIcon } from "assets/svg/refresh.svg";
-// import { GlobalStyles } from "globalStyles";
 import Tab from "lib/types/tab";
 
 interface TabSwitcherP {
@@ -12,7 +11,7 @@ interface TabSwitcherP {
   selectedTab: Tab;
   handleAddNewTab: () => void;
   data: Tab[];
-  handleDeleteTab: (id: string) => void;
+  handleDeleteTab: (tab: Tab) => void;
   handleTabRename: React.ChangeEventHandler<HTMLInputElement>;
   processPolledData: () => void;
 }
@@ -71,7 +70,7 @@ const TabSwitcher = ({
               ) : (
                 <div title={item.name}>{item.name}</div>
               )}
-              <CrossIcon onClick={() => handleDeleteTab(item["unique-id"])} />
+              <CrossIcon onClick={() => handleDeleteTab(item)} />
             </button>
           ))}
         <button type="button" onClick={handleAddNewTab} className="add_new_tab_button">

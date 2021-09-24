@@ -121,12 +121,14 @@ const HomePage = () => {
   };
 
   // "Deleting a tab" function
-  const handleDeleteTab = (id: string) => {
+  const handleDeleteTab = (tab: Tab) => {
     const { tabs } = storedData;
-    const index = tabs.findIndex((value) => value["unique-id"] === id);
-    const filteredTempTabsList = tabs.filter((value) => value["unique-id"] !== id);
+    const index = tabs.findIndex((value) => Tab.eq.equals(value, tab));
+    const filteredTempTabsList = tabs.filter((value) => !Tab.eq.equals(value, tab));
     const tempTabsData = storedData.data;
-    const filteredTempTabsData = tempTabsData.filter((value) => value["unique-id"] !== id);
+    const filteredTempTabsData = tempTabsData.filter(
+      (value) => value["unique-id"] !== tab["unique-id"]
+    );
     setStoredData({
       ...storedData,
       tabs: [...filteredTempTabsList],
@@ -140,11 +142,9 @@ const HomePage = () => {
   // "Renaming a tab" function
   const handleTabRename: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const tempTabsList = storedData.tabs;
-    const index = tempTabsList.findIndex(
-      (item) => item["unique-id"] === storedData.selectedTab["unique-id"]
-    );
+    const index = tempTabsList.findIndex((item) => Tab.eq.equals(item, storedData.selectedTab));
     const filteredTabList = tempTabsList.filter(
-      (item) => item["unique-id"] !== storedData.selectedTab["unique-id"]
+      (item) => !Tab.eq.equals(item, storedData.selectedTab)
     );
     const tempTab = { ...tempTabsList[index], name: e.target.value };
 
@@ -379,7 +379,9 @@ const HomePage = () => {
                       <button
                         type="button"
                         className={
-                          storedData.view === "request" ? "__selected_req_res_button" : undefined
+                          View.eq.equals(storedData.view, "request")
+                            ? "__selected_req_res_button"
+                            : undefined
                         }
                         onClick={() => handleChangeView("request")}
                       >
@@ -388,7 +390,9 @@ const HomePage = () => {
                       <button
                         type="button"
                         className={
-                          storedData.view === "response" ? "__selected_req_res_button" : undefined
+                          View.eq.equals(storedData.view, "response")
+                            ? "__selected_req_res_button"
+                            : undefined
                         }
                         onClick={() => handleChangeView("response")}
                       >
@@ -397,13 +401,17 @@ const HomePage = () => {
                     </div>
                     <SideBySideIcon
                       style={{
-                        fill: storedData.view === "side_by_side" ? "#ffffff" : "#4a4a4a",
+                        fill: View.eq.equals(storedData.view, "side_by_side")
+                          ? "#ffffff"
+                          : "#4a4a4a",
                       }}
                       onClick={() => handleChangeView("side_by_side")}
                     />
                     <UpDownIcon
                       style={{
-                        fill: storedData.view === "up_and_down" ? "#ffffff" : "#4a4a4a",
+                        fill: View.eq.equals(storedData.view, "up_and_down")
+                          ? "#ffffff"
+                          : "#4a4a4a",
                       }}
                       onClick={() => handleChangeView("up_and_down")}
                     />

@@ -245,7 +245,6 @@ export const poll = (
   })
     .then(async (res: any) => {
       const status = res.status;
-      // let data;
       const getRes = async (): Promise<PolledData> => {
         try {
           return await res.json();

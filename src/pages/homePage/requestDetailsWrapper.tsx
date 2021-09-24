@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 import { Data } from "lib/types/data";
+import Protocol from "lib/types/protocol";
 import View from "lib/types/view";
 
 import DetailedRequest from "../../components/detailedRequest";
@@ -20,7 +21,7 @@ const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
   return (
     <div
       className="detailed_request"
-      style={{ flexDirection: view === "up_and_down" ? "column" : "row" }}
+      style={{ flexDirection: View.eq.equals(view, "up_and_down") ? "column" : "row" }}
     >
       <ErrorBoundary
         FallbackComponent={({ resetErrorBoundary }) => (
@@ -28,14 +29,15 @@ const RequestDetailsWrapper = (props: RequestDetailsWrapperP) => {
         )}
       >
         <Suspense fallback={<IssuesListFallback />}>
-          {view === "request" || selectedInteractionData.protocol === "smtp" ? (
+          {View.eq.equals(view, "request") ||
+          Protocol.eq.equals(selectedInteractionData.protocol, "smtp") ? (
             <DetailedRequest
               view={view}
               data={`${selectedInteractionData["raw-request"]}`}
               title="Request"
               protocol={selectedInteractionData.protocol}
             />
-          ) : view === "response" ? (
+          ) : View.eq.equals(view, "response") ? (
             <DetailedRequest
               view={view}
               data={`${selectedInteractionData["raw-response"]}`}
