@@ -14,7 +14,7 @@ import xid from "xid-js";
 import zbase32 from "zbase32";
 
 import { getStoredData, writeStoredData } from "./localStorage";
-import { Data } from "./types/data";
+import Data from "./types/data";
 import { defaultFilter } from "./types/filter";
 import { StoredData } from "./types/storedData";
 import Tab from "./types/tab";

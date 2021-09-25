@@ -1,9 +1,11 @@
 import { summonFor, AsOpaque } from "@morphic-ts/batteries/lib/summoner-ESBST";
 import type { AType, EType } from "@morphic-ts/summoners";
+import * as A from "fp-ts/Array";
+import * as NEA from "fp-ts/NonEmptyArray";
 
-import Protocol from 'lib/types/protocol';
+import { eqId } from "lib/types/id";
+import Protocol from "lib/types/protocol";
 import { createRecord } from "lib/utils";
-
 
 const { summon } = summonFor<{}>({});
 
@@ -33,9 +35,23 @@ export const Data_ = summon((F) =>
         "smtp-from": F.string(),
       },
       ""
-    )
-  )("Data")
+    ),
+  )("Data", { EqURI: () => eqId })
 );
-export interface Data extends AType<typeof Data_> {}
-export interface DataRaw extends EType<typeof Data_> {}
-export default AsOpaque<DataRaw, Data>()(Data_);
+// export interface Data extends AType<typeof Data_> {}
+// export interface DataRaw extends EType<typeof Data_> {}
+// export default AsOpaque<DataRaw, Data>()(Data_);
+interface Data extends AType<typeof Data_> {}
+interface DataRaw extends EType<typeof Data_> {}
+const Data = AsOpaque<DataRaw, Data>()(Data_);
+
+export const groupByTabId = NEA.groupBy(Data.lensFromProp("unique-id").get);
+
+
+// filterByProtocols : Protocal[] -> Data[] -> Data[]
+export const filterByProtocols = (ps: Protocol[]) =>
+  A.filter<Data>(d => A.elem(Protocol.eq)(Data.lensFromProp("protocol").get(d), ps))
+
+
+
+export default Data;

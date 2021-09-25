@@ -22,7 +22,7 @@ import {
   clearIntervals,
   register,
 } from "lib";
-import { Data } from "lib/types/data";
+import Data from "lib/types/data";
 import { StoredData } from "lib/types/storedData";
 import Tab from "lib/types/tab";
 import View from "lib/types/view";
