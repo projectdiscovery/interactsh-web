@@ -5722,11 +5722,6 @@ forwarded@0.2.0:
   resolved "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz"
   integrity sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==
 
-fp-ts-contrib@^0.1.26:
-  version "0.1.26"
-  resolved "https://registry.yarnpkg.com/fp-ts-contrib/-/fp-ts-contrib-0.1.26.tgz#b6f09f0dd7032197c3be3dceb2a49628a1ab464a"
-  integrity sha512-gi0COTH1xmN0dS9Vc2rgAmotQy8ab4z7CEVRhXxRNMhiuEEMx/Mvd0eLqAiV+hQZjI8xQct00w4Ywwacak35dA==
-
 fp-ts-local-storage@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/fp-ts-local-storage/-/fp-ts-local-storage-1.0.3.tgz"
@@ -7073,11 +7068,6 @@ jest-environment-node@^26.6.2:
     "@types/node" "*"
     jest-mock "^26.6.2"
     jest-util "^26.6.2"
-
-jest-fast-check@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/jest-fast-check/-/jest-fast-check-1.0.2.tgz#d670b0a5e646777e6cf54b9b9758342e5f021439"
-  integrity sha512-XuPENBGUN2gaTdPxgPJwFsYp0oj+MieRLpBha0flMxfI01zPHgGkZjGSLThimmsU5XFTGhJYZGVnift7UmsSuw==
 
 jest-get-type@^26.3.0:
   version "26.3.0"
