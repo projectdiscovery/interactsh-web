@@ -194,7 +194,7 @@ export const register = (
     ];
 
     const data: StoredData = reregister
-      ? { ...currentData, aesKey: "" }
+      ? { ...currentData, aesKey: "", token }
       : {
           privateKey: priv,
           publicKey: pub,
@@ -289,7 +289,6 @@ export const poll = (
               }
             });
         } else if (status === 401) {
-          clearIntervals();
           handleCustomHostDialogVisibility();
         } else {
           clearIntervals();

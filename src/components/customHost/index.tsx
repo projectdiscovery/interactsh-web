@@ -69,7 +69,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
         register(
           inputValue.replace(/(^\w+:|^)\/\//, ""),
           tokenInputValue,
-          true,
+          inputValue !== host && tokenInputValue === token,
           inputValue === host && tokenInputValue !== token
         )
           .then((d) => {
