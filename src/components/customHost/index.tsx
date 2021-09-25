@@ -26,7 +26,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
     notes: [],
     view: "up_and_down",
     increment: 1,
-    host: "interact.sh",
+    host: "interactsh.com",
     tabs: [],
     token: "",
     selectedTab: {
@@ -44,7 +44,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorText, setErrorText] = useState("");
-  const [inputValue, setInputValue] = useState<string>(host === "interact.sh" ? "" : host);
+  const [inputValue, setInputValue] = useState<string>(host === "interactsh.com" ? "" : host);
   const [tokenInputValue, setTokenInputValue] = useState<string>(token === "" ? "" : token);
 
   const handleDeleteConfirmationVisibility = () => {
@@ -61,8 +61,8 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
 
   const handleConfirm = () => {
     if (
-      (inputValue !== "" && inputValue !== "interact.sh" && host !== inputValue) ||
-      (inputValue !== "" && inputValue !== "interact.sh" && tokenInputValue !== token)
+      (inputValue !== "" && inputValue !== "interactsh.com" && host !== inputValue) ||
+      (inputValue !== "" && inputValue !== "interactsh.com" && tokenInputValue !== token)
     ) {
       setIsLoading(true);
       setTimeout(() => {
@@ -149,7 +149,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             <CloseIcon onClick={handleCloseDialog} />
           </div>
           <span>
-            You can point your self hosted interact.sh server below to connect with this web client.
+            You can point your self hosted ineractsh.com server below to connect with this web client.
           </span>
           <input
             type="text"
@@ -168,7 +168,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
           />
           {errorText !== "" && <div className="error">{errorText}</div>}
           <div className="buttons">
-            {host !== "interact.sh" && (
+            {host !== "interactsh.com" && (
               <button
                 type="button"
                 className="remove_button"

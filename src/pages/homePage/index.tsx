@@ -287,7 +287,7 @@ const HomePage = () => {
                 Blind CMDi, SSRF, etc.
                 <br />
                 <br />
-                If you find communications or exchanges with the Interact.sh server in your logs, it
+                If you find communications or exchanges with the Interactsh.com server in your logs, it
                 is possible that someone has been testing your applications using our hosted
                 service,
                 <a href="https://interact.projectdiscovery.io" target="__blank">
@@ -297,7 +297,7 @@ const HomePage = () => {
                 person responsible for this testing.
                 <br />
                 <br />
-                For further details about Interact.sh,
+                For further details about Interactsh.com,
                 <a href="https://github.com/projectdiscovery/interactsh" target="__blank">
                   {` checkout opensource code.`}
                 </a>

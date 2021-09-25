@@ -65,7 +65,7 @@ const Header = ({
 
   return (
     <div id="header" className="header">
-      <div>interact.sh</div>
+      <div>interactsh</div>
       <button type="button" onClick={handleThemeSwitchesVisibility}>
         <ThemeButton theme="dark" />
         <ThemeButton theme="synth" />

@@ -38,7 +38,7 @@ const ResetPopup = ({ handleCloseDialog }: CustomHostP) => {
     <div className="backdrop_container">
       <div className="dialog_box">
         <div className="header">
-          <span>Reset interact.sh</span>
+          <span>Reset ineractsh.com</span>
           <CloseIcon onClick={handleCloseDialog} />
         </div>
         <span>
