@@ -43,7 +43,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const { host, token } = data;
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isHostValid, setIsHostValid] = useState(true);
+  const [errorText, setErrorText] = useState("");
   const [inputValue, setInputValue] = useState<string>(host === "interact.sh" ? "" : host);
   const [tokenInputValue, setTokenInputValue] = useState<string>(token === "" ? "" : token);
 
@@ -77,11 +77,18 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             writeStoredData(d);
             setIsLoading(false);
             handleCloseDialog();
-            setIsHostValid(true);
+            setErrorText("");
           })
-          .catch(() => {
-            setIsLoading(false);
-            setIsHostValid(false);
+          .catch((err) => {
+            if (err.message === "auth failed") {
+              setIsLoading(false);
+              setErrorText("Authentication failed, token not valid.");
+            } else {
+              setIsLoading(false);
+              setErrorText(
+                "We were unable to establish a connection with your server; please try again by clicking on confirm."
+              );
+            }
           });
       }, 30);
     }
@@ -96,11 +103,18 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
           writeStoredData(d);
           setIsLoading(false);
           handleCloseDialog();
-          setIsHostValid(true);
+          setErrorText("");
         })
-        .catch(() => {
-          setIsLoading(false);
-          setIsHostValid(false);
+        .catch((err) => {
+          if (err.message === "auth failed") {
+            setIsLoading(false);
+            setErrorText("Authentication failed, token not valid.");
+          } else {
+            setIsLoading(false);
+            setErrorText(
+              "We were unable to establish a connection with your server; please try again by clicking on confirm."
+            );
+          }
         });
     }, 30);
   };
@@ -152,12 +166,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             value={tokenInputValue}
             onChange={handleInput}
           />
-          {!isHostValid && (
-            <div className="error">
-              We were unable to establish a connection with your server; please try again by
-              clicking on confirm.
-            </div>
-          )}
+          {errorText !== "" && <div className="error">{errorText}</div>}
           <div className="buttons">
             {host !== "interact.sh" && (
               <button

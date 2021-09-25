@@ -19,7 +19,6 @@ import { defaultFilter } from "./types/filter";
 import { StoredData } from "./types/storedData";
 import Tab from "./types/tab";
 
-
 export const copyDataToClipboard = (data: string) => navigator.clipboard.writeText(data);
 
 export const generateUrl = (correlationId: string, incrementNumber: number, host: string) => {
@@ -175,6 +174,9 @@ export const register = (
     referrerPolicy: "no-referrer",
     body: JSON.stringify(registerFetcherOptions),
   }).then(async (res) => {
+    if (res.status === 401) {
+      throw new Error("auth failed");
+    }
     if (!res.ok) {
       const d = await res.json();
       throw new Error(d.error);
@@ -232,7 +234,7 @@ export const poll = (
   host: string,
   token: string,
   handleResetPopupDialogVisibility: () => void,
-  handleCustomHostDialogVisibility: () => void,
+  handleCustomHostDialogVisibility: () => void
 ): Promise<PolledData> => {
   const headers = {
     Authorization: token,
@@ -290,7 +292,8 @@ export const poll = (
           clearIntervals();
           handleCustomHostDialogVisibility();
         } else {
-          throw new Error("unexpected error");
+          clearIntervals();
+          handleResetPopupDialogVisibility();
         }
       }
       return data;

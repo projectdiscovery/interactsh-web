@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 
 import formatDistance from "date-fns/formatDistance";
@@ -12,9 +9,9 @@ import { ReactComponent as FilterIcon } from "assets/svg/filter.svg";
 import { ReactComponent as FilterSelectedIcon } from "assets/svg/filter_selected.svg";
 import { getStoredData, writeStoredData } from "lib/localStorage";
 import { Data } from "lib/types/data";
-import Filter from "lib/types/filter";
-import Protocol, { protocols } from 'lib/types/protocol';
-import { trueKeys } from 'lib/utils';
+import Filter, { protocols } from "lib/types/filter";
+import Protocol from "lib/types/protocol";
+import { trueKeys } from "lib/utils";
 
 import "./styles.scss";
 
@@ -100,21 +97,21 @@ const RequestsTable = ({ data, handleRowClick, selectedInteraction, filter }: Re
               {filterDropdownVisibility && (
                 <div className="filter_dropdown secondary_bg">
                   <ul>
-                    {protocols.map(p => (
-                        <li>
-                            <label htmlFor={p}>
-                                <input
-                                    onChange={handleFilterSelection}
-                                    type="checkbox"
-                                    name="filter"
-                                    id={p}
-                                    value={p}
-                                    checked={filterValue[p]}
-                                />
-                                <span className="checkmark" />
-                                <span>{ Protocol.show.show(p) }</span>
-                            </label>
-                        </li>
+                    {protocols.map((p) => (
+                      <li>
+                        <label htmlFor={p}>
+                          <input
+                            onChange={handleFilterSelection}
+                            type="checkbox"
+                            name="filter"
+                            id={p}
+                            value={p}
+                            checked={filterValue[p]}
+                          />
+                          <span className="checkmark" />
+                          <span>{Protocol.show.show(p)}</span>
+                        </label>
+                      </li>
                     ))}
                   </ul>
                 </div>
