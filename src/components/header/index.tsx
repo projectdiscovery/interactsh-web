@@ -48,7 +48,6 @@ const Header = ({
     setIsSelectorVisible(!isSelectorVisible);
   };
 
-  const isCustomHost = host !== "interact.sh";
   const setTheme = (t: ThemeName) => () => handleThemeSelection(t);
 
   const isThemeSelected = (t: ThemeName) => ThemeName.eq.equals(t, theme);
@@ -76,11 +75,11 @@ const Header = ({
         <button
           type="button"
           title="Switch host"
-          className={isCustomHost ? "custom_host_active" : undefined}
+          className="custom_host_active"
           onClick={handleCustomHostDialogVisibility}
         >
           <SwitchIcon />
-          {isCustomHost ? host : "Custom Host"}
+          {host}
         </button>
         <button type="button" title="Reset data" onClick={handleResetPopupDialogVisibility}>
           <DeleteIcon />
