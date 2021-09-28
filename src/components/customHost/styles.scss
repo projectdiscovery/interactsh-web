@@ -1,4 +1,4 @@
-@import '../../breakpoints.scss';
+@import "../../breakpoints.scss";
 @include for-size(xsmall) {
 }
 
@@ -14,7 +14,7 @@
 @include for-size(xlarge) {
 }
 
-.container {
+.backdrop_container {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -37,6 +37,7 @@
     .header {
       display: flex;
       margin-bottom: 2rem;
+      padding: 0;
       span {
         font-size: 2.2rem;
         color: #ffffff;
@@ -62,7 +63,7 @@
       text-align: left;
       height: 4rem;
       padding: 1rem;
-      border: 1px solid #6588ff;
+      border: 1px solid #1c1c1c;
       background: transparent;
       border-radius: 0.6rem;
       margin-bottom: 2rem;
@@ -71,6 +72,12 @@
       }
       &:focus {
         outline: none;
+        box-shadow: none;
+        border: 1px solid #6588ff;
+      }
+      &:disabled {
+        background: #101010;
+        border: 1px solid #101010;
       }
     }
     .error {
@@ -84,6 +91,11 @@
       display: flex;
       font-weight: 600;
       margin-top: 1rem;
+      button {
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
       .delete_button {
         display: flex;
         align-items: center;
@@ -97,10 +109,9 @@
         height: 3.5rem;
         margin-right: 2rem;
         flex: 1;
-        cursor: pointer;
         transition: all 0.1s linear;
-        &:active {
-          opacity: 0.7;
+        svg {
+          margin-left: 1.5rem;
         }
       }
       .remove_button {
@@ -116,10 +127,9 @@
         height: 3.5rem;
         margin-right: 2rem;
         flex: 1;
-        cursor: pointer;
         transition: all 0.1s linear;
-        &:active {
-          opacity: 0.7;
+        svg {
+          margin-left: 1.5rem;
         }
       }
       .submit_button {
@@ -134,11 +144,7 @@
         letter-spacing: 0;
         text-align: left;
         height: 3.5rem;
-        cursor: pointer;
         transition: all 0.1s linear;
-        &:active {
-          opacity: 0.7;
-        }
         svg {
           margin-left: 1.5rem;
         }

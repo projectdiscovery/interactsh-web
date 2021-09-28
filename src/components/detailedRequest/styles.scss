@@ -1,4 +1,4 @@
-@import '../../breakpoints.scss';
+@import "../../breakpoints.scss";
 @include for-size(xsmall) {
 }
 
@@ -14,7 +14,7 @@
 @include for-size(xlarge) {
 }
 
-.container {
+.detailed_request_container {
   display: flex;
   flex-direction: column;
   margin-bottom: 3rem;
@@ -38,10 +38,17 @@
       height: 100%;
       width: 100%;
       overflow-y: scroll;
+      & > .default {
+        color: #fcc28c;
+      }
       & > pre {
-        border: none !important;
+        text-shadow: none !important;
         box-shadow: none !important;
+        border: none !important;
         background: transparent !important;
+        & > code {
+          text-shadow: none !important;
+        }
       }
     }
     .copy_button {

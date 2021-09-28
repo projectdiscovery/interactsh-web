@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -7,7 +11,7 @@
 
 html {
   font-size: 10px;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   body {
     color: #000;
     :global .ReactVirtualized__List {
@@ -18,7 +22,10 @@ html {
     i:focus {
       outline: none;
     }
-    :global #download_anchor_element{
+    button:focus {
+      outline: none;
+    }
+    :global #download_anchor_element {
       height: 0;
       width: 0;
     }
