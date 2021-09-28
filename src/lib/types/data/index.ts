@@ -35,23 +35,17 @@ export const Data_ = summon((F) =>
         "smtp-from": F.string(),
       },
       ""
-    ),
+    )
   )("Data", { EqURI: () => eqId })
 );
-// export interface Data extends AType<typeof Data_> {}
-// export interface DataRaw extends EType<typeof Data_> {}
-// export default AsOpaque<DataRaw, Data>()(Data_);
 interface Data extends AType<typeof Data_> {}
 interface DataRaw extends EType<typeof Data_> {}
 const Data = AsOpaque<DataRaw, Data>()(Data_);
 
 export const groupByTabId = NEA.groupBy(Data.lensFromProp("unique-id").get);
 
-
 // filterByProtocols : Protocal[] -> Data[] -> Data[]
 export const filterByProtocols = (ps: Protocol[]) =>
-  A.filter<Data>(d => A.elem(Protocol.eq)(Data.lensFromProp("protocol").get(d), ps))
-
-
+  A.filter<Data>((d) => A.elem(Protocol.eq)(Data.lensFromProp("protocol").get(d), ps));
 
 export default Data;
