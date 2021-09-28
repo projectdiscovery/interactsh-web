@@ -2,16 +2,18 @@ name: React app deployement
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
-
+    
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Deploy react app to github pages
-        uses: ehsandeep/deploy-react-to-ghpages@master
+    - name: Deploy react app to github pages
+      uses: ehsandeep/deploy-react-to-ghpages@master
