@@ -17,7 +17,7 @@ export const defaultStoredData: StoredData = {
   notes: [],
   view: "up_and_down",
   increment: 1,
-  host: "ineractsh.com",
+  host: "interactsh.com",
   tabs: [],
   token: "",
   selectedTab: {

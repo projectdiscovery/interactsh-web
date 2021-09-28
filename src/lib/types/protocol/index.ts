@@ -13,7 +13,7 @@ const eqByView = pipe(
   Eq.contramap((p: string) => p)
 );
 
-export const protocols = ["dns", "http", "https", "arp", "smtp"] as const;
+export const protocols = ["dns", "http", "smtp"] as const;
 
 const Protocol = summon((F) =>
   F.keysOf(createRecord(protocols), {

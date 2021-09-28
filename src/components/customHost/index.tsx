@@ -149,7 +149,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             <CloseIcon onClick={handleCloseDialog} />
           </div>
           <span>
-            You can point your self hosted ineractsh.com server below to connect with this web client.
+            You can point your self hosted interactsh.com server below to connect with this web client.
           </span>
           <input
             type="text"
