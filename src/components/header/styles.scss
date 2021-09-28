@@ -1,0 +1,124 @@
+@import "../../breakpoints.scss";
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.header {
+  z-index: 10;
+  width: 100%;
+  height: 5.3rem;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+
+  & > div:nth-of-type(1) {
+    margin-left: 0;
+    font-size: 1.5rem;
+    color: #ffffff;
+    letter-spacing: -0.02rem;
+    text-align: left;
+    padding-right: 1rem;
+    margin-right: 0.8rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  & > button:nth-of-type(1) {
+    margin-left: 0;
+    border-radius: 0.6rem;
+    overflow: hidden;
+    height: 2.7rem;
+    display: flex;
+    justify-content: stretch;
+    .__selector_visible {
+      display: flex;
+      background: rgba(216, 216, 216, 0.11);
+    }
+    .__selected {
+      display: flex !important;
+      background: rgba(216, 216, 216, 0.2);
+    }
+    .__without_bg {
+      background: none !important;
+    }
+    & > button {
+      cursor: pointer;
+      height: 100%;
+      display: none;
+      align-items: center;
+      padding: 0 0.6rem;
+      color: #ffffff;
+      font-size: 1.4rem;
+      & > svg {
+        margin-right: 0.4rem;
+      }
+    }
+  }
+  .links {
+    display: flex;
+    margin-left: auto;
+    padding: 1.5rem 0;
+    height: 100%;
+    align-items: center;
+    .custom_host_active {
+      color: #6588ff;
+      svg path {
+        fill: #6588ff;
+      }
+    }
+    & > button {
+      font-size: 1.5rem;
+      color: #ffffff;
+      letter-spacing: -0.02rem;
+      cursor: pointer;
+      margin-left: 2rem;
+      display: flex;
+      align-items: center;
+      &:nth-of-type(3) {
+        &:active {
+          svg {
+            path {
+              fill: transparent;
+            }
+            g {
+              stroke: #979797;
+            }
+          }
+        }
+      }
+      &:active {
+        color: #979797;
+        svg {
+          path {
+            fill: #979797;
+          }
+        }
+      }
+      & > svg {
+        margin-right: 1rem;
+      }
+    }
+    & > a {
+      margin-left: auto;
+      font-size: 1.5rem;
+      color: #ffffff;
+      letter-spacing: -0.02rem;
+      cursor: pointer;
+    }
+    .vertical_bar {
+      border-right: 1px solid rgba(151, 151, 151, 0.5);
+      height: 100%;
+      width: 1px;
+      margin: 0 1.5rem;
+    }
+  }
+}

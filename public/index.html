@@ -1,0 +1,74 @@
+<!-- index.html for react -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width" name="viewport" />
+    <title>Interact.sh | Web Client</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Poppins&family=Montserrat&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-165996103-1"
+    ></script>
+    <script type="text/javascript">
+      var _iub = _iub || [];
+      _iub.csConfiguration = {
+        countryDetection: true,
+        consentOnContinuedBrowsing: false,
+        lang: "en",
+        siteId: 2236930,
+        cookiePolicyId: 77854424,
+        banner: {
+          acceptButtonDisplay: true,
+          customizeButtonDisplay: true,
+          position: "float-bottom-right",
+        },
+      };
+    </script>
+    <script type="text/javascript">
+      (function (w, d) {
+        var loader = function () {
+          var s = d.createElement("script"),
+            tag = d.getElementsByTagName("script")[0];
+          s.src = "https://cdn.iubenda.com/iubenda.js";
+          tag.parentNode.insertBefore(s, tag);
+        };
+        if (w.addEventListener) {
+          w.addEventListener("load", loader, false);
+        } else if (w.attachEvent) {
+          w.attachEvent("onload", loader);
+        } else {
+          w.onload = loader;
+        }
+      })(window, document);
+    </script>
+    <script
+      type="text/javascript"
+      src="//cdn.iubenda.com/cs/iubenda_cs.js"
+      charset="UTF-8"
+      async
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-165996103-1");
+    </script>
+
+    <!-- <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script> -->
+  </head>
+
+  <body style="margin: 0">
+    <div id="root"></div>
+    <div id="portal_root"></div>
+    <div id="download_anchor_element" />
+  </body>
+</html>

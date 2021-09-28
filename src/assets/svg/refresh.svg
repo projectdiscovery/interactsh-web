@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Black-Theme" transform="translate(-471.000000, -245.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Group-20" transform="translate(471.000000, 243.000000)">
+                <path d="M13.64,4.35 C12.19,2.9 10.2,2 7.99,2 C3.57,2 -1.09245946e-13,5.58 -1.09245946e-13,10 C-1.09245946e-13,14.42 3.57,18 7.99,18 C11.72,18 14.83,15.45 15.72,12 L13.64,12 C12.82,14.33 10.6,16 7.99,16 C4.68,16 1.99,13.31 1.99,10 C1.99,6.69 4.68,4 7.99,4 C9.65,4 11.13,4.69 12.21,5.78 L8.99,9 L15.99,9 L15.99,2 L13.64,4.35 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

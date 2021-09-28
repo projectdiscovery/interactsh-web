@@ -1,0 +1,77 @@
+@import "../../breakpoints.scss";
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.detailed_request_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  height: 100%;
+  & > span {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+  .body {
+    border: 1px solid rgba(151, 151, 151, 0.25);
+    border-radius: 0.6rem;
+    padding: 2rem 1.5rem;
+    font-family: Menlo-Regular;
+    font-size: 1.2rem;
+    color: #fcc28c;
+    line-height: 2.8rem;
+    position: relative;
+    height: calc(100% - 3rem);
+    & > .pre_wrapper {
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+      & > .default {
+        color: #fcc28c;
+      }
+      & > pre {
+        text-shadow: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+        & > code {
+          text-shadow: none !important;
+        }
+      }
+    }
+    .copy_button {
+      position: absolute;
+      top: -1.4rem;
+      right: 2.8rem;
+      background: rgba(216, 216, 216, 0.14);
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ffffff;
+      padding: 0 0.6rem;
+      border-radius: 0.6rem;
+      display: flex;
+      align-items: center;
+      user-select: none;
+      &:active {
+        transition: all 0.1s linear;
+        background: rgba(216, 216, 216, 0.25);
+      }
+      & > svg {
+        margin-left: 1rem;
+        height: 1.7rem;
+      }
+    }
+  }
+}

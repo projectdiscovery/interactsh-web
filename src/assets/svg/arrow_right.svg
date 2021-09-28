@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="10px" viewBox="0 0 18 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-arrow-right</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Custom-Host-Pop-Up-Copy" transform="translate(-834.000000, -474.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Group-10" transform="translate(623.000000, 461.000000)">
+                <g id="Group-30" transform="translate(148.000000, 8.000000)">
+                    <g id="icon-arrow-right" transform="translate(63.000000, 5.000000)">
+                        <path d="M0,5 C0,4.4477 0.44772,4 1,4 L17,4 C17.5523,4 18,4.4477 18,5 C18,5.5523 17.5523,6 17,6 L1,6 C0.44772,6 0,5.5523 0,5 Z" id="Path"></path>
+                        <path d="M12.2929,0.29289 C12.6834,-0.09763 13.3166,-0.09763 13.7071,0.29289 L17.7071,4.2929 C18.0976,4.6834 18.0976,5.3166 17.7071,5.7071 C17.3166,6.0976 16.6834,6.0976 16.2929,5.7071 L12.2929,1.70711 C11.9024,1.31658 11.9024,0.68342 12.2929,0.29289 Z" id="Path"></path>
+                        <path d="M17.7071,4.2929 C18.0976,4.6834 18.0976,5.3166 17.7071,5.7071 L13.7071,9.7071 C13.3166,10.0976 12.6834,10.0976 12.2929,9.7071 C11.9024,9.3166 11.9024,8.6834 12.2929,8.2929 L16.2929,4.2929 C16.6834,3.9024 17.3166,3.9024 17.7071,4.2929 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

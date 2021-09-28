@@ -1,0 +1,102 @@
+@import "../../breakpoints.scss";
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.tab_switcher {
+  width: 100%;
+  height: 3.7rem;
+  display: flex;
+  background: #192030;
+  justify-content: stretch;
+
+  .__selected_tab_button {
+    background: rgba(216, 216, 216, 0.12);
+    margin: 0 !important;
+    height: 100% !important;
+    border-right: 1px solid transparent !important;
+  }
+  .tab_button {
+    height: calc(100% - 1rem);
+    cursor: pointer;
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(151, 151, 151, 0.5);
+    font-size: 1.2rem;
+    & > input {
+      border: none;
+      outline: none;
+      font-size: inherit;
+      background: transparent;
+      color: #ffffff;
+    }
+    & > div {
+      margin-right: 1rem;
+      color: #ffffff;
+      text-align: left;
+      max-width: 11rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    & > svg {
+      margin-left: auto;
+      cursor: pointer;
+      transition: all 0.1s linear;
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+  .add_new_tab_button {
+    height: 100%;
+    width: auto;
+    display: flex;
+    padding: 0 1.5rem;
+    align-items: center;
+    cursor: pointer;
+  }
+  .refresh_button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 1.5rem;
+    background: transparent;
+    margin-left: auto;
+    cursor: pointer;
+    &:active {
+      & > svg {
+        transform: rotate(90deg);
+        path {
+          fill: #979797;
+        }
+      }
+      & > span {
+        color: #979797;
+      }
+    }
+    & > span {
+      font-size: 1.5rem;
+      color: #ffffff;
+      transition: all 0.1s linear;
+      user-select: none;
+    }
+    & > svg {
+      transition: all 0.1s linear;
+      margin-right: 1rem;
+    }
+  }
+}
