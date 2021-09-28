@@ -290,8 +290,8 @@ const HomePage = () => {
                 If you find communications or exchanges with the Interactsh.com server in your logs, it
                 is possible that someone has been testing your applications using our hosted
                 service,
-                <a href="https://interact.projectdiscovery.io" target="__blank">
-                  {` interact.projectdiscovery.io `}
+                <a href="https://app.interactsh.com" target="__blank">
+                  {` app.interactsh.com `}
                 </a>
                 You should review the time when these interactions were initiated to identify the
                 person responsible for this testing.
