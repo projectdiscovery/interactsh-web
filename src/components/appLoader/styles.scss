@@ -1,0 +1,96 @@
+@import "../../breakpoints.scss";
+@include for-size(xsmall) {
+}
+
+@include for-size(small) {
+}
+
+@include for-size(medium) {
+}
+
+@include for-size(large) {
+}
+
+@include for-size(xlarge) {
+}
+
+.loader_container {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  height: 100vh;
+  width: 100vw;
+  background: #000 !important;
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-in;
+
+  &:before {
+    content: "";
+    position: absolute;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    --s: 5rem;
+
+    --m: 0.2rem;
+
+    --v1: #000 119.5deg, #0000 120.5deg;
+    --v2: #4d0343 119.5deg, #0000 120.5deg;
+    background: conic-gradient(
+        at var(--m) calc(var(--s) * 0.5777),
+        transparent 270deg,
+        #4d0343 0deg
+      ),
+      conic-gradient(
+        at calc(100% - var(--m)) calc(var(--s) * 0.5777),
+        #4d0343 90deg,
+        transparent 0deg
+      ),
+      conic-gradient(from -60deg at 50% calc(var(--s) * 0.8662), var(--v1)),
+      conic-gradient(from -60deg at 50% calc(var(--s) * 0.8662 + 2 * var(--m)), var(--v2)),
+      conic-gradient(from 120deg at 50% calc(var(--s) * 1.4435 + 3 * var(--m)), var(--v1)),
+      conic-gradient(from 120deg at 50% calc(var(--s) * 1.4435 + var(--m)), var(--v2)),
+      linear-gradient(90deg, #000 calc(50% - var(--m)), #4d0343 0 calc(50% + var(--m)), #000 0);
+    background-size: calc(var(--s) + 2 * var(--m)) calc(var(--s) * 1.732 + 3 * var(--m));
+    -webkit-mask: linear-gradient(
+        -60deg,
+        #0000 calc(20% - 4 * var(--s)),
+        #000,
+        #0000 calc(80% + 4 * var(--s))
+      )
+      (right / 300%) 100% no-repeat;
+    animation: f 4s linear infinite alternate;
+  }
+
+  .loader_content {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 5.2rem;
+    font-family: "Nunito Sans", sans-serif;
+    color: #fff;
+    font-weight: 100;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 1rem;
+      span {
+        font-weight: 600;
+      }
+    }
+    svg {
+      height: 10rem;
+      width: 10rem;
+    }
+  }
+}
+
+@keyframes f {
+  100% {
+    -webkit-mask-position: left;
+  }
+}

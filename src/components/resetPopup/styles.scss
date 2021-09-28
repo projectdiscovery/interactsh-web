@@ -56,37 +56,6 @@
       letter-spacing: 0;
       margin-bottom: 3.5rem;
     }
-    input {
-      font-size: 1.5rem;
-      color: #6588ff;
-      letter-spacing: 0;
-      text-align: left;
-      height: 4rem;
-      padding: 1rem;
-      border: 1px solid #1c1c1c;
-      background: transparent;
-      border-radius: 0.6rem;
-      margin-bottom: 2rem;
-      &::placeholder {
-        color: gray;
-      }
-      &:focus {
-        outline: none;
-        box-shadow: none;
-        border: 1px solid #6588ff;
-      }
-      &:disabled {
-        background: #101010;
-        border: 1px solid #101010;
-      }
-    }
-    .error {
-      font-size: 1.5rem;
-      color: #ff5151;
-      letter-spacing: 0;
-      text-align: left;
-      margin-bottom: 2rem;
-    }
     .buttons {
       display: flex;
       font-weight: 600;
@@ -96,43 +65,7 @@
           opacity: 0.5;
         }
       }
-      .delete_button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #ff5151;
-        border-radius: 0.6rem;
-        font-size: 1.4rem;
-        color: #ffffff;
-        letter-spacing: 0;
-        text-align: left;
-        height: 3.5rem;
-        margin-right: 2rem;
-        flex: 1;
-        transition: all 0.1s linear;
-        svg {
-          margin-left: 1.5rem;
-        }
-      }
-      .remove_button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(216, 216, 216, 0.19);
-        border-radius: 0.6rem;
-        font-size: 1.4rem;
-        color: #ffffff;
-        letter-spacing: 0;
-        text-align: left;
-        height: 3.5rem;
-        margin-right: 2rem;
-        flex: 1;
-        transition: all 0.1s linear;
-        svg {
-          margin-left: 1.5rem;
-        }
-      }
-      .submit_button {
+      .button {
         flex: 2;
         display: flex;
         align-items: center;
@@ -146,7 +79,26 @@
         height: 3.5rem;
         transition: all 0.1s linear;
         svg {
-          margin-left: 1.5rem;
+          margin-left: 1rem;
+          margin-top: -0.3rem;
+        }
+      }
+      .confirm_button {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ff5151;
+        border-radius: 0.6rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+        letter-spacing: 0;
+        text-align: left;
+        height: 3.5rem;
+        transition: all 0.1s linear;
+        svg {
+          margin-left: 1rem;
+          margin-top: -0.3rem;
         }
       }
     }
