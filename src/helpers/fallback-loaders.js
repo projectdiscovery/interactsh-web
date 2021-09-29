@@ -4,6 +4,13 @@ import { RedoOutlined } from '@ant-design/icons';
 import ContentLoader from "react-content-loader";
 import "./styles.scss";
 
+
+const RetryButton = ({ onRetry }) => (
+  <button type="button" onClick={onRetry} className="error_box">
+    <RedoOutlined />
+  </button>
+)
+
 const OverviewStatsErrorFallback = ({ retry }) => (
   <div
     className="retry_error_fallback"
@@ -12,9 +19,7 @@ const OverviewStatsErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -26,9 +31,7 @@ const StarsOvertimeErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -40,9 +43,7 @@ const DailyStarsErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -54,9 +55,7 @@ const FiltersErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -68,9 +67,7 @@ const StargazersListErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -82,9 +79,7 @@ const ContributorsListErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -96,9 +91,7 @@ const RepositoriesListErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -110,9 +103,7 @@ const EfficiencyStatsErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -124,9 +115,7 @@ const RepoSidebarListErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -138,9 +127,7 @@ const IssuesListErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
@@ -152,9 +139,7 @@ const RepoStatsErrorFallback = ({ retry }) => (
       background: "transparent",
     }}
   >
-    <button type="button" onClick={retry} className="error_box">
-      <RedoOutlined />
-    </button>
+    <RetryButton onRetry={retry} />
     <span className="error_msg">Request failed!</span>
   </div>
 );
