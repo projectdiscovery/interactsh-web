@@ -91,7 +91,7 @@
   "devDependencies": {
     "@types/jest-axe": "^3.5.2",
     "@types/styled-components": "^5.1.12",
-    "@types/uuid": "^8.3.1",
+    "@types/uuid": "^8.3.3",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
     "eslint-config-airbnb": "^18.2.1",
