@@ -90,7 +90,7 @@
   },
   "devDependencies": {
     "@types/jest-axe": "^3.5.2",
-    "@types/styled-components": "^5.1.12",
+    "@types/styled-components": "^5.1.18",
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
