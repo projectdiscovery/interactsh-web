@@ -12,7 +12,7 @@ interface AppLoaderP {
 const AppLoader = ({ isRegistered, mode }: AppLoaderP) => (
   <div
     className="loader_container"
-    style={{ opacity: isRegistered ? 0 : 1, visibility: isRegistered ? "hidden" : "visible" }}
+    style={{ opacity: isRegistered ? 0 : 1, visibility: isRegistered ? "hidden" : "visible", zIndex: (mode === "loading") ? 110 : 10}}
   >
     <div className="loader_content">
       {mode === "loading" ? (
