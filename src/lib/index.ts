@@ -116,7 +116,7 @@ export const deregister = (
   secretKey: string,
   correlationId: string,
   host: string,
-  token?: string
+  token: string
 ) => {
   const registerFetcherOptions = {
     "secret-key": secretKey,
@@ -127,14 +127,14 @@ export const deregister = (
     { "Content-Type": "application/json" },
     {
       "Content-Type": "application/json",
-      Authorization: token,
+      "Authorization": token,
     },
   ] as const;
 
   return fetch(`https://${host}/deregister`, {
     method: "POST",
     cache: "no-cache",
-    headers: token && token !== "" ? headers[1] : headers[0],
+    headers: token !== "" ? headers[1] : headers[0],
     referrerPolicy: "no-referrer",
     body: JSON.stringify(registerFetcherOptions),
   }).catch(() => {});
@@ -163,14 +163,14 @@ export const register = (
     { "Content-Type": "application/json" },
     {
       "Content-Type": "application/json",
-      Authorization: token,
+      "Authorization": token,
     },
   ] as const;
 
   return fetch(`https://${host}/register`, {
     method: "POST",
     cache: "no-cache",
-    headers: token && token !== "" ? headers[1] : headers[0],
+    headers: token !== "" ? headers[1] : headers[0],
     referrerPolicy: "no-referrer",
     body: JSON.stringify(registerFetcherOptions),
   }).then(async (res) => {
@@ -237,7 +237,7 @@ export const poll = (
   handleCustomHostDialogVisibility: () => void
 ): Promise<PolledData> => {
   const headers = {
-    Authorization: token,
+    "Authorization": token,
   };
   return fetch(`https://${host}/poll?id=${correlationId}&secret=${secretKey}`, {
     method: "GET",

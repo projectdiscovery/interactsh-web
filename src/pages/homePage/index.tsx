@@ -233,7 +233,7 @@ const HomePage = () => {
       setLoaderAnimationMode("loading");
       setIsRegistered(false);
       setTimeout(() => {
-        register(storedData.host, "", false, false)
+        register(storedData.host, storedData.token, false, false)
           .then((data) => {
             setStoredData(data);
             window.setInterval(() => {

@@ -97,7 +97,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const handleDelete = () => {
     setIsLoading(true);
     setTimeout(() => {
-      register(defaultStoredData.host, "", true, false)
+      register(defaultStoredData.host, defaultStoredData.token, true, false)
         .then((d) => {
           localStorage.clear();
           writeStoredData(d);
