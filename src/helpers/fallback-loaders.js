@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Icon } from "antd";
+//import { Icon } from "antd";
+import Icon from '@ant-design/icons';
 import ContentLoader from "react-content-loader";
 import "./styles.scss";
 
