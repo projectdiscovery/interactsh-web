@@ -97,7 +97,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react": "^7.29.4",
     "fast-check": "^2.17.0"
   }
 }
