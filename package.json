@@ -32,7 +32,7 @@
     "fp-ts-std": "^0.11.0",
     "husky": "^7.0.4",
     "io-ts": "^2.2.16",
-    "io-ts-numbers": "^1.0.3",
+    "io-ts-numbers": "^1.1.0",
     "io-ts-types": "^0.5.16",
     "is-xid": "^1.0.3",
     "jest-fast-check": "^1.0.2",
