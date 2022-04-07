@@ -20,6 +20,15 @@ export const defaultStoredData: StoredData = {
   host: "interact.sh",
   tabs: [],
   token: "",
+  telegram: {
+    botToken: '',
+    chatId: '',
+  },
+  slack: {
+    hookKey: '',
+    channel: '',
+    botName: '',
+  },
   selectedTab: {
     "unique-id": "",
     correlationId: "",

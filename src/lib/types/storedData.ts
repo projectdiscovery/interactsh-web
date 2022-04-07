@@ -5,7 +5,9 @@ import { ThemeName } from "theme";
 
 import Data from "./data";
 import Filter from "./filter";
+import Slack from "./slack";
 import Tab from "./tab";
+import Telegram from "./telegram";
 import View from "./view";
 
 const { summon } = summonFor<{}>({});
@@ -25,6 +27,8 @@ export const StoredData_ = summon((F) =>
 
       host: F.string(),
       token: F.string(),
+      telegram: Telegram(F),
+      slack: Slack(F),
       selectedTab: Tab(F),
       tabs: F.array(Tab(F)),
       data: F.array(Data(F)),
