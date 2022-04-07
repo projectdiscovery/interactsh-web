@@ -40,6 +40,7 @@ const HomePage = () => {
   const [isNotesOpen, setIsNotesOpen] = useState<boolean>(false);
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const [isResetPopupDialogVisible, setIsResetPopupDialogVisible] = useState<boolean>(false);
+  const [isNotificationsDialogVisible, setIsNotificationsDialogVisible] = useState<boolean>(false);
   const [loaderAnimationMode, setLoaderAnimationMode] = useState<string>("loading");
   const [selectedInteraction, setSelectedInteraction] = useState<string | null>(null);
   const [selectedInteractionData, setSelectedInteractionData] = useState<Data | null>(null);
@@ -48,6 +49,10 @@ const HomePage = () => {
 
   const handleResetPopupDialogVisibility = () => {
     setIsResetPopupDialogVisible(!isResetPopupDialogVisible);
+  };
+  
+  const handleNotificationsDialogVisibility = () => {
+    setIsNotificationsDialogVisible(!isNotificationsDialogVisible);
   };
 
   const handleCustomHostDialogVisibility = () => {
@@ -311,7 +316,9 @@ const HomePage = () => {
           host={storedData.host}
           handleThemeSelection={handleThemeSelection}
           isResetPopupDialogVisible={isResetPopupDialogVisible}
+          isNotificationsDialogVisible={isNotificationsDialogVisible}
           handleResetPopupDialogVisibility={handleResetPopupDialogVisibility}
+          handleNotificationsDialogVisibility={handleNotificationsDialogVisibility}
           isCustomHostDialogVisible={isCustomHostDialogVisible}
           handleCustomHostDialogVisibility={handleCustomHostDialogVisibility}
         />

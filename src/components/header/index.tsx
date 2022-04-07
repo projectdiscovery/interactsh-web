@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { NotificationOutlined } from "@ant-design/icons";
 import { matchConfig } from "@babakness/exhaustive-type-checking";
 
 import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
@@ -8,6 +9,7 @@ import { ReactComponent as SwitchIcon } from "assets/svg/switch.svg";
 import { ReactComponent as ThemeBlueButtonIcon } from "assets/svg/theme_blue_button.svg";
 import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_button.svg";
 import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
+import NotificationsPopup from "components/notificationsPopup";
 import ResetPopup from "components/resetPopup";
 import { handleDataExport } from "lib";
 import { ThemeName, showThemeName } from "theme";
@@ -27,8 +29,10 @@ interface HeaderP {
   host: string;
   handleAboutPopupVisibility: () => void;
   isResetPopupDialogVisible: boolean;
+  isNotificationsDialogVisible: boolean;
   isCustomHostDialogVisible: boolean;
   handleResetPopupDialogVisibility: () => void;
+  handleNotificationsDialogVisibility: () => void;
   handleCustomHostDialogVisibility: () => void;
 }
 
@@ -38,7 +42,9 @@ const Header = ({
   host,
   handleAboutPopupVisibility,
   isResetPopupDialogVisible,
+  isNotificationsDialogVisible,
   handleResetPopupDialogVisibility,
+  handleNotificationsDialogVisibility,
   isCustomHostDialogVisible,
   handleCustomHostDialogVisibility,
 }: HeaderP) => {
@@ -85,6 +91,10 @@ const Header = ({
           <DeleteIcon />
           Reset
         </button>
+        <button type="button" title="Reset data" onClick={handleNotificationsDialogVisibility}>
+          <NotificationOutlined style={{marginRight: '10px'}} />
+          Notifications
+        </button>
         <button type="button" title="Export" onClick={handleDataExport}>
           <DownloadIcon />
           Export
@@ -100,6 +110,9 @@ const Header = ({
       )}
       {isResetPopupDialogVisible && (
         <ResetPopup handleCloseDialog={handleResetPopupDialogVisibility} />
+      )}
+      {isNotificationsDialogVisible && (
+        <NotificationsPopup handleCloseDialog={handleNotificationsDialogVisibility} />
       )}
     </div>
   );
