@@ -7,6 +7,7 @@ const Discord_ = summon((F) =>
   F.interface(
     {
       webhook: F.string(),
+      channel: F.string(),
     },
     "Discord"
   )

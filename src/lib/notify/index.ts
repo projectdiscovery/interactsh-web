@@ -24,14 +24,12 @@ export const notifyTelegram = async (msg: string, token: string, target: string,
     }
 }
 
-export const notifySlack = async (msg: string, webhook: string, target: string, botname: string = "noti-bot", boticon: string = "slack") => {
+export const notifySlack = async (msg: string, webhook: string, target: string) => {
     if (webhook.trim() !== '' && target.trim() !== '') {
         const params: {[key: string]: string} = {
             payload: JSON.stringify({
                 "channel" : target,
-                "username":  botname,
                 "text": msg,
-                "icon_emoji": boticon,
             })
         }
         const body = formatBody(params)

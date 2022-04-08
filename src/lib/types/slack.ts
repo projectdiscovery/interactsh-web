@@ -8,7 +8,6 @@ const Slack_ = summon((F) =>
     {
       hookKey: F.string(),
       channel: F.string(),
-      botName: F.string(),
     },
     "Slack"
   )
