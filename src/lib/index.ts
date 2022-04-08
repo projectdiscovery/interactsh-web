@@ -206,16 +206,16 @@ export const register = (
           increment: 1,
           token,
           telegram: {
-            botToken: '5151651978:AAF9lh1LnfjCt3RfnLeAolF1kVLgvwwR6rA',
-            chatId: '265643328',
+            botToken: '',
+            chatId: '',
           },
           slack: {
-            hookKey: 'https://hooks.slack.com/services/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',
-            channel: 'testing',
+            hookKey: '',
+            channel: '',
             botName: '',
           },
           discord: {
-            webhook: 'https://discord.com/api/webhooks/773062411691098123/O2M-g9lVlJlNQFLIkyp-mozXp5oN-SyCsD1xEelZHwBP-9sqAnNlhjbr4wtnECifoRJH'
+            webhook: ''
           },
           tabs: tabData,
           selectedTab: tabData[0],
