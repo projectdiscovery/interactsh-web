@@ -6,6 +6,7 @@ const { summon } = summonFor<{}>({});
 const Slack_ = summon((F) =>
   F.interface(
     {
+      enabled: F.boolean(),
       hookKey: F.string(),
       channel: F.string(),
     },

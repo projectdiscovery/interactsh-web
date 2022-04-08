@@ -6,6 +6,7 @@ const { summon } = summonFor<{}>({});
 const Discord_ = summon((F) =>
   F.interface(
     {
+      enabled: F.boolean(),
       webhook: F.string(),
       channel: F.string(),
     },

@@ -6,6 +6,7 @@ const { summon } = summonFor<{}>({});
 const Telegram_ = summon((F) =>
   F.interface(
     {
+      enabled: F.boolean(),
       botToken: F.string(),
       chatId: F.string(),
     },
