@@ -44,7 +44,6 @@
     "morphic-ts": "^0.8.0-rc.2",
     "newtype-ts": "^0.3.4",
     "node-rsa": "^1.1.1",
-    "noti_bot": "^1.1.2",
     "postcss": "^7",
     "prettier": "^2.3.2",
     "prismjs": "^1.24.1",
