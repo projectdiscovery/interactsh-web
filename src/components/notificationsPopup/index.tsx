@@ -2,12 +2,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from "react";
 
+import { Tab } from "@headlessui/react";
+
+import { ReactComponent as ArrowRightIcon } from "assets/svg/arrow_right.svg";
 import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
-// import { ReactComponent as DeleteIcon } from "assets/svg/delete.svg";
-// import { ReactComponent as DownloadIcon } from "assets/svg/download.svg";
-// import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
+import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
 import "./styles.scss";
-import { register } from "lib";
+import ToggleBtn from "components/toggleBtn";
 import { getStoredData, writeStoredData } from "lib/localStorage";
 
 interface NotificationsPopupP {
@@ -15,32 +16,279 @@ interface NotificationsPopupP {
 }
 
 const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
+  const data = getStoredData();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [inputData, setInputData] = useState<any>({
+    telegram: data.telegram,
+    slack: data.slack,
+    discord: data.discord,
+  });
 
-  const handleConfirm = () => {
+  const handleTelegramConfirm = () => {
     setIsLoading(true);
     const currentStoredData = getStoredData();
     setTimeout(() => {
-      register(currentStoredData.host, currentStoredData.token, true, false)
-        .then((d) => {
-          setIsLoading(false);
-          localStorage.clear();
-          writeStoredData(d);
-          handleCloseDialog();
-        })
-        .catch(() => {
-          setIsLoading(false);
-        });
-    }, 50);
+      setIsLoading(false);
+      localStorage.clear();
+      writeStoredData({ ...currentStoredData, telegram: inputData.telegram });
+    }, 500);
   };
-  console.log(isLoading);
-  console.log(handleConfirm);
+
+  const handleSlackConfirm = () => {
+    setIsLoading(true);
+    const currentStoredData = getStoredData();
+    setTimeout(() => {
+      setIsLoading(false);
+      localStorage.clear();
+      writeStoredData({ ...currentStoredData, slack: inputData.slack });
+    }, 500);
+  };
+
+  const handleInput = (e: any) => {
+    if (e.target.id === "telegram_bot_token") {
+      setInputData({ ...inputData, telegram: { ...inputData.telegram, botToken: e.target.value } });
+    } else if (e.target.id === "telegram_chat_id") {
+      setInputData({ ...inputData, telegram: { ...inputData.telegram, chatId: e.target.value } });
+    } else if (e.target.id === "slack_hook_key") {
+      setInputData({ ...inputData, slack: { ...inputData.slack, hookKey: e.target.value } });
+    } else if (e.target.id === "slack_channel") {
+      setInputData({ ...inputData, slack: { ...inputData.slack, channel: e.target.value } });
+    } else if (e.target.id === "discord_webhook") {
+      setInputData({ ...inputData, discord: { ...inputData.discord, webhook: e.target.value } });
+    } else if (e.target.id === "discord_channel") {
+      setInputData({ ...inputData, discord: { ...inputData.discord, channel: e.target.value } });
+    }
+  };
+
+  const handleToggleBtn = (e: any) => {
+    if (e.target.name === "telegram") {
+      setInputData({ ...inputData, telegram: { ...inputData.telegram, enabled: e.target.checked } });
+      writeStoredData({ ...data, telegram: { ...data.telegram, enabled: e.target.checked } });
+    } else if (e.target.name === "slack") {
+      setInputData({ ...inputData, slack: { ...inputData.slack, enabled: e.target.checked } });
+      writeStoredData({ ...data, slack: { ...data.slack, enabled: e.target.checked } });
+    } else if (e.target.name === "discord") {
+      setInputData({ ...inputData, discord: { ...inputData.discord, enabled: e.target.checked } });
+      writeStoredData({ ...data, discord: { ...data.discord, enabled: e.target.checked } });
+    }
+  };
+
   return (
     <div className="backdrop_container">
       <div className="dialog_box">
         <div className="header">
           <span>Notifications</span>
           <CloseIcon onClick={handleCloseDialog} />
+        </div>
+        <div className="body">
+          <div className="toggle_btns">
+            <div className="toggle_btn">
+              <span>Telegram: </span>
+              <ToggleBtn
+                name="telegram"
+                onChangeHandler={handleToggleBtn}
+                value={inputData.telegram.enabled}
+              />
+            </div>
+            <div className="toggle_btn">
+              <span>Slack: </span>
+              <ToggleBtn
+                name="slack"
+                onChangeHandler={handleToggleBtn}
+                value={inputData.slack.enabled}
+              />
+            </div>
+            <div className="toggle_btn">
+              <span>Discord: </span>
+              <ToggleBtn
+                name="discord"
+                onChangeHandler={handleToggleBtn}
+                value={inputData.discord.enabled}
+              />
+            </div>
+          </div>
+          <Tab.Group>
+            <Tab.List className="tab_list">
+              {({ selectedIndex }) => (
+                <>
+                  <Tab
+                    className="tab"
+                    style={{ borderColor: selectedIndex === 0 ? "#3254c5" : "#444444" }}
+                  >
+                    <div id="editor_button">Telegram</div>
+                    {/* <ToggleBtn
+                      name="telegram"
+                      onChangeHandler={handleToggleBtn}
+                      value={inputData.telegram.enabled}
+                    /> */}
+                  </Tab>
+                  <Tab
+                    className="tab"
+                    style={{ borderColor: selectedIndex === 1 ? "#3254c5" : "#444444" }}
+                  >
+                    <div id="editor_button">Slack</div>
+                    {/* <ToggleBtn
+                      name="slack"
+                      onChangeHandler={handleToggleBtn}
+                      value={inputData.slack.enabled}
+                    /> */}
+                  </Tab>
+                  <Tab
+                    className="tab"
+                    style={{ borderColor: selectedIndex === 2 ? "#3254c5" : "#444444" }}
+                  >
+                    <div id="editor_button">Discord</div>
+                    {/* <ToggleBtn
+                      name="discord"
+                      onChangeHandler={handleToggleBtn}
+                      value={inputData.discord.enabled}
+                    /> */}
+                  </Tab>
+                </>
+              )}
+            </Tab.List>
+            <Tab.Panels>
+              <Tab.Panel className="panel">
+                <input
+                  id="telegram_bot_token"
+                  type="text"
+                  placeholder="Enter telegram bot token"
+                  onChange={handleInput}
+                  value={inputData.telegram.botToken}
+                />
+                <input
+                  id="telegram_chat_id"
+                  type="text"
+                  placeholder="Enter telegram chat ID"
+                  onChange={handleInput}
+                  value={inputData.telegram.chatId}
+                />
+                <div>
+                  <button
+                    type="button"
+                    className="remove_button"
+                    onClick={() =>
+                      setInputData({
+                        ...inputData,
+                        telegram: {
+                          enabled: false,
+                          botToken: "",
+                          chatId: "",
+                        },
+                      })
+                    }
+                    disabled={
+                      inputData.telegram.botToken === "" && inputData.telegram.chatId === ""
+                    }
+                  >
+                    Clear
+                  </button>
+                  <button
+                    type="button"
+                    className="submit_button"
+                    disabled={
+                      inputData.telegram.botToken === "" ||
+                      inputData.telegram.chatId === "" ||
+                      (inputData.telegram.botToken === data.telegram.botToken &&
+                        inputData.telegram.chatId === data.telegram.chatId)
+                    }
+                    onClick={handleTelegramConfirm}
+                  >
+                    Confirm
+                    {isLoading ? <LoadingIcon /> : <ArrowRightIcon />}
+                  </button>
+                </div>
+              </Tab.Panel>
+              <Tab.Panel className="panel">
+                <input
+                  id="slack_hook_key"
+                  type="text"
+                  placeholder="Enter slack hook key"
+                  onChange={handleInput}
+                  value={inputData.slack.hookKey}
+                />
+                <input
+                  id="slack_channel"
+                  type="text"
+                  placeholder="Enter slack channel"
+                  onChange={handleInput}
+                  value={inputData.slack.channel}
+                />
+                <div>
+                  <button
+                    type="button"
+                    className="remove_button"
+                    onClick={() =>
+                      setInputData({
+                        ...inputData,
+                        slack: { enabled: false, hookKey: "", channel: "" },
+                      })
+                    }
+                    disabled={
+                      inputData.slack.hookKey === "" &&
+                      inputData.slack.channel === ""
+                    }
+                  >
+                    Clear
+                  </button>
+                  <button
+                    type="button"
+                    className="submit_button"
+                    disabled={
+                      inputData.slack.hookKey === "" ||
+                      inputData.slack.channel === "" ||
+                      (inputData.slack.hookKey === data.slack.hookKey &&
+                        inputData.slack.channel === data.slack.channel)
+                    }
+                    onClick={handleSlackConfirm}
+                  >
+                    Confirm
+                    {isLoading ? <LoadingIcon /> : <ArrowRightIcon />}
+                  </button>
+                </div>
+              </Tab.Panel>
+              <Tab.Panel className="panel">
+                <input
+                  id="discord_webhook"
+                  type="text"
+                  placeholder="Enter discord webhook"
+                  onChange={handleInput}
+                  value={inputData.telegram.botToken}
+                />
+                <input
+                  id="discord_channel"
+                  type="text"
+                  placeholder="Enter discord channel name (optional)"
+                  onChange={handleInput}
+                  value={inputData.discord.channel}
+                />
+                <div>
+                  <button
+                    type="button"
+                    className="remove_button"
+                    onClick={() => setInputData({ ...inputData, discord: { enabled: false, webhook: '', channel: '' } })}
+                    disabled={inputData.discord.webhook === ''}
+                  >
+                    Clear
+                  </button>
+                  <button
+                    type="button"
+                    className="submit_button"
+                    disabled={
+                      inputData.discord.webhook === "" ||
+                      inputData.discord.channel === "" ||
+                      (inputData.discord.webhook === data.discord.webhook &&
+                        inputData.discord.channel === data.discord.channel)
+                    }
+                    onClick={handleTelegramConfirm}
+                  >
+                    Confirm
+                    {isLoading ? <LoadingIcon /> : <ArrowRightIcon />}
+                  </button>
+                </div>
+              </Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
         </div>
         {/* <span>
           Please confirm the action, this action can’t be undone and all the client data will be

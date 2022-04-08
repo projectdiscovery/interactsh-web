@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from "react";
 
 import format from "date-fns/format";
@@ -22,6 +24,7 @@ import {
   clearIntervals,
   register,
 } from "lib";
+import { notifyTelegram, notifySlack, notifyDiscord } from "lib/notify";
 import Data from "lib/types/data";
 import { StoredData } from "lib/types/storedData";
 import Tab from "lib/types/tab";
@@ -33,6 +36,7 @@ import TabSwitcher from "../../components/tabSwitcher";
 import { writeStoredData, getStoredData, defaultStoredData } from "../../lib/localStorage";
 import RequestDetailsWrapper from "./requestDetailsWrapper";
 import RequestsTableWrapper from "./requestsTableWrapper";
+
 
 const HomePage = () => {
   const [aboutPopupVisibility, setAboutPopupVisibility] = useState<boolean>(false);
@@ -205,6 +209,12 @@ const HomePage = () => {
             decryptedAESKey = decryptAESKey(privateKey, pollData.aes_key);
           }
           const processedData = processData(decryptedAESKey, pollData);
+          // eslint-disable-next-line array-callback-return
+          processedData.map((item: any) => {
+            storedData.telegram.enabled && notifyTelegram(JSON.stringify(item), storedData.telegram.botToken, storedData.telegram.chatId)
+            storedData.slack.enabled && notifySlack(JSON.stringify(item), storedData.slack.hookKey, storedData.slack.channel)
+            storedData.discord.enabled && notifyDiscord(JSON.stringify(item), storedData.discord.webhook)
+          })
           const combinedData: Data[] = data.concat(processedData);
 
           setStoredData({
@@ -426,10 +436,10 @@ const HomePage = () => {
                 )}
                 <div className="result_info">
                   From IP address
-                  <span>{selectedInteractionData["remote-address"]}</span>
+                  <span>: {selectedInteractionData["remote-address"]}</span>
                   {` at `}
                   <span>
-                    {format(new Date(selectedInteractionData.timestamp), "yyyy-mm-dd_hh:mm")}
+                    {format(new Date(selectedInteractionData.timestamp), "yyyy-MM-dd_hh:mm")}
                   </span>
                 </div>
               </div>

@@ -49,6 +49,96 @@
         cursor: pointer;
       }
     }
+    .body {
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      
+      .toggle_btns {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        font-size: 16px;
+        .toggle_btn {
+          gap: 15px;
+          display: flex;
+          align-items: center;
+        }
+      }
+      .tab_list {
+        font-size: 16px;
+        height: 40px;
+        display: flex;
+        border-right: none;
+
+        .tab {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          justify-content: center;
+          border-bottom: 1px solid white;
+          transform: translateX(1px);
+          padding: 0 5px;
+          z-index: 10;
+          position: relative;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      .panel {
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+        div {
+          display: flex;
+          button {
+            &:disabled {
+              opacity: 0.5;
+              cursor: default;
+            }
+          }
+          .remove_button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(216, 216, 216, 0.19);
+            border-radius: 0.6rem;
+            font-size: 1.4rem;
+            color: #ffffff;
+            letter-spacing: 0;
+            text-align: left;
+            height: 3.5rem;
+            margin-right: 2rem;
+            flex: 1;
+            transition: all 0.1s linear;
+            svg {
+              margin-left: 1.5rem;
+            }
+          }
+          .submit_button {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #3254c5;
+            border-radius: 0.6rem;
+            font-size: 1.4rem;
+            color: #ffffff;
+            letter-spacing: 0;
+            text-align: left;
+            height: 3.5rem;
+            transition: all 0.1s linear;
+            svg {
+              margin-left: 1.5rem;
+            }
+          }
+        }
+      }
+    }
     & > span {
       width: 100%;
       font-size: 1.6rem;
