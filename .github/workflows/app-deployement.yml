@@ -1,6 +1,9 @@
 name: React app deployement
 
 on:
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
 
 jobs:
