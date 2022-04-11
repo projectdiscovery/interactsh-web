@@ -6,19 +6,39 @@ A hosted instance of **interactsh-web** client is available at https://app.inter
 
 <img width="2032" alt="interactsh-web" src="https://user-images.githubusercontent.com/8293321/135175927-07580994-32eb-4c06-8ca6-7ac9ea84776b.png">
 
-# Run locally
-Once successfully started, you can access it on [localhost:3000](http://localhost:3000)
-## - Using Node
-`git clone https://github.com/projectdiscovery/interactsh-web`
-
-`cd interactsh-web`
-
-`yarn install`
-
-`yarn start`
+## Build from Source
 
 
-## - Using Docker
-`docker build -f Dockerfile -t interactsh-web ./`
+<table>
+<tr>
+<td>
 
-`docker run -it -p 3000:3000 interactsh-web`
+Note:
+----
+
+In order to run the local version of the web client, **acao-url** flag should be pointed to **localhost** to avoid CORS errors.
+
+```
+interactsh-server -acao-url http://localhost:3000
+```
+</td>
+</tr>
+</table>
+
+### Using Node
+
+```
+git clone https://github.com/projectdiscovery/interactsh-web
+cd interactsh-web
+yarn install
+yarn start
+```
+
+### Using Docker
+
+```
+docker pull projectdiscovery/interactsh-web
+docker run -it -p 3000:3000 projectdiscovery/interactsh-web
+```
+
+Once successfully started, you can access web dashboard at [localhost:3000](http://localhost:3000)
