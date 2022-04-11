@@ -42,3 +42,11 @@ docker run -it -p 3000:3000 projectdiscovery/interactsh-web
 ```
 
 Once successfully started, you can access web dashboard at [localhost:3000](http://localhost:3000)
+
+-----
+
+<div align="center">
+
+**interactsh-web** is made with 🖤 by the [projectdiscovery](https://projectdiscovery.io) team.
+
+</div>
