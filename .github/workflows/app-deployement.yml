@@ -9,7 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      CI: false
     steps:
-    - uses: actions/checkout@v2
-    - name: Deploy react app to github pages
-      uses: ehsandeep/deploy-react-to-ghpages@master
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run : git config --global user.name github-actions
+      - run : git config --global user.email github-actions@github.com
+      - run : yarn install
+      - run : yarn build
+      - run : cp CNAME dist/prod/
+      - run : git --work-tree dist/prod add --all && git commit -m "Automatic Deploy action run by github-actions"
+      - run : git push origin HEAD:gh-pages --force
