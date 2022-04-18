@@ -21,16 +21,19 @@ export const defaultStoredData: StoredData = {
   tabs: [],
   token: "",
   telegram: {
+    enabled: false,
     botToken: '',
     chatId: '',
   },
   slack: {
+    enabled: false,
     hookKey: '',
     channel: '',
-    botName: '',
   },
   discord: {
-    webhook: ''
+    enabled: false,
+    webhook: '',
+    channel: '',
   },
   selectedTab: {
     "unique-id": "",
