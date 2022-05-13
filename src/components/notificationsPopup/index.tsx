@@ -227,7 +227,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                 <input
                   id="slack_hook_key"
                   type="text"
-                  placeholder="Enter slack hook key"
+                  placeholder="https://hooks.slack.com/services/XXX/XXX/XXXXXXXX"
                   onChange={handleInput}
                   value={inputData.slack.hookKey}
                 />
@@ -257,14 +257,14 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                 <input
                   id="discord_webhook"
                   type="text"
-                  placeholder="Enter discord webhook"
+                  placeholder="https://discord.com/api/webhooks/XXXXX/XXXXXXXXXX"
                   onChange={handleInput}
                   value={inputData.discord.webhook}
                 />
                 <input
                   id="discord_channel"
                   type="text"
-                  placeholder="Enter discord channel name (optional)"
+                  placeholder="Enter discord channel (optional)"
                   onChange={handleInput}
                   value={inputData.discord.channel}
                 />
