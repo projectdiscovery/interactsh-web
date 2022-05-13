@@ -83,9 +83,14 @@
           padding: 0 5px;
           z-index: 10;
           position: relative;
+          transition: 0.15s all;
 
           &:focus {
             outline: none;
+          }
+
+          & > div {
+            transition: 0.15s all;
           }
         }
       }

@@ -126,9 +126,19 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                 <>
                   <Tab
                     className="tab"
-                    style={{ borderColor: selectedIndex === 0 ? "#3254c5" : "#444444" }}
+                    style={{
+                      borderColor: selectedIndex === 0 ? "#3254c5" : "#444444",
+                      opacity: selectedIndex === 0 ? "1" : "0.7",
+                    }}
                   >
-                    <div id="editor_button">Telegram</div>
+                    <div
+                      id="editor_button"
+                      style={{
+                        color: inputData.telegram.enabled ? "#36AE7C" : "#bdbdbd",
+                      }}
+                    >
+                      Telegram
+                    </div>
                     <ToggleBtn
                       name="telegram"
                       onChangeHandler={handleToggleBtn}
@@ -137,9 +147,19 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                   </Tab>
                   <Tab
                     className="tab"
-                    style={{ borderColor: selectedIndex === 1 ? "#3254c5" : "#444444" }}
+                    style={{
+                      borderColor: selectedIndex === 1 ? "#3254c5" : "#444444",
+                      opacity: selectedIndex === 1 ? "1" : "0.7",
+                    }}
                   >
-                    <div id="editor_button">Slack</div>
+                    <div
+                      id="editor_button"
+                      style={{
+                        color: inputData.slack.enabled ? "#36AE7C" : "#bdbdbd",
+                      }}
+                    >
+                      Slack
+                    </div>
                     <ToggleBtn
                       name="slack"
                       onChangeHandler={handleToggleBtn}
@@ -148,9 +168,19 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                   </Tab>
                   <Tab
                     className="tab"
-                    style={{ borderColor: selectedIndex === 2 ? "#3254c5" : "#444444" }}
+                    style={{
+                      borderColor: selectedIndex === 2 ? "#3254c5" : "#444444",
+                      opacity: selectedIndex === 2 ? "1" : "0.7",
+                    }}
                   >
-                    <div id="editor_button">Discord</div>
+                    <div
+                      id="editor_button"
+                      style={{
+                        color: inputData.discord.enabled ? "#36AE7C" : "#bdbdbd",
+                      }}
+                    >
+                      Discord
+                    </div>
                     <ToggleBtn
                       name="discord"
                       onChangeHandler={handleToggleBtn}
@@ -177,25 +207,6 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                   value={inputData.telegram.chatId}
                 />
                 <div>
-                  <button
-                    type="button"
-                    className="remove_button"
-                    onClick={() =>
-                      setInputData({
-                        ...inputData,
-                        telegram: {
-                          enabled: false,
-                          botToken: "",
-                          chatId: "",
-                        },
-                      })
-                    }
-                    disabled={
-                      inputData.telegram.botToken === "" && inputData.telegram.chatId === ""
-                    }
-                  >
-                    Clear
-                  </button>
                   <button
                     type="button"
                     className="submit_button"
@@ -230,21 +241,6 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                 <div>
                   <button
                     type="button"
-                    className="remove_button"
-                    onClick={() =>
-                      setInputData({
-                        ...inputData,
-                        slack: { enabled: false, hookKey: "", channel: "" },
-                      })
-                    }
-                    disabled={
-                      inputData.slack.hookKey === ""
-                    }
-                  >
-                    Clear
-                  </button>
-                  <button
-                    type="button"
                     className="submit_button"
                     disabled={
                       inputData.slack.hookKey === "" ||
@@ -273,14 +269,6 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                   value={inputData.discord.channel}
                 />
                 <div>
-                  <button
-                    type="button"
-                    className="remove_button"
-                    onClick={() => setInputData({ ...inputData, discord: { enabled: false, webhook: '', channel: '' } })}
-                    disabled={inputData.discord.webhook === ''}
-                  >
-                    Clear
-                  </button>
                   <button
                     type="button"
                     className="submit_button"
