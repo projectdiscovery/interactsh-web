@@ -28,9 +28,10 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
     setIsLoading(true);
     const currentStoredData = getStoredData();
     setTimeout(() => {
-      setIsLoading(false);
       localStorage.clear();
       writeStoredData({ ...currentStoredData, telegram: inputData.telegram });
+      setInputData({ ...inputData });
+      setIsLoading(false);
     }, 500);
   };
 
@@ -38,9 +39,10 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
     setIsLoading(true);
     const currentStoredData = getStoredData();
     setTimeout(() => {
-      setIsLoading(false);
       localStorage.clear();
       writeStoredData({ ...currentStoredData, discord: inputData.discord });
+      setInputData({ ...inputData });
+      setIsLoading(false);
     }, 500);
   };
 
@@ -48,9 +50,10 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
     setIsLoading(true);
     const currentStoredData = getStoredData();
     setTimeout(() => {
-      setIsLoading(false);
       localStorage.clear();
       writeStoredData({ ...currentStoredData, slack: inputData.slack });
+      setInputData({ ...inputData });
+      setIsLoading(false);
     }, 500);
   };
 
@@ -91,7 +94,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
           <CloseIcon onClick={handleCloseDialog} />
         </div>
         <div className="body">
-          <div className="toggle_btns">
+          {/* <div className="toggle_btns">
             <div className="toggle_btn">
               <span>Telegram: </span>
               <ToggleBtn
@@ -116,7 +119,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                 value={inputData.discord.enabled}
               />
             </div>
-          </div>
+          </div> */}
           <Tab.Group>
             <Tab.List className="tab_list">
               {({ selectedIndex }) => (
@@ -126,33 +129,33 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                     style={{ borderColor: selectedIndex === 0 ? "#3254c5" : "#444444" }}
                   >
                     <div id="editor_button">Telegram</div>
-                    {/* <ToggleBtn
+                    <ToggleBtn
                       name="telegram"
                       onChangeHandler={handleToggleBtn}
                       value={inputData.telegram.enabled}
-                    /> */}
+                    />
                   </Tab>
                   <Tab
                     className="tab"
                     style={{ borderColor: selectedIndex === 1 ? "#3254c5" : "#444444" }}
                   >
                     <div id="editor_button">Slack</div>
-                    {/* <ToggleBtn
+                    <ToggleBtn
                       name="slack"
                       onChangeHandler={handleToggleBtn}
                       value={inputData.slack.enabled}
-                    /> */}
+                    />
                   </Tab>
                   <Tab
                     className="tab"
                     style={{ borderColor: selectedIndex === 2 ? "#3254c5" : "#444444" }}
                   >
                     <div id="editor_button">Discord</div>
-                    {/* <ToggleBtn
+                    <ToggleBtn
                       name="discord"
                       onChangeHandler={handleToggleBtn}
                       value={inputData.discord.enabled}
-                    /> */}
+                    />
                   </Tab>
                 </>
               )}
@@ -235,8 +238,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                       })
                     }
                     disabled={
-                      inputData.slack.hookKey === "" &&
-                      inputData.slack.channel === ""
+                      inputData.slack.hookKey === ""
                     }
                   >
                     Clear
@@ -246,9 +248,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                     className="submit_button"
                     disabled={
                       inputData.slack.hookKey === "" ||
-                      inputData.slack.channel === "" ||
-                      (inputData.slack.hookKey === data.slack.hookKey &&
-                        inputData.slack.channel === data.slack.channel)
+                      (inputData.slack.hookKey === data.slack.hookKey && inputData.slack.channel === data.slack.channel)
                     }
                     onClick={handleSlackConfirm}
                   >
@@ -286,8 +286,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                     className="submit_button"
                     disabled={
                       inputData.discord.webhook === "" ||
-                      (inputData.discord.webhook === data.discord.webhook &&
-                        inputData.discord.channel === data.discord.channel)
+                      (inputData.discord.webhook === data.discord.webhook && inputData.discord.channel === data.discord.channel)
                     }
                     onClick={handleDiscordConfirm}
                   >
