@@ -223,7 +223,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                 <input
                   id="slack_channel"
                   type="text"
-                  placeholder="Enter slack channel"
+                  placeholder="Enter slack channel (optional)"
                   onChange={handleInput}
                   value={inputData.slack.channel}
                 />

@@ -98,6 +98,7 @@ const HomePage = () => {
       selectedTab: tabData,
       increment: newIncrement,
     });
+    setSelectedInteraction(null);
   };
 
   // "Show or hide notes" function
