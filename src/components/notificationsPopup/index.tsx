@@ -34,6 +34,16 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
     }, 500);
   };
 
+  const handleDiscordConfirm = () => {
+    setIsLoading(true);
+    const currentStoredData = getStoredData();
+    setTimeout(() => {
+      setIsLoading(false);
+      localStorage.clear();
+      writeStoredData({ ...currentStoredData, discord: inputData.discord });
+    }, 500);
+  };
+
   const handleSlackConfirm = () => {
     setIsLoading(true);
     const currentStoredData = getStoredData();
@@ -253,7 +263,7 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                   type="text"
                   placeholder="Enter discord webhook"
                   onChange={handleInput}
-                  value={inputData.telegram.botToken}
+                  value={inputData.discord.webhook}
                 />
                 <input
                   id="discord_channel"
@@ -276,11 +286,10 @@ const NotificationsPopup = ({ handleCloseDialog }: NotificationsPopupP) => {
                     className="submit_button"
                     disabled={
                       inputData.discord.webhook === "" ||
-                      inputData.discord.channel === "" ||
                       (inputData.discord.webhook === data.discord.webhook &&
                         inputData.discord.channel === data.discord.channel)
                     }
-                    onClick={handleTelegramConfirm}
+                    onClick={handleDiscordConfirm}
                   >
                     Confirm
                     {isLoading ? <LoadingIcon /> : <ArrowRightIcon />}

@@ -209,12 +209,16 @@ const HomePage = () => {
             decryptedAESKey = decryptAESKey(privateKey, pollData.aes_key);
           }
           const processedData = processData(decryptedAESKey, pollData);
+
           // eslint-disable-next-line array-callback-return
-          processedData.map((item: any) => {
-            storedData.telegram.enabled && notifyTelegram(JSON.stringify(item), storedData.telegram.botToken, storedData.telegram.chatId)
-            storedData.slack.enabled && notifySlack(JSON.stringify(item), storedData.slack.hookKey, storedData.slack.channel)
-            storedData.discord.enabled && notifyDiscord(JSON.stringify(item), storedData.discord.webhook)
+          const formattedString = processedData.map((item: any) => {
+            const test = `<i>[${item['full-id']}]</i> Received <i>${item.protocol.toUpperCase()}</i> interaction from <b>${item['remote-address']}</b> at <i>${format(new Date(item.timestamp), "yyyy-mm-dd_hh:mm:ss")}</i>`
+            storedData.telegram.enabled && notifyTelegram(test, storedData.telegram.botToken, storedData.telegram.chatId, 'HTML')
+            return `[${item['full-id']}] Received ${item.protocol.toUpperCase()} interaction from \n ${item['remote-address']} at ${format(new Date(item.timestamp), "yyyy-mm-dd_hh:mm:ss")}`
           })
+          storedData.slack.enabled && notifySlack(formattedString, storedData.slack.hookKey, storedData.slack.channel)
+          storedData.discord.enabled && notifyDiscord(formattedString, storedData.discord.webhook)
+
           const combinedData: Data[] = data.concat(processedData);
 
           setStoredData({
