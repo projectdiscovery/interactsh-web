@@ -21,6 +21,6 @@ jobs:
       - run : git config --global user.email github-actions@github.com
       - run : yarn install
       - run : yarn build
-      - run : cp CNAME dist/prod/
-      - run : git --work-tree dist/prod add --all && git commit -m "Automatic Deploy action run by github-actions"
+      - run : cp CNAME build
+      - run : git --work-tree build add --all && git commit -m "Automatic Deploy action run by github-actions"
       - run : git push origin HEAD:gh-pages --force
