@@ -91,7 +91,7 @@ const Header = ({
           <DeleteIcon />
           Reset
         </button>
-        <button type="button" title="Reset data" onClick={handleNotificationsDialogVisibility}>
+        <button type="button" title="Notifications" onClick={handleNotificationsDialogVisibility}>
           <NotificationOutlined style={{marginRight: '10px'}} />
           Notifications
         </button>
