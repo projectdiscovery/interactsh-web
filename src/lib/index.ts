@@ -65,7 +65,7 @@ export const decryptAESKey = (privateKey: string, aesKey: string) => {
 export const processData = (aesKey: string, polledData: PolledData) => {
   const { data } = polledData;
   let parsedData: Data[] = [];
-  if (data.length > 0) {
+  if (data && data.length > 0) {
     const decryptedData: string[] = data.map((item) => {
       const iv = Buffer.from(item, "base64").slice(0, 16);
       const key = Buffer.from(aesKey, "base64");
