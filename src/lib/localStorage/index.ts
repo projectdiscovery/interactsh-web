@@ -17,7 +17,7 @@ export const defaultStoredData: StoredData = {
   notes: [],
   view: "up_and_down",
   increment: 1,
-  host: "interact.sh",
+  host: "oast.fun",
   tabs: [],
   token: "",
   telegram: {

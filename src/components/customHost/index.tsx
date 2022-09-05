@@ -26,7 +26,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
     notes: [],
     view: "up_and_down",
     increment: 1,
-    host: "interact.sh",
+    host: "oast.fun",
     tabs: [],
     token: "",
     telegram: {
@@ -59,7 +59,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorText, setErrorText] = useState("");
-  const [inputValue, setInputValue] = useState<string>(host === "interact.sh" ? "" : host);
+  const [inputValue, setInputValue] = useState<string>(host === "oast.fun" ? "" : host);
   const [tokenInputValue, setTokenInputValue] = useState<string>(token === "" ? "" : token);
 
   const handleDeleteConfirmationVisibility = () => {
@@ -76,8 +76,8 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
 
   const handleConfirm = () => {
     if (
-      (inputValue !== "" && inputValue !== "interact.sh" && host !== inputValue) ||
-      (inputValue !== "" && inputValue !== "interact.sh" && tokenInputValue !== token)
+      (inputValue !== "" && inputValue !== "oast.fun" && host !== inputValue) ||
+      (inputValue !== "" && inputValue !== "oast.fun" && tokenInputValue !== token)
     ) {
       setIsLoading(true);
       setTimeout(() => {
@@ -164,7 +164,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
             <CloseIcon onClick={handleCloseDialog} />
           </div>
           <span>
-            You can point your self hosted interact.sh server below to connect with this web client.
+            You can point your self hosted oast.fun server below to connect with this web client.
           </span>
           <input
             type="text"
@@ -183,7 +183,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
           />
           {errorText !== "" && <div className="error">{errorText}</div>}
           <div className="buttons">
-            {host !== "interact.sh" && (
+            {host !== "oast.fun" && (
               <button
                 type="button"
                 className="remove_button"

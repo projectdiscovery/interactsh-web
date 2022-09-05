@@ -9,7 +9,7 @@ A hosted instance of **interactsh-web** client is available at https://app.inter
 ## Configuring Self-Hosted Interactsh Server
 
 - Navigate to hosted interactsh-web client at https://app.interactsh.com
-- Click on `interact.sh` link at top bar
+- Click on `oast.fun` link at top bar
 - Submit domain name running self-hosted interactsh server, optionally token (for protected server)
 
 Here is an example configuring self-hosted interactsh server with web-client:
