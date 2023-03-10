@@ -5,55 +5,14 @@ import { ReactComponent as CloseIcon } from "assets/svg/close.svg";
 import { ReactComponent as LoadingIcon } from "assets/svg/loader.svg";
 import "./styles.scss";
 import { register } from "lib";
-import { defaultFilter } from "lib/types/filter";
-import { StoredData } from "lib/types/storedData";
 
-import { getStoredData, writeStoredData } from "../../lib/localStorage";
+import { defaultStoredData, getStoredData, writeStoredData } from "../../lib/localStorage";
 
 interface CustomHostP {
   handleCloseDialog: () => void;
 }
 
 const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
-  const defaultStoredData: StoredData = {
-    theme: "dark",
-    privateKey: "",
-    publicKey: "",
-    correlationId: "",
-    secretKey: "",
-    data: [],
-    aesKey: "",
-    notes: [],
-    view: "up_and_down",
-    increment: 1,
-    host: "oast.fun",
-    tabs: [],
-    token: "",
-    telegram: {
-      enabled: false,
-      botToken: '',
-      chatId: '',
-    },
-    slack: {
-      enabled: false,
-      hookKey: '',
-      channel: '',
-    },
-    discord: {
-      enabled: false,
-      webhook: '',
-      channel: '',
-    },
-    selectedTab: {
-      "unique-id": "",
-      correlationId: "",
-      name: "1",
-      url: "",
-      note: "",
-    },
-    filter: defaultFilter,
-  };
-
   const data = getStoredData();
   const { host, token } = data;
   const [isDeleteConfirmationVisible, setIsDeleteConfirmationVisible] = useState<boolean>(false);
@@ -112,7 +71,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
   const handleDelete = () => {
     setIsLoading(true);
     setTimeout(() => {
-      register(defaultStoredData.host, "", true, false)
+      register(defaultStoredData.host, defaultStoredData.token, true, false)
         .then((d) => {
           localStorage.clear();
           writeStoredData(d);

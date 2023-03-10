@@ -17,9 +17,9 @@ export const defaultStoredData: StoredData = {
   notes: [],
   view: "up_and_down",
   increment: 1,
-  host: "oast.fun",
+  host: process.env?.REACT_APP_HOST || "oast.fun",
   tabs: [],
-  token: "",
+  token: process.env?.REACT_APP_TOKEN || "",
   telegram: {
     enabled: false,
     botToken: '',

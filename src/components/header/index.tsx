@@ -72,11 +72,11 @@ const Header = ({
   return (
     <div id="header" className="header">
       <div>interactsh</div>
-      <button type="button" onClick={handleThemeSwitchesVisibility}>
+      <div role="button" onClick={handleThemeSwitchesVisibility} tabIndex={0} aria-hidden="true">
         <ThemeButton theme="dark" />
         <ThemeButton theme="synth" />
         <ThemeButton theme="blue" />
-      </button>
+      </div>
       <div className="links">
         <button
           type="button"
