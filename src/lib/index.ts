@@ -159,18 +159,13 @@ export const register = (
         "secret-key": secret,
         "correlation-id": correlation,
       };
-  const headers = [
-    { "Content-Type": "application/json" },
-    {
-      "Content-Type": "application/json",
-      Authorization: token,
-    },
-  ] as const;
+  const contentType = { "Content-Type": "application/json" };
+  const authorizationHeader = { Authorization: token };
 
   return fetch(`https://${host}/register`, {
     method: "POST",
     cache: "no-cache",
-    headers: token && token !== "" ? headers[1] : headers[0],
+    headers: token && token !== "" ? { ...contentType, ...authorizationHeader } : contentType,
     referrerPolicy: "no-referrer",
     body: JSON.stringify(registerFetcherOptions),
   }).then(async (res) => {

@@ -55,6 +55,16 @@ Once successfully started, you can access web dashboard at [localhost:3000](http
 
 -----
 
+### Custom configuration
+
+You can set a custom configuration when deploying this project.
+If you want to avoid the registration of your server host and token, you can give the below environnement variable to your docker-compose / server.
+
+For this, just specify
+- `REACT_APP_HOST` for the host (default: "oast.fun")
+- `REACT_APP_TOKEN` for the custom token (default: "")
+
+
 <div align="center">
 
 **interactsh-web** is made with 🖤 by the [projectdiscovery](https://projectdiscovery.io) team.
