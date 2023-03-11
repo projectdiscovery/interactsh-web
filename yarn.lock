@@ -6867,10 +6867,10 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-io-ts-numbers@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/io-ts-numbers/-/io-ts-numbers-1.0.3.tgz"
-  integrity sha512-p/HQhJ6oroS436MJjMHTqDJRwmgc7QkykTEezXId5Z0kd1p3htMHn9WHer9xygXcLpS+OSLJvfsTdDR9belJXw==
+io-ts-numbers@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/io-ts-numbers/-/io-ts-numbers-1.1.1.tgz#1a5446cc296d1440bfb9628d15469c5dee02d8df"
+  integrity sha512-dY+vUz4satTU7hbFYEJ8dNNh3pqGG6l/uyS+1E7o967uCcxg/DDyID82hFDpp77bW1Y8a1TQ3U7YAHGn6+XWAA==
 
 io-ts-types@^0.5.16:
   version "0.5.16"
