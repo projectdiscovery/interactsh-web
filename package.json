@@ -44,7 +44,7 @@
     "is-xid": "^1.0.3",
     "jest-fast-check": "^1.0.2",
     "js-file-download": "^0.4.12",
-    "monocle-ts": "^2.3.10",
+    "monocle-ts": "^2.3.13",
     "morphic-ts": "^0.8.0-rc.2",
     "newtype-ts": "^0.3.4",
     "node-rsa": "^1.1.1",
