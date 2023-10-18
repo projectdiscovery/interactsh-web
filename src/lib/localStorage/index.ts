@@ -11,6 +11,8 @@ export const defaultStoredData: StoredData = {
   privateKey: "",
   publicKey: "",
   correlationId: "",
+  correlationIdLength: process.env.REACT_APP_CIDL ? +process.env.REACT_APP_CIDL : 20,
+  correlationIdNonceLength: process.env.REACT_APP_CIDN ? +process.env.REACT_APP_CIDN : 13,  
   secretKey: "",
   data: [],
   aesKey: "",

@@ -27,6 +27,7 @@ const ResetPopup = ({ handleCloseDialog }: CustomHostP) => {
           localStorage.clear();
           writeStoredData(d);
           handleCloseDialog();
+          window.location.reload();
         })
         .catch(() => {
           setIsLoading(false);

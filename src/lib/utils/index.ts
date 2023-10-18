@@ -51,3 +51,17 @@ export const capitalize = flow(
     f.uncurry2
   )
 );
+
+export const generateRandomString = (length: number, lettersOnly: boolean = false) => {
+  let characters = '';
+  if (lettersOnly) {
+    characters = 'abcdefghijklmnopqrstuvwxyz';
+  } else {
+    characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  }
+  let result = '';
+  for (let i = 0; i < length; i+=1) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+};

@@ -20,6 +20,8 @@ export const StoredData_ = summon((F) =>
       view: View(F),
       increment: F.number(),
       correlationId: F.string(),
+      correlationIdLength: F.number(),
+      correlationIdNonceLength: F.number(),
       theme: ThemeName(F),
 
       publicKey: F.string(),
