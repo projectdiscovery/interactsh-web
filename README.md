@@ -63,7 +63,8 @@ If you want to avoid the registration of your server host and token, you can giv
 For this, just specify
 - `REACT_APP_HOST` for the host (default: "oast.fun")
 - `REACT_APP_TOKEN` for the custom token (default: "")
-
+- `REACT_APP_CIDL` for the custom correlation id length (default: 20)
+- `REACT_APP_CIDN` for the custom correlation nonce length (default: 13)
 
 <div align="center">
 
