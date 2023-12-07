@@ -150,5 +150,20 @@
         }
       }
     }
+    .advanced_options {
+      display: flex;
+      align-items: left;
+      justify-content: left;
+      span {
+        width: 250px;
+        font-size: 1.6rem;
+        color: #ffffff;
+        letter-spacing: 0;
+        margin-top: 0.7rem;
+      }
+      input {
+        margin-left: 1rem;
+      }
+    }
   }
 }

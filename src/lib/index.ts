@@ -10,8 +10,8 @@ import * as R from "fp-ts/Record";
 import downloadData from "js-file-download";
 import NodeRSA from "node-rsa";
 import { v4 as uuidv4 } from "uuid";
-import xid from "xid-js";
-import zbase32 from "zbase32";
+
+import { generateRandomString } from "lib/utils";
 
 import { getStoredData, writeStoredData } from "./localStorage";
 import Data from "./types/data";
@@ -21,16 +21,16 @@ import Tab from "./types/tab";
 
 export const copyDataToClipboard = (data: string) => navigator.clipboard.writeText(data);
 
-export const generateUrl = (correlationId: string, incrementNumber: number, host: string) => {
+export const generateUrl = (correlationId: string, correlationIdNonceLength: number, incrementNumber: number, host: string) => {
   const timestamp = Math.floor(Date.now() / 1000);
   const increment = incrementNumber;
   const arr = new ArrayBuffer(8);
   const view = new DataView(arr);
   view.setUint32(0, timestamp, false);
   view.setUint32(4, increment, false);
-  const encodedTimestamp = zbase32.encode(arr);
-  const url = `${correlationId}${encodedTimestamp}.${host}`;
-  const uniqueId = `${correlationId}${encodedTimestamp}`;
+  const randomId = generateRandomString(correlationIdNonceLength);
+  const url = `${correlationId}${randomId}.${host}`;
+  const uniqueId = `${correlationId}${randomId}`;
   return { url, uniqueId };
 };
 
@@ -102,11 +102,11 @@ export const handleDataExport = () => {
   downloadData(values, fileName);
 };
 
-export const generateRegistrationParams = () => {
+export const generateRegistrationParams = (correlationIdLength: number) => {
   const key = new NodeRSA({ b: 2048 });
   const pub = key.exportKey("pkcs8-public-pem");
   const priv = key.exportKey("pkcs8-private-pem");
-  const correlation = xid.next();
+  const correlation = generateRandomString(correlationIdLength, true);
   const secret = uuidv4().toString();
 
   return { pub, priv, correlation, secret };
@@ -147,7 +147,7 @@ export const register = (
   reregister: boolean
 ) => {
   const currentData = getStoredData();
-  const { pub, priv, correlation, secret } = generateRegistrationParams();
+  const { pub, priv, correlation, secret } = generateRegistrationParams(currentData.correlationIdLength);
   const registerFetcherOptions = reregister
     ? {
         "public-key": btoa(currentData.publicKey),
@@ -177,7 +177,7 @@ export const register = (
       throw new Error(d.error);
     }
 
-    const { url, uniqueId } = generateUrl(correlation, 1, host);
+    const { url, uniqueId } = generateUrl(correlation, currentData.correlationIdNonceLength, 1, host);
     const tabData: Tab[] = [
       {
         "unique-id": uniqueId,
@@ -198,6 +198,8 @@ export const register = (
           view: currentData.view,
           theme: currentData.theme,
           host,
+          correlationIdLength: currentData.correlationIdLength,
+          correlationIdNonceLength: currentData.correlationIdNonceLength,
           increment: 1,
           token,
           telegram: {

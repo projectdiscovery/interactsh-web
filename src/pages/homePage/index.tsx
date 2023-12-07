@@ -82,9 +82,9 @@ const HomePage = () => {
 
   // " Add new tab" function
   const handleAddNewTab = () => {
-    const { increment, host, correlationId } = storedData;
+    const { increment, host, correlationId, correlationIdNonceLength } = storedData;
     const newIncrement = increment + 1;
-    const { url, uniqueId } = generateUrl(correlationId, newIncrement, host);
+    const { url, uniqueId } = generateUrl(correlationId, correlationIdNonceLength, newIncrement, host);
     const tabData: Tab = {
       "unique-id": uniqueId,
       correlationId,
