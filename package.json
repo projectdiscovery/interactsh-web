@@ -46,7 +46,7 @@
     "js-file-download": "^0.4.12",
     "monocle-ts": "^2.3.10",
     "morphic-ts": "^0.8.0-rc.2",
-    "newtype-ts": "^0.3.4",
+    "newtype-ts": "^0.3.5",
     "node-rsa": "^1.1.1",
     "postcss": "^7",
     "prettier": "^2.3.2",
