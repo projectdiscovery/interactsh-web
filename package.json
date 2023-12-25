@@ -27,7 +27,7 @@
     "@types/react-transition-group": "^4.4.2",
     "@types/validator": "^13.1.4",
     "@types/webpack-env": "^1.16.2",
-    "antd": "3.3.0",
+    "antd": "5.12.5",
     "autoprefixer": "^9",
     "date-fns": "^2.23.0",
     "dayjs": "^1.10.6",
