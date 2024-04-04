@@ -13,6 +13,7 @@ export const defaultStoredData: StoredData = {
   correlationId: "",
   correlationIdLength: process.env.REACT_APP_CIDL ? +process.env.REACT_APP_CIDL : 20,
   correlationIdNonceLength: process.env.REACT_APP_CIDN ? +process.env.REACT_APP_CIDN : 13,  
+  responseExport: false,
   secretKey: "",
   data: [],
   aesKey: "",

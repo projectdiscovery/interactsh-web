@@ -20,6 +20,7 @@ import {
   poll,
   decryptAESKey,
   processData,
+  handleResponseExport,
   copyDataToClipboard,
   clearIntervals,
   register,
@@ -213,6 +214,9 @@ const HomePage = () => {
 
           // eslint-disable-next-line array-callback-return
           const formattedString = processedData.map((item: any) => {
+
+            storedData.responseExport && handleResponseExport(item)
+
             const telegramMsg = `<i>[${item['full-id']}]</i> Received <i>${item.protocol.toUpperCase()}</i> interaction from <b><a href="https://ipinfo.io/${item['remote-address']}">${item['remote-address']}</a></b> at <i>${format(new Date(item.timestamp), "yyyy-mm-dd_hh:mm:ss")}</i>`
             storedData.telegram.enabled && notifyTelegram(telegramMsg, storedData.telegram.botToken, storedData.telegram.chatId, 'HTML')
             return {

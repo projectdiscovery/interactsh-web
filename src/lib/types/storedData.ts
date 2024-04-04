@@ -22,6 +22,7 @@ export const StoredData_ = summon((F) =>
       correlationId: F.string(),
       correlationIdLength: F.number(),
       correlationIdNonceLength: F.number(),
+      responseExport: F.boolean(),
       theme: ThemeName(F),
 
       publicKey: F.string(),
