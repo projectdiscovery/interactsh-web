@@ -49,7 +49,7 @@
     "newtype-ts": "^0.3.4",
     "node-rsa": "^1.1.1",
     "postcss": "^7",
-    "prettier": "^2.3.2",
+    "prettier": "^3.3.3",
     "prismjs": "^1.24.1",
     "react": "^17.0.2",
     "react-content-loader": "^6.0.3",
