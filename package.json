@@ -25,7 +25,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",
     "@types/react-transition-group": "^4.4.2",
-    "@types/validator": "^13.1.4",
+    "@types/validator": "^13.12.2",
     "@types/webpack-env": "^1.16.2",
     "antd": "3.3.0",
     "autoprefixer": "^9",
@@ -65,7 +65,7 @@
     "ts-pattern": "^3.2.4",
     "typescript": "^4.3.5",
     "uuid": "^8.3.2",
-    "validator": "^13.7.0",
+    "validator": "^13.12.0",
     "web-vitals": "^1.0.1",
     "xid-js": "^1.0.1",
     "zbase32": "github:projectdiscovery/zbase32"
