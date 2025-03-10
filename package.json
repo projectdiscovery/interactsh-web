@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "npm": ">=8.0.0 <9.0.0",
-    "node": ">=16.0.0 <17.0.0"
+    "node": ">=16.0.0 <=18.20.7"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
