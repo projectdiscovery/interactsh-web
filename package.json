@@ -35,7 +35,7 @@
     "fp-ts": "^2.11.1",
     "fp-ts-contrib": "^0.1.26",
     "fp-ts-local-storage": "^1.0.3",
-    "fp-ts-std": "^0.11.0",
+    "fp-ts-std": "^0.15.1",
     "headlessui": "^0.0.0",
     "husky": "^7.0.4",
     "io-ts": "^2.2.16",
