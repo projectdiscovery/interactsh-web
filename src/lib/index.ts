@@ -103,7 +103,7 @@ export const handleDataExport = () => {
     E.getOrElse(() => "An error occured") // TODO: Handle error case.
   );
 
-  const fileName = `${format(Date.now(), "yyyy-mm-dd_hh:mm")}.json`;
+  const fileName = `${format(Date.now(), "yyyy-MM-dd_hh:mm")}.json`;
   downloadData(values, fileName);
 };
 
