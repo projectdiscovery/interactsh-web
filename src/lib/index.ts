@@ -90,6 +90,11 @@ const getData = (key: string) =>
     O.chain(O.fromNullable)
   );
 
+export const handleResponseExport = (item : any) => {
+  const fileName = `${format(Date.now(), "yyyy-MM-dd_hh:mm")}_${item.protocol}_${item['remote-address']}_${item['full-id']}_${item.id}.txt`;
+  downloadData(item['raw-request'], fileName);
+}
+
 export const handleDataExport = () => {
   const values = pipe(
     R.mapWithIndex((key) => ({ key, data: getData(key) }))(localStorage),
@@ -200,6 +205,7 @@ export const register = (
           host,
           correlationIdLength: currentData.correlationIdLength,
           correlationIdNonceLength: currentData.correlationIdNonceLength,
+          responseExport: false,
           increment: 1,
           token,
           telegram: {

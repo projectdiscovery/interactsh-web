@@ -32,6 +32,20 @@
     margin-right: 0.8rem;
     border-right: 1px solid rgba(255, 255, 255, 0.25);
   }
+  & > div:nth-of-type(2) {
+    letter-spacing: -0.02rem;
+    text-align: left;
+    padding-right: 1rem;
+    color: #ffffff;
+    margin-right: 0.8rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  & > div:nth-of-type(3) {
+    text-align: left;
+    color: #ffffff;
+    font-size: 1.4rem;
+    padding-right: 1rem;
+  }
   & > button:nth-of-type(1) {
     margin-left: 0;
     border-radius: 0.6rem;

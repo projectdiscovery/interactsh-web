@@ -11,7 +11,9 @@ import { ReactComponent as ThemeDarkButtonIcon } from "assets/svg/theme_dark_but
 import { ReactComponent as ThemeSynthButtonIcon } from "assets/svg/theme_synth_button.svg";
 import NotificationsPopup from "components/notificationsPopup";
 import ResetPopup from "components/resetPopup";
+import ToggleBtn from "components/toggleBtn";
 import { handleDataExport } from "lib";
+import { getStoredData, writeStoredData } from "lib/localStorage";
 import { ThemeName, showThemeName } from "theme";
 import "./styles.scss";
 
@@ -69,6 +71,19 @@ const Header = ({
     </button>
   );
 
+  const data = getStoredData();
+  const [inputData, setInputData] = useState<any>({
+    responseExport: data.responseExport
+  });
+
+  const handleToggleBtn = (e: any) => {
+
+    const currentStoredData = getStoredData();
+
+    setInputData({ ...inputData, responseExport: e.target.checked});
+    writeStoredData({ ...currentStoredData, responseExport: e.target.checked});
+  };
+
   return (
     <div id="header" className="header">
       <div>interactsh</div>
@@ -77,6 +92,16 @@ const Header = ({
         <ThemeButton theme="synth" />
         <ThemeButton theme="blue" />
       </div>
+
+      <div>Auto Download</div>
+      <div>
+        <ToggleBtn
+          name="responseExport"
+          onChangeHandler={handleToggleBtn}
+          value={inputData.responseExport}
+        />
+      </div>
+
       <div className="links">
         <button
           type="button"
