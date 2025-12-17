@@ -207,7 +207,7 @@ const HomePage = () => {
       .then((pollData) => {
         setIsRegistered(true);
         if (pollData?.data?.length !== 0 && !pollData.error) {
-          if (aesKey === "" && pollData.aes_key) {
+          if (pollData.aes_key) {
             decryptedAESKey = decryptAESKey(privateKey, pollData.aes_key);
           }
           const processedData = processData(decryptedAESKey, pollData);
@@ -241,7 +241,8 @@ const HomePage = () => {
           setFilteredData([...newData]);
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         setLoaderAnimationMode("server_error");
         setIsRegistered(false);
       });
