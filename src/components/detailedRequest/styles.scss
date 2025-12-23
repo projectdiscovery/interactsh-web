@@ -1,4 +1,4 @@
-@import "../../breakpoints.scss";
+@use "../../breakpoints.scss" as *;
 @include for-size(xsmall) {
 }
 
