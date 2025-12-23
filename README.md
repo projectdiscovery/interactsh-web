@@ -1,73 +1,122 @@
-# interactsh-web
+# Interactsh Web Client
 
-[Interactsh-web](https://github.com/projectdiscovery/interactsh-web) is a free and open-source web client that displays [Interactsh](https://github.com/projectdiscovery/interactsh) interactions in a well-managed dashboard in your browser. It uses the **browser's local storage** to store and display interactions. By default, the web client is configured to use - **interactsh.com**, a cloud-hosted interactsh server, and supports other self-hosted public/authencaited interactsh servers as well.
+<h4 align="center">A Next.js-based web interface for <a href="https://github.com/projectdiscovery/interactsh">Interactsh</a></h4>
 
-A hosted instance of **interactsh-web** client is available at https://app.interactsh.com
+## Getting Started
 
-<img width="2032" alt="interactsh-web" src="https://user-images.githubusercontent.com/8293321/135175927-07580994-32eb-4c06-8ca6-7ac9ea84776b.png">
+### Prerequisites
 
-## Configuring Self-Hosted Interactsh Server
+- Node.js 20+ (required for React 19)
+- npm, yarn, or pnpm
 
-- Navigate to hosted interactsh-web client at https://app.interactsh.com
-- Click on `oast.fun` link at top bar
-- Submit domain name running self-hosted interactsh server, optionally token (for protected server)
+### Installation
 
-Here is an example configuring self-hosted interactsh server with web-client:
-
-https://user-images.githubusercontent.com/8293321/163819390-b2677f3b-4c31-4439-b258-33b8bee87bf1.mp4
-
-## Build from Source
-
-
-<table>
-<tr>
-<td>
-
-Note:
-----
-
-In order to run the local version of the web client, **acao-url** flag should be pointed to **localhost** while running interactsh server to avoid CORS errors. for example,
-
-```
-interactsh-server -acao-url http://localhost:3000
-```
-</td>
-</tr>
-</table>
-
-### Using Yarn
-
-```
-git clone https://github.com/projectdiscovery/interactsh-web
+1. Clone the repository:
+```bash
+git clone https://github.com/projectdiscovery/interactsh-web.git
 cd interactsh-web
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
 yarn install
-yarn start
 ```
 
-### Using Docker
+3. Run the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## Docker
+
+Build and run using Docker:
+
+```bash
+docker build -t interactsh-web .
+docker run -p 3000:3000 interactsh-web
+```
+
+## Environment Variables
+
+Create a `.env.local` file in the root directory to customize the configuration:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_HOST` | Default Interactsh server host | `oast.fun` |
+| `NEXT_PUBLIC_TOKEN` | Authentication token (optional) | - |
+| `NEXT_PUBLIC_CIDL` | Correlation ID Length | `20` |
+| `NEXT_PUBLIC_CIDN` | Correlation ID Nonce Length | `13` |
+
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) with App Router
+- **React**: React 19.1.0
+- **Styling**: SCSS, Tailwind CSS, styled-components
+- **Language**: TypeScript
+- **UI Components**: Headless UI v2
+- **Cryptography**: node-rsa, crypto-browserify
+- **Theme Management**: next-themes
+
+## Project Structure
 
 ```
-docker pull projectdiscovery/interactsh-web
-docker run -it -p 3000:3000 projectdiscovery/interactsh-web
+src/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Main application page
+│   ├── layout.tsx         # Root layout
+│   ├── styles.scss        # Page styles
+│   ├── terms/             # Terms page
+│   └── components/        # Page-specific components
+├── components/            # Reusable UI components
+│   ├── appLoader/
+│   ├── customHost/
+│   ├── detailedRequest/
+│   ├── header/
+│   ├── icons/             # SVG icon components
+│   ├── notificationsPopup/
+│   ├── requestsTable/
+│   ├── resetPopup/
+│   ├── tabSwitcher/
+│   └── toggleBtn/
+├── lib/                   # Utility functions and types
+│   ├── index.ts           # Core functionality
+│   ├── localStorage/      # Local storage management
+│   ├── notify/            # Notification services
+│   ├── registry.tsx       # styled-components registry
+│   └── types/             # TypeScript type definitions
+├── helpers/               # Fallback loaders
+├── styles/                # Global styles
+└── theme.ts               # Theme configuration
 ```
 
-Once successfully started, you can access web dashboard at [localhost:3000](http://localhost:3000)
+## Features
 
------
+- Real-time interaction monitoring
+- Multiple protocol support (HTTP, DNS, SMTP)
+- Tab management for multiple sessions
+- Request/Response detailed view
+- Notification integrations (Telegram, Slack, Discord)
+- Custom host configuration
+- Data export functionality
+- Theme selection (Dark, Synth, Blue)
 
-### Custom configuration
+## License
 
-You can set a custom configuration when deploying this project.
-If you want to avoid the registration of your server host and token, you can give the below environnement variable to your docker-compose / server.
+MIT License - see [LICENSE.md](LICENSE.md) for details.
 
-For this, just specify
-- `REACT_APP_HOST` for the host (default: "oast.fun")
-- `REACT_APP_TOKEN` for the custom token (default: "")
-- `REACT_APP_CIDL` for the custom correlation id length (default: 20)
-- `REACT_APP_CIDN` for the custom correlation nonce length (default: 13)
+## Credits
 
-<div align="center">
-
-**interactsh-web** is made with 🖤 by the [projectdiscovery](https://projectdiscovery.io) team.
-
-</div>
+- [ProjectDiscovery](https://projectdiscovery.io/) - Interactsh core
