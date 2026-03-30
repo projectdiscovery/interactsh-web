@@ -58,7 +58,11 @@ export const getStoredData = (): StoredData => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       const parsed = JSON.parse(stored);
-      return { ...defaultStoredData, ...parsed };
+      return {
+        ...defaultStoredData,
+        ...parsed,
+        filter: { ...defaultStoredData.filter, ...parsed.filter },
+      };
     }
   } catch (error) {
     console.error('Failed to read from localStorage:', error);

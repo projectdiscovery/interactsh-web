@@ -58,10 +58,10 @@ const DetailedRequest = memo(({ title, data, view, protocol }: DetailedRequestP)
           Copy <CopyIcon />
         </button>
         <div className="pre_wrapper">
-          <pre className={protocol === 'http' ? 'language-http' : 'default'}>
+          <pre className={protocol === 'http' || protocol === 'https' ? 'language-http' : 'default'}>
             <code
               ref={codeRef}
-              className={protocol === 'http' ? 'language-http' : 'default'}
+              className={protocol === 'http' || protocol === 'https' ? 'language-http' : 'default'}
             >
               {data}
             </code>
