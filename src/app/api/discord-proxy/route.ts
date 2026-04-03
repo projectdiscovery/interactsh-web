@@ -27,6 +27,10 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({ embeds }),
     });
 
+    if (res.status === 204) {
+      return new NextResponse(null, { status: 204 });
+    }
+
     const body = await res.text();
     return new NextResponse(body, {
       status: res.status,
