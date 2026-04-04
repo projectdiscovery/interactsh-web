@@ -9,6 +9,8 @@ import { NextRequest, NextResponse } from 'next/server';
  * client, then forwards them to Discord from the server where CORS does
  * not apply.
  */
+const WEBHOOK_RE = /^\/api\/webhooks\/\d+\/.+$/;
+
 export async function POST(req: NextRequest) {
   try {
     const { webhook, embeds } = await req.json();
@@ -21,6 +23,14 @@ export async function POST(req: NextRequest) {
     }
 
     const pathname = new URL(webhook).pathname;
+
+    if (!WEBHOOK_RE.test(pathname)) {
+      return NextResponse.json(
+        { error: 'Invalid webhook URL' },
+        { status: 400 }
+      );
+    }
+
     const res = await fetch(`https://discord.com${pathname}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
