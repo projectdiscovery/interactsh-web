@@ -67,12 +67,10 @@ export const notifyDiscord = async (
     
     await Promise.all(
       chunkedData.map(async (chunk) => {
-        const params = {
-          embeds: chunk.map((m) => ({ description: m.discord, color: 5298687 })),
-        };
-        await fetch(`https://discordapp.com${new URL(webhook).pathname}`, {
+        const embeds = chunk.map((m) => ({ description: m.discord, color: 5298687 }));
+        await fetch('/api/discord-proxy', {
           method: 'POST',
-          body: JSON.stringify(params),
+          body: JSON.stringify({ webhook, embeds }),
           headers: { 'Content-Type': 'application/json' },
         });
       })
