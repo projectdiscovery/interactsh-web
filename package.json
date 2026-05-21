@@ -7,7 +7,7 @@
       "node" : ">=16.0.0 <17.0.0"
     },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
+    "@ant-design/icons": "^6.1.0",
     "@babakness/exhaustive-type-checking": "^0.1.3",
     "@craco/craco": "^6.2.0",
     "@headlessui/react": "^1.5.0",
