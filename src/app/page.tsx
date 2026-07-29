@@ -153,16 +153,20 @@ const HomePage = () => {
   };
 
   const handleTabRename: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    const tempTabsList = storedData.tabs;
-    const index = tempTabsList.findIndex((item) => item === storedData.selectedTab);
-    const filteredTabList = tempTabsList.filter(
-      (item) => item !== storedData.selectedTab
+    const { selectedTab, tabs } = storedData;
+    const updatedTabs = tabs.map((item) =>
+      item['unique-id'] === selectedTab['unique-id']
+        ? { ...item, name: e.target.value }
+        : item
     );
-    const tempTab = { ...tempTabsList[index], name: e.target.value };
+    const updatedTab = updatedTabs.find(
+      (item) => item['unique-id'] === selectedTab['unique-id']
+    ) || selectedTab;
 
     setStoredData({
       ...storedData,
-      tabs: filteredTabList.concat(tempTab),
+      tabs: updatedTabs,
+      selectedTab: updatedTab,
     });
   };
 
