@@ -43,15 +43,13 @@ interface PolledData {
 }
 
 export const decryptAESKey = (privateKey: string, aesKey: string): string => {
-  const key = new NodeRSA({ b: 2048 });
-  key.setOptions({
+  const key = new NodeRSA(privateKey, 'pkcs8-private', {
     environment: 'browser',
     encryptionScheme: {
       hash: 'sha256',
       scheme: 'pkcs1_oaep',
     },
   });
-  key.importKey(privateKey, 'pkcs8-private');
   return key.decrypt(aesKey, 'base64');
 };
 
