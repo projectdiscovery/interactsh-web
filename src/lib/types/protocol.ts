@@ -1,4 +1,4 @@
-export const protocols = ['dns', 'http', 'https', 'smtp'] as const;
+export const protocols = ['dns', 'http', 'https', 'smtp', 'ldap'] as const;
 export type Protocol = (typeof protocols)[number];
 
 export const Protocol = {

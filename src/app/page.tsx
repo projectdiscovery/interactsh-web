@@ -484,7 +484,8 @@ const HomePage = () => {
           {selectedInteraction !== null && selectedInteractionData !== null && (
             <div className="right_section">
               <div className="result_header">
-                {selectedInteractionData.protocol !== 'smtp' && (
+                {selectedInteractionData.protocol !== 'smtp' &&
+                  selectedInteractionData.protocol !== 'ldap' && (
                   <>
                     <div className="req_res_buttons">
                       <button
