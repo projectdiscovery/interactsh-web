@@ -11,9 +11,7 @@ import { StoredData } from './types/storedData';
 import { Tab } from './types/tab';
 
 export { getStoredData, writeStoredData, defaultStoredData };
-
-export const copyDataToClipboard = (data: string): Promise<void> =>
-  navigator.clipboard.writeText(data);
+export { copyDataToClipboard } from './clipboard';
 
 export const generateUrl = (
   correlationId: string,
