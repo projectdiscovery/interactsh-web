@@ -27,7 +27,8 @@ const RequestDetailsWrapper = memo((props: RequestDetailsWrapperP) => {
       >
         <Suspense fallback={<IssuesListFallback />}>
           {view === 'request' ||
-          selectedInteractionData.protocol === 'smtp' ? (
+          selectedInteractionData.protocol === 'smtp' ||
+          selectedInteractionData.protocol === 'ldap' ? (
             <DetailedRequest
               view={view}
               data={`${selectedInteractionData['raw-request']}`}

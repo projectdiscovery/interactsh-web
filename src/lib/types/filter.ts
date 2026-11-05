@@ -7,6 +7,7 @@ export const defaultFilter: Filter = {
   http: true,
   https: true,
   smtp: true,
+  ldap: true,
 };
 
 export default Filter;
