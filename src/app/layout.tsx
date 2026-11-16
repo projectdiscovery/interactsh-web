@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
 import StyledComponentsRegistry from '@/lib/registry';
 import '@/styles/globals.scss';
@@ -23,6 +24,8 @@ export default function RootLayout({
         />
       </head>
       <body style={{ margin: 0 }}>
+        {/* Server-side configuration, loaded before the app code runs. */}
+        <Script src="/env.js" strategy="beforeInteractive" />
         <StyledComponentsRegistry>
           <div id="root">{children}</div>
           <div id="portal_root"></div>

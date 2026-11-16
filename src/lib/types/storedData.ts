@@ -1,4 +1,5 @@
 import { ThemeName } from '@/theme';
+import { getRuntimeEnv } from '../runtimeEnv';
 import { Data } from './data';
 import { Discord } from './discord';
 import { Filter, defaultFilter } from './filter';
@@ -36,8 +37,8 @@ export const defaultStoredData: StoredData = {
   privateKey: '',
   publicKey: '',
   correlationId: '',
-  correlationIdLength: Number(process.env.NEXT_PUBLIC_CIDL) || 20,
-  correlationIdNonceLength: Number(process.env.NEXT_PUBLIC_CIDN) || 13,
+  correlationIdLength: Number(getRuntimeEnv('NEXT_PUBLIC_CIDL') || process.env.NEXT_PUBLIC_CIDL) || 20,
+  correlationIdNonceLength: Number(getRuntimeEnv('NEXT_PUBLIC_CIDN') || process.env.NEXT_PUBLIC_CIDN) || 13,
   responseExport: false,
   secretKey: '',
   data: [],
@@ -45,9 +46,9 @@ export const defaultStoredData: StoredData = {
   notes: [],
   view: 'up_and_down',
   increment: 1,
-  host: process.env.NEXT_PUBLIC_HOST || 'oast.fun',
+  host: getRuntimeEnv('NEXT_PUBLIC_HOST') || process.env.NEXT_PUBLIC_HOST || 'oast.fun',
   tabs: [],
-  token: process.env.NEXT_PUBLIC_TOKEN || '',
+  token: getRuntimeEnv('NEXT_PUBLIC_TOKEN') || process.env.NEXT_PUBLIC_TOKEN || '',
   telegram: {
     enabled: false,
     botToken: '',

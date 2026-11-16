@@ -54,7 +54,7 @@ docker run -p 3000:3000 interactsh-web
 
 ## Environment Variables
 
-Create a `.env.local` file in the root directory to customize the configuration:
+The following variables customize the configuration. For local development and for builds, set them in a `.env.local` file in the root directory:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -62,6 +62,17 @@ Create a `.env.local` file in the root directory to customize the configuration:
 | `NEXT_PUBLIC_TOKEN` | Authentication token (optional) | - |
 | `NEXT_PUBLIC_CIDL` | Correlation ID Length | `20` |
 | `NEXT_PUBLIC_CIDN` | Correlation ID Nonce Length | `13` |
+
+The same variables can be set when the server starts, without rebuilding. A value set at start takes precedence over one set at build time:
+
+```bash
+docker run -p 3000:3000 \
+  -e NEXT_PUBLIC_HOST="interactsh.example.com" \
+  -e NEXT_PUBLIC_TOKEN="your-token" \
+  interactsh-web
+```
+
+These values are sent to the browser, so do not put a token there that visitors of the page must not see. A browser that already opened the app keeps the host stored in its local storage; reset the app or clear the site data to pick up a new default.
 
 ## Tech Stack
 
