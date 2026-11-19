@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { ArrowRightIcon, CloseIcon, LoaderIcon } from '@/components/icons';
 import { register } from '@/lib';
-import { defaultStoredData, getStoredData, writeStoredData } from '@/lib/localStorage';
+import { defaultStoredData, flushStoredData, getStoredData, writeStoredData } from '@/lib/localStorage';
 import './styles.scss';
 
 interface CustomHostP {
@@ -61,6 +61,7 @@ const CustomHost = ({ handleCloseDialog }: CustomHostP) => {
           correlationIdLength: correlationIdLengthInputValue,
           correlationIdNonceLength: correlationIdNonceLengthInputValue,
         });
+        flushStoredData();
         register(
           inputValue.replace(/(^\w+:|^)\/\//, ''),
           tokenInputValue,
